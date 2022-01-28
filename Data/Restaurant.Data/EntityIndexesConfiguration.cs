@@ -2,9 +2,8 @@
 {
     using System.Linq;
 
-    using Restaurant.Data.Common.Models;
-
     using Microsoft.EntityFrameworkCore;
+    using Restaurant.Data.Common.Models;
 
     internal static class EntityIndexesConfiguration
     {

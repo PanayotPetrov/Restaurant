@@ -2,9 +2,8 @@
 {
     using System.Diagnostics;
 
-    using Restaurant.Web.ViewModels;
-
     using Microsoft.AspNetCore.Mvc;
+    using Restaurant.Web.ViewModels;
 
     public class HomeController : BaseController
     {

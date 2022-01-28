@@ -1,8 +1,8 @@
 ﻿namespace Restaurant.Data.Configurations
 {
-    using Restaurant.Data.Models;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
+    using Restaurant.Data.Models;
 
     public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
     {

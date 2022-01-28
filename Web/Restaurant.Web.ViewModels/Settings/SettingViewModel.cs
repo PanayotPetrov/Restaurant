@@ -1,9 +1,8 @@
 ﻿namespace Restaurant.Web.ViewModels.Settings
 {
+    using AutoMapper;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
-
-    using AutoMapper;
 
     public class SettingViewModel : IMapFrom<Setting>, IHaveCustomMappings
     {

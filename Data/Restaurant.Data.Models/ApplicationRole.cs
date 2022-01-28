@@ -3,9 +3,8 @@ namespace Restaurant.Data.Models
 {
     using System;
 
-    using Restaurant.Data.Common.Models;
-
     using Microsoft.AspNetCore.Identity;
+    using Restaurant.Data.Common.Models;
 
     public class ApplicationRole : IdentityRole, IAuditInfo, IDeletableEntity
     {

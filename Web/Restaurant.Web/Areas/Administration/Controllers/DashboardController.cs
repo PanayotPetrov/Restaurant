@@ -1,9 +1,8 @@
 ﻿namespace Restaurant.Web.Areas.Administration.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
     using Restaurant.Web.ViewModels.Administration.Dashboard;
-
-    using Microsoft.AspNetCore.Mvc;
 
     public class DashboardController : AdministrationController
     {
