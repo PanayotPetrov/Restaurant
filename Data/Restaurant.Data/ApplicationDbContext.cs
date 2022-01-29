@@ -25,6 +25,18 @@
 
         public DbSet<Setting> Settings { get; set; }
 
+        public DbSet<Address> Addresses { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Meal> Meals { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Reservation> Reservations { get; set; }
+
+        public DbSet<Review> Reviews { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)
@@ -71,6 +83,8 @@
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
+
+            builder.Entity<Order>().Property(o => o.TotalPrice).UsePropertyAccessMode(PropertyAccessMode.Property);
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
