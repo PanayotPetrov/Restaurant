@@ -28,10 +28,6 @@ namespace Restaurant.Data.Models
 
         public DateTime? DeletedOn { get; set; }
 
-        public int AddressId { get; set; }
-
-        public Address Address { get; set; }
-
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
