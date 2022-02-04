@@ -41,6 +41,7 @@
     <ProjectReference Include="..\..\Services\Restaurant.Services.Mapping\Restaurant.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\Restaurant.Services.Messaging\Restaurant.Services.Messaging.csproj" />
     <ProjectReference Include="..\..\Services\Restaurant.Services\Restaurant.Services.csproj" />
+    <ProjectReference Include="..\..\Web\Restaurant.Web.ViewModels\Restaurant.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

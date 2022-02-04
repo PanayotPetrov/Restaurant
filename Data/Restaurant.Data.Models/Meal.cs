@@ -18,8 +18,14 @@
 
         public decimal Price { get; set; }
 
+        public int MealTypeId { get; set; }
+
+        public virtual MealType MealType { get; set; }
+
         public virtual ICollection<Category> Categories { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
+
+        // TO DO: Add photo
     }
 }
