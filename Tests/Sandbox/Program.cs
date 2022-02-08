@@ -53,7 +53,36 @@
         {
             var sw = Stopwatch.StartNew();
 
-            var service = serviceProvider.GetService<IMenuService>();
+            var service = serviceProvider.GetService<ApplicationDbContext>();
+            var testMeal = new Meal
+            {
+                MealType = service.MealTypes.FirstOrDefault(x => x.Name == "Breakfast"),
+                Name = "Eggs",
+                Price = 100M,
+                Description = "New breakfast item",
+            };
+
+            var testMeal2 = new Meal
+            {
+                MealType = service.MealTypes.FirstOrDefault(x => x.Name == "Lunch"),
+                Name = "Toast",
+                Price = 150M,
+                Description = "New lunch item",
+            };
+
+            var testMeal3 = new Meal
+            {
+                MealType = service.MealTypes.FirstOrDefault(x => x.Name == "Dinner"),
+                Name = "Soup",
+                Price = 150M,
+                Description = "New dinner item",
+            };
+
+            service.Meals.Add(testMeal);
+            service.Meals.Add(testMeal2);
+            service.Meals.Add(testMeal3);
+
+            await service.SaveChangesAsync();
 
             return 1;
         }
@@ -81,8 +110,7 @@
             // Application services
             services.AddTransient<IEmailSender, NullMessageSender>();
             services.AddTransient<ISettingsService, SettingsService>();
-            services.AddTransient<IMenuService, MenuService>();
-
+            services.AddTransient<IMealService, MealService>();
         }
     }
 }

@@ -16,6 +16,7 @@ namespace Restaurant.Data.Models
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
             this.Orders = new HashSet<Order>();
+            this.Reservations = new HashSet<Reservation>();
         }
 
         // Audit info

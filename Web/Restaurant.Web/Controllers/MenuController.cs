@@ -1,9 +1,5 @@
 ﻿namespace Restaurant.Web.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
@@ -12,17 +8,17 @@
 
     public class MenuController : BaseController
     {
-        private readonly IMenuService menuService;
+        private readonly IMealService mealService;
 
-        public MenuController(IMenuService menuService)
+        public MenuController(IMealService mealService)
         {
-            this.menuService = menuService;
+            this.mealService = mealService;
         }
 
         [HttpGet("/Menu/")]
         public IActionResult All()
         {
-            var menu = new MenuViewModel { Meals = this.menuService.GetAllMeals<MealViewModel>() };
+            var menu = new MenuViewModel { Meals = this.mealService.GetAllMeals<MealViewModel>() };
 
             return this.View(menu);
         }

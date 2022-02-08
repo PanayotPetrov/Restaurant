@@ -1,6 +1,7 @@
 ﻿namespace Restaurant.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
@@ -16,8 +17,10 @@
         public decimal TotalPrice
         {
             get => this.Meals.Sum(m => m.Price);
-            set => this.TotalPrice = value;
+            set { }
         }
+
+        [Required]
 
         public string ApplicationUserId { get; set; }
 

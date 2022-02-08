@@ -1,6 +1,7 @@
 ﻿namespace Restaurant.Data.Models
 {
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using Restaurant.Data.Common.Models;
 
@@ -11,13 +12,23 @@
             this.Orders = new HashSet<Order>();
         }
 
+        [Required]
+
         public string Street { get; set; }
+
+        [Required]
+
+        public string District { get; set; }
+
+        [Required]
 
         public string City { get; set; }
 
+        [Required]
+
         public string PostCode { get; set; }
 
-        public string District { get; set; }
+        [Required]
 
         public string Country { get; set; }
 

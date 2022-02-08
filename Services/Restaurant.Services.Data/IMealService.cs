@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface IMenuService
+    public interface IMealService
     {
         int GetMealCount();
 

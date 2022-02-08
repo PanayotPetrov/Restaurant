@@ -2,16 +2,17 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+
     using Microsoft.EntityFrameworkCore;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
 
-    public class MenuService : IMenuService
+    public class MealService : IMealService
     {
         private readonly IDeletableEntityRepository<Meal> mealRepository;
 
-        public MenuService(IDeletableEntityRepository<Meal> mealRepository)
+        public MealService(IDeletableEntityRepository<Meal> mealRepository)
         {
             this.mealRepository = mealRepository;
         }
