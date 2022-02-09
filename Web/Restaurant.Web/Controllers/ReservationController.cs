@@ -23,7 +23,7 @@
                 return this.View(model);
             }
 
-            // TO DO: ADD Reservation
+            // TO DO: Add reservation to DB.
             return this.RedirectToAction(nameof(this.Success));
         }
 

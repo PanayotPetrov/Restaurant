@@ -3,13 +3,24 @@
     using System.Diagnostics;
 
     using Microsoft.AspNetCore.Mvc;
+    using Restaurant.Services.Data;
     using Restaurant.Web.ViewModels;
+    using Restaurant.Web.ViewModels.Review;
 
     public class HomeController : BaseController
     {
+        private readonly IReviewService reviewService;
+
+        public HomeController(IReviewService reviewService)
+        {
+            this.reviewService = reviewService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var latestReviews = this.reviewService.GetLatestFiveReviews<ReviewViewModel>();
+            var model = new ReviewListViewModel { Reviews = latestReviews };
+            return this.View(model);
         }
 
         public IActionResult Privacy()

@@ -45,8 +45,8 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="form-floating date" id="date3" data-target-input="nearest">
-                                <input type="text" asp-for="DateAndTime" class="form-control datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
+                            <div class="form-floating date">
+                                <input type="datetime-local" asp-for="DateAndTime" class="form-control" placeholder="Date & Time"/>
                                 <label asp-for="DateAndTime">Date & Time</label>
                                 <span asp-validation-for="DateAndTime" class="text-white"></span>
                             </div>
@@ -54,16 +54,16 @@
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <select asp-for="NumberOfPeople"class="form-select">
-                                    <option value="1">People 1</option>
-                                    <option value="2">People 2</option>
-                                    <option value="3">People 3</option>
+                                    <option value="1">Two people</option>
+                                    <option value="2">Three people</option>
+                                    <option value="3">Four people</option>
                                 </select>
-                                <label for="select1">No Of People</label>
+                                <label asp-for=NumberOfPeople>Number of people</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" asp-for="SpecialRequest" name="specialrequest" placeholder="Special Request" style="height: 100px"></textarea>
+                                <textarea class="form-control" asp-for="SpecialRequest" placeholder="Special Request" style="height: 100px"></textarea>
                                 <label asp-for="SpecialRequest">Special Request</label>
                                 <span asp-validation-for="SpecialRequest" class="text-white"></span>
 
