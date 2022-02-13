@@ -18,7 +18,7 @@
             throw new NotImplementedException();
         }
 
-        public async Task CreateReservationAsync(BookTableInputModel model)
+        public async Task CreateReservationAsync(AddReservationInputModel model)
         {
             throw new NotImplementedException();
         }

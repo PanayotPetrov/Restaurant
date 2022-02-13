@@ -7,9 +7,6 @@
     public class Review : BaseDeletableModel<int>
     {
         [Required]
-        public string FullName { get; set; }
-
-        [Required]
         public string Description { get; set; }
 
         [Required]

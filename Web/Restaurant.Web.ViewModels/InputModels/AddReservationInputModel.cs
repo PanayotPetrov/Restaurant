@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
-    public class BookTableInputModel
+    public class AddReservationInputModel
     {
         [Required(ErrorMessage = "We need your fullname to book a table.")]
         public string FullName { get; set; }

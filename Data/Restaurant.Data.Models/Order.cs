@@ -21,6 +21,7 @@
         }
 
         [Required]
+        public string FullName { get; set; }
 
         public string ApplicationUserId { get; set; }
 

@@ -16,7 +16,7 @@
         }
 
         [HttpPost]
-        public IActionResult Book(BookTableInputModel model)
+        public IActionResult Book(AddReservationInputModel model)
         {
             if (!this.ModelState.IsValid)
             {

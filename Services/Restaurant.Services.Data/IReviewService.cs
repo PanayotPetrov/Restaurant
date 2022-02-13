@@ -1,6 +1,7 @@
 ﻿namespace Restaurant.Services.Data
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     using Restaurant.Web.ViewModels.InputModels;
 
@@ -8,7 +9,7 @@
     {
         IEnumerable<T> GetAllReviews<T>();
 
-        bool AddReview(AddReviewInputModel model);
+        Task AddReviewAsync(AddReviewInputModel model);
 
         IEnumerable<T> GetLatestFiveReviews<T>();
     }

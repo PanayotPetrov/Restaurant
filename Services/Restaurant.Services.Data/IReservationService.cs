@@ -11,6 +11,6 @@
 
         IEnumerable<T> GetAllByUserId<T>(string userId);
 
-        Task CreateReservationAsync(BookTableInputModel model);
+        Task CreateReservationAsync(AddReservationInputModel model);
     }
 }

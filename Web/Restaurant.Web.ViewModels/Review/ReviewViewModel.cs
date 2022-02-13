@@ -12,15 +12,11 @@
 
         public string Description { get; set; }
 
-        public string ApplicationUserId { get; set; }
-
-        public string ApplicationUserName { get; set; }
-
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Review, ReviewViewModel>().ForMember(
-                r => r.ApplicationUserName,
-                opt => opt.MapFrom(x => x.ApplicationUser.UserName));
+                r => r.FullName,
+                opt => opt.MapFrom(x => $"{x.ApplicationUser.FirstName} {x.ApplicationUser.LastName}"));
         }
     }
 }

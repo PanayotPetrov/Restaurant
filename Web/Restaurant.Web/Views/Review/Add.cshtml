@@ -1,0 +1,38 @@
+﻿@using Restaurant.Common
+@using Restaurant.Web.ViewModels.InputModels
+@model AddReviewInputModel
+
+@{
+    this.ViewData["Title"] = "Add review";
+}
+
+<div class="container-xxl py-3 bg-dark hero-header mb-5">
+    <div class="container text-center my-5 pt-5 pb-4">
+
+    </div>
+</div>
+
+<!-- Reservation Start -->
+
+
+        <div class="col-md-12 bg-dark">
+            <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="col-xl-12 d-flex align-items-center">
+                    <h1 class="text-white mb-4">Tell us about your experience!</h1>
+                </div>
+                <form method="post">
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <textarea class="form-control col-xl-12" asp-for="Description" placeholder="Let us know what you think!" style="height: 100px"></textarea>
+                            <label asp-for="Description">Let us know what you think!</label>
+                            <span asp-validation-for="Description" class="text-white"></span>
+
+                        </div>
+                    </div>
+                    <h1></h1>
+                    <div class="col-12">
+                        <button class="btn btn-primary w-100 py-3 form-control-lg" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>

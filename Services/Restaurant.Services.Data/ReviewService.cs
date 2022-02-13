@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
 
@@ -20,9 +21,16 @@
             this.reviewRepository = reviewRepository;
         }
 
-        public bool AddReview(AddReviewInputModel model)
+        public async Task AddReviewAsync(AddReviewInputModel model)
         {
-            throw new NotImplementedException();
+            var review = new Review
+            {
+                ApplicationUserId = model.ApplicationUserId,
+                Description = model.Description,
+            };
+
+            await this.reviewRepository.AddAsync(review);
+            await this.reviewRepository.SaveChangesAsync();
         }
 
         public IEnumerable<T> GetAllReviews<T>()

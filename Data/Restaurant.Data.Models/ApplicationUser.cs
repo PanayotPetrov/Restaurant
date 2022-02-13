@@ -3,6 +3,7 @@ namespace Restaurant.Data.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
 
     using Microsoft.AspNetCore.Identity;
     using Restaurant.Data.Common.Models;
@@ -18,6 +19,12 @@ namespace Restaurant.Data.Models
             this.Orders = new HashSet<Order>();
             this.Reservations = new HashSet<Reservation>();
         }
+
+        [Required]
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
 
         // Audit info
         public DateTime CreatedOn { get; set; }
