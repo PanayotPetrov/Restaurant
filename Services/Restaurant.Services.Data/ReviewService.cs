@@ -27,6 +27,7 @@
             {
                 ApplicationUserId = model.ApplicationUserId,
                 Description = model.Description,
+                Rating = int.Parse(model.Rating),
             };
 
             await this.reviewRepository.AddAsync(review);
@@ -35,7 +36,7 @@
 
         public IEnumerable<T> GetAllReviews<T>()
         {
-            return this.reviewRepository.All().To<T>().ToList();
+            return this.reviewRepository.All().OrderByDescending(x => x.CreatedOn).To<T>().ToList();
         }
 
         public IEnumerable<T> GetLatestFiveReviews<T>()

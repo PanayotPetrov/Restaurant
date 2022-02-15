@@ -1,12 +1,15 @@
 ﻿namespace Restaurant.Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
+
     using Restaurant.Data.Models;
     using Restaurant.Services.Data;
     using Restaurant.Web.ViewModels.InputModels;
-    using System.Threading.Tasks;
+    using Restaurant.Web.ViewModels.Review;
 
     public class ReviewController : BaseController
     {
@@ -21,7 +24,13 @@
 
         public IActionResult All()
         {
-            return this.View();
+            var reviews = this.reviewService.GetAllReviews<ReviewViewModel>();
+            var model = new ReviewListViewModel
+            {
+                Reviews = reviews,
+            };
+
+            return this.View(model);
         }
 
         [Authorize]
@@ -41,12 +50,7 @@
             var userId = this.userManager.GetUserId(this.User);
             model.ApplicationUserId = userId;
             await this.reviewService.AddReviewAsync(model);
-            return this.RedirectToAction(nameof(this.Success));
-        }
-
-        public IActionResult Success()
-        {
-            return this.View();
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

@@ -8,5 +8,8 @@
 
         [Required]
         public string Description { get; set; }
+
+        [Required(ErrorMessage = "Please select a rating!")]
+        public string Rating { get; set; }
     }
 }

@@ -14,5 +14,8 @@
 
         [Required]
         public virtual ApplicationUser ApplicationUser { get; set; }
+
+        [Range(1, 5)]
+        public int Rating { get; set; }
     }
 }

@@ -12,6 +12,8 @@
 
         public string Description { get; set; }
 
+        public int Rating { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Review, ReviewViewModel>().ForMember(
