@@ -17,8 +17,10 @@
 
         // TO DO: Add validation for current date
         [Required(ErrorMessage = "We can't book a table unless you select a date.")]
-        public DateTime DateAndTime { get; set; }
+        public DateTime ReservationDate { get; set; }
 
         public int NumberOfPeople { get; set; }
+
+        public string UserId { get; set; }
     }
 }

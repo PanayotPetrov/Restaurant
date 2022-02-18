@@ -18,6 +18,11 @@
 
         public int NumberOfPeople { get; set; }
 
-         // TODO: Table?
+        public int TableId { get; set; }
+
+        public virtual Table Table { get; set; }
+
+        [EmailAddress]
+        public string Email { get; set; }
     }
 }

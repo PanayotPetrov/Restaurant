@@ -29,6 +29,7 @@
                 <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
                 <h1 class="text-white mb-4">Book A Table Online</h1>
                 <form method="post">
+                    <div asp-validation-summary="All"></div>
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="form-floating">
@@ -46,17 +47,17 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating date">
-                                <input type="datetime-local" asp-for="DateAndTime" class="form-control" placeholder="Date & Time"/>
-                                <label asp-for="DateAndTime">Date & Time</label>
-                                <span asp-validation-for="DateAndTime" class="text-white"></span>
+                                <input type="datetime-local" asp-for="ReservationDate" class="form-control" placeholder="Date & Time"/>
+                                <label asp-for="ReservationDate">Date & Time</label>
+                                <span asp-validation-for="ReservationDate" class="text-white"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <select asp-for="NumberOfPeople"class="form-select">
-                                    <option value="1">Two people</option>
-                                    <option value="2">Three people</option>
-                                    <option value="3">Four people</option>
+                                    <option value="2">Two people</option>
+                                    <option value="3">Three people</option>
+                                    <option value="4">Four people</option>
                                 </select>
                                 <label asp-for=NumberOfPeople>Number of people</label>
                             </div>
