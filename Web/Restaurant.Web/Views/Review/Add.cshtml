@@ -13,21 +13,20 @@
 </div>
 <div class="col-md-12 bg-dark">
     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
-        <h1 class="text-white mb-4 text-center">Tell us about your experience!</h1>
-        <h5 class="text-center text-white fw-normal">Rate us!</h5>
-        <span class="form-check text-center" asp-validation-for="Rating"></span>
+        <h1 class="text-white mb-0 text-center">Give us a rating!</h1>
 
+        <span class="form-check text-center" asp-validation-for="Rating"></span>
         <form method="post">
-            <div class="rated">
-                <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label>
-                <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label>
-                <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label>
-                <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label>
-                <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label>
+            <div class="rating mb-5">
+                <input type="radio" name="rating" value="5" id="5"><label for="5" class="fs-1">☆</label>
+                <input type="radio" name="rating" value="4" id="4"><label for="4" class="fs-1">☆</label>
+                <input type="radio" name="rating" value="3" id="3"><label for="3" class="fs-1">☆</label>
+                <input type="radio" name="rating" value="2" id="2"><label for="2" class="fs-1">☆</label>
+                <input type="radio" name="rating" value="1" id="1"><label for="1" class="fs-1">☆</label>
             </div>
             <div class="form-floating">
-                <textarea class="form-control col-xl-12" asp-for="Description" placeholder="Let us know what you think!" style="height: 200px"></textarea>
-                <label asp-for="Description">Let us know what you think!</label>
+                <textarea class="form-control col-xl-12" asp-for="Description" placeholder="Share your experience, recommendations, etc." style="height: 200px"></textarea>
+                <label asp-for="Description">Share your experience, recommendations, etc.</label>
                 <span asp-validation-for="Description" class="text-white"></span>
             </div>
             <h1></h1>

@@ -16,7 +16,7 @@
                 <a class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft" asp-controller="Reservation" asp-action="Book">Book A Table</a>
             </div>
             <div class="col-lg-6 text-center text-lg-end overflow-hidden">
-                <img class="img-fluid" src="img/hero.png" alt="">
+                <img class="img-fluid" src="~/img/hero.png" asp-append-version="true">
             </div>
         </div>
     </div>
@@ -31,8 +31,8 @@
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
                         <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
-                        <h5>Master Chefs</h5>
-                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <h5>Experienced Chefs</h5>
+                        <p>All of our employees have 20+ years of experince in the finest restaurants.</p>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                     <div class="p-4">
                         <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
                         <h5>Quality Food</h5>
-                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <p>We use only the best ingredients from local markets. An incredible gourmet experience everytime.</p>
                     </div>
                 </div>
             </div>
@@ -49,8 +49,8 @@
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
                         <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
-                        <h5>Online Order</h5>
-                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <h5>Online Orders</h5>
+                        <p>Thanks to our logistics team you can enjoy our meals from the comfort of your home.</p>
                     </div>
                 </div>
             </div>
@@ -58,8 +58,8 @@
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
                         <i class="fa fa-3x fa-headset text-primary mb-4"></i>
-                        <h5>24/7 Service</h5>
-                        <p>Diam elitr kasd sed at elitr sed ipsum justo dolor sed clita amet diam</p>
+                        <h5>Fast delivery</h5>
+                        <p>Moneyback guarantee if you don't receive you order within 30 minutes.</p>
                     </div>
                 </div>
             </div>
@@ -67,6 +67,7 @@
     </div>
 </div>
 <!-- Service End -->
+
 <!-- Testimonial Start -->
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
@@ -85,14 +86,14 @@
                         <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg" style="width: 50px; height: 50px;">
                         <div class="ps-3">
                             <h5 class="mb-1">@review.FullName</h5>
-                            <div class="rated">
+
 
                                 @for (int i = 0; i < review.Rating; i++)
                                 {
-                                    <input type="radio" checked><label>☆</label>
+                                    <i class="fa fa-star text-primary"></i>
                                 }
 
-                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -478,41 +478,6 @@
     border-right: none;
 }
 
-.rated {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: center
-}
-
-    .rated > input {
-        display: none
-    }
-
-    .rated > label {
-        position: relative;
-        width: 1em;
-        font-size: 30px;
-        font-weight: 300;
-        color: #FFD600;
-        cursor: pointer
-    }
-
-        .rated > label::before {
-            content: "\2605";
-            position: absolute;
-            opacity: 0
-        }
-
-        .rated > label:hover:before,
-        .rated > label:hover ~ label:before {
-            opacity: 1 !important
-        }
-
-    .rated > input:checked ~ label:before {
-        opacity: 1
-    }
-
-  
 
 .rating {
     display: flex;
@@ -529,7 +494,7 @@
         width: 1em;
         font-size: 30px;
         font-weight: 300;
-        color: #FFD600;
+        color: #FEA116;
         cursor: pointer
     }
 
