@@ -20,13 +20,22 @@
 
         public override bool Equals(object obj)
         {
-            var table = obj as Table;
-            if (this.Id == table.Id)
+            if (obj.GetType() == typeof(Table))
             {
-                return true;
+                var tableObject = obj as Table;
+
+                if (this.Id == tableObject.Id)
+                {
+                    return true;
+                }
             }
 
             return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
         }
     }
 }

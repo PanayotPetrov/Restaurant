@@ -21,7 +21,7 @@
             this.tableService = tableService;
         }
 
-        public T GetReservation<T>(int reservationId)
+        public T GetById<T>(int reservationId)
         {
             return this.reservationRepository.AllAsNoTracking().Where(x => x.Id == reservationId).To<T>().FirstOrDefault();
         }
@@ -31,9 +31,9 @@
             return this.reservationRepository.AllAsNoTracking().Where(r => r.ApplicationUserId == userId).To<T>().ToList();
         }
 
-        public async Task CreateReservationAsync(AddReservationInputModel model)
+        public async Task<int> CreateReservationAsync(AddReservationInputModel model)
         {
-            var tableId = tableService.GetAvailableTableId(model.ReservationDate, model.NumberOfPeople);
+            var tableId = this.tableService.GetAvailableTableId(model.ReservationDate, model.NumberOfPeople);
 
             if (tableId == -1)
             {
@@ -43,15 +43,15 @@
             var reservation = new Reservation
             {
                 ApplicationUserId = model.UserId,
-                Fullname = model.FullName,
-                ReservationDate = model.ReservationDate,
+                Fullname = $"{model.FirstName} {model.LastName}",
+                ReservationDate = model.ReservationDate.ToUniversalTime(),
                 NumberOfPeople = model.NumberOfPeople,
                 TableId = tableId,
                 Email = model.Email,
             };
             await this.reservationRepository.AddAsync(reservation);
             await this.reservationRepository.SaveChangesAsync();
+            return reservation.Id;
         }
-
     }
 }

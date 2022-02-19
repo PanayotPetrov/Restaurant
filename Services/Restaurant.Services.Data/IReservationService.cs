@@ -7,10 +7,10 @@
 
     public interface IReservationService
     {
-        T GetReservation<T>(int reservationId);
+        T GetById<T>(int reservationId);
 
         IEnumerable<T> GetAllByUserId<T>(string userId);
 
-        Task CreateReservationAsync(AddReservationInputModel model);
+        Task<int> CreateReservationAsync(AddReservationInputModel model);
     }
 }

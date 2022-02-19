@@ -3,9 +3,11 @@
     using System;
     using System.Security.Claims;
     using System.Threading.Tasks;
+
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
     using Restaurant.Web.ViewModels.InputModels;
+    using Restaurant.Web.ViewModels.Reservation;
 
     public class ReservationController : BaseController
     {
@@ -36,21 +38,21 @@
 
             try
             {
-                await this.reservationService.CreateReservationAsync(model);
-
+                model.ReservationDate = model.ReservationDate.AddHours(model.ReservationTime);
+                var reservationId = await this.reservationService.CreateReservationAsync(model);
+                return this.Redirect(nameof(this.Success) + $"?reservationId={reservationId}");
             }
             catch (InvalidOperationException ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
                 return this.View(model);
             }
-
-            return this.RedirectToAction(nameof(this.Success));
         }
 
-        public IActionResult Success()
+        public IActionResult Success(int reservationId)
         {
-            return this.View();
+            var model = this.reservationService.GetById<ReservationViewModel>(reservationId);
+            return this.View(model);
         }
     }
 }

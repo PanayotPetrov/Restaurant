@@ -5,8 +5,11 @@
 
     public class AddReservationInputModel
     {
-        [Required(ErrorMessage = "We need your fullname to book a table.")]
-        public string FullName { get; set; }
+        [Required(ErrorMessage = "We need your first name to book a table.")]
+        public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "We need your last name to book a table.")]
+        public string LastName { get; set; }
 
         [EmailAddress]
         [Required]
@@ -19,6 +22,10 @@
         [Required(ErrorMessage = "We can't book a table unless you select a date.")]
         public DateTime ReservationDate { get; set; }
 
+        [Range(18, 22)]
+        public int ReservationTime { get; set; }
+
+        [Range(2, 6)]
         public int NumberOfPeople { get; set; }
 
         public string UserId { get; set; }

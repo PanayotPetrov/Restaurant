@@ -33,31 +33,51 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" asp-for="FullName" class="form-control" placeholder="Your Name">
-                                <label asp-for="FullName">Your Name</label>
-                                <span asp-validation-for="FullName" class="text-white"></span>
+                                <input type="text" asp-for="FirstName" class="form-control" placeholder="Your Name">
+                                <label asp-for="FirstName">First Name</label>
+                                <span asp-validation-for="FirstName" class="text-white"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="email" asp-for="Email" class="form-control"  placeholder="Your Email">
+                                <input type="text" asp-for="LastName" class="form-control" placeholder="Your Name">
+                                <label asp-for="LastName">Last Name</label>
+                                <span asp-validation-for="LastName" class="text-white"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" asp-for="Email" class="form-control" placeholder="Your Email">
                                 <label asp-for="Email">Your Email</label>
                                 <span asp-validation-for="Email" class="text-white"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating date">
-                                <input type="datetime-local" asp-for="ReservationDate" class="form-control" placeholder="Date & Time"/>
-                                <label asp-for="ReservationDate">Date & Time</label>
+                                <input type="date" asp-for="ReservationDate" class="form-control" placeholder="Choose a date" />
+                                <label asp-for="ReservationDate">Choose a date</label>
                                 <span asp-validation-for="ReservationDate" class="text-white"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <select asp-for="NumberOfPeople"class="form-select">
+                                <select asp-for="ReservationTime" class="form-select">
+                                    @for (int i = 18; i <= 22; i++)
+                                    {
+                                        <option value=@i>@i:00</option>
+                                    }
+                                </select>
+                                <label asp-for=NumberOfPeople>Choose a time</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <select asp-for="NumberOfPeople" class="form-select">
                                     <option value="2">Two people</option>
                                     <option value="3">Three people</option>
                                     <option value="4">Four people</option>
+                                    <option value="5">Five people</option>
+                                    <option value="6">Six people</option>
                                 </select>
                                 <label asp-for=NumberOfPeople>Number of people</label>
                             </div>

@@ -3,8 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
 
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
@@ -18,33 +16,30 @@
         public TableService(IDeletableEntityRepository<Table> tableRepository)
         {
             this.tableRepository = tableRepository;
-            this.numberOfTables = this.AllTables.Count();
+            this.numberOfTables = this.AllTables.Count;
         }
 
         public ICollection<Table> AllTables => this.tableRepository.AllAsNoTracking().ToList();
 
-
-        public int GetAvailableTableId(DateTime date, int numberOfPeople)
+        public int GetAvailableTableId(DateTime reservationDate, int numberOfPeople)
         {
+            reservationDate = reservationDate.ToUniversalTime();
             var bookedTables = this.tableRepository.AllAsNoTracking().Where(t => t.Reservations
-            .Any(r => r.ReservationDate.Date == date.Date)).ToList();
+            .Any(r => r.ReservationDate.Date == reservationDate.Date)).ToList();
 
             if (bookedTables.Count == this.numberOfTables)
             {
                 return -1;
             }
 
-            var availableTables = new List<Table>();
+            var availableTables = this.AllTables.Except(bookedTables).ToList();
 
-            foreach (var table in this.AllTables)
+            if (!availableTables.Any(t => t.NumberOfPeople >= numberOfPeople))
             {
-                if (!bookedTables.Contains(table))
-                {
-                    availableTables.Add(table);
-                }
+                return -1;
             }
 
-            return availableTables.OrderBy(t => t.NumberOfPeople).FirstOrDefault().Id;
+            return availableTables.OrderBy(t => t.NumberOfPeople).FirstOrDefault(t => t.NumberOfPeople >= numberOfPeople).Id;
         }
     }
 }
