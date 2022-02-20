@@ -109,7 +109,7 @@ namespace Restaurant.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Table",
+                name: "Tables",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -122,7 +122,7 @@ namespace Restaurant.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Table", x => x.Id);
+                    table.PrimaryKey("PK_Tables", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -314,8 +314,7 @@ namespace Restaurant.Data.Migrations
                 name: "Reservations",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Fullname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ReservationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -337,9 +336,9 @@ namespace Restaurant.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Reservations_Table_TableId",
+                        name: "FK_Reservations_Tables_TableId",
                         column: x => x.TableId,
-                        principalTable: "Table",
+                        principalTable: "Tables",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -559,8 +558,8 @@ namespace Restaurant.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Table_IsDeleted",
-                table: "Table",
+                name: "IX_Tables_IsDeleted",
+                table: "Tables",
                 column: "IsDeleted");
         }
 
@@ -609,7 +608,7 @@ namespace Restaurant.Data.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Table");
+                name: "Tables");
 
             migrationBuilder.DropTable(
                 name: "MealTypes");

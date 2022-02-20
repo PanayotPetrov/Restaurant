@@ -5,8 +5,13 @@
 
     using Restaurant.Data.Common.Models;
 
-    public class Reservation : BaseDeletableModel<int>
+    public class Reservation : BaseDeletableModel<string>
     {
+        public Reservation()
+        {
+            this.Id = Guid.NewGuid().ToString();
+        }
+
         public string ApplicationUserId { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }

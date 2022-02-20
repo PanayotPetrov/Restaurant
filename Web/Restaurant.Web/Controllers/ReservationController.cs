@@ -4,8 +4,10 @@
     using System.Security.Claims;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
+    using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Reservation;
 
@@ -16,6 +18,14 @@
         public ReservationController(IReservationService reservationService)
         {
             this.reservationService = reservationService;
+        }
+
+        [Authorize]
+        public IActionResult AllReservations()
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            return this.View();
         }
 
         public IActionResult Book()
@@ -49,7 +59,7 @@
             }
         }
 
-        public IActionResult Success(int reservationId)
+        public IActionResult Success(string reservationId)
         {
             var model = this.reservationService.GetById<ReservationViewModel>(reservationId);
             return this.View(model);

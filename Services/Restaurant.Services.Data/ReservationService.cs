@@ -21,7 +21,7 @@
             this.tableService = tableService;
         }
 
-        public T GetById<T>(int reservationId)
+        public T GetById<T>(string reservationId)
         {
             return this.reservationRepository.AllAsNoTracking().Where(x => x.Id == reservationId).To<T>().FirstOrDefault();
         }
@@ -31,7 +31,7 @@
             return this.reservationRepository.AllAsNoTracking().Where(r => r.ApplicationUserId == userId).To<T>().ToList();
         }
 
-        public async Task<int> CreateReservationAsync(AddReservationInputModel model)
+        public async Task<string> CreateReservationAsync(AddReservationInputModel model)
         {
             var tableId = this.tableService.GetAvailableTableId(model.ReservationDate, model.NumberOfPeople);
 

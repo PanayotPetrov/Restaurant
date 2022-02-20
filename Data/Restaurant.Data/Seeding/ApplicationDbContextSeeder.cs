@@ -27,6 +27,9 @@
                           {
                               new RolesSeeder(),
                               new SettingsSeeder(),
+                              new TableSeeder(),
+                              new MealTypeSeeder(),
+                              new CategorySeeder(),
                           };
 
             foreach (var seeder in seeders)
