@@ -21,11 +21,15 @@
         }
 
         [Authorize]
-        public IActionResult AllReservations()
+        public IActionResult All()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var model = new ReservationListViewModel
+            {
+                Reservations = this.reservationService.GetAllByUserId<ReservationViewModel>(userId),
+            };
 
-            return this.View();
+            return this.View(model);
         }
 
         public IActionResult Book()

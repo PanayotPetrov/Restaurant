@@ -1,0 +1,82 @@
+﻿@using Restaurant.Common
+@using Restaurant.Web.ViewModels.Reservation
+@model ReservationListViewModel
+@{
+    this.ViewData["Title"] = "My bookings";
+}
+
+<div class="container-xxl py-1 bg-dark hero-header mb-5">
+    <div class="container text-center my-5 pt-5 pb-4">
+        <p class="display-3 section-title text-white mb-3 animated slideInDown">My bookings</p>
+    </div>
+</div>
+<div class="row g-4">
+    <!-- To do: Improve UI - add partial view for actual reservation + list of reservations on left/right. -->
+    @foreach (var reservation in Model.Reservations)
+    {
+        <div class="col-md-6">
+            <table class="table table-borderless">
+                <tr class="bg-primary">
+                    <td>
+                        <div align="left"> <span class="text-white fs-2 font-weight-bold">Reservation number</span> </div>
+                        <i class="fa fa-person"></i>
+                    </td>
+                    <td>
+                        <div align="right"> <span class="text-white fs-2 font-weight-bold">@reservation.ReservationNumber</span> </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div align="left"> <span class="text-muted fs-3"><i class="fas fa-calendar-alt fs-3"></i> Reservation date</span> </div>
+                    </td>
+                    <td>
+                        <div align="right"> <span class="text-muted fs-3">@reservation.ReservationDate</span> </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div align="left"> <span class="text-muted fs-3"><i class="fas fa-hashtag fs-3"></i> Table №</span> </div>
+                    </td>
+                    <td>
+                        <div align="right"> <span class="text-muted fs-3">@reservation.TableId</span> </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div align="left"> <span class="text-muted fs-3"><i class="fas fa-users"></i> Table for</span> </div>
+
+                    </td>
+                    <td>
+                        <div align="right"> <span class="text-muted fs-3">@($"{reservation.NumberOfPeople} people")</span> </div>
+                    </td>
+                </tr>
+
+                <tr class="border-top border-bottom border-secondary">
+                    <td>
+                        <div align="left"> <span class="font-weight-bold"><i class="fas fa-user"></i> Name</span> </div>
+                    </td>
+                    <td>
+                        <div align="right"> <span class="font-weight-bold">@reservation.Fullname</span> </div>
+                    </td>
+                </tr>
+                <tr class="border-top border-bottom border-secondary">
+                    <td>
+                        <div align="left"> <span class="font-weight-bold"><i class="fas fa-envelope"></i> Email</span> </div>
+                    </td>
+                    <td>
+                        <div align="right"> <span class="font-weight-bold">@reservation.Email</span> </div>
+                    </td>
+                </tr>
+                <tr class="border-top border-bottom border-primary">
+                    <td>
+                        <div align="left"> <span class="font-weight-bold"><i class="fas fa-phone-square"></i> Phone number</span> </div>
+                    </td>
+                    <td>
+                        <div align="right"> <span class="font-weight-bold">@reservation.PhoneNumber</span> </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+</div>
+

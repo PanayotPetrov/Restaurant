@@ -6,8 +6,10 @@
     this.ViewData["Title"] = "All reviews";
 }
 
-<div class="container-xxl py-3 bg-dark hero-header mb-5">
+<div class="container-xxl py-1 bg-dark hero-header mb-5">
     <div class="container text-center my-5 pt-5 pb-4">
+        <p class="display-3 section-title text-white mb-3 animated slideInDown">We leave the customers do the talking.</p>
+
     </div>
 </div>
 
@@ -19,7 +21,7 @@
 
     @foreach (var review in Model.Reviews)
     {
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <div class="testimonial-item bg-transparent border border-secondary border-5 rounded p-4">
                 <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
                 <h2>@review.Description</h2>
