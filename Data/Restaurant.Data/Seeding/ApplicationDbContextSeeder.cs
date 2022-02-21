@@ -28,7 +28,6 @@
                               new RolesSeeder(),
                               new SettingsSeeder(),
                               new TableSeeder(),
-                              new MealTypeSeeder(),
                               new CategorySeeder(),
                           };
 

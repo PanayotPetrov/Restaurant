@@ -37,9 +37,9 @@
 
         public DbSet<Review> Reviews { get; set; }
 
-        public DbSet<MealType> MealTypes { get; set; }
-
         public DbSet<Table> Tables { get; set; }
+
+        public DbSet<MealImage> MealImages { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

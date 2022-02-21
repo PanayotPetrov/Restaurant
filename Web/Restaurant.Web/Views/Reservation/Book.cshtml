@@ -6,7 +6,7 @@
     this.ViewData["Title"] = "Reservation";
 }
 
-<div class="container-xxl py-3 bg-dark hero-header mb-5">
+<div class="container-xxl py-1 bg-dark hero-header mb-5">
     <div class="container text-center my-5 pt-5 pb-4">
         <h6 class="display-3 section-title text-white mb-3 animated slideInDown">Reservation</h6>
     </div>
@@ -33,16 +33,16 @@
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" asp-for="FirstName" class="form-control" placeholder="Your Name">
-                                <label asp-for="FirstName">First Name</label>
-                                <span asp-validation-for="FirstName" class="text-white"></span>
+                                <input type="text" asp-for="FullName" class="form-control" placeholder="Your Name">
+                                <label asp-for="FullName">Full Name</label>
+                                <span asp-validation-for="FullName" class="text-white"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" asp-for="LastName" class="form-control" placeholder="Your Name">
-                                <label asp-for="LastName">Last Name</label>
-                                <span asp-validation-for="LastName" class="text-white"></span>
+                                <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="Your Name">
+                                <label asp-for="PhoneNumber">Phone number</label>
+                                <span asp-validation-for="PhoneNumber" class="text-white"></span>
                             </div>
                         </div>
                         <div class="col-md-6">

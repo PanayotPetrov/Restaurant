@@ -8,13 +8,17 @@
     public class AddReservationInputModel
     {
         [Required(ErrorMessage = "We need your first name to book a table.")]
-        public string FirstName { get; set; }
+        [Display(Name = "Full name")]
 
-        [Required(ErrorMessage = "We need your last name to book a table.")]
-        public string LastName { get; set; }
+        public string FullName { get; set; }
 
-        [EmailAddress]
         [Required]
+        [Phone]
+        [Display(Name = "Phone number")]
+        public string PhoneNumber { get; set; }
+
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
         [MaxLength(200, ErrorMessage = "The maximum number of characters is 200.")]

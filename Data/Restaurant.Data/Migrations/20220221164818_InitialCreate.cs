@@ -74,23 +74,6 @@ namespace Restaurant.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MealTypes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MealTypes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Settings",
                 columns: table => new
                 {
@@ -293,7 +276,7 @@ namespace Restaurant.Data.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    MealTypeId = table.Column<int>(type: "int", nullable: false),
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -303,9 +286,9 @@ namespace Restaurant.Data.Migrations
                 {
                     table.PrimaryKey("PK_Meals", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Meals_MealTypes_MealTypeId",
-                        column: x => x.MealTypeId,
-                        principalTable: "MealTypes",
+                        name: "FK_Meals_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -317,10 +300,12 @@ namespace Restaurant.Data.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Fullname = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ReservationNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ReservationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     NumberOfPeople = table.Column<int>(type: "int", nullable: false),
                     TableId = table.Column<int>(type: "int", nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IsDeleted = table.Column<bool>(type: "bit", nullable: false),
@@ -376,24 +361,21 @@ namespace Restaurant.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CategoryMeal",
+                name: "MealImages",
                 columns: table => new
                 {
-                    CategoriesId = table.Column<int>(type: "int", nullable: false),
-                    MealsId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MealId = table.Column<int>(type: "int", nullable: false),
+                    Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CategoryMeal", x => new { x.CategoriesId, x.MealsId });
+                    table.PrimaryKey("PK_MealImages", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CategoryMeal_Categories_CategoriesId",
-                        column: x => x.CategoriesId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_CategoryMeal_Meals_MealsId",
-                        column: x => x.MealsId,
+                        name: "FK_MealImages_Meals_MealId",
+                        column: x => x.MealId,
                         principalTable: "Meals",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -426,7 +408,9 @@ namespace Restaurant.Data.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_ApplicationUserId",
                 table: "Addresses",
-                column: "ApplicationUserId");
+                column: "ApplicationUserId",
+                unique: true,
+                filter: "[ApplicationUserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_IsDeleted",
@@ -488,9 +472,10 @@ namespace Restaurant.Data.Migrations
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CategoryMeal_MealsId",
-                table: "CategoryMeal",
-                column: "MealsId");
+                name: "IX_MealImages_MealId",
+                table: "MealImages",
+                column: "MealId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_MealOrder_OrdersId",
@@ -498,18 +483,13 @@ namespace Restaurant.Data.Migrations
                 column: "OrdersId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Meals_CategoryId",
+                table: "Meals",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Meals_IsDeleted",
                 table: "Meals",
-                column: "IsDeleted");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Meals_MealTypeId",
-                table: "Meals",
-                column: "MealTypeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_MealTypes_IsDeleted",
-                table: "MealTypes",
                 column: "IsDeleted");
 
             migrationBuilder.CreateIndex(
@@ -581,7 +561,7 @@ namespace Restaurant.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "CategoryMeal");
+                name: "MealImages");
 
             migrationBuilder.DropTable(
                 name: "MealOrder");
@@ -599,9 +579,6 @@ namespace Restaurant.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Categories");
-
-            migrationBuilder.DropTable(
                 name: "Meals");
 
             migrationBuilder.DropTable(
@@ -611,7 +588,7 @@ namespace Restaurant.Data.Migrations
                 name: "Tables");
 
             migrationBuilder.DropTable(
-                name: "MealTypes");
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Addresses");

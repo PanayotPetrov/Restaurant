@@ -7,8 +7,88 @@
 
 <div class="container-xxl py-3 bg-dark hero-header mb-5">
     <div class="container text-center my-5 pt-5 pb-4">
-        <h6 class="display-5 section-title text-white mb-3 animated slideInDown">Thank you for choosing our restaurant.</h6>
+        <span class="display-5 section-title text-white mb-3 animated slideInDown">Thank you for choosing our restaurant.</span>
     </div>
 </div>
-<!-- TO DO: Add view model and show info about reservation. -->
+
+<div class="row d-flex justify-content-center">
+    <hr style="height:3px;" class="col-md-6" />
+</div>
+<div class="row d-flex justify-content-center">
+    <h3 align="center" class="m-2" style="color:#4BB543;font-weight: bolder;"><i class="fa fa-check-square"></i> Your reservation has been successful!</h3>
+    <div class="col-md-6">
+        <table class="table table-borderless">
+            <tr class="bg-primary">
+                <td>
+                    <div align="left"> <span class="text-white fs-2 font-weight-bold">Reservation number</span> </div>
+                    <i class="fa fa-person"></i>
+                </td>
+                <td>
+                    <div align="right"> <span class="text-white fs-2 font-weight-bold">@Model.ReservationNumber</span> </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="left"> <span class="text-muted fs-3"><i class="fas fa-calendar-alt fs-3"></i> Reservation date</span> </div>
+                </td>
+                <td>
+                    <div align="right"> <span class="text-muted fs-3">@Model.ReservationDate</span> </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="left"> <span class="text-muted fs-3"><i class="fas fa-hashtag fs-3"></i> Table №</span> </div>
+                </td>
+                <td>
+                    <div align="right"> <span class="text-muted fs-3">@Model.TableId</span> </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div align="left"> <span class="text-muted fs-3"><i class="fas fa-users"></i> Table for</span> </div>
+
+                </td>
+                <td>
+                    <div align="right"> <span class="text-muted fs-3">@($"{Model.NumberOfPeople} people")</span> </div>
+                </td>
+            </tr>
+
+            <tr class="border-top border-bottom border-secondary">
+                <td>
+                    <div align="left"> <span class="font-weight-bold"><i class="fas fa-user"></i> Name</span> </div>
+                </td>
+                <td>
+                    <div align="right"> <span class="font-weight-bold">@Model.Fullname</span> </div>
+                </td>
+            </tr>
+            <tr class="border-top border-bottom border-secondary">
+                <td>
+                    <div align="left"> <span class="font-weight-bold"><i class="fas fa-envelope"></i> Email</span> </div>
+                </td>
+                <td>
+                    <div align="right"> <span class="font-weight-bold">@Model.Email</span> </div>
+                </td>
+            </tr>
+            <tr class="border-top border-bottom border-primary">
+                <td>
+                    <div align="left"> <span class="font-weight-bold"><i class="fas fa-phone-square"></i> Phone number</span> </div>
+                </td>
+                <td>
+                    <div align="right"> <span class="font-weight-bold">@Model.PhoneNumber</span> </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row d-flex justify-content-center">
+
+    <div class="col-md-6 bg-transparent border border-secondary border-5 rounded p-4">
+        <div class="ps-3">
+            <h5 align="center">
+                To edit or cancel your reservation please <a asp-area="" asp-controller="Home" asp-action="Contact">contact us.</a>
+            </h5>
+        </div>
+    </div>
+</div>
 

@@ -17,15 +17,15 @@
 
         public decimal Price { get; set; }
 
-        public string MealType { get; set; }
+        public CategoryViewModel Category { get; set; }
 
-        public IEnumerable<CategoryViewModel> Categories { get; set; }
+        public string ImageUrl { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Meal, MealViewModel>().ForMember(
-                m => m.MealType,
-                opt => opt.MapFrom(x => x.MealType.Name));
+                m => m.ImageUrl,
+                opt => opt.MapFrom(x => "/images/recipes/" + x.Image.Id + '.' + x.Image.Extension));
         }
     }
 }

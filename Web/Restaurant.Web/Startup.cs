@@ -68,6 +68,8 @@
             services.AddTransient<IReservationService, ReservationService>();
             services.AddTransient<IReviewService, ReviewService>();
             services.AddTransient<ITableService, TableService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+
 
         }
 

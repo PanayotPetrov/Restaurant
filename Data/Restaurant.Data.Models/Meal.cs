@@ -9,7 +9,6 @@
     {
         public Meal()
         {
-            this.Categories = new HashSet<Category>();
             this.Orders = new HashSet<Order>();
         }
 
@@ -21,14 +20,12 @@
 
         public decimal Price { get; set; }
 
-        public int MealTypeId { get; set; }
+        public int CategoryId { get; set; }
 
-        public virtual MealType MealType { get; set; }
-
-        public virtual ICollection<Category> Categories { get; set; }
+        public virtual Category Category { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
 
-        // TO DO: Add photo
+        public virtual MealImage Image { get; set; }
     }
 }

@@ -43,7 +43,8 @@
             var reservation = new Reservation
             {
                 ApplicationUserId = model.UserId,
-                Fullname = $"{model.FirstName} {model.LastName}",
+                Fullname = model.FullName,
+                PhoneNumber = model.PhoneNumber,
                 ReservationDate = model.ReservationDate.ToUniversalTime(),
                 NumberOfPeople = model.NumberOfPeople,
                 TableId = tableId,
