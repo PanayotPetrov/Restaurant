@@ -5,11 +5,7 @@
     var categoryItems = this.Model.CategoryItems.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
-<div class="container-xxl py-1 bg-dark hero-header mb-5">
-    <div class="container text-center my-5 pt-5 pb-4">
-        <p class="display-3 section-title text-white mb-3 animated slideInDown">Add a new meal</p>
-    </div>
-</div>
+<partial name="_HeroPartial" />
 
 <div class="wow fadeInUp" data-wow-delay="0.2s">
 

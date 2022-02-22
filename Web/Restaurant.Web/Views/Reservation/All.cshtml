@@ -5,11 +5,8 @@
     this.ViewData["Title"] = "My bookings";
 }
 
-<div class="container-xxl py-1 bg-dark hero-header mb-5">
-    <div class="container text-center my-5 pt-5 pb-4">
-        <p class="display-3 section-title text-white mb-3 animated slideInDown">My bookings</p>
-    </div>
-</div>
+<partial name="_HeroPartial" />
+
 <div class="row g-4">
     <!-- To do: Improve UI - add partial view for actual reservation + list of reservations on left/right. -->
     @foreach (var reservation in Model.Reservations)

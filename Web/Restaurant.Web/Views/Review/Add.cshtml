@@ -3,14 +3,11 @@
 @model AddReviewInputModel
 
 @{
-    this.ViewData["Title"] = "Add review";
+    this.ViewData["Title"] = "Add a review!";
 }
 
-<div class="container-xxl py-1 bg-dark hero-header mb-5">
-    <div class="container text-center my-5 pt-5 pb-4">
-        <p class="display-3 section-title text-white mb-3 animated slideInDown">Let us know what you think!</p>
-    </div>
-</div>
+<partial name="_HeroPartial" />
+
 <div class="col-md-12 bg-dark">
     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
         <h1 class="text-white mb-0 text-center">Rate our service!</h1>
