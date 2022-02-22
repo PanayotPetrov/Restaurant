@@ -15,14 +15,15 @@
     <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
         <h1 class="text-white mb-0 text-center">Rate our service!</h1>
 
-        <span class="form-check text-center" asp-validation-for="Rating"></span>
+        <span class="form-check text-center" ></span>
         <form method="post">
+            <span class="offset-md-5 text-white fs-5" asp-validation-for="Rating"></span>
             <div class="rating mb-5">
-                <input type="radio" name="rating" value= 5 id="5"><label for="5" class="fs-1">☆</label>
-                <input type="radio" name="rating" value= 4 id="4"><label for="4" class="fs-1">☆</label>
-                <input type="radio" name="rating" value= 3 id="3"><label for="3" class="fs-1">☆</label>
-                <input type="radio" name="rating" value= 2 id="2"><label for="2" class="fs-1">☆</label>
-                <input type="radio" name="rating" value= 1 id="1"><label for="1" class="fs-1">☆</label>
+                <input type="radio" name="rating" value="5" id="5"><label for="5" class="fs-1">☆</label>
+                <input type="radio" name="rating" value="4" id="4"><label for="4" class="fs-1">☆</label>
+                <input type="radio" name="rating" value="3" id="3"><label for="3" class="fs-1">☆</label>
+                <input type="radio" name="rating" value="2" id="2"><label for="2" class="fs-1">☆</label>
+                <input type="radio" name="rating" value="1" id="1"><label for="1" class="fs-1">☆</label>
             </div>
             <div class="form-floating">
                 <textarea class="form-control col-xl-12" asp-for="Description" placeholder="Share your experience, recommendations, etc." style="height: 200px"></textarea>

@@ -45,7 +45,11 @@
                         options.CheckConsentNeeded = context => true;
                         options.MinimumSameSitePolicy = SameSiteMode.None;
                     });
-
+            services.AddAuthentication().AddFacebook(opt =>
+            {
+                opt.AppId = "3087955271425039";
+                opt.AppSecret = "02f3d194a5a56d69a3b47d57440e9cd8";
+            });
             services.AddControllersWithViews(
                 options =>
                     {
@@ -69,8 +73,6 @@
             services.AddTransient<IReviewService, ReviewService>();
             services.AddTransient<ITableService, TableService>();
             services.AddTransient<ICategoryService, CategoryService>();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

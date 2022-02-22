@@ -44,6 +44,10 @@ namespace Restaurant.Web.Areas.Identity.Pages.Account.Manage
             [Required]
             [Display(Name = "Last name")]
             public string LastName { get; set; }
+
+            [Required]
+            [Display(Name = "Username")]
+            public string UserName { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -51,11 +55,11 @@ namespace Restaurant.Web.Areas.Identity.Pages.Account.Manage
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
 
-
             Username = userName;
 
             Input = new InputModel
             {
+                UserName = Username,
                 PhoneNumber = phoneNumber,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
@@ -99,6 +103,26 @@ namespace Restaurant.Web.Areas.Identity.Pages.Account.Manage
                 }
             }
 
+            var firstName = Input.FirstName;
+
+            if (firstName != user.FirstName)
+            {
+               user.FirstName = firstName;
+            }
+
+            var lastName = Input.LastName;
+
+            if (lastName != user.LastName)
+            {
+                user.LastName = lastName;
+            }
+
+            if (Username != Input.UserName)
+            {
+                user.UserName = Input.UserName;
+            }
+
+            await _userManager.UpdateAsync(user);
             await _signInManager.RefreshSignInAsync(user);
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

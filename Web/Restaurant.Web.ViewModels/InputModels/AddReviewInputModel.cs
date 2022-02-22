@@ -10,6 +10,6 @@
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Please select a rating!")]
-        public int Rating { get; set; }
+        public string Rating { get; set; }
     }
 }

@@ -27,7 +27,7 @@
             {
                 ApplicationUserId = model.ApplicationUserId,
                 Description = model.Description,
-                Rating = model.Rating,
+                Rating = int.Parse(model.Rating),
             };
 
             await this.reviewRepository.AddAsync(review);
