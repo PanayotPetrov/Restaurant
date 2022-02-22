@@ -85,7 +85,6 @@
             services.AddTransient<ISettingsService, SettingsService>();
             services.AddTransient<IMealService, MealService>();
             services.AddTransient<ITableService, TableService>();
-
         }
     }
 }

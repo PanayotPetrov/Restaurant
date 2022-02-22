@@ -34,8 +34,10 @@
         // [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         public IActionResult Add()
         {
-            var viewModel = new AddMealInputModel();
-            viewModel.CategoryItems = this.categoryService.GetAllAsKeyValuePairs();
+            var viewModel = new AddMealInputModel
+            {
+                CategoryItems = this.categoryService.GetAllAsKeyValuePairs(),
+            };
             return this.View(viewModel);
         }
 

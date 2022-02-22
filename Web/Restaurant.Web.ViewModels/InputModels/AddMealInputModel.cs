@@ -23,6 +23,5 @@
         public IFormFile Image { get; set; }
 
         public IEnumerable<KeyValuePair<string, string>> CategoryItems { get; set; }
-
     }
 }
