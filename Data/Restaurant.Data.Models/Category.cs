@@ -15,6 +15,12 @@
         [Required]
         public string Name { get; set; }
 
+        [Required]
+        public string Adjective { get; set; }
+
+        [Required]
+        public string FontAwesomeIcon { get; set; }
+
         public virtual ICollection<Meal> Meals { get; set; }
     }
 }

@@ -19,7 +19,8 @@
             this.reviewService = reviewService;
         }
 
-        public IActionResult All()
+        [HttpGet("/Review/All")]
+        public IActionResult AllReviews()
         {
             var reviews = this.reviewService.GetAllReviews<ReviewViewModel>();
             var model = new ReviewListViewModel
@@ -31,14 +32,15 @@
         }
 
         [Authorize]
-        public IActionResult Add()
+        [HttpGet("/Review/Add")]
+        public IActionResult AddReview()
         {
             return this.View();
         }
 
-        [HttpPost]
+        [HttpPost("/Review/Add")]
         [Authorize]
-        public async Task<IActionResult> Add(AddReviewInputModel model)
+        public async Task<IActionResult> AddReview(AddReviewInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -47,7 +49,7 @@
 
             model.ApplicationUserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             await this.reviewService.AddReviewAsync(model);
-            return this.RedirectToAction(nameof(this.All));
+            return this.RedirectToAction(nameof(this.AllReviews));
         }
     }
 }

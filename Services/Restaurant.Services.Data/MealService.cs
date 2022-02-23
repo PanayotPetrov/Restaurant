@@ -33,7 +33,7 @@
                 Price = model.Price,
             };
 
-            Directory.CreateDirectory($"{imagePath}/recipes/");
+            Directory.CreateDirectory($"{imagePath}/meals/");
             var extension = Path.GetExtension(model.Image.FileName).TrimStart('.');
 
             if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
@@ -48,7 +48,7 @@
 
             meal.Image = dbImage;
 
-            var physicalPath = $"{imagePath}/recipes/{dbImage.Id}.{extension}";
+            var physicalPath = $"{imagePath}/meals/{dbImage.Id}.{extension}";
             using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
             await model.Image.CopyToAsync(fileStream);
             await this.mealRepository.AddAsync(meal);

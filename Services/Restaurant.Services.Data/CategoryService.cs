@@ -5,6 +5,7 @@
 
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Services.Mapping;
 
     public class CategoryService : ICategoryService
     {
@@ -14,6 +15,11 @@
             IDeletableEntityRepository<Category> categoriesRepository)
         {
             this.categoriesRepository = categoriesRepository;
+        }
+
+        public IEnumerable<T> GetAll<T>()
+        {
+            return this.categoriesRepository.AllAsNoTracking().To<T>().ToList();
         }
 
         public IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs()

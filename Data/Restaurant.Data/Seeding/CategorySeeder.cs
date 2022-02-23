@@ -18,38 +18,50 @@
             await dbContext.Categories.AddAsync(new Category
             {
                 Name = "Burgers",
+                Adjective = "Stunning",
+                FontAwesomeIcon = "fa-solid fa-burger",
             });
             await dbContext.Categories.AddAsync(new Category
             {
-                Name = "Pasta",
+                Name = "Beer",
+                Adjective = "Craft",
+                FontAwesomeIcon = "fa-solid fa-beer-mug-empty",
             });
             await dbContext.Categories.AddAsync(new Category
             {
                 Name = "Pizza",
+                Adjective = "Mouth-watering",
+                FontAwesomeIcon = "fa-solid fa-pizza-slice",
             });
             await dbContext.Categories.AddAsync(new Category
             {
                 Name = "Desserts",
+                Adjective = "Incledible",
+                FontAwesomeIcon = "fa-solid fa-cookie",
             });
             await dbContext.Categories.AddAsync(new Category
             {
-                Name = "Soups",
+                Name = "Sandwiches",
+                Adjective = "Scrumptious",
+                FontAwesomeIcon = "fa-solid fa-bread-slice",
             });
             await dbContext.Categories.AddAsync(new Category
             {
                 Name = "Chicken",
+                Adjective = "Juicy",
+                FontAwesomeIcon = "fa-solid fa-drumstick-bite",
             });
             await dbContext.Categories.AddAsync(new Category
             {
                 Name = "Pork",
+                Adjective = "Succulent",
+                FontAwesomeIcon = "fa-solid fa-bacon",
             });
             await dbContext.Categories.AddAsync(new Category
             {
-                Name = "Beef",
-            });
-            await dbContext.Categories.AddAsync(new Category
-            {
-                Name = "Vegetarian",
+                Name = "Hot Dogs",
+                Adjective = "Delicious",
+                FontAwesomeIcon = "fa-solid fa-hotdog",
             });
         }
     }

@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using Restaurant.Services.Data;
+    using Restaurant.Web.ViewModels.Category;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Meal;
     using Restaurant.Web.ViewModels.Menu;
@@ -24,15 +25,15 @@
         }
 
         [HttpGet("/Menu/")]
-        public IActionResult All()
+        public IActionResult AllMeals()
         {
-            var menu = new MenuViewModel { Meals = this.mealService.GetAllMeals<MealViewModel>() };
+            var menu = new MenuViewModel { Meals = this.mealService.GetAllMeals<MealViewModel>(), Categories = this.categoryService.GetAll<CategoryViewModel>() };
 
             return this.View(menu);
         }
 
         // [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
-        public IActionResult Add()
+        public IActionResult AddMeal()
         {
             var viewModel = new AddMealInputModel
             {
@@ -43,7 +44,7 @@
 
         // [Authorize(Roles = GlobalConstants.AdministratorRoleName)]
         [HttpPost]
-        public async Task<IActionResult> Add(AddMealInputModel model)
+        public async Task<IActionResult> AddMeal(AddMealInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -53,7 +54,7 @@
 
             await this.mealService.CreateAsync(model, $"{this.environment.WebRootPath}/images");
 
-            return this.RedirectToAction(nameof(this.All));
+            return this.RedirectToAction(nameof(this.AllMeals));
         }
     }
 }

@@ -11,5 +11,9 @@
         public string Name { get; set; }
 
         public IEnumerable<MealViewModel> Meals { get; set; }
+
+        public string Adjective { get; set; }
+
+        public string FontAwesomeIcon { get; set; }
     }
 }

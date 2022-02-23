@@ -21,7 +21,9 @@
         }
 
         [Authorize]
-        public IActionResult All()
+        [HttpGet("/Reservation/All")]
+
+        public IActionResult AllReservations()
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var model = new ReservationListViewModel

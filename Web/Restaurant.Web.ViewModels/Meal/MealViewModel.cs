@@ -25,7 +25,7 @@
         {
             configuration.CreateMap<Meal, MealViewModel>().ForMember(
                 m => m.ImageUrl,
-                opt => opt.MapFrom(x => "/images/recipes/" + x.Image.Id + '.' + x.Image.Extension));
+                opt => opt.MapFrom(x => "~/images/meals/" + x.Image.Id + '.' + x.Image.Extension));
         }
     }
 }

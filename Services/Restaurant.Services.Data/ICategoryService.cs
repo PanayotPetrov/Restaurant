@@ -5,5 +5,7 @@
     public interface ICategoryService
     {
         IEnumerable<KeyValuePair<string, string>> GetAllAsKeyValuePairs();
+
+        IEnumerable<T> GetAll<T>();
     }
 }
