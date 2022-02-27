@@ -531,3 +531,39 @@
     .rating-submit:hover {
         color: #fff
     }
+
+.a {
+    text-decoration: none !important;
+    color: inherit
+}
+
+    a:hover {
+        color: #455A64
+    }
+
+.card {
+    border-radius: 5px;
+    background-color: #fff;
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-top: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px
+}
+
+td {
+    padding-bottom: 10px
+}
+
+.content {
+    font-size: 18px
+}
+
+.profile-pic {
+    width: 90px;
+    height: 90px;
+    border-radius: 100%;
+    margin-right: 30px
+}
+
+

@@ -7,6 +7,7 @@
     public class Review : BaseDeletableModel<int>
     {
         [Required]
+        [MaxLength(400)]
         public string Description { get; set; }
 
         [Required]
@@ -17,5 +18,10 @@
 
         [Range(1, 5)]
         public int Rating { get; set; }
+
+        [Required]
+        [MaxLength(36)]
+
+        public string Summary { get; set; }
     }
 }

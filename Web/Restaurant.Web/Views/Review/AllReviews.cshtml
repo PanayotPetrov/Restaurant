@@ -18,20 +18,33 @@
 
     @foreach (var review in Model.Reviews)
     {
-        <div class="col-lg-6">
-            <div class="testimonial-item bg-transparent border border-secondary border-5 rounded p-4">
-                <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                <h2>@review.Description</h2>
-                <div class="d-flex align-items-center">
-                    <img class="img-fluid flex-shrink-0 rounded-circle" src="~/img/testimonial-3.jpg" asp-append-version="true" yle="width: 50px; height: 50px;">
-                    <div class="ps-3">
-                        <p class="mb-1">@review.FullName</p>
-                        @for (int i = 0; i < review.Rating; i++)
-                        {
-                            <i class="fa fa-star text-primary fs-3"></i>
-                        }
-
+        <div class="card offset-1 col-md-10">
+            <div class="row d-flex">
+                <div class="d-flex flex-column">
+                    <h3 class="mt-2 mb-3">@review.FullName</h3>
+                    <div>
+                        <p class="text-left">
+                            @for (int i = 0; i < review.Rating; i++)
+                            {
+                                <i class="fa fa-star text-primary fs-3"></i>
+                            }
+                            <span class="text-muted fs-3">@review.Rating/5</span>
+                        </p>
                     </div>
+                </div>
+
+            </div>
+            <div class="row text-left">
+                <h4 class="text-primary mb-3">@review.Summary</h4>
+                <p class="content">@review.Description</p>
+            </div>
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <img class="profile-pic" src="~/images/testimonial-3.jpg" asp-append-version="true">
+
+                </div>
+                <div class="col-md-6">
+                    <p class="text-muted fw-bold pt-5 pt-sm-3 offset-10">@review.CreatedOn.ToLocalTime()</p>
                 </div>
             </div>
         </div>

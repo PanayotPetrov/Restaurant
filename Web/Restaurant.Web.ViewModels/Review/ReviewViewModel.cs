@@ -1,5 +1,7 @@
 ﻿namespace Restaurant.Web.ViewModels.Review
 {
+    using System;
+
     using AutoMapper;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
@@ -13,6 +15,10 @@
         public string Description { get; set; }
 
         public int Rating { get; set; }
+
+        public string Summary { get; set; }
+
+        public DateTime CreatedOn { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
