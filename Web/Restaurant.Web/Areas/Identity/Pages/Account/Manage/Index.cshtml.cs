@@ -125,30 +125,35 @@
 
             var userImage = this.userManager.Users.Include(x => x.UserImage).FirstOrDefault(x => x.Id == user.Id).UserImage;
 
-            if (userImage is not null)
+            if (this.Input.Image is not null && userImage is not null)
             {
                 await this.userImageService.DeleteAsync(userImage);
+                var physicalPath = $"{this.environment.WebRootPath}/images/users/{userImage.Id}.{userImage.Extension}";
+                System.IO.File.Delete(physicalPath);
             }
 
-            Directory.CreateDirectory($"{this.environment.WebRootPath}/images/users/");
-
-            var extension = Path.GetExtension(this.Input.Image.FileName).TrimStart('.');
-
-            if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
+            if (this.Input.Image is not null)
             {
-                throw new Exception($"Invalid image extension {extension}");
+                Directory.CreateDirectory($"{this.environment.WebRootPath}/images/users/");
+
+                var extension = Path.GetExtension(this.Input.Image.FileName).TrimStart('.');
+
+                if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
+                {
+                    throw new Exception($"Invalid image extension {extension}");
+                }
+
+                var dbImage = new UserImage
+                {
+                    Extension = extension,
+                };
+
+                user.UserImage = dbImage;
+
+                var physicalPath = $"{this.environment.WebRootPath}/images/users/{dbImage.Id}.{extension}";
+                using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+                await this.Input.Image.CopyToAsync(fileStream);
             }
-
-            var dbImage = new UserImage
-            {
-                Extension = extension,
-            };
-
-            user.UserImage = dbImage;
-
-            var physicalPath = $"{this.environment.WebRootPath}/images/users/{dbImage.Id}.{extension}";
-            using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
-            await this.Input.Image.CopyToAsync(fileStream);
 
             await this.userManager.UpdateAsync(user);
             await this.signInManager.RefreshSignInAsync(user);
