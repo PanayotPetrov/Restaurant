@@ -1,33 +1,46 @@
 ﻿namespace Restaurant.Web.Areas.Identity.Pages.Account.Manage
 {
     using System;
-    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
+    using Microsoft.EntityFrameworkCore;
     using Restaurant.Data.Models;
+    using Restaurant.Services.Data;
 
     public partial class IndexModel : PageModel
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly IWebHostEnvironment environment;
+        private readonly IUserImageService userImageService;
+        private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif" };
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            IWebHostEnvironment environment,
+            IUserImageService userImageService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.environment = environment;
+            this.userImageService = userImageService;
         }
 
         public string Username { get; set; }
 
         [TempData]
         public string StatusMessage { get; set; }
+
+        public string ImageUrl { get; set; }
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -49,6 +62,9 @@
             [Required]
             [Display(Name = "Username")]
             public string UserName { get; set; }
+
+            [Display(Name = "Profile picture")]
+            public IFormFile Image { get; set; }
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -107,6 +123,33 @@
                 user.UserName = this.Input.UserName;
             }
 
+            var userImage = this.userManager.Users.Include(x => x.UserImage).FirstOrDefault(x => x.Id == user.Id).UserImage;
+
+            if (userImage is not null)
+            {
+                await this.userImageService.DeleteAsync(userImage);
+            }
+
+            Directory.CreateDirectory($"{this.environment.WebRootPath}/images/users/");
+
+            var extension = Path.GetExtension(this.Input.Image.FileName).TrimStart('.');
+
+            if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
+            {
+                throw new Exception($"Invalid image extension {extension}");
+            }
+
+            var dbImage = new UserImage
+            {
+                Extension = extension,
+            };
+
+            user.UserImage = dbImage;
+
+            var physicalPath = $"{this.environment.WebRootPath}/images/users/{dbImage.Id}.{extension}";
+            using Stream fileStream = new FileStream(physicalPath, FileMode.Create);
+            await this.Input.Image.CopyToAsync(fileStream);
+
             await this.userManager.UpdateAsync(user);
             await this.signInManager.RefreshSignInAsync(user);
             this.StatusMessage = "Your profile has been updated";
@@ -119,6 +162,12 @@
             var phoneNumber = await this.userManager.GetPhoneNumberAsync(user);
 
             this.Username = userName;
+            var userImage = this.userManager.Users.Include(x => x.UserImage).FirstOrDefault(x => x.Id == user.Id).UserImage;
+
+            if (userImage is not null)
+            {
+                this.ImageUrl = $"/images/users/{userImage.Id}.{userImage.Extension}";
+            }
 
             this.Input = new InputModel
             {

@@ -38,6 +38,8 @@ namespace Restaurant.Data.Models
 
         public virtual Address Address { get; set; }
 
+        public virtual UserImage UserImage { get; set; }
+
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
 
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
