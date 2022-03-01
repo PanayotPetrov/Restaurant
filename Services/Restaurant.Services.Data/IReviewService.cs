@@ -7,10 +7,12 @@
 
     public interface IReviewService
     {
-        IEnumerable<T> GetAllReviews<T>();
+        IEnumerable<T> GetAllReviews<T>(int itemsPerPage, int page);
 
         Task AddReviewAsync(AddReviewInputModel model);
 
         IEnumerable<T> GetLatestFiveReviews<T>();
+
+        int GetCount();
     }
 }

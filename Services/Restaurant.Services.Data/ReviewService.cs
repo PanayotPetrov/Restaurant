@@ -35,9 +35,14 @@
             await this.reviewRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<T> GetAllReviews<T>()
+        public IEnumerable<T> GetAllReviews<T>(int itemsPerPage, int page)
         {
-            return this.reviewRepository.All().OrderByDescending(x => x.CreatedOn).To<T>().ToList();
+            return this.reviewRepository.All().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
+        }
+
+        public int GetCount()
+        {
+            return this.reviewRepository.All().Count();
         }
 
         public IEnumerable<T> GetLatestFiveReviews<T>()

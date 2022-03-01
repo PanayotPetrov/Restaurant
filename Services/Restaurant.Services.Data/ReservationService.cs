@@ -28,7 +28,7 @@
 
         public IEnumerable<T> GetAllByUserId<T>(string userId)
         {
-            return this.reservationRepository.AllAsNoTracking().Where(r => r.ApplicationUserId == userId).To<T>().ToList();
+            return this.reservationRepository.AllAsNoTracking().Where(r => r.ApplicationUserId == userId).OrderByDescending(x => x.ReservationDate).To<T>().ToList();
         }
 
         public async Task<string> CreateReservationAsync(AddReservationInputModel model)
