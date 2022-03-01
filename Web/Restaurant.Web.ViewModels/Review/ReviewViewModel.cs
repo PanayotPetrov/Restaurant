@@ -26,7 +26,9 @@
         {
             configuration.CreateMap<Review, ReviewViewModel>()
                 .ForMember(r => r.FullName, opt => opt.MapFrom(x => $"{x.ApplicationUser.FirstName} {x.ApplicationUser.LastName}"))
-                .ForMember(r => r.ImageUrl, opt => opt.MapFrom(x => "~/images/users/" + x.ApplicationUser.UserImage.Id + '.' + x.ApplicationUser.UserImage.Extension));
+                .ForMember(r => r.ImageUrl, opt => opt.MapFrom(x => x.ApplicationUser.UserImage != null
+                ? "~/images/users/" + x.ApplicationUser.UserImage.Id + '.' + x.ApplicationUser.UserImage.Extension
+                : "~/images/default.png"));
         }
     }
 }
