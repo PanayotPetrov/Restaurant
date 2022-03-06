@@ -8,7 +8,7 @@
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
-    using Restaurant.Web.ViewModels.InputModels;
+    using Restaurant.Services.Models;
 
     public class ReservationService : IReservationService
     {
@@ -31,7 +31,7 @@
             return this.reservationRepository.AllAsNoTracking().Where(r => r.ApplicationUserId == userId).OrderByDescending(x => x.ReservationDate).To<T>().ToList();
         }
 
-        public async Task<string> CreateReservationAsync(AddReservationInputModel model)
+        public async Task<string> CreateReservationAsync(AddReservationModel model)
         {
             var tableId = this.tableService.GetAvailableTableId(model.ReservationDate, model.NumberOfPeople);
 

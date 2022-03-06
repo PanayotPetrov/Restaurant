@@ -74,7 +74,7 @@
             services.AddTransient<ITableService, TableService>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IUserImageService, UserImageService>();
-
+            services.AddTransient<IAddressService, AddressService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

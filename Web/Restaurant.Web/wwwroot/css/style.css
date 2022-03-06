@@ -567,3 +567,14 @@ td {
 }
 
 
+@media (min-width: 992px) {
+    .col-md-border:not(:last-child) {
+        border-right: 5px solid #d7d7d7;
+        margin-right: -50px;
+    }
+
+    .col-md-border + .col-md-border {
+        border-left: 1px solid #d7d7d7;
+        margin-left: -1px;
+    }
+}

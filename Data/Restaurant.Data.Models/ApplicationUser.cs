@@ -16,6 +16,7 @@ namespace Restaurant.Data.Models
             this.Roles = new HashSet<IdentityUserRole<string>>();
             this.Claims = new HashSet<IdentityUserClaim<string>>();
             this.Logins = new HashSet<IdentityUserLogin<string>>();
+            this.Addresses = new HashSet<Address>();
             this.Orders = new HashSet<Order>();
             this.Reservations = new HashSet<Reservation>();
         }
@@ -36,8 +37,6 @@ namespace Restaurant.Data.Models
 
         public DateTime? DeletedOn { get; set; }
 
-        public virtual Address Address { get; set; }
-
         public virtual UserImage UserImage { get; set; }
 
         public virtual ICollection<IdentityUserRole<string>> Roles { get; set; }
@@ -45,6 +44,8 @@ namespace Restaurant.Data.Models
         public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
 
         public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
+
+        public virtual ICollection<Address> Addresses { get; set; }
 
         public virtual ICollection<Order> Orders { get; set; }
 

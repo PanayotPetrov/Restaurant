@@ -25,6 +25,7 @@
     <link href="~/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" asp-append-version="true">
     <!-- Customized Bootstrap Stylesheet -->
     <link href="~/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">
+
     <!-- Template Stylesheet -->
     <link href="~/css/style.css" rel="stylesheet" asp-append-version="true">
 </head>
@@ -75,7 +76,7 @@
                     <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Company</h4>
                     <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                     <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                    <a class="btn btn-link" asp-area="" asp-controller="Review" asp-action="All">Customer reviews</a>
+                    <a class="btn btn-link" asp-area="" asp-controller="Review" asp-action="All" asp-route-id="1">Customer reviews</a>
                     <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact us</a>
                     <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy policy</a>
                 </div>

@@ -1,6 +1,5 @@
 ﻿namespace Restaurant.Services.Data
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -10,7 +9,7 @@
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
-    using Restaurant.Web.ViewModels.InputModels;
+    using Restaurant.Services.Models;
 
     public class ReviewService : IReviewService
     {
@@ -21,7 +20,7 @@
             this.reviewRepository = reviewRepository;
         }
 
-        public async Task AddReviewAsync(AddReviewInputModel model)
+        public async Task AddReviewAsync(AddReviewModel model)
         {
             var review = new Review
             {

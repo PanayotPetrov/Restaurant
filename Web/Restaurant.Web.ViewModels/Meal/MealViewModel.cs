@@ -1,7 +1,5 @@
 ﻿namespace Restaurant.Web.ViewModels.Meal
 {
-    using System.Collections.Generic;
-
     using AutoMapper;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;

@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Services\Restaurant.Services.Data\Restaurant.Services.Data.csproj" />
+  </ItemGroup>
+
 </Project>

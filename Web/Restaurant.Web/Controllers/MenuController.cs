@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using Restaurant.Services.Data;
+    using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.Category;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Meal;
@@ -52,7 +53,16 @@
                 return this.View(model);
             }
 
-            await this.mealService.CreateAsync(model, $"{this.environment.WebRootPath}/images");
+            var addMealModel = new AddMealModel
+            {
+                CategoryId = model.CategoryId,
+                Image = model.Image,
+                Name = model.Name,
+                Price = model.Price,
+                Description = model.Description,
+            };
+
+            await this.mealService.CreateAsync(addMealModel, $"{this.environment.WebRootPath}/images");
 
             return this.RedirectToAction(nameof(this.AllMeals));
         }

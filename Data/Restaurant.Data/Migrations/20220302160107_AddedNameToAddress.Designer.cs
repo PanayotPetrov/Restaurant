@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Restaurant.Data;
 
 namespace Restaurant.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220302160107_AddedNameToAddress")]
+    partial class AddedNameToAddress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,14 +171,11 @@ namespace Restaurant.Data.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("IsPrimaryAddress")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostCode")
                         .IsRequired()
@@ -191,8 +190,6 @@ namespace Restaurant.Data.Migrations
                     b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("Name");
 
                     b.ToTable("Addresses");
                 });

@@ -11,7 +11,7 @@
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
-    using Restaurant.Web.ViewModels.InputModels;
+    using Restaurant.Services.Models;
 
     public class MealService : IMealService
     {
@@ -23,7 +23,7 @@
             this.mealRepository = mealRepository;
         }
 
-        public async Task CreateAsync(AddMealInputModel model, string imagePath)
+        public async Task CreateAsync(AddMealModel model, string imagePath)
         {
             var meal = new Meal
             {

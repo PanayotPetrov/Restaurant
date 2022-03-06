@@ -11,7 +11,7 @@
         public Reservation()
         {
             this.Id = Guid.NewGuid().ToString();
-            this.ReservationNumber = string.Join(string.Empty,this.Id.Take(6));
+            this.ReservationNumber = string.Join(string.Empty, this.Id.Take(6));
         }
 
         public string ApplicationUserId { get; set; }

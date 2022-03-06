@@ -1,8 +1,9 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace Restaurant.Data.Migrations
+﻿namespace Restaurant.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddedUserImageEntity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,7 +25,7 @@ namespace Restaurant.Data.Migrations
                     ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Extension = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    ModifiedOn = table.Column<DateTime>(type: "datetime2", nullable: true),
                 },
                 constraints: table =>
                 {

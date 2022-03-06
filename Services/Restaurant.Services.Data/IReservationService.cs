@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using Restaurant.Web.ViewModels.InputModels;
+    using Restaurant.Services.Models;
 
     public interface IReservationService
     {
@@ -11,6 +11,6 @@
 
         IEnumerable<T> GetAllByUserId<T>(string userId);
 
-        Task<string> CreateReservationAsync(AddReservationInputModel model);
+        Task<string> CreateReservationAsync(AddReservationModel model);
     }
 }

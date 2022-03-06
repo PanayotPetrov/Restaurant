@@ -3,7 +3,6 @@
     using System;
     using System.Diagnostics;
     using System.IO;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using CommandLine;
@@ -19,8 +18,6 @@
     using Restaurant.Data.Seeding;
     using Restaurant.Services.Data;
     using Restaurant.Services.Messaging;
-    using Restaurant.Web.ViewModels.Meal;
-    using Restaurant.Web.ViewModels.Menu;
 
     public static class Program
     {

@@ -7,7 +7,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
-    using Restaurant.Web.Infrastructure.ValidationAttributes;
+    using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Reservation;
 
@@ -55,7 +55,18 @@
             try
             {
                 model.ReservationDate = model.ReservationDate.AddHours(model.ReservationTime);
-                var reservationId = await this.reservationService.CreateReservationAsync(model);
+
+                var addReservationModel = new AddReservationModel
+                {
+                    UserId = model.UserId,
+                    ReservationDate = model.ReservationDate,
+                    Email = model.Email,
+                    FullName = model.FullName,
+                    PhoneNumber = model.PhoneNumber,
+                    NumberOfPeople = model.NumberOfPeople,
+                };
+
+                var reservationId = await this.reservationService.CreateReservationAsync(addReservationModel);
                 return this.Redirect(nameof(this.Success) + $"?reservationId={reservationId}");
             }
             catch (InvalidOperationException ex)

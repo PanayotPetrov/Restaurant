@@ -2,7 +2,7 @@
 {
     using Microsoft.EntityFrameworkCore.Migrations;
 
-    public partial class AddedMaxLenghtToReviewDescription : Migration
+    public partial class AmendedRelationshipBetweenUserAndAddress : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

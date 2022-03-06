@@ -3,13 +3,13 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    using Restaurant.Web.ViewModels.InputModels;
+    using Restaurant.Services.Models;
 
     public interface IReviewService
     {
         IEnumerable<T> GetAllReviews<T>(int itemsPerPage, int page);
 
-        Task AddReviewAsync(AddReviewInputModel model);
+        Task AddReviewAsync(AddReviewModel model);
 
         IEnumerable<T> GetLatestFiveReviews<T>();
 

@@ -1,6 +1,5 @@
 ﻿namespace Restaurant.Web.Controllers
 {
-    using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -8,6 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using Restaurant.Services.Data;
+    using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Review;
 
@@ -21,7 +21,8 @@
             this.reviewService = reviewService;
         }
 
-        public IActionResult All(int id = 1)
+        [HttpGet("/Review/All/{id}")]
+        public IActionResult AllReviews(int id)
         {
             if (id < 1)
             {
@@ -37,6 +38,11 @@
                 PageNumber = id,
             };
 
+            if (id > model.PagesCount)
+            {
+                return this.NotFound();
+            }
+
             return this.View(model);
         }
 
@@ -47,8 +53,8 @@
             return this.View();
         }
 
-        [HttpPost("/Review/Add")]
         [Authorize]
+        [HttpPost("/Review/Add")]
         public async Task<IActionResult> AddReview(AddReviewInputModel model)
         {
             if (!this.ModelState.IsValid)
@@ -57,8 +63,17 @@
             }
 
             model.ApplicationUserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            await this.reviewService.AddReviewAsync(model);
-            return this.RedirectToAction(nameof(this.All));
+
+            var addReviewModel = new AddReviewModel
+            {
+                ApplicationUserId = model.ApplicationUserId,
+                Description = model.Description,
+                Rating = model.Rating,
+                Summary = model.Summary,
+            };
+
+            await this.reviewService.AddReviewAsync(addReviewModel);
+            return this.Redirect($"/Review/All/1");
         }
     }
 }
