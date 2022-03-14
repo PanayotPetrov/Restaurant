@@ -20,6 +20,9 @@
         public string Street { get; set; }
 
         [Required]
+        public string AddressLineTwo { get; set; }
+
+        [Required]
         public string District { get; set; }
 
         [Required]

@@ -1,5 +1,7 @@
 ﻿namespace Restaurant.Services.Data
 {
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -11,6 +13,7 @@
     public class AddressService : IAddressService
     {
         private readonly IRepository<Address> addressRepository;
+        private readonly IEnumerable<string> allowedDistricts = new List<string> { "Lagera", "Hipodruma", "Centur", "Zona-B5", "Serdika", "Lozenets" };
 
         public AddressService(IRepository<Address> addressRepository)
         {
@@ -22,9 +25,9 @@
             return this.addressRepository.AllAsNoTracking().Where(a => a.ApplicationUserId == userId && a.Name == addressName).To<T>().FirstOrDefault();
         }
 
-        public T GetPrimaryAddress<T>(string userId)
+        public string GetPrimaryAddressName(string userId)
         {
-            return this.addressRepository.AllAsNoTracking().Where(a => a.ApplicationUserId == userId && a.IsPrimaryAddress == true).To<T>().FirstOrDefault();
+            return this.addressRepository.AllAsNoTracking().Where(a => a.ApplicationUserId == userId && a.IsPrimaryAddress == true).FirstOrDefault()?.Name;
         }
 
         public async Task DeleteAsync(string addressName)
@@ -50,6 +53,7 @@
                 ApplicationUserId = userId,
                 Name = model.Name,
                 Street = model.Street,
+                AddressLineTwo = model.AddressLineTwo,
                 District = model.District,
                 City = model.City,
                 Country = model.Country,
@@ -76,6 +80,7 @@
 
             address.Name = model.Name;
             address.Street = model.Street;
+            address.AddressLineTwo = model.AddressLineTwo;
             address.District = model.District;
             address.City = model.City;
             address.Country = model.Country;
@@ -88,6 +93,30 @@
             }
 
             await this.addressRepository.SaveChangesAsync();
+        }
+
+        public bool IsNameUnique(string userId, string addressName, string originalAddressName)
+        {
+            if (originalAddressName is null)
+            {
+                return !this.addressRepository.AllAsNoTracking().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
+            }
+            else if (originalAddressName != addressName)
+            {
+                return !this.addressRepository.AllAsNoTracking().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
+            }
+
+            return true;
+        }
+
+        public IEnumerable<string> GetAddressNamesByUserId(string userId)
+        {
+            return this.addressRepository.AllAsNoTracking().Select(a => a.Name).ToList();
+        }
+
+        public IEnumerable<string> GetAllowedDistricts()
+        {
+            return this.allowedDistricts;
         }
 
         private void RemovePreviousPrimaryAddress(string userId)

@@ -2,7 +2,7 @@
 @model AddMealInputModel
 @{
     this.ViewData["Title"] = "Add a new meal";
-    var categoryItems = this.Model.CategoryItems.Select(x => new SelectListItem(x.Value, x.Key));
+    var categories = this.Model.Categories.Select(x => new SelectListItem(x.Value, x.Key));
 }
 
 <partial name="_HeroPartial" />
@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="CategoryId"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="categoryItems"></select>
+                <select asp-for="CategoryId" class="form-control" asp-items="categories"></select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">

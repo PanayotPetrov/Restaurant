@@ -1,5 +1,6 @@
 ﻿namespace Restaurant.Services.Data
 {
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Restaurant.Services.Models;
@@ -14,6 +15,12 @@
 
         public Task DeleteAsync(string addressName);
 
-        public T GetPrimaryAddress<T>(string userId);
+        public string GetPrimaryAddressName(string userId);
+
+        public bool IsNameUnique(string userId, string addressName, string originalAddressName);
+
+        public IEnumerable<string> GetAddressNamesByUserId(string userId);
+
+        public IEnumerable<string> GetAllowedDistricts();
     }
 }

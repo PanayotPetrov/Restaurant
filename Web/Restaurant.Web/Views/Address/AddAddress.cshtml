@@ -1,0 +1,21 @@
+﻿@using Restaurant.Common
+@using Restaurant.Web.ViewModels.Address
+@model AddressViewModel
+@{
+    this.ViewData["Title"] = "Add a new address";
+}
+
+<partial name="_HeroPartial" />
+<div class="bg-white col-md-8 offset-md-2">
+<hr />
+<div class="col-md-10 offset-md-1">
+    <form class="row g-3" method="post">
+        <partial name="_AddressViewPartial" model="Model" />
+        <button type="submit" id="editAddressButton" class="btn btn-primary m-2"><i class="fa-solid fa-check"></i> Save changes</button>
+    </form>
+</div>
+<hr />
+</div>
+
+
+

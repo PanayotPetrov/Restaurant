@@ -5,8 +5,11 @@
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.ModelBinding;
     using Restaurant.Services.Data;
     using Restaurant.Services.Models;
+    using Restaurant.Web.Infrastructure.ExtentionClasses;
+    using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.ViewModels.Address;
 
     public class AddressController : BaseController
@@ -20,68 +23,42 @@
 
         [Authorize]
         [HttpGet("/Address/All/{addressName?}")]
+        [AddRouteIdActionFilter]
+
         public IActionResult AllAddresses(string addressName)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            AddressViewModel model;
-            if (addressName is null)
+
+            var model = this.addressService.GetByNameAndUserId<AddressViewModel>(userId, addressName);
+            if (model is not null)
             {
-                model = this.addressService.GetPrimaryAddress<AddressViewModel>(userId);
-            }
-            else
-            {
-                model = this.addressService.GetByNameAndUserId<AddressViewModel>(userId, addressName);
+                model.AllowedDistricts = this.addressService.GetAllowedDistricts();
             }
 
             return this.View(model);
         }
 
         [Authorize]
-        [HttpPost("/Address/Add")]
-        public async Task<IActionResult> AddAddress(AddressViewModel model)
-        {
-            if (!this.ModelState.IsValid)
-            {
-                return this.RedirectToAction(nameof(this.AllAddresses));
-            }
-
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            var addAddressModel = new AddAddressModel
-            {
-                Name = model.Name,
-                Street = model.Street,
-                District = model.District,
-                City = model.City,
-                PostCode = model.PostCode,
-                Country = model.Country,
-                IsPrimaryAddress = model.IsPrimaryAddress,
-            };
-
-            await this.addressService.CreateNewAddressAsync(addAddressModel, userId);
-            return this.Redirect($"/Address/All/{model.Name}");
-        }
-
-        [Authorize]
         [HttpPost("/Address/All/{addressName?}")]
-        public async Task<IActionResult> EditAddress(string addressName, AddressViewModel model)
+        [AddRouteIdActionFilter]
+        [UniqueAddressNameValidationActionFilter]
+        public async Task<IActionResult> AllAddresses(string addressName, AddressViewModel model)
         {
-            if (!this.ModelState.IsValid)
-            {
-                return this.RedirectToAction(nameof(this.AllAddresses));
-            }
-
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            if (addressName is null)
+            if (!this.ModelState.IsValid)
             {
-                addressName = this.addressService.GetPrimaryAddress<AddressViewModel>(userId).Name;
+                model.AddressNames = this.addressService.GetAddressNamesByUserId(userId);
+                model.Name = addressName;
+                model.AllowedDistricts = this.addressService.GetAllowedDistricts();
+                return this.View(model);
             }
 
             var addAddressModel = new AddAddressModel
             {
                 Name = model.Name,
                 Street = model.Street,
+                AddressLineTwo = model.AddressLineTwo,
                 District = model.District,
                 City = model.City,
                 PostCode = model.PostCode,
@@ -90,6 +67,47 @@
             };
 
             await this.addressService.UpdateAddressAsync(addAddressModel, userId, addressName);
+            return this.Redirect($"/Address/All/{model.Name}");
+        }
+
+        [Authorize]
+        [HttpGet("/Address/Add")]
+
+        public IActionResult AddAddress()
+        {
+            var model = new AddressViewModel
+            {
+                AllowedDistricts = this.addressService.GetAllowedDistricts(),
+            };
+            return this.View(model);
+        }
+
+        [Authorize]
+        [HttpPost("/Address/Add")]
+        [UniqueAddressNameValidationActionFilter]
+        public async Task<IActionResult> AddAddress(AddressViewModel model)
+        {
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            if (!this.ModelState.IsValid)
+            {
+                model.AllowedDistricts = this.addressService.GetAllowedDistricts();
+                return this.View(model);
+            }
+
+            var addAddressModel = new AddAddressModel
+            {
+                Name = model.Name,
+                Street = model.Street,
+                AddressLineTwo = model.AddressLineTwo,
+                District = model.District,
+                City = model.City,
+                PostCode = model.PostCode,
+                Country = model.Country,
+                IsPrimaryAddress = model.IsPrimaryAddress,
+            };
+
+            await this.addressService.CreateNewAddressAsync(addAddressModel, userId);
             return this.Redirect($"/Address/All/{model.Name}");
         }
 

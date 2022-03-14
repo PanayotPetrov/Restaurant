@@ -38,7 +38,7 @@
         {
             var viewModel = new AddMealInputModel
             {
-                CategoryItems = this.categoryService.GetAllAsKeyValuePairs(),
+                Categories = this.categoryService.GetAllAsKeyValuePairs(),
             };
             return this.View(viewModel);
         }
@@ -49,7 +49,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                model.CategoryItems = this.categoryService.GetAllAsKeyValuePairs();
+                model.Categories = this.categoryService.GetAllAsKeyValuePairs();
                 return this.View(model);
             }
 
