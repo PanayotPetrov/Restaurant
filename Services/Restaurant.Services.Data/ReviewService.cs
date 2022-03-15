@@ -22,14 +22,7 @@
 
         public async Task AddReviewAsync(AddReviewModel model)
         {
-            var review = new Review
-            {
-                ApplicationUserId = model.ApplicationUserId,
-                Description = model.Description,
-                Rating = int.Parse(model.Rating),
-                Summary = model.Summary,
-            };
-
+            var review = AutoMapperConfig.MapperInstance.Map<Review>(model);
             await this.reviewRepository.AddAsync(review);
             await this.reviewRepository.SaveChangesAsync();
         }

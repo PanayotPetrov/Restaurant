@@ -7,9 +7,10 @@
     using AutoMapper;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
+    using Restaurant.Services.Models;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
 
-    public class AddressViewModel : IMapFrom<Address>, IHaveCustomMappings
+    public class AddressViewModel : IMapFrom<Address>, IMapTo<AddAddressModel>, IHaveCustomMappings
     {
         public IEnumerable<string> AddressNames { get; set; }
 

@@ -1,7 +1,6 @@
 ﻿namespace Restaurant.Services.Data
 {
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -30,6 +29,30 @@
             return this.addressRepository.AllAsNoTracking().Where(a => a.ApplicationUserId == userId && a.IsPrimaryAddress == true).FirstOrDefault()?.Name;
         }
 
+        public bool IsNameUnique(string userId, string addressName, string originalAddressName)
+        {
+            if (originalAddressName is null)
+            {
+                return !this.addressRepository.AllAsNoTracking().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
+            }
+            else if (originalAddressName != addressName)
+            {
+                return !this.addressRepository.AllAsNoTracking().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
+            }
+
+            return true;
+        }
+
+        public IEnumerable<string> GetAddressNamesByUserId(string userId)
+        {
+            return this.addressRepository.AllAsNoTracking().Select(a => a.Name).ToList();
+        }
+
+        public IEnumerable<string> GetAllowedDistricts()
+        {
+            return this.allowedDistricts;
+        }
+
         public async Task DeleteAsync(string addressName)
         {
             var address = this.addressRepository.AllAsNoTracking().FirstOrDefault(a => a.Name == addressName);
@@ -48,17 +71,8 @@
 
         public async Task CreateNewAddressAsync(AddAddressModel model, string userId)
         {
-            var address = new Address
-            {
-                ApplicationUserId = userId,
-                Name = model.Name,
-                Street = model.Street,
-                AddressLineTwo = model.AddressLineTwo,
-                District = model.District,
-                City = model.City,
-                Country = model.Country,
-                PostCode = model.PostCode,
-            };
+            var address = AutoMapperConfig.MapperInstance.Map<Address>(model);
+            address.ApplicationUserId = userId;
 
             if (!this.addressRepository.AllAsNoTracking().Any(a => a.ApplicationUserId == userId))
             {
@@ -93,30 +107,6 @@
             }
 
             await this.addressRepository.SaveChangesAsync();
-        }
-
-        public bool IsNameUnique(string userId, string addressName, string originalAddressName)
-        {
-            if (originalAddressName is null)
-            {
-                return !this.addressRepository.AllAsNoTracking().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
-            }
-            else if (originalAddressName != addressName)
-            {
-                return !this.addressRepository.AllAsNoTracking().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
-            }
-
-            return true;
-        }
-
-        public IEnumerable<string> GetAddressNamesByUserId(string userId)
-        {
-            return this.addressRepository.AllAsNoTracking().Select(a => a.Name).ToList();
-        }
-
-        public IEnumerable<string> GetAllowedDistricts()
-        {
-            return this.allowedDistricts;
         }
 
         private void RemovePreviousPrimaryAddress(string userId)

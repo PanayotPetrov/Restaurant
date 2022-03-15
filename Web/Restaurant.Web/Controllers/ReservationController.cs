@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
+    using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Reservation;
@@ -56,16 +57,7 @@
             {
                 model.ReservationDate = model.ReservationDate.AddHours(model.ReservationTime);
 
-                var addReservationModel = new AddReservationModel
-                {
-                    UserId = model.UserId,
-                    ReservationDate = model.ReservationDate,
-                    Email = model.Email,
-                    FullName = model.FullName,
-                    PhoneNumber = model.PhoneNumber,
-                    NumberOfPeople = model.NumberOfPeople,
-                };
-
+                var addReservationModel = AutoMapperConfig.MapperInstance.Map<AddReservationModel>(model);
                 var reservationId = await this.reservationService.CreateReservationAsync(addReservationModel);
                 return this.Redirect(nameof(this.Success) + $"?reservationId={reservationId}");
             }

@@ -3,9 +3,11 @@
     using System;
     using System.ComponentModel.DataAnnotations;
 
+    using Restaurant.Services.Mapping;
+    using Restaurant.Services.Models;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
 
-    public class AddReservationInputModel
+    public class AddReservationInputModel : IMapTo<AddReservationModel>
     {
         [Required(ErrorMessage = "We need your first name to book a table.")]
         [Display(Name = "Full name")]

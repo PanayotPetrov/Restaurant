@@ -2,7 +2,10 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class AddReviewInputModel
+    using Restaurant.Services.Mapping;
+    using Restaurant.Services.Models;
+
+    public class AddReviewInputModel : IMapTo<AddReviewModel>
     {
         public string ApplicationUserId { get; set; }
 

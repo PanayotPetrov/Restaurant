@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Restaurant.Data.Models;
+using Restaurant.Services.Mapping;
+using System;
 
 namespace Restaurant.Services.Models
 {
-    public class AddReservationModel
+    public class AddReservationModel : IMapTo<Reservation>
     {
         public string FullName { get; set; }
 

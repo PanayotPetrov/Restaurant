@@ -25,13 +25,7 @@
 
         public async Task CreateAsync(AddMealModel model, string imagePath)
         {
-            var meal = new Meal
-            {
-                CategoryId = model.CategoryId,
-                Name = model.Name,
-                Description = model.Description,
-                Price = model.Price,
-            };
+            var meal = AutoMapperConfig.MapperInstance.Map<Meal>(model);
 
             Directory.CreateDirectory($"{imagePath}/meals/");
             var extension = Path.GetExtension(model.Image.FileName).TrimStart('.');

@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using Restaurant.Services.Data;
+    using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Review;
@@ -30,6 +31,7 @@
             }
 
             var reviews = this.reviewService.GetAllReviews<ReviewViewModel>(ItemsPerPage, id);
+
             var model = new ReviewListViewModel
             {
                 Reviews = reviews,
@@ -64,13 +66,7 @@
 
             model.ApplicationUserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            var addReviewModel = new AddReviewModel
-            {
-                ApplicationUserId = model.ApplicationUserId,
-                Description = model.Description,
-                Rating = model.Rating,
-                Summary = model.Summary,
-            };
+            var addReviewModel = AutoMapperConfig.MapperInstance.Map<AddReviewModel>(model);
 
             await this.reviewService.AddReviewAsync(addReviewModel);
             return this.Redirect($"/Review/All/1");

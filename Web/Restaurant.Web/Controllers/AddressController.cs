@@ -5,8 +5,8 @@
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.ModelBinding;
     using Restaurant.Services.Data;
+    using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
     using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.ViewModels.Address;
@@ -53,17 +53,7 @@
                 return this.View(model);
             }
 
-            var addAddressModel = new AddAddressModel
-            {
-                Name = model.Name,
-                Street = model.Street,
-                AddressLineTwo = model.AddressLineTwo,
-                District = model.District,
-                City = model.City,
-                PostCode = model.PostCode,
-                Country = model.Country,
-                IsPrimaryAddress = model.IsPrimaryAddress,
-            };
+            var addAddressModel = AutoMapperConfig.MapperInstance.Map<AddAddressModel>(model);
 
             await this.addressService.UpdateAddressAsync(addAddressModel, userId, addressName);
             return this.Redirect($"/Address/All/{model.Name}");
@@ -94,17 +84,7 @@
                 return this.View(model);
             }
 
-            var addAddressModel = new AddAddressModel
-            {
-                Name = model.Name,
-                Street = model.Street,
-                AddressLineTwo = model.AddressLineTwo,
-                District = model.District,
-                City = model.City,
-                PostCode = model.PostCode,
-                Country = model.Country,
-                IsPrimaryAddress = model.IsPrimaryAddress,
-            };
+            var addAddressModel = AutoMapperConfig.MapperInstance.Map<AddAddressModel>(model);
 
             await this.addressService.CreateNewAddressAsync(addAddressModel, userId);
             return this.Redirect($"/Address/All/{model.Name}");

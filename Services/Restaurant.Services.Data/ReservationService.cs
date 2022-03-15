@@ -40,16 +40,8 @@
                 throw new InvalidOperationException($"We don't have a table for {model.NumberOfPeople} on the {model.ReservationDate}");
             }
 
-            var reservation = new Reservation
-            {
-                ApplicationUserId = model.UserId,
-                Fullname = model.FullName,
-                PhoneNumber = model.PhoneNumber,
-                ReservationDate = model.ReservationDate.ToUniversalTime(),
-                NumberOfPeople = model.NumberOfPeople,
-                TableId = tableId,
-                Email = model.Email,
-            };
+            var reservation = AutoMapperConfig.MapperInstance.Map<Reservation>(model);
+            reservation.TableId = tableId;
             await this.reservationRepository.AddAsync(reservation);
             await this.reservationRepository.SaveChangesAsync();
             return reservation.Id;

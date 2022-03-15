@@ -6,6 +6,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     using Restaurant.Services.Data;
+    using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.Category;
     using Restaurant.Web.ViewModels.InputModels;
@@ -53,14 +54,7 @@
                 return this.View(model);
             }
 
-            var addMealModel = new AddMealModel
-            {
-                CategoryId = model.CategoryId,
-                Image = model.Image,
-                Name = model.Name,
-                Price = model.Price,
-                Description = model.Description,
-            };
+            var addMealModel = AutoMapperConfig.MapperInstance.Map<AddMealModel>(model);
 
             await this.mealService.CreateAsync(addMealModel, $"{this.environment.WebRootPath}/images");
 

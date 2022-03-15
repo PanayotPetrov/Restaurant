@@ -5,8 +5,10 @@
     using System.ComponentModel.DataAnnotations;
 
     using Microsoft.AspNetCore.Http;
+    using Restaurant.Services.Mapping;
+    using Restaurant.Services.Models;
 
-    public class AddMealInputModel
+    public class AddMealInputModel : IMapTo<AddMealModel>
     {
         [Required]
         public string Name { get; set; }

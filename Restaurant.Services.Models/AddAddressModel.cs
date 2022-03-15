@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Restaurant.Data.Models;
+using Restaurant.Services.Mapping;
 
 namespace Restaurant.Services.Models
 {
-    public class AddAddressModel
+    public class AddAddressModel : IMapTo<Address>
     {
         public string Name { get; set; }
 

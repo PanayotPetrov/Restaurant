@@ -1,6 +1,9 @@
-﻿namespace Restaurant.Services.Models
+﻿using Restaurant.Data.Models;
+using Restaurant.Services.Mapping;
+
+namespace Restaurant.Services.Models
 {
-    public class AddReviewModel
+    public class AddReviewModel : IMapTo<Review>
     {
         public string ApplicationUserId { get; set; }
 

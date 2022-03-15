@@ -8,4 +8,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.14" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Restaurant.Data.Models\Restaurant.Data.Models.csproj" />
+    <ProjectReference Include="..\Services\Restaurant.Services.Mapping\Restaurant.Services.Mapping.csproj" />
+  </ItemGroup>
+
 </Project>
