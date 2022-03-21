@@ -39,7 +39,8 @@
             </div>
             <h1></h1>
             <div class="col-12">
-                <button class="btn btn-primary w-100 py-3 p-5" type="submit">Add meal</button>
+                <button class="btn btn-primary w-100 col-md-12" type="submit">Add meal</button>
+                <a class="btn btn-primary w-100 col-md-12 mt-3" asp-action="Index" asp-route-id="@(this.TempData["RouteId"] ?? 1)">Back to List</a>
             </div>
         </form>
 </div>

@@ -36,7 +36,7 @@
             {
                 Reviews = reviews,
                 ItemsPerPage = ItemsPerPage,
-                ReviewCount = this.reviewService.GetCount(),
+                ItemCount = this.reviewService.GetCount(),
                 PageNumber = id,
             };
 

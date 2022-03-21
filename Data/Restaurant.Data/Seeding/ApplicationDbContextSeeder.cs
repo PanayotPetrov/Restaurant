@@ -29,6 +29,7 @@
                               new SettingsSeeder(),
                               new TableSeeder(),
                               new CategorySeeder(),
+                              new AdminSeeder(),
                           };
 
             foreach (var seeder in seeders)

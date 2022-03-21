@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace Restaurant.Data.Migrations
+﻿namespace Restaurant.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddedAddressLineTwoColumnToAddress : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -11,7 +11,7 @@ namespace Restaurant.Data.Migrations
                 table: "Addresses",
                 type: "nvarchar(max)",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: string.Empty);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
