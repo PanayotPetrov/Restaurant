@@ -14,5 +14,11 @@
         IEnumerable<T> GetLatestFiveReviews<T>();
 
         int GetCount();
+
+        IEnumerable<T> GetAllWithDeleted<T>(int itemsPerPage, int id);
+
+        public T GetById<T>(int id);
+
+        Task DeleteByIdAsync(int id);
     }
 }

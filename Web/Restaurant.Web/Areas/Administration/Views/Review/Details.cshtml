@@ -1,0 +1,15 @@
+﻿@using Restaurant.Web.ViewModels.Review;
+@model AdminReviewViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<partial name="_HeroPartial" />
+
+<div>
+    <partial name="_ReviewInfoPartial" model="Model" />
+    <div>
+        <a class="btn btn-primary" asp-action="Index" asp-route-id="@(this.TempData["RouteId"] ?? 1)">Back to List</a>
+    </div>
+</div>

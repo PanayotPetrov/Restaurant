@@ -1,0 +1,93 @@
+﻿@using Restaurant.Web.ViewModels.Review
+@model AdminReviewListViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<partial name="_HeroPartial" />
+<table class="table table-hover table-bordered border-primary" style="table-layout: fixed; word-wrap: break-word">
+    <thead class="table-dark">
+        <tr class="text-center">
+            <th style="width: 10%">
+                User image
+            </th>
+            <th style="width: 10%">
+                User id
+            </th>
+            <th style="width: 10%">
+                User name
+            </th>
+            <th style="width: 6%">
+                Rating
+            </th>
+            <th style="width: 25%;">
+                Description
+            </th>
+            <th style="width: 8%">
+                Summary
+            </th>
+            <th style="width: 7%">
+                Is Deleted
+            </th>
+            <th style="width: 7%">
+                Deleted On
+            </th>
+            <th style="width: 7%">
+                Created On
+            </th>
+            <th style="width: 7%">
+                Modified On
+            </th>
+            <th style="width: 8%">
+
+            </th>
+        </tr>
+    </thead>
+    <tbody class="table-light">
+        @foreach (var review in Model.Reviews)
+        {
+            <tr>
+                <td>
+                    <img class="flex-shrink-0 img-fluid" src=@review.ImageUrl alt="" asp-append-version="true">
+                </td>
+                <td>
+                    @review.ApplicationUserId
+                </td>
+                <td>
+                    @review.FullName
+                </td>
+                <td>
+                    @review.Rating
+                </td>
+                <td>
+                    @review.Description
+                </td>
+                <td>
+                    @review.Summary
+                </td>
+                <td>
+                    @review.IsDeleted
+                </td>
+                <td>
+                    @review.DeletedOn
+                </td>
+                <td>
+                    @review.CreatedOn
+                </td>
+                <td>
+                    @review.ModifiedOn
+                </td>
+                <td>
+                    <a class="btn btn-primary mt-1" asp-action="Details" asp-route-id="@review.Id">Details</a>
+                    <a class="btn btn-dark mt-1" asp-action="Delete" asp-route-id="@review.Id">Delete</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<partial name="_PagingPartial" model="@Model" />
+
+
+

@@ -25,4 +25,8 @@
     <ProjectReference Include="..\Restaurant.Web.Infrastructure\Restaurant.Web.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Administration\Dashboard\" />
+  </ItemGroup>
+
 </Project>
