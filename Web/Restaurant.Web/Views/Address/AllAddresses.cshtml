@@ -17,7 +17,7 @@
                 {
                     @foreach (var addressName in Model.AddressNames)
                     {
-                        <li class="nav-item text-center"><a class="nav-link text-body @if (Model.Name == addressName) { <text>active</text> }" asp-area="" asp-controller="Address" asp-action="All" asp-route-id="@addressName">@addressName</a></li>
+                        <li class="nav-item text-center"><a class="nav-link text-white @if (Model.Name == addressName) { <text>active</text> }" asp-area="" asp-controller="Address" asp-action="All" asp-route-id="@addressName">@addressName</a></li>
                     }
                 }
             </ul>
@@ -32,8 +32,8 @@
             {
                 <form class="row g-3" method="post" id="addressForm" asp-action="Delete">
                     <partial name="_AddressViewPartial" model="Model" />
-                    <button type="submit" class="btn btn-primary m-2" asp-action="AllAddresses"><i class="fa-solid fa-check"></i> Save changes</button>
-                    <button type="button" class="btn btn-danger m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash"></i> Delete</button>
+                    <button type="submit" class="btn btn-primary" asp-action="AllAddresses"><i class="fa-solid fa-check"></i> Save changes</button>
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash"></i> Delete</button>
                 </form>
             }
         </div>

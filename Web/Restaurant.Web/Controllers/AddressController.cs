@@ -56,7 +56,8 @@
             var addAddressModel = AutoMapperConfig.MapperInstance.Map<AddAddressModel>(model);
 
             await this.addressService.UpdateAddressAsync(addAddressModel, userId, addressName);
-            return this.Redirect($"/Address/All/{model.Name}");
+            return this.RedirectToAction(nameof(this.AllAddresses), new { addressName = model.Name });
+            //return this.Redirect($"/Address/All/{model.Name}");
         }
 
         [Authorize]

@@ -1,34 +1,31 @@
 ﻿namespace Restaurant.Web.Areas.Administration.Controllers
 {
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
 
-    using Restaurant.Data;
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Meal;
 
-    public class MealsController : AdministrationController
+    public class MealController : AdministrationController
     {
         private const int ItemsPerPage = 6;
         private readonly IMealService mealService;
         private readonly ICategoryService categoryService;
         private readonly IWebHostEnvironment environment;
-        private readonly ApplicationDbContext context;
 
-        public MealsController(IMealService mealService, ICategoryService categoryService, IWebHostEnvironment environment, ApplicationDbContext context)
+        public MealController(IMealService mealService, ICategoryService categoryService, IWebHostEnvironment environment)
         {
             this.mealService = mealService;
             this.categoryService = categoryService;
             this.environment = environment;
         }
 
-        [HttpGet("/Administration/Meals/All/{id}")]
+        [HttpGet("/Administration/Meal/All/{id}")]
         public IActionResult Index(int id)
         {
             if (id < 1)

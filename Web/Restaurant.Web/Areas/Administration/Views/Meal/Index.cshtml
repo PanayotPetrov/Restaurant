@@ -6,16 +6,16 @@
 }
 
 <partial name="_HeroPartial" />
-<table class="table table-hover table-bordered">
-    <thead>
-        <tr>
+<table class="table table-hover table-bordered border-primary">
+    <thead class="table-dark">
+        <tr class="text-center">
             <th>
                 Image
             </th>
             <th>
                 Name
             </th>
-            <th>
+            <th >
                 Description
             </th>
             <th>
@@ -71,8 +71,8 @@
                     @meal.ModifiedOn
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@meal.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@meal.Id">Delete</a>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@meal.Id">Edit</a> 
+                    <a class="btn btn-dark mt-2" asp-action="Delete" asp-route-id="@meal.Id">Delete</a>
                 </td>
             </tr>
         }
