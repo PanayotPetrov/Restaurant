@@ -20,7 +20,7 @@
 
         public string ImageUrl { get; set; }
 
-        public void CreateMappings(IProfileExpression configuration)
+        public virtual void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Review, ReviewViewModel>()
                 .ForMember(r => r.FullName, opt => opt.MapFrom(x => $"{x.ApplicationUser.FirstName} {x.ApplicationUser.LastName}"))

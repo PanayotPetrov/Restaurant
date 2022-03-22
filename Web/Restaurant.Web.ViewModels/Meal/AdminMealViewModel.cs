@@ -7,19 +7,9 @@
     using Restaurant.Services.Mapping;
     using Restaurant.Web.ViewModels.Category;
 
-    public class AdminMealViewModel : IMapFrom<Meal>, IHaveCustomMappings
+    public class AdminMealViewModel : MealViewModel, IMapFrom<Meal>, IHaveCustomMappings
     {
         public int Id { get; set; }
-
-        public string Description { get; set; }
-
-        public string Name { get; set; }
-
-        public decimal Price { get; set; }
-
-        public CategoryViewModel Category { get; set; }
-
-        public string ImageUrl { get; set; }
 
         public bool IsDeleted { get; set; }
 
@@ -29,7 +19,7 @@
 
         public DateTime? ModifiedOn { get; set; }
 
-        public void CreateMappings(IProfileExpression configuration)
+        public override void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Meal, AdminMealViewModel>().ForMember(
                 m => m.ImageUrl,

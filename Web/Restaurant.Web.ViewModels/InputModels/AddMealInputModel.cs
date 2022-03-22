@@ -8,22 +8,10 @@
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
-    public class AddMealInputModel : IMapTo<AddMealModel>
+    public class AddMealInputModel : BaseMealInputModel, IMapTo<AddMealModel>
     {
         [Required]
-        public string Name { get; set; }
+        public virtual IFormFile Image { get; set; }
 
-        [Required]
-        public string Description { get; set; }
-
-        [Range(0, double.MaxValue)]
-        public decimal Price { get; set; }
-
-        public int CategoryId { get; set; }
-
-        [Required]
-        public IFormFile Image { get; set; }
-
-        public IEnumerable<KeyValuePair<string, string>> Categories { get; set; }
     }
 }
