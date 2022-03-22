@@ -48,6 +48,11 @@
             return this.reviewRepository.AllAsNoTracking().Count();
         }
 
+        public int GetCountWithDeleted()
+        {
+            return this.reviewRepository.AllAsNoTrackingWithDeleted().Count();
+        }
+
         public IEnumerable<T> GetLatestFiveReviews<T>()
         {
             return this.reviewRepository.AllAsNoTracking().OrderByDescending(x => x.CreatedOn).Take(5).To<T>().ToList();
@@ -59,10 +64,23 @@
 
             if (review.IsDeleted)
             {
-                throw new InvalidOperationException("This review has already been deleted");
+                throw new InvalidOperationException("This review has already been deleted!");
             }
 
             this.reviewRepository.Delete(review);
+            await this.reviewRepository.SaveChangesAsync();
+        }
+
+        public async Task RestoreAsync(int id)
+        {
+            var review = this.reviewRepository.AllWithDeleted().FirstOrDefault(r => r.Id == id);
+
+            if (!review.IsDeleted)
+            {
+                throw new InvalidOperationException("Cannot restore a review which has not been deleted!");
+            }
+
+            review.IsDeleted = false;
             await this.reviewRepository.SaveChangesAsync();
         }
     }

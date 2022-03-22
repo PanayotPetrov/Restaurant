@@ -1,12 +1,9 @@
 ﻿namespace Restaurant.Web.Areas.Administration.Controllers
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Mvc.Rendering;
     using Restaurant.Services.Data;
     using Restaurant.Web.ViewModels.Review;
 
@@ -34,7 +31,7 @@
             {
                 Reviews = reviews,
                 ItemsPerPage = ItemsPerPage,
-                ItemCount = this.reviewService.GetCount(),
+                ItemCount = this.reviewService.GetCountWithDeleted(),
                 PageNumber = id,
             };
 
@@ -60,15 +57,8 @@
             return this.View(model);
         }
 
-        public IActionResult Delete(int id)
-        {
-            var review = this.reviewService.GetById<AdminReviewViewModel>(id);
-            return this.View(review);
-        }
-
         [HttpPost]
-        [ActionName("Delete")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             try
             {
@@ -79,7 +69,23 @@
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
                 var review = this.reviewService.GetById<AdminReviewViewModel>(id);
-                return this.View(review);
+                return this.View("Details", review);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Restore(int id)
+        {
+            try
+            {
+                await this.reviewService.RestoreAsync(id);
+                return this.RedirectToAction(nameof(this.Details), new { Id = id });
+            }
+            catch (InvalidOperationException ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                var review = this.reviewService.GetById<AdminReviewViewModel>(id);
+                return this.View("Details", review);
             }
         }
     }

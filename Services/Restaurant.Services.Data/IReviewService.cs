@@ -15,10 +15,14 @@
 
         int GetCount();
 
+        int GetCountWithDeleted();
+
         IEnumerable<T> GetAllWithDeleted<T>(int itemsPerPage, int id);
 
         public T GetById<T>(int id);
 
         Task DeleteByIdAsync(int id);
+
+        public Task RestoreAsync(int id);
     }
 }
