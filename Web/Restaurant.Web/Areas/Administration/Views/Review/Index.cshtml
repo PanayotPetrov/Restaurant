@@ -5,40 +5,41 @@
 }
 
 <partial name="_HeroPartial" />
-<table class="table table-hover table-bordered border-primary" style="table-layout: fixed; word-wrap: break-word">
+<table class="table table-hover table-bordered table-responsive">
+
     <thead class="table-dark">
         <tr class="text-center">
-            <th style="width: 10%">
+            <th>
                 User image
             </th>
-            <th style="width: 10%">
+            <th>
                 User id
             </th>
-            <th style="width: 10%">
+            <th>
                 User name
             </th>
-            <th style="width: 6%">
+            <th>
                 Rating
             </th>
-            <th style="width: 25%;">
+            <th>
                 Description
             </th>
-            <th style="width: 8%">
+            <th>
                 Summary
             </th>
-            <th style="width: 7%">
+            <th>
                 Is Deleted
             </th>
-            <th style="width: 7%">
+            <th>
                 Deleted On
             </th>
-            <th style="width: 7%">
+            <th>
                 Created On
             </th>
-            <th style="width: 7%">
+            <th>
                 Modified On
             </th>
-            <th style="width: 8%">
+            <th>
 
             </th>
         </tr>
@@ -59,10 +60,10 @@
                 <td>
                     @review.Rating
                 </td>
-                <td>
+                <td style="word-break:break-word">
                     @review.Description
                 </td>
-                <td>
+                <td style="word-break:break-word">
                     @review.Summary
                 </td>
                 <td>
