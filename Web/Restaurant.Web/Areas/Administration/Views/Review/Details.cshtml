@@ -16,25 +16,13 @@
     <form asp-action="Restore" asp-route-id="@Model.Id" id="restoreForm">
         <input type="hidden" asp-for="Id" />
     </form>
-    <button value="Delete" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button> |
-    <a class="btn btn-primary" asp-action="Index" asp-route-id="@(this.TempData["RouteId"] ?? 1)">Back to List</a> |
+    <button value="Delete" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash-can"></i> Delete</button> |
+    <a class="btn btn-primary" asp-action="Index" asp-route-id="@(this.TempData["RouteId"] ?? 1)"><i class="fa-solid fa-bars"></i> Back to List</a> |
 
-    <button class="btn btn-primary" asp-action="Restore" asp-route-id="@Model.Id" onclick="restoreForm.submit()">Restore</button>
+    <button class="btn btn-primary" asp-action="Restore" asp-route-id="@Model.Id" onclick="restoreForm.submit()"><i class="fa-solid fa-trash-arrow-up"></i> Restore</button>
 
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Are you sure you want to delete this review?</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-danger" onclick="deleteForm.submit()">Delete</button>
-            </div>
-        </div>
-    </div>
-</div>
+<partial name="_ModalPartial" />
+
