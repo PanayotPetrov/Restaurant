@@ -6,7 +6,7 @@
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
-    public class EditMealInputModel : BaseMealInputModel, IMapFrom<Meal>, IMapTo<AddMealModel>, IHaveCustomMappings
+    public class EditMealInputModel : BaseMealInputModel, IMapFrom<Meal>, IMapTo<EditMealModel>, IHaveCustomMappings
     {
         public int Id { get; set; }
 

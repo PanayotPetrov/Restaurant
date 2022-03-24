@@ -1,5 +1,6 @@
 ﻿namespace Restaurant.Web.Areas.Administration.Controllers
 {
+    using System;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Hosting;
@@ -51,6 +52,18 @@
             return this.View(model);
         }
 
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return this.NotFound();
+            }
+
+            var model = this.mealService.GetByIdWithDeleted<AdminMealViewModel>((int)id);
+
+            return this.View(model);
+        }
+
         public IActionResult Create()
         {
             var viewModel = new AddMealInputModel
@@ -71,9 +84,8 @@
 
             var addMealModel = AutoMapperConfig.MapperInstance.Map<AddMealModel>(model);
 
-            await this.mealService.CreateAsync(addMealModel, $"{this.environment.WebRootPath}/images");
-
-            return this.RedirectToAction(nameof(this.Index), new { Id = 1 });
+            var id = await this.mealService.CreateAsync(addMealModel, $"{this.environment.WebRootPath}/images");
+            return this.RedirectToAction(nameof(this.Details), new { Id = id });
         }
 
         public IActionResult Edit(int? id)
@@ -83,7 +95,7 @@
                 return this.NotFound();
             }
 
-            var model = this.mealService.GetById<EditMealInputModel>((int)id);
+            var model = this.mealService.GetByIdWithDeleted<EditMealInputModel>((int)id);
 
             if (model == null)
             {
@@ -95,7 +107,6 @@
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, EditMealInputModel model)
         {
             if (!this.ModelState.IsValid)
@@ -104,35 +115,44 @@
                 return this.View(model);
             }
 
-            var addMealModel = AutoMapperConfig.MapperInstance.Map<AddMealModel>(model);
+            var editMealModel = AutoMapperConfig.MapperInstance.Map<EditMealModel>(model);
 
-            await this.mealService.UpdateAsync(addMealModel, model.Id, $"{this.environment.WebRootPath}/images");
-            return this.RedirectToAction(nameof(this.Index), new { Id = 1 });
-        }
-
-        public IActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return this.NotFound();
-            }
-
-            var meal = this.mealService.GetById<AdminMealViewModel>((int)id);
-            if (meal == null)
-            {
-                return this.NotFound();
-            }
-
-            return this.View(meal);
+            await this.mealService.UpdateAsync(editMealModel, $"{this.environment.WebRootPath}/images");
+            return this.RedirectToAction(nameof(this.Details), new { Id = id });
         }
 
         [HttpPost]
-        [ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            await this.mealService.DeleteById(id);
-            return this.RedirectToAction(nameof(this.Index), new { Id = 1 });
+            try
+            {
+                await this.mealService.DeleteByIdAsync(id);
+                return this.RedirectToAction(nameof(this.Details), new { Id = id });
+            }
+            catch (InvalidOperationException ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                var model = this.mealService.GetByIdWithDeleted<EditMealInputModel>(id);
+                model.Categories = this.categoryService.GetAllAsKeyValuePairs();
+                return this.View("Edit", model);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Restore(int id)
+        {
+            try
+            {
+                await this.mealService.RestoreAsync(id);
+                return this.RedirectToAction(nameof(this.Details), new { Id = id });
+            }
+            catch (InvalidOperationException ex)
+            {
+                this.ModelState.AddModelError(string.Empty, ex.Message);
+                var model = this.mealService.GetByIdWithDeleted<EditMealInputModel>(id);
+                model.Categories = this.categoryService.GetAllAsKeyValuePairs();
+                return this.View("Edit", model);
+            }
         }
     }
 }

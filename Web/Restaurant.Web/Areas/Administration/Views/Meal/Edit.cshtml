@@ -49,9 +49,12 @@
     </form>
     <form asp-action="Delete" id="deleteForm">
         <input type="hidden" asp-for="Id" />
-
     </form>
-    <button value="Delete" class="btn btn-dark col-md-6 offset-md-3 mt-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button> 
+    <form asp-action="Restore" asp-route-id="@Model.Id" id="restoreForm">
+        <input type="hidden" asp-for="Id" />
+    </form>
+    <button class="btn btn-secondary col-md-6 offset-md-3 mt-3" asp-action="Restore" asp-route-id="@Model.Id" onclick="restoreForm.submit()">Restore</button>
+    <button value="Delete" class="btn btn-dark col-md-6 offset-md-3 mt-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Delete</button>
 </div>
 
 

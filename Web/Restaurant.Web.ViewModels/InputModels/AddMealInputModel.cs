@@ -12,6 +12,5 @@
     {
         [Required]
         public virtual IFormFile Image { get; set; }
-
     }
 }

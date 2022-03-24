@@ -52,7 +52,7 @@
                 return this.NotFound();
             }
 
-            var model = this.reviewService.GetById<AdminReviewViewModel>((int)id);
+            var model = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>((int)id);
 
             return this.View(model);
         }
@@ -63,12 +63,12 @@
             try
             {
                 await this.reviewService.DeleteByIdAsync(id);
-                return this.RedirectToAction(nameof(this.Index), new { Id = 1 });
+                return this.RedirectToAction(nameof(this.Details), new { Id = id });
             }
             catch (InvalidOperationException ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                var review = this.reviewService.GetById<AdminReviewViewModel>(id);
+                var review = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>(id);
                 return this.View("Details", review);
             }
         }
@@ -84,7 +84,7 @@
             catch (InvalidOperationException ex)
             {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
-                var review = this.reviewService.GetById<AdminReviewViewModel>(id);
+                var review = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>(id);
                 return this.View("Details", review);
             }
         }

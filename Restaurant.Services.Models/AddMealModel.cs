@@ -17,7 +17,7 @@
 
         public IFormFile Image { get; set; }
 
-        public void CreateMappings(IProfileExpression configuration)
+        public virtual void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<AddMealModel, Meal>()
                 .ForMember(m => m.Image, opt => opt.Ignore());

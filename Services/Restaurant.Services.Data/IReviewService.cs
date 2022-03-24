@@ -24,5 +24,7 @@
         Task DeleteByIdAsync(int id);
 
         public Task RestoreAsync(int id);
+
+        T GetByIdWithDeleted<T>(int id);
     }
 }

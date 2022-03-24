@@ -7,10 +7,6 @@
 
     public class ReservationViewModel : IMapFrom<Reservation>
     {
-        public string Id { get; set; }
-
-        public string ApplicationUserId { get; set; }
-
         public string ReservationNumber { get; set; }
 
         public string Fullname { get; set; }

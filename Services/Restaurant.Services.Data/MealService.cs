@@ -25,12 +25,13 @@
             this.mealImageRepository = mealImageRepository;
         }
 
-        public async Task CreateAsync(AddMealModel model, string imagePath)
+        public async Task<int> CreateAsync(AddMealModel model, string imagePath)
         {
             var meal = AutoMapperConfig.MapperInstance.Map<Meal>(model);
             await this.AddImage(model, imagePath, meal);
             await this.mealRepository.AddAsync(meal);
             await this.mealRepository.SaveChangesAsync();
+            return meal.Id;
         }
 
         public IEnumerable<T> GetAllMeals<T>()
@@ -40,7 +41,7 @@
 
         public IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int page)
         {
-            return this.mealRepository.All().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
+            return this.mealRepository.AllWithDeleted().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
         }
 
         public T GetById<T>(int mealId)
@@ -50,19 +51,30 @@
 
         public int GetMealCount()
         {
-            return this.mealRepository.AllAsNoTracking().Count();
+            return this.mealRepository.AllAsNoTrackingWithDeleted().Count();
         }
 
-        public async Task DeleteById(int mealId)
+        public T GetByIdWithDeleted<T>(int id)
         {
-            var meal = this.mealRepository.All().FirstOrDefault(m => m.Id == mealId);
+            return this.mealRepository.AllAsNoTrackingWithDeleted().Where(m => m.Id == id).To<T>().FirstOrDefault();
+        }
+
+        public async Task DeleteByIdAsync(int mealId)
+        {
+            var meal = this.mealRepository.AllWithDeleted().FirstOrDefault(m => m.Id == mealId);
+
+            if (meal.IsDeleted)
+            {
+                throw new InvalidOperationException("This meal has already been deleted!");
+            }
+
             this.mealRepository.Delete(meal);
             await this.mealRepository.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(AddMealModel model, int mealId, string imagePath)
+        public async Task UpdateAsync(EditMealModel model, string imagePath)
         {
-            var meal = this.mealRepository.All().Include(m => m.Image).FirstOrDefault(m => m.Id == mealId);
+            var meal = this.mealRepository.AllWithDeleted().Include(m => m.Image).FirstOrDefault(m => m.Id == model.Id);
             meal.Name = model.Name;
             meal.Description = model.Description;
             meal.CategoryId = model.CategoryId;
@@ -75,6 +87,20 @@
                 await this.AddImage(model, imagePath, meal);
             }
 
+            await this.mealRepository.SaveChangesAsync();
+        }
+
+        public async Task RestoreAsync(int id)
+        {
+            var meal = this.mealRepository.AllWithDeleted().FirstOrDefault(r => r.Id == id);
+
+            if (!meal.IsDeleted)
+            {
+                throw new InvalidOperationException("Cannot restore a meal which has not been deleted!");
+            }
+
+            meal.IsDeleted = false;
+            meal.DeletedOn = null;
             await this.mealRepository.SaveChangesAsync();
         }
 

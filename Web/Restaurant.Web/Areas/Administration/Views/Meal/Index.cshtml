@@ -71,7 +71,9 @@
                     @meal.ModifiedOn
                 </td>
                 <td>
-                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@meal.Id">Edit</a> 
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@meal.Id">Edit</a>
+                    <a class="btn btn-primary mt-1" asp-action="Details" asp-route-id="@meal.Id">Details</a>
+
                 </td>
             </tr>
         }

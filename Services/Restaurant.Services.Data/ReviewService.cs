@@ -33,6 +33,11 @@
             return this.reviewRepository.AllAsNoTrackingWithDeleted().Where(r => r.Id == id).To<T>().FirstOrDefault();
         }
 
+        public T GetByIdWithDeleted<T>(int id)
+        {
+            return this.reviewRepository.AllAsNoTrackingWithDeleted().Where(r => r.Id == id).To<T>().FirstOrDefault();
+        }
+
         public IEnumerable<T> GetAllReviews<T>(int itemsPerPage, int page)
         {
             return this.reviewRepository.AllAsNoTracking().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
@@ -81,6 +86,7 @@
             }
 
             review.IsDeleted = false;
+            review.DeletedOn = null;
             await this.reviewRepository.SaveChangesAsync();
         }
     }

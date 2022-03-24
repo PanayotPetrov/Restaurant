@@ -7,7 +7,7 @@
 
     public interface IMealService
     {
-        Task CreateAsync(AddMealModel model, string imagePath);
+        Task<int> CreateAsync(AddMealModel model, string imagePath);
 
         int GetMealCount();
 
@@ -17,8 +17,12 @@
 
         public IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int page);
 
-        Task DeleteById(int mealId);
+        Task DeleteByIdAsync(int mealId);
 
-        Task UpdateAsync(AddMealModel addMealModel, int mealId, string imagePath);
+        Task UpdateAsync(EditMealModel addMealModel, string imagePath);
+
+        Task RestoreAsync(int id);
+
+        T GetByIdWithDeleted<T>(int id);
     }
 }
