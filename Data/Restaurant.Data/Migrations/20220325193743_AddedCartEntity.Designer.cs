@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Restaurant.Data;
 
 namespace Restaurant.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220325193743_AddedCartEntity")]
+    partial class AddedCartEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,19 +21,19 @@ namespace Restaurant.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.6")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CartCartItem", b =>
+            modelBuilder.Entity("CartMeal", b =>
                 {
-                    b.Property<int>("CartItemsId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CartsId")
                         .HasColumnType("int");
 
-                    b.HasKey("CartItemsId", "CartsId");
+                    b.Property<int>("MealsId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("CartsId");
+                    b.HasKey("CartsId", "MealsId");
 
-                    b.ToTable("CartCartItem");
+                    b.HasIndex("MealsId");
+
+                    b.ToTable("CartMeal");
                 });
 
             modelBuilder.Entity("MealOrder", b =>
@@ -377,32 +379,6 @@ namespace Restaurant.Data.Migrations
                     b.ToTable("Carts");
                 });
 
-            modelBuilder.Entity("Restaurant.Data.Models.CartItem", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("MealId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("ModifiedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MealId");
-
-                    b.ToTable("CartItems");
-                });
-
             modelBuilder.Entity("Restaurant.Data.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -516,7 +492,7 @@ namespace Restaurant.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AddressName")
+                    b.Property<int>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("ApplicationUserId")
@@ -538,21 +514,16 @@ namespace Restaurant.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("OrderNumber")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<decimal>("TotalPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddressName");
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("IsDeleted");
-
-                    b.HasIndex("OrderNumber");
 
                     b.ToTable("Orders");
                 });
@@ -745,17 +716,17 @@ namespace Restaurant.Data.Migrations
                     b.ToTable("UserImages");
                 });
 
-            modelBuilder.Entity("CartCartItem", b =>
+            modelBuilder.Entity("CartMeal", b =>
                 {
-                    b.HasOne("Restaurant.Data.Models.CartItem", null)
-                        .WithMany()
-                        .HasForeignKey("CartItemsId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Restaurant.Data.Models.Cart", null)
                         .WithMany()
                         .HasForeignKey("CartsId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Restaurant.Data.Models.Meal", null)
+                        .WithMany()
+                        .HasForeignKey("MealsId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
@@ -846,17 +817,6 @@ namespace Restaurant.Data.Migrations
                     b.Navigation("ApplicationUser");
                 });
 
-            modelBuilder.Entity("Restaurant.Data.Models.CartItem", b =>
-                {
-                    b.HasOne("Restaurant.Data.Models.Meal", "Meal")
-                        .WithMany("CartItems")
-                        .HasForeignKey("MealId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Meal");
-                });
-
             modelBuilder.Entity("Restaurant.Data.Models.Meal", b =>
                 {
                     b.HasOne("Restaurant.Data.Models.Category", "Category")
@@ -883,7 +843,7 @@ namespace Restaurant.Data.Migrations
                 {
                     b.HasOne("Restaurant.Data.Models.Address", "Address")
                         .WithMany("Orders")
-                        .HasForeignKey("AddressName")
+                        .HasForeignKey("AddressId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -964,8 +924,6 @@ namespace Restaurant.Data.Migrations
 
             modelBuilder.Entity("Restaurant.Data.Models.Meal", b =>
                 {
-                    b.Navigation("CartItems");
-
                     b.Navigation("Image");
                 });
 

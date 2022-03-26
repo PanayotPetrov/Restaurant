@@ -10,6 +10,7 @@
         public Meal()
         {
             this.Orders = new HashSet<Order>();
+            this.CartItems = new HashSet<CartItem>();
         }
 
         [Required]
@@ -24,8 +25,10 @@
 
         public virtual Category Category { get; set; }
 
+        public virtual MealImage Image { get; set; }
+
         public virtual ICollection<Order> Orders { get; set; }
 
-        public virtual MealImage Image { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; }
     }
 }

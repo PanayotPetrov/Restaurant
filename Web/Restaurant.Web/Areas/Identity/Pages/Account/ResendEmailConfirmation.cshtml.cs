@@ -59,7 +59,7 @@
             var callbackUrl = this.Url.Page(
                 "/Account/ConfirmEmail",
                 pageHandler: null,
-                values: new { userId = userId, code = code },
+                values: new { userId, code },
                 protocol: this.Request.Scheme);
             await this.emailSender.SendEmailAsync(
                 this.Input.Email,

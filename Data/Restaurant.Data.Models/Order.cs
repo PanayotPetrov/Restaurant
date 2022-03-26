@@ -2,9 +2,13 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
+    using Microsoft.EntityFrameworkCore;
     using Restaurant.Data.Common.Models;
+
+    [Index(nameof(OrderNumber), IsUnique = false)]
 
     public class Order : BaseDeletableModel<int>
     {
@@ -22,11 +26,14 @@
         [Required]
         public string FullName { get; set; }
 
+        public string OrderNumber { get; set; }
+
         public string ApplicationUserId { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
 
-        public int AddressId { get; set; }
+        [ForeignKey("Address")]
+        public int AddressName { get; set; }
 
         public virtual Address Address { get; set; }
 
