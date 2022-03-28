@@ -5,12 +5,9 @@
     using AutoMapper;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
-    using Restaurant.Web.ViewModels.Category;
 
     public class AdminMealViewModel : MealViewModel, IMapFrom<Meal>, IHaveCustomMappings
     {
-        public int Id { get; set; }
-
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }

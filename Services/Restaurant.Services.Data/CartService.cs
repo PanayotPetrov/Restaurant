@@ -3,6 +3,7 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    using Microsoft.EntityFrameworkCore;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
@@ -21,21 +22,23 @@
 
         public async Task AddToCartAsync(string userId, CartItemModel model)
         {
-            var cart = this.cartRepository.All().FirstOrDefault(c => c.ApplicationUserId == userId);
+            var cart = this.cartRepository.All().Include(c => c.CartItems).FirstOrDefault(c => c.ApplicationUserId == userId);
 
             if (cart is null)
             {
-                cart = new Cart { ApplicationUserId = userId };
+                cart = await this.CreateCartForUserAsync<Cart>(userId);
             }
 
-            var cartItem = this.cartItemRepository.All().FirstOrDefault(ci => ci.MealId == model.MealId && ci.Quantity == model.Quantity);
-
-            if (cartItem is null)
+            if (cart.CartItems.Any(ci => ci.MealId == model.MealId))
             {
-                cartItem = AutoMapperConfig.MapperInstance.Map<CartItem>(model);
+                cart.CartItems.FirstOrDefault(ci => ci.MealId == model.MealId).Quantity += model.Quantity;
+            }
+            else
+            {
+                var cartItem = AutoMapperConfig.MapperInstance.Map<CartItem>(model);
+                cart.CartItems.Add(cartItem);
             }
 
-            cart.CartItems.Add(cartItem);
             await this.cartRepository.SaveChangesAsync();
         }
 
@@ -43,10 +46,9 @@
         {
             var cart = this.cartRepository.All().FirstOrDefault(c => c.ApplicationUserId == userId);
 
-            var cartItem = this.cartItemRepository.All().FirstOrDefault(ci => ci.MealId == model.MealId && ci.Quantity == model.Quantity);
-
+            var cartItem = this.cartItemRepository.All().FirstOrDefault(ci => ci.MealId == model.MealId && ci.Id == cart.Id);
             cart.CartItems.Remove(cartItem);
-            cartItem.Carts.Remove(cart);
+            this.cartItemRepository.Delete(cartItem);
             await this.cartItemRepository.SaveChangesAsync();
             await this.cartRepository.SaveChangesAsync();
         }
@@ -62,6 +64,14 @@
             await this.cartRepository.AddAsync(cart);
             await this.cartRepository.SaveChangesAsync();
             return AutoMapperConfig.MapperInstance.Map<T>(cart);
+        }
+
+        public decimal GetCartTotalPrice(string userId)
+        {
+            var cartId = this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).Select(c => c.Id).FirstOrDefault();
+            var sum = this.cartItemRepository.AllAsNoTracking().Where(ci => ci.CartId == cartId).Select(ci => ci.Meal.Price * ci.Quantity).ToList().Sum();
+
+            return sum;
         }
     }
 }

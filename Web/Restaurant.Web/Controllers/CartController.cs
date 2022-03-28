@@ -1,5 +1,6 @@
 ﻿namespace Restaurant.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.Cart;
+    using Restaurant.Web.ViewModels.InputModels;
 
     public class CartController : BaseController
     {
@@ -36,19 +38,32 @@
         [Authorize]
         [HttpPost]
         [IgnoreAntiforgeryToken]
-        public IActionResult AddToCart(CartItemModel model)
+        public async Task<IActionResult> AddToCart([FromBody]AddToCartInputModel model)
         {
-            //var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            //if (!this.ModelState.IsValid)
-            //{
-            //    return this.ValidationProblem();
-            //}
+            if (!this.ModelState.IsValid)
+            {
+                var modelErrors = new List<string>();
 
-            //var cartItem = AutoMapperConfig.MapperInstance.Map<CartItemModel>(model);
+                foreach (var modelState in this.ModelState.Values)
+                {
+                    foreach (var modelError in modelState.Errors)
+                    {
+                        modelErrors.Add(modelError.ErrorMessage);
+                    }
+                }
 
-            //this.cartService.AddToCartAsync(userId, cartItem);
-            return this.Ok();
+                this.Response.StatusCode = 400;
+                return this.Json(modelErrors);
+            }
+
+            var cartItem = AutoMapperConfig.MapperInstance.Map<CartItemModel>(model);
+
+            await this.cartService.AddToCartAsync(userId, cartItem);
+            var cartPrice = this.cartService.GetCartTotalPrice(userId);
+            this.Response.StatusCode = 200;
+            return this.Json(cartPrice.ToString("0.00"));
         }
 
         [Authorize]

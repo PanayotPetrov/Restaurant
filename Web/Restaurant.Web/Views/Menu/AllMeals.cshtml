@@ -13,7 +13,6 @@
             <h1 class="mb-5">You can choose from our</h1>
         </div>
 
-        <!--TO DO: Add most popular items-->
         @{var i = 1;}
 
         <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
@@ -36,46 +35,44 @@
             @{i = 1;}
 
             <div class="tab-content">
-                @{var j = 1;}
 
                 @foreach (var category in Model.Categories)
                 {
                     <div id="tab-@i" class="tab-pane fade show p-0">
                         <div class="row g-4">
-                            @foreach (var cartItem in Model.CartItems.Where(ci => ci.Meal.Category.Name == category.Name))
+                            @foreach (var meal in Model.Meals.Where(m => m.Category.Name == category.Name))
                             {
-                                <div class="col-lg-6" id="mealContainer@(j)">
+                                <div class="col-lg-6" id="mealContainer@(meal.Id)">
                                     <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src=@($"{cartItem.Meal.ImageUrl}") alt="" asp-append-version="true">
+                                        <img class="flex-shrink-0 img-fluid rounded" src=@($"{meal.ImageUrl}") alt="" asp-append-version="true">
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>@cartItem.Meal.Name</span>
-                                                <span class="text-primary">@cartItem.Meal.Price €</span>
+                                                <span>@meal.Name</span>
+                                                <span class="text-primary" id="mealPrice@(meal.Id)">@meal.Price <i class="fas fa-dollar-sign fs-5"></i></span>
                                             </h5>
-                                            <small class="fst-italic mb-2">@cartItem.Meal.Description</small>
+                                            <small class="fst-italic mb-2">@meal.Description</small>
                                             <div class="d-flex align-items-center">
                                                 <div class="input-group" style="max-width: 200px;">
                                                     <div class="input-group-btn">
-                                                        <button class="btn btn-primary" onclick="RemoveItem('mealContainer@(j)')">
-                                                            <i class="fa fa-minus"></i>
+                                                        <button class="btn btn-primary btn-minus" onclick="ChangeQuantity('mealContainer@(meal.Id)')">
+                                                            <i class="fa fa-minus btn-minus"></i>
                                                         </button>
                                                     </div>
                                                     <div style="max-width: 50px;">
-                                                        <input type="text" asp-for="@cartItem.Quantity" class="form-control bg-white text-center" value=1>
-                                                        <span asp-validation-for="@cartItem.Quantity"></span>
+                                                        <input type="text" class="form-control bg-white text-center" value=1>
                                                     </div>
                                                     <div class="input-group-btn">
-                                                        <button class="btn btn-primary" onclick="AddItem('mealContainer@(j)')">
-                                                            <i class="fa fa-plus"></i>
+                                                        <button class="btn btn-primary btn-plus" onclick="ChangeQuantity('mealContainer@(meal.Id)')">
+                                                            <i class="fa fa-plus btn-plus"></i>
                                                         </button>
                                                     </div>
                                                 </div>
-                                                <button class="btn btn-primary px-3" onclick="AddToCart('mealContainer@(j)')"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
+
+                                                <button class="btn btn-primary px-3" onclick="AddToCart('mealContainer@(meal.Id)')"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                j++;
                             }
                         </div>
                     </div>
@@ -86,35 +83,95 @@
     </div>
 </div>
 
+<!--Modal Start-->
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel"></h5>
+            </div>
+            <div class="modal-body" >
+                <ul id="modalBody">
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCloseModal" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Modal End-->
+
 <script type="text/javascript">
 
-    function AddItem(id) {
+    function ChangeQuantity(id) {
 
         var mealContainer = document.getElementById(id);
-        var quantityValue = mealContainer.querySelector('input');
+        var quantity = mealContainer.querySelector('input');
 
-        var quantityValueAsInt = Number.parseInt(quantityValue.getAttribute('value'));
+        var quantityValue = Number.parseInt(quantity.getAttribute('value'));
 
-        quantityValueAsInt++;
-        quantityValue.setAttribute('value', quantityValueAsInt);
-        console.log(quantityValueAsInt);
+        var button = event.srcElement;
 
-    }
-
-    function RemoveItem(id) {
-
-        var mealContainer = document.getElementById(id);
-        var quantityValue = mealContainer.querySelector('input');
-
-        var quantityValueAsInt = Number.parseInt(quantityValue.getAttribute('value'));
-
-
-
-        if (quantityValueAsInt > 1) {
-
-            quantityValueAsInt--;
-            quantityValue.setAttribute('value', quantityValueAsInt);
-            console.log(quantityValueAsInt);
+        if (button.classList.contains('btn-plus')) {
+            if (quantityValue < 15) {
+                quantityValue++;
+            }
         }
+        else {
+            if (quantityValue > 1) {
+                quantityValue--;
+            }
+        }
+
+        quantity.setAttribute('value', quantityValue);
     }
+
+    function AddToCart(id) {
+
+        var mealId = id.substring(13);
+        var mealContainer = document.getElementById(id);
+        var quantity = mealContainer.querySelector('input').value;
+
+        const data =
+        {
+            mealId: mealId,
+            quantity: quantity
+        };
+
+        $.ajax({
+            url: '/Cart/AddToCart',
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: function (test, status, xhr) {
+                $("#modalLabel").text('Success');
+                $("#modalBody").text('You have successfully added the item to your cart!');
+                $("#exampleModal").modal('show');
+
+                var currentCartTotalPrice = JSON.parse(xhr.responseText);
+                $("#cartTotal").html('<i class="fa-solid fa-cart-shopping"></i> ' + currentCartTotalPrice + ' <i class="fas fa-dollar-sign"></i>');
+            },
+            error: function (xhr) {
+                $("#modalLabel").text('Oops!');
+                if (xhr.status === 401) {
+
+                    $("#modalBody").append('<li class="text-danger"> You need to log in to add items to your cart! </li>')
+                }
+                else {
+                    var errors = JSON.parse(xhr.responseText);
+                    for (var i = 0; i < errors.length; i++) {
+                        $("#modalBody").append('<li class="text-danger">' + errors[i] + '!</li>')
+                    }
+                }
+                $("#exampleModal").modal('show') }
+        });
+
+        $("#btnCloseModal").click(function () {
+            $("#exampleModal").modal("hide");
+        });
+    }
+
 </script>

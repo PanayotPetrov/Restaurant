@@ -13,5 +13,7 @@
         T GetCartByUserId<T>(string userId);
 
         Task<T> CreateCartForUserAsync<T>(string userId);
+
+        decimal GetCartTotalPrice(string userId);
     }
 }

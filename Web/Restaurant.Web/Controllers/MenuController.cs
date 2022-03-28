@@ -25,7 +25,7 @@
         {
             var menu = new MenuViewModel
             {
-                CartItems = this.mealService.GetAllMeals<MealViewModel>().Select(x => new CartItemViewModel { Meal = x }),
+                Meals = this.mealService.GetAllMeals<MealViewModel>(),
                 Categories = this.categoryService.GetAll<CategoryViewModel>(),
             };
 

@@ -1,0 +1,8 @@
+﻿@if (this.User.Identity.IsAuthenticated)
+{
+    <a class="btn btn-primary py-2 px-4" id="cartTotal" asp-controller="Cart" asp-action="Index"><i class="fa-solid fa-cart-shopping"></i> @ViewBag.CartPrice <i class="fas fa-dollar-sign"></i></a>
+}
+else
+{
+    <a class="btn btn-primary py-2 px-4" asp-area="Identity" asp-page="/Account/Login"><i class="fa-solid fa-cart-shopping"></i> Order now</a>
+}
