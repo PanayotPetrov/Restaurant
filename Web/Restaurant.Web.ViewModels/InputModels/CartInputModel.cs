@@ -8,10 +8,11 @@
 
     public class CartInputModel : IMapTo<CartItemModel>
     {
+        [MealIdValidation]
         public int MealId { get; set; }
 
         [Range(1, 100)]
-        [CartItemQuantityValidation]
+        [CartItemQuantityValidation("AddToCart")]
         public int Quantity { get; set; }
     }
 }

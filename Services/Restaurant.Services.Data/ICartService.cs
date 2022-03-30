@@ -8,7 +8,7 @@
     {
         Task AddToCartAsync(string userId, CartItemModel cartItem);
 
-        Task RemoveFromCartAsync(string userId, CartItemModel model);
+        Task RemoveFromCartAsync(CartItemModel model);
 
         T GetCartByUserId<T>(string userId);
 
@@ -18,6 +18,6 @@
 
         int GetItemQuantityPerCartLeft(string userId);
 
-        Task<T> ChangeItemQuantityAsync<T>(string userId, CartItemModel cartItem);
+        Task<T> ChangeItemQuantityAsync<T>(CartItemModel cartItem);
     }
 }

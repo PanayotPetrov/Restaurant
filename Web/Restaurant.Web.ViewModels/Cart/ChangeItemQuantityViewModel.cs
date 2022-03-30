@@ -1,19 +1,24 @@
 ﻿namespace Restaurant.Web.ViewModels.Cart
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using AutoMapper;
+    using Restaurant.Data.Models;
+    using Restaurant.Services.Mapping;
 
-    public class ChangeItemQuantityViewModel
+    public class ChangeItemQuantityViewModel : IMapFrom<CartItem>, IHaveCustomMappings
     {
         public string ItemTotalPrice { get; set; }
 
-        public string ItemQuantity { get; set; }
+        public int Quantity { get; set; }
 
         public string CartSubTotal { get; set; }
 
         public string CartTotalPrice { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<CartItem, ChangeItemQuantityViewModel>()
+                .ForMember(x => x.CartTotalPrice, opt => opt.MapFrom(ci => ci.Cart.TotalPrice.ToString("0.00")))
+                .ForMember(x => x.CartSubTotal, opt => opt.MapFrom(ci => ci.Cart.SubTotal.ToString("0.00")));
+        }
     }
 }

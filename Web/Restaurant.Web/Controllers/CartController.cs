@@ -50,18 +50,12 @@
         }
 
         [HttpPost]
-        public IActionResult RemoveFromCart(CartItemModel model)
+        [IgnoreAntiforgeryToken]
+        [ReturnModelStateErrorsAsJsonActionFilter]
+        public async Task<IActionResult> RemoveFromCart([FromBody]RemoveCartItemModel model)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
-            if (!this.ModelState.IsValid)
-            {
-                return this.ValidationProblem();
-            }
-
             var cartItem = AutoMapperConfig.MapperInstance.Map<CartItemModel>(model);
-
-            this.cartService.RemoveFromCartAsync(userId, cartItem);
+            await this.cartService.RemoveFromCartAsync(cartItem);
             return this.Ok();
         }
 
@@ -70,10 +64,9 @@
         [ReturnModelStateErrorsAsJsonActionFilter]
         public async Task<IActionResult> ChangeQuantity([FromBody] CartInputModel model)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var cartItem = AutoMapperConfig.MapperInstance.Map<CartItemModel>(model);
 
-            var jsonModel = await this.cartService.ChangeItemQuantityAsync<ChangeItemQuantityViewModel>(userId, cartItem);
+            var jsonModel = await this.cartService.ChangeItemQuantityAsync<ChangeItemQuantityViewModel>(cartItem);
             this.Response.StatusCode = 200;
             return this.Json(jsonModel);
         }

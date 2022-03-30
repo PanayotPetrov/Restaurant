@@ -59,6 +59,11 @@
             return this.mealRepository.AllAsNoTrackingWithDeleted().Where(m => m.Id == id).To<T>().FirstOrDefault();
         }
 
+        public bool IsMealIdValid(int mealId)
+        {
+            return this.mealRepository.AllAsNoTracking().Any(m => m.Id == mealId);
+        }
+
         public async Task DeleteByIdAsync(int mealId)
         {
             var meal = this.mealRepository.AllWithDeleted().FirstOrDefault(m => m.Id == mealId);

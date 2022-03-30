@@ -149,7 +149,7 @@
                     $("#exampleModal").modal('show');
 
                     var currentCartTotalPrice = JSON.parse(xhr.responseText);
-                    $("#cartTotal").html('<i class="fa-solid fa-cart-shopping"></i> ' + currentCartTotalPrice + ' <i class="fas fa-dollar-sign"></i>');
+                    $("#cartSubTotalBtn").html('<i class="fa-solid fa-cart-shopping"></i> ' + currentCartTotalPrice + ' <i class="fas fa-dollar-sign"></i>');
                 }
             },
             error: function (xhr) {

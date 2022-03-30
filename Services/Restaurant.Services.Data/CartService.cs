@@ -52,15 +52,12 @@
             await this.cartRepository.SaveChangesAsync();
         }
 
-        public async Task RemoveFromCartAsync(string userId, CartItemModel model)
+        public async Task RemoveFromCartAsync(CartItemModel model)
         {
-            var cart = this.cartRepository.All().FirstOrDefault(c => c.ApplicationUserId == userId);
-
-            var cartItem = this.cartItemRepository.All().FirstOrDefault(ci => ci.MealId == model.MealId && ci.Id == cart.Id);
-            cart.CartItems.Remove(cartItem);
+            var cartItem = this.cartItemRepository.All().Include(ci=>ci.Cart).FirstOrDefault(ci => ci.MealId == model.MealId);
+            cartItem.Cart.SubTotal -= cartItem.ItemTotalPrice;
             this.cartItemRepository.Delete(cartItem);
             await this.cartItemRepository.SaveChangesAsync();
-            await this.cartRepository.SaveChangesAsync();
         }
 
         public T GetCartByUserId<T>(string userId)
@@ -89,13 +86,26 @@
             return 100 - itemQuantity;
         }
 
-        public async Task<T> ChangeItemQuantityAsync<T>(string userId, CartItemModel model)
+        public async Task<T> ChangeItemQuantityAsync<T>(CartItemModel model)
         {
-            var cart = this.cartRepository.All().Include(c => c.CartItems).FirstOrDefault(c => c.ApplicationUserId == userId);
-            var cartItem = cart.CartItems.FirstOrDefault(ci => ci.MealId == model.MealId);
+            var cartItem = this.cartItemRepository.All().Include(ci => ci.Cart).Include(ci => ci.Meal).FirstOrDefault(ci => ci.MealId == model.MealId);
+            var cart = cartItem.Cart;
+            var mealPrice = cartItem.Meal.Price;
+
+            if (cartItem.Quantity < model.Quantity)
+            {
+                cartItem.ItemTotalPrice += mealPrice;
+                cart.SubTotal += mealPrice;
+            }
+            else
+            {
+                cartItem.ItemTotalPrice -= mealPrice;
+                cart.SubTotal -= mealPrice;
+            }
+
             cartItem.Quantity = model.Quantity;
             await this.cartRepository.SaveChangesAsync();
-            return AutoMapperConfig.MapperInstance.Map<T>(cart);
+            return AutoMapperConfig.MapperInstance.Map<T>(cartItem);
         }
     }
 }
