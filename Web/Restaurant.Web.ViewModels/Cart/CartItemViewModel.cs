@@ -11,12 +11,12 @@
 
         public int Quantity { get; set; }
 
-        public decimal ItemTotalPrice { get; set; }
+        public string ItemTotalPrice { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<CartItem, CartItemViewModel>()
-                .ForMember(ci => ci.ItemTotalPrice, opt => opt.MapFrom(x => x.Meal.Price * x.Quantity));
+                .ForMember(ci => ci.ItemTotalPrice, opt => opt.MapFrom(x => x.ItemTotalPrice.ToString("0.00")));
         }
     }
 }

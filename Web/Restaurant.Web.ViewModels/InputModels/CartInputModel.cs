@@ -4,12 +4,14 @@
 
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
+    using Restaurant.Web.Infrastructure.ValidationAttributes;
 
-    public class AddToCartInputModel : IMapTo<CartItemModel>
+    public class CartInputModel : IMapTo<CartItemModel>
     {
         public int MealId { get; set; }
 
-        [Range(1, 15)]
+        [Range(1, 100)]
+        [CartItemQuantityValidation]
         public int Quantity { get; set; }
     }
 }

@@ -14,6 +14,10 @@
 
         Task<T> CreateCartForUserAsync<T>(string userId);
 
-        decimal GetCartTotalPrice(string userId);
+        decimal GetCartSubTotal(string userId);
+
+        int GetItemQuantityPerCartLeft(string userId);
+
+        Task<T> ChangeItemQuantityAsync<T>(string userId, CartItemModel cartItem);
     }
 }

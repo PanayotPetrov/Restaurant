@@ -12,6 +12,8 @@
 
         public int Quantity { get; set; }
 
+        public decimal ItemTotalPrice { get; set; }
+
         public int CartId { get; set; }
 
         public virtual Cart Cart { get; set; }

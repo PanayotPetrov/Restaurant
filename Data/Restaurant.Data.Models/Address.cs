@@ -2,11 +2,12 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     using Microsoft.EntityFrameworkCore;
     using Restaurant.Data.Common.Models;
 
-    [Index(nameof(Name), IsUnique = false)]
+    [Index(nameof(Name), IsUnique = true)]
     public class Address : BaseDeletableModel<int>
     {
         public Address()

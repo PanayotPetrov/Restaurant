@@ -52,23 +52,21 @@
                                             </h5>
                                             <small class="fst-italic mb-2">@meal.Description</small>
                                             <div class="d-flex align-items-center">
-                                                <div class="input-group" style="max-width: 200px;">
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-primary btn-minus" onclick="ChangeQuantity('mealContainer@(meal.Id)')">
+                                                <div class="input-group quantity me-md-5" style="width: 100px;">
+                                                    <div>
+                                                        <button class="btn btn-sm btn-primary btn-minus" onclick="ChangeQuantity('mealContainer@(meal.Id)')">
                                                             <i class="fa fa-minus btn-minus"></i>
                                                         </button>
                                                     </div>
-                                                    <div style="max-width: 50px;">
-                                                        <input type="text" class="form-control bg-white text-center" value=1>
-                                                    </div>
-                                                    <div class="input-group-btn">
-                                                        <button class="btn btn-primary btn-plus" onclick="ChangeQuantity('mealContainer@(meal.Id)')">
+                                                    <input class="form-control form-control-sm bg-white text-center" value="1" disabled>
+                                                    <div>
+                                                        <button class="btn btn-sm btn-primary btn-plus" onclick="ChangeQuantity('mealContainer@(meal.Id)')">
                                                             <i class="fa fa-plus btn-plus"></i>
                                                         </button>
                                                     </div>
                                                 </div>
 
-                                                <button class="btn btn-primary px-3" onclick="AddToCart('mealContainer@(meal.Id)')"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                                                <button class="btn btn-primary px-3 ms-5" onclick="AddToCart('mealContainer@(meal.Id)')"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
                                             </div>
                                         </div>
                                     </div>
@@ -91,7 +89,7 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel"></h5>
             </div>
-            <div class="modal-body" >
+            <div class="modal-body">
                 <ul id="modalBody">
                 </ul>
             </div>
@@ -116,9 +114,7 @@
         var button = event.srcElement;
 
         if (button.classList.contains('btn-plus')) {
-            if (quantityValue < 15) {
-                quantityValue++;
-            }
+            quantityValue++;
         }
         else {
             if (quantityValue > 1) {
@@ -146,13 +142,15 @@
             type: 'POST',
             data: JSON.stringify(data),
             contentType: 'application/json',
-            success: function (test, status, xhr) {
-                $("#modalLabel").text('Success');
-                $("#modalBody").text('You have successfully added the item to your cart!');
-                $("#exampleModal").modal('show');
+            success: function (result, status, xhr) {
+                if (xhr.status === 200) {
+                    $("#modalLabel").text('Success');
+                    $("#modalBody").text('You have successfully added the item to your cart!');
+                    $("#exampleModal").modal('show');
 
-                var currentCartTotalPrice = JSON.parse(xhr.responseText);
-                $("#cartTotal").html('<i class="fa-solid fa-cart-shopping"></i> ' + currentCartTotalPrice + ' <i class="fas fa-dollar-sign"></i>');
+                    var currentCartTotalPrice = JSON.parse(xhr.responseText);
+                    $("#cartTotal").html('<i class="fa-solid fa-cart-shopping"></i> ' + currentCartTotalPrice + ' <i class="fas fa-dollar-sign"></i>');
+                }
             },
             error: function (xhr) {
                 $("#modalLabel").text('Oops!');
@@ -163,14 +161,16 @@
                 else {
                     var errors = JSON.parse(xhr.responseText);
                     for (var i = 0; i < errors.length; i++) {
-                        $("#modalBody").append('<li class="text-danger">' + errors[i] + '!</li>')
+                        $("#modalBody").append('<li class="text-danger">' + errors[i] + '</li>')
                     }
                 }
-                $("#exampleModal").modal('show') }
+                $("#exampleModal").modal('show')
+            }
         });
 
         $("#btnCloseModal").click(function () {
             $("#exampleModal").modal("hide");
+            $("#modalBody").text('');
         });
     }
 

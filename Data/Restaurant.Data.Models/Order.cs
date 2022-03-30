@@ -17,11 +17,7 @@
             this.Meals = new HashSet<Meal>();
         }
 
-        public decimal TotalPrice
-        {
-            get => this.Meals.Sum(m => m.Price);
-            set { }
-        }
+        public decimal TotalPrice { get; set; }
 
         [Required]
         public string FullName { get; set; }
@@ -33,7 +29,7 @@
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         [ForeignKey("Address")]
-        public int AddressName { get; set; }
+        public string AddressName { get; set; }
 
         public virtual Address Address { get; set; }
 

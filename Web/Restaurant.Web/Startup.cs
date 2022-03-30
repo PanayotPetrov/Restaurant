@@ -58,6 +58,7 @@
                     }).AddRazorRuntimeCompilation();
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
+            services.AddHttpContextAccessor();
 
             services.AddSingleton(this.configuration);
 

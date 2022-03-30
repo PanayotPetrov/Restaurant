@@ -1,5 +1,6 @@
 ﻿namespace Restaurant.Services.Models
 {
+    using AutoMapper;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
     public class CartItemModel : IMapTo<CartItem>

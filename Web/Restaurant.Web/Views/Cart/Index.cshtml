@@ -1,0 +1,141 @@
+﻿@using Restaurant.Web.ViewModels.Cart
+@model CartViewModel;
+
+@{
+    this.ViewData["Title"] = "Cart";
+}
+
+<partial name="_HeroPartial" />
+
+<!-- Cart Start -->
+<div class="container-fluid pt-5">
+    <div class="row">
+        <div class="col-lg-8 table-responsive mb-5">
+            <table class="table table-bordered text-center mb-0">
+                <thead class="bg-dark text-white">
+                    <tr>
+                        <th>Products</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Item Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    @foreach (var cartItem in Model.CartItems)
+                    {
+                        <tr class="bg-white" id="cartItemContainer@(cartItem.Meal.Id)">
+                            <td class="align-middle">
+                                <img class="flex-shrink-0 img-fluid rounded" src=@($"{cartItem.Meal.ImageUrl}") style="width: 75px;" asp-append-version="true">
+
+                                @cartItem.Meal.Name
+                            </td>
+                            <td class="align-middle">@cartItem.Meal.Price $</td>
+                            <td class="align-middle">
+                                <div class="input-group quantity mx-auto" style="width: 100px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-minus" onclick="ChangeQuantity('cartItemContainer@(cartItem.Meal.Id)')">
+                                            <i class="fa fa-minus btn-minus"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" class="form-control form-control-sm bg-white text-center" asp-for="@cartItem.Quantity" disabled>
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary btn-plus" onclick="ChangeQuantity('cartItemContainer@(cartItem.Meal.Id)')">
+                                            <i class="fa fa-plus btn-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="align-middle">@cartItem.ItemTotalPrice $</td>
+                            <td class="align-middle"><button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-dark  border-0">
+                    <h4 class="font-weight-semi-bold text-white m-0 text-md-center">Cart Summary</h4>
+                </div>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between mb-3 pt-1">
+                        <h6 class="font-weight-medium">Subtotal</h6>
+                        <h6 class="font-weight-medium">@Model.SubTotal $</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Shipping</h6>
+                        <h6 class="font-weight-medium">@Model.ShippingPrice $</h6>
+                    </div>
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5 class="font-weight-bold">Total</h5>
+                        <h5 class="font-weight-bold">@Model.TotalPrice $</h5>
+                    </div>
+                    <a class="btn btn-block btn-primary mt-md-3 ms-md-3 p-md-3 text-md-center" asp-controller="Checkout" asp-action="Index">Proceed To Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart End -->
+
+
+
+<script>
+    function ChangeQuantity(id) {
+
+        var mealId = id.substring(17);
+        var cartItemContainer = document.getElementById(id);
+        var quantity = cartItemContainer.querySelector('input').value;
+
+        var button = event.srcElement;
+
+        if (button.classList.contains('btn-plus')) {
+
+            quantity++;
+
+        }
+        else {
+            if (quantity > 1) {
+                quantity--;
+            }
+        }
+        console.log(mealId, quantity);
+
+        const data =
+        {
+            mealId: mealId,
+            quantity: quantity
+        };
+
+        $.ajax({
+            url: '/Cart/ChangeQuantity',
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: function (result, status, xhr) {
+                if (xhr.status === 200) {
+
+                    var result = JSON.parse(xhr.responseText);
+                }
+            }
+        });
+
+        //var button = event.srcElement;
+
+        //if (button.classList.contains('btn-plus')) {
+
+        //    quantityValue++;
+
+        //}
+        //else {
+        //    if (quantityValue > 1) {
+        //        quantityValue--;
+        //    }
+        //}
+
+        //quantity.setAttribute('value', quantityValue);
+    }
+</script>

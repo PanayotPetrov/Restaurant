@@ -19,7 +19,7 @@
             if (this.User.Identity.IsAuthenticated)
             {
                 var userId = this.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                this.ViewBag.CartPrice = this.cartService.GetCartTotalPrice(userId).ToString("0.00");
+                this.ViewBag.CartPrice = this.cartService.GetCartSubTotal(userId).ToString("0.00");
             }
 
             return this.View();

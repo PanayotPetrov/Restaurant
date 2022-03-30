@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace Restaurant.Data.Migrations
+﻿namespace Restaurant.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddedOrderNumberPropertyToOrder : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

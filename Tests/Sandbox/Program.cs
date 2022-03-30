@@ -3,6 +3,7 @@
     using System;
     using System.Diagnostics;
     using System.IO;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using CommandLine;
@@ -46,15 +47,9 @@
             }
         }
 
-        private static Task<int> SandboxCode(SandboxOptions options, IServiceProvider serviceProvider)
+        private static async Task<int> SandboxCode(SandboxOptions options, IServiceProvider serviceProvider)
         {
-            var sw = Stopwatch.StartNew();
-
-            var service = serviceProvider.GetService<ITableService>();
-
-            var tableId = service.GetAvailableTableId(DateTime.UtcNow.Date, 2);
-            Console.WriteLine(tableId);
-            return null;
+            return await Task.FromResult(0);
         }
 
         private static void ConfigureServices(ServiceCollection services)

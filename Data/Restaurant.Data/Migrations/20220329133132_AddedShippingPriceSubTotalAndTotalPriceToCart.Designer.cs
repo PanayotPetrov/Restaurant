@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Restaurant.Data;
 
 namespace Restaurant.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220329133132_AddedShippingPriceSubTotalAndTotalPriceToCart")]
+    partial class AddedShippingPriceSubTotalAndTotalPriceToCart
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -180,7 +182,6 @@ namespace Restaurant.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PostCode")
@@ -197,8 +198,7 @@ namespace Restaurant.Data.Migrations
 
                     b.HasIndex("IsDeleted");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
+                    b.HasIndex("Name");
 
                     b.ToTable("Addresses");
                 });
@@ -386,9 +386,6 @@ namespace Restaurant.Data.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("ItemTotalPrice")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<int>("MealId")
                         .HasColumnType("int");
 
@@ -520,8 +517,8 @@ namespace Restaurant.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AddressName")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("AddressName")
+                        .HasColumnType("int");
 
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
@@ -881,7 +878,8 @@ namespace Restaurant.Data.Migrations
                     b.HasOne("Restaurant.Data.Models.Address", "Address")
                         .WithMany("Orders")
                         .HasForeignKey("AddressName")
-                        .HasPrincipalKey("Name");
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Restaurant.Data.Models.ApplicationUser", "ApplicationUser")
                         .WithMany("Orders")

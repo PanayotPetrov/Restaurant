@@ -94,7 +94,7 @@
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
-            builder.Entity<Order>().Property(o => o.TotalPrice).UsePropertyAccessMode(PropertyAccessMode.Property);
+            builder.Entity<Order>().HasOne(x => x.Address).WithMany(x => x.Orders).HasPrincipalKey(x => x.Name).HasForeignKey(x => x.AddressName);
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)
