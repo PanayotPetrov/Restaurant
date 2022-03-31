@@ -11,7 +11,7 @@
 
         public Task CreateNewAddressAsync(AddAddressModel model, string userId);
 
-        public T GetByNameAndUserId<T>(string userId, string addressName);
+        public T GetByUserIdAndAddressName<T>(string userId, string addressName);
 
         public Task DeleteAsync(string addressName);
 

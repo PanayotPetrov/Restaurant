@@ -19,7 +19,7 @@
             this.addressRepository = addressRepository;
         }
 
-        public T GetByNameAndUserId<T>(string userId, string addressName)
+        public T GetByUserIdAndAddressName<T>(string userId, string addressName)
         {
             return this.addressRepository.AllAsNoTracking().Where(a => a.ApplicationUserId == userId && a.Name == addressName).To<T>().FirstOrDefault();
         }

@@ -8,12 +8,10 @@ namespace Restaurant.Services.Models
     {
         public string FullName { get; set; }
 
-        public string OrderNumber { get; set; }
-
         public string ApplicationUserId { get; set; }
 
         public int AddressName { get; set; }
 
-        public virtual ICollection<Meal> Meals { get; set; }
+        public virtual ICollection<CartItem> CartItems { get; set; }
     }
 }

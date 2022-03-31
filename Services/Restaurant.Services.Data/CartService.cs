@@ -54,7 +54,7 @@
 
         public async Task RemoveFromCartAsync(CartItemModel model)
         {
-            var cartItem = this.cartItemRepository.All().Include(ci=>ci.Cart).FirstOrDefault(ci => ci.MealId == model.MealId);
+            var cartItem = this.cartItemRepository.All().Include(ci => ci.Cart).FirstOrDefault(ci => ci.MealId == model.MealId);
             cartItem.Cart.SubTotal -= cartItem.ItemTotalPrice;
             this.cartItemRepository.Delete(cartItem);
             await this.cartItemRepository.SaveChangesAsync();
@@ -106,6 +106,11 @@
             cartItem.Quantity = model.Quantity;
             await this.cartRepository.SaveChangesAsync();
             return AutoMapperConfig.MapperInstance.Map<T>(cartItem);
+        }
+
+        public int GetCartId(string userId)
+        {
+            return this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).Select(c => c.Id).FirstOrDefault();
         }
     }
 }

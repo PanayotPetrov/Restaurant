@@ -11,6 +11,7 @@
     using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.ViewModels.Address;
 
+    [Authorize]
     public class AddressController : BaseController
     {
         private readonly IAddressService addressService;
@@ -20,7 +21,6 @@
             this.addressService = addressService;
         }
 
-        [Authorize]
         [HttpGet("/Address/All/{addressName?}")]
         [AddRouteIdActionFilter]
 
@@ -28,7 +28,7 @@
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            var model = this.addressService.GetByNameAndUserId<AddressViewModel>(userId, addressName);
+            var model = this.addressService.GetByUserIdAndAddressName<AddressViewModel>(userId, addressName);
             if (model is not null)
             {
                 model.AllowedDistricts = this.addressService.GetAllowedDistricts();
@@ -37,7 +37,6 @@
             return this.View(model);
         }
 
-        [Authorize]
         [HttpPost("/Address/All/{addressName?}")]
         [AddRouteIdActionFilter]
         [UniqueAddressNameValidationActionFilter]
@@ -59,7 +58,6 @@
             return this.RedirectToAction(nameof(this.AllAddresses), new { addressName = model.Name });
         }
 
-        [Authorize]
         [HttpGet("/Address/Add")]
 
         public IActionResult AddAddress()
@@ -71,7 +69,6 @@
             return this.View(model);
         }
 
-        [Authorize]
         [HttpPost("/Address/Add")]
         [UniqueAddressNameValidationActionFilter]
         public async Task<IActionResult> AddAddress(AddressViewModel model)
@@ -90,7 +87,6 @@
             return this.Redirect($"/Address/All/{model.Name}");
         }
 
-        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Delete(AddressViewModel model)
         {

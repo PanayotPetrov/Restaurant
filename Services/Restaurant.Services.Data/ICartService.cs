@@ -19,5 +19,7 @@
         int GetItemQuantityPerCartLeft(string userId);
 
         Task<T> ChangeItemQuantityAsync<T>(CartItemModel cartItem);
+
+        int GetCartId(string userId);
     }
 }

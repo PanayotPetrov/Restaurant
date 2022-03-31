@@ -16,7 +16,7 @@
 
         public string SubTotal { get; set; }
 
-        public void CreateMappings(IProfileExpression configuration)
+        public virtual void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Cart, CartViewModel>()
                 .ForMember(m => m.TotalPrice, opt => opt.MapFrom(c => c.TotalPrice.ToString("0.00")))

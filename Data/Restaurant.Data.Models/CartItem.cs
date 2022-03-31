@@ -1,6 +1,5 @@
 ﻿namespace Restaurant.Data.Models
 {
-    using System.Collections.Generic;
 
     using Restaurant.Data.Common.Models;
 

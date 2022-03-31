@@ -26,8 +26,6 @@
 <div class="col-md-6">
     <label asp-for="@Model.District">District</label>
     <select asp-for="@Model.District" class="form-select bg-body" asp-items="allowedDistricts"></select>
-
-    @*<input asp-for="@Model.District" class="form-control">*@
     <span asp-validation-for="@Model.District"></span>
 </div>
 <div class="col-md-4">

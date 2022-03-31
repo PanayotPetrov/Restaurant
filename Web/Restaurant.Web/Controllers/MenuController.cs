@@ -1,10 +1,8 @@
 ﻿namespace Restaurant.Web.Controllers
 {
-    using System.Linq;
 
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
-    using Restaurant.Web.ViewModels.Cart;
     using Restaurant.Web.ViewModels.Category;
     using Restaurant.Web.ViewModels.Meal;
     using Restaurant.Web.ViewModels.Menu;
