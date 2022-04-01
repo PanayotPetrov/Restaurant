@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
 
+    using Restaurant.Data.Models;
     using Restaurant.Services.Models;
 
     public interface ICartService
@@ -21,5 +22,9 @@
         Task<T> ChangeItemQuantityAsync<T>(CartItemModel cartItem);
 
         int GetCartId(string userId);
+
+        Cart GetCartById<T>(int cartId);
+
+        Task ClearCartAsync(int cartId);
     }
 }

@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <Folder Include="Administration\Dashboard\" />
-    <Folder Include="Order\" />
   </ItemGroup>
 
 </Project>

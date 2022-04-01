@@ -1,5 +1,6 @@
 ﻿namespace Restaurant.Data.Models
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -13,16 +14,18 @@
     {
         public Order()
         {
-            this.Meals = new HashSet<Meal>();
+            this.Meals = new HashSet<MealOrder>();
         }
 
         public decimal TotalPrice { get; set; }
 
-        [Required]
-        public string FullName { get; set; }
-
         public string OrderNumber { get; set; }
 
+        public bool IsComplete { get; set; }
+
+        public DateTime DeliveryTime { get; set; }
+
+        [Required]
         public string ApplicationUserId { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
@@ -32,6 +35,6 @@
 
         public virtual Address Address { get; set; }
 
-        public virtual ICollection<Meal> Meals { get; set; }
+        public virtual ICollection<MealOrder> Meals { get; set; }
     }
 }

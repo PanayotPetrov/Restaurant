@@ -24,9 +24,11 @@
                 {
                     return ValidationResult.Success;
                 }
+
+                return new ValidationResult("Invalid address name provided!");
             }
 
-            return new ValidationResult("Invalid address name provided");
+            return new ValidationResult("Please select an address!");
         }
     }
 }

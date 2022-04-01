@@ -23,6 +23,50 @@
             this.mealRepository = mealRepository;
         }
 
+        public T GetCartByUserId<T>(string userId)
+        {
+            return this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).To<T>().FirstOrDefault();
+        }
+
+        public int GetCartId(string userId)
+        {
+            return this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).Select(c => c.Id).FirstOrDefault();
+        }
+
+        public decimal GetCartSubTotal(string userId)
+        {
+            return this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).Select(c => c.SubTotal).FirstOrDefault();
+        }
+
+        public Cart GetCartById<T>(int cartId)
+        {
+            return this.cartRepository.AllAsNoTracking().Include(c => c.CartItems).Where(c => c.Id == cartId).FirstOrDefault();
+        }
+
+        public int GetItemQuantityPerCartLeft(string userId)
+        {
+            var cartId = this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).Select(c => c.Id).FirstOrDefault();
+            var itemQuantity = this.cartItemRepository.AllAsNoTracking().Where(ci => ci.CartId == cartId).Select(ci => ci.Quantity).Sum();
+            return 100 - itemQuantity;
+        }
+
+        public async Task RemoveFromCartAsync(CartItemModel model)
+        {
+            var cartItem = this.cartItemRepository.All().Include(ci => ci.Cart).FirstOrDefault(ci => ci.MealId == model.MealId);
+            cartItem.Cart.SubTotal -= cartItem.ItemTotalPrice;
+            this.cartItemRepository.Delete(cartItem);
+            await this.cartItemRepository.SaveChangesAsync();
+        }
+
+        public async Task<T> CreateCartForUserAsync<T>(string userId)
+        {
+            var cart = new Cart { ApplicationUserId = userId };
+            cart.ShippingPrice = ShippingPrice;
+            await this.cartRepository.AddAsync(cart);
+            await this.cartRepository.SaveChangesAsync();
+            return AutoMapperConfig.MapperInstance.Map<T>(cart);
+        }
+
         public async Task AddToCartAsync(string userId, CartItemModel model)
         {
             var cart = this.cartRepository.All().Include(c => c.CartItems).FirstOrDefault(c => c.ApplicationUserId == userId);
@@ -52,40 +96,6 @@
             await this.cartRepository.SaveChangesAsync();
         }
 
-        public async Task RemoveFromCartAsync(CartItemModel model)
-        {
-            var cartItem = this.cartItemRepository.All().Include(ci => ci.Cart).FirstOrDefault(ci => ci.MealId == model.MealId);
-            cartItem.Cart.SubTotal -= cartItem.ItemTotalPrice;
-            this.cartItemRepository.Delete(cartItem);
-            await this.cartItemRepository.SaveChangesAsync();
-        }
-
-        public T GetCartByUserId<T>(string userId)
-        {
-            return this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).To<T>().FirstOrDefault();
-        }
-
-        public async Task<T> CreateCartForUserAsync<T>(string userId)
-        {
-            var cart = new Cart { ApplicationUserId = userId };
-            cart.ShippingPrice = ShippingPrice;
-            await this.cartRepository.AddAsync(cart);
-            await this.cartRepository.SaveChangesAsync();
-            return AutoMapperConfig.MapperInstance.Map<T>(cart);
-        }
-
-        public decimal GetCartSubTotal(string userId)
-        {
-            return this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).Select(c => c.SubTotal).FirstOrDefault();
-        }
-
-        public int GetItemQuantityPerCartLeft(string userId)
-        {
-            var cartId = this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).Select(c => c.Id).FirstOrDefault();
-            var itemQuantity = this.cartItemRepository.AllAsNoTracking().Where(ci => ci.CartId == cartId).Select(ci => ci.Quantity).Sum();
-            return 100 - itemQuantity;
-        }
-
         public async Task<T> ChangeItemQuantityAsync<T>(CartItemModel model)
         {
             var cartItem = this.cartItemRepository.All().Include(ci => ci.Cart).Include(ci => ci.Meal).FirstOrDefault(ci => ci.MealId == model.MealId);
@@ -108,9 +118,19 @@
             return AutoMapperConfig.MapperInstance.Map<T>(cartItem);
         }
 
-        public int GetCartId(string userId)
+        public async Task ClearCartAsync(int cartId)
         {
-            return this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).Select(c => c.Id).FirstOrDefault();
+            var cartItems = this.cartItemRepository.All().Where(ci => ci.CartId == cartId).ToList();
+
+            for (int i = 0; i < cartItems.Count; i++)
+            {
+                var cartItem = cartItems[i];
+                this.cartItemRepository.Delete(cartItem);
+            }
+
+            var cart = this.cartRepository.All().FirstOrDefault(c => c.Id == cartId);
+            cart.SubTotal = 0;
+            await this.cartItemRepository.SaveChangesAsync();
         }
     }
 }

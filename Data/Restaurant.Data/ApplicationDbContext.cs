@@ -33,6 +33,8 @@
 
         public DbSet<Order> Orders { get; set; }
 
+        public DbSet<MealOrder> MealOrders { get; set; }
+
         public DbSet<Reservation> Reservations { get; set; }
 
         public DbSet<Review> Reviews { get; set; }
@@ -95,6 +97,7 @@
             }
 
             builder.Entity<Order>().HasOne(x => x.Address).WithMany(x => x.Orders).HasPrincipalKey(x => x.Name).HasForeignKey(x => x.AddressName);
+            builder.Entity<MealOrder>().HasKey(x => new { x.MealId, x.OrderId });
         }
 
         private static void SetIsDeletedQueryFilter<T>(ModelBuilder builder)

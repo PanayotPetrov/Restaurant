@@ -7,20 +7,20 @@
 <partial name="_HeroPartial" />
 
 <div class="container-fluid pt-5 wow fadeInUp" data-wow-delay="0.1s">
-
     <div class="row">
-
         <div class="col-lg-8 bg-white border border-3 border-dark rounded-3">
-
             <div class="mb-4">
                 <h1 class="text-center font-weight-semi-bold mb-5 mt-4">Billing Address</h1>
-                <form method="post">
-
+                <form method="post" asp-controller="Order" asp-action="Create" id="CreateOrderForm">
+                    <div asp-validation-summary="ModelOnly"></div>
                     <div class="col-md-12">
-                        <input type="hidden" asp-for="@Model.Id" />
+                        <input type="hidden" id="cartId" name="CartId" value="@Model.Id" />
+                        <input type="hidden" id="addressName" name="AddressName"/>
+                        <input type="hidden" id="cartItemsCount" name="CartItemsCount" value="@Model.CartItems.Count()"/>
+
+
                         <select class="form-select bg-body" id="addressNames" onchange="GetAddress()">
                             <option value="Initial">Choose an address...</option>
-
                             @foreach (var address in Model.Addresses)
                             {
                                 <option value="@address">@address</option>
@@ -74,7 +74,6 @@
                         </div>
                     </div>
                 </form>
-
             </div>
         </div>
 
@@ -89,7 +88,7 @@
                     {
                         <div class="d-flex justify-content-between">
                             <p>@cartItem.Quantity x @cartItem.Meal.Name</p>
-                            <p>@cartItem.Meal.Price $</p>
+                            <p>@cartItem.ItemTotalPrice $</p>
                         </div>
                     }
                     <hr class="mt-0">
@@ -126,25 +125,26 @@
                     </div>
                 </div>
                 <div class="card-footer border-secondary bg-transparent">
-                    <button type="submit" class="btn btn-lg btn-block btn-primary font-weight-bold mt-3 offset-md-2" asp-controller="Order" asp-action="Create">Place Order</button>
+                    <button type="button" class="btn btn-lg btn-block btn-primary font-weight-bold mt-3 offset-md-2" onclick="CreateOrderForm.submit()">Place Order</button>
                 </div>
-
             </div>
-
         </div>
-
     </div>
 </div>
 
 <script>
     function GetAddress() {
         var addressName = $('#addressNames').val()
+        var cartItemsCount = $('#cartItemsCount').val()
 
 
         $.ajax({
             url: '/Checkout/GetAddressDetails',
             type: 'GET',
-            data: { addressName: addressName },
+            data: {
+                addressName: addressName,
+                cartItemsCount: cartItemsCount
+            },
             success: function (result, status, xhr) {
                 if (xhr.status === 200) {
                     var jsonResult = JSON.parse(xhr.responseText);
@@ -154,6 +154,8 @@
                     $('#city').val(jsonResult.city);
                     $('#country').val(jsonResult.country);
                     $('#postCode').val(jsonResult.postCode);
+                    $('#addressName').val(jsonResult.name);
+
                 }
             }
         });
