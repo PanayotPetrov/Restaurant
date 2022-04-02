@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -20,6 +19,16 @@
         {
             this.orderRepository = orderRepository;
             this.cartService = cartService;
+        }
+
+        public T GetByUserIdAndOrderNumber<T>(string userId, string orderNumber)
+        {
+            return this.orderRepository.AllAsNoTrackingWithDeleted().Where(o => o.ApplicationUserId == userId && o.OrderNumber == orderNumber).To<T>().FirstOrDefault();
+        }
+
+        public IEnumerable<string> GetAllOrderNumbersByUserId(string userId)
+        {
+            return this.orderRepository.AllAsNoTrackingWithDeleted().Where(c => c.ApplicationUserId == userId).OrderBy(o => o.IsComplete).Select(o => o.OrderNumber).ToList();
         }
 
         public async Task<string> CreateAsync(AddOrderModel model)
@@ -48,16 +57,6 @@
             await this.orderRepository.SaveChangesAsync();
             await this.cartService.ClearCartAsync(cart.Id);
             return order.OrderNumber;
-        }
-
-        public IEnumerable<T> GetAllByUserId<T>(string userId)
-        {
-            return this.orderRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).To<T>().ToList();
-        }
-
-        public T GetByOrderNumber<T>(string orderNumber)
-        {
-            return this.orderRepository.AllAsNoTracking().Where(c => c.OrderNumber == orderNumber).To<T>().FirstOrDefault();
         }
     }
 }

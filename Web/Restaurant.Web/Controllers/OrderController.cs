@@ -10,6 +10,7 @@
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
     using Restaurant.Web.Infrastructure.Filters;
+    using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Order;
 
@@ -35,20 +36,34 @@
             var addOrderModel = AutoMapperConfig.MapperInstance.Map<AddOrderModel>(model);
             addOrderModel.ApplicationUserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var orderNumber = await this.orderService.CreateAsync(addOrderModel);
-            return this.RedirectToAction(nameof(this.Success), new { orderNumber });
+            return this.RedirectToAction(nameof(this.AllOrders), new { orderNumber });
         }
 
-        public IActionResult All()
+        [HttpGet("/Order/All/{orderNumber?}")]
+        [AddOrderRouteIdActionFilter]
+        public IActionResult AllOrders([OrderNumberValidation]string orderNumber)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.RedirectToAction(nameof(this.UrlNotFound));
+            }
+
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var orders = this.orderService.GetAllByUserId<OrderViewModel>(userId);
-            var model = new OrderInListViewModel { Orders = orders };
+
+            var model = this.orderService.GetByUserIdAndOrderNumber<AllOrdersViewModel>(userId, orderNumber);
             return this.View(model);
         }
 
-        public IActionResult Success(string orderNumber)
+        public IActionResult Success([OrderNumberValidation]string orderNumber)
         {
-            var model = this.orderService.GetByOrderNumber<OrderViewModel>(orderNumber);
+            if (!this.ModelState.IsValid)
+            {
+                return this.RedirectToAction(nameof(this.UrlNotFound));
+            }
+
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+            var model = this.orderService.GetByUserIdAndOrderNumber<OrderViewModel>(userId, orderNumber);
             return this.View(model);
         }
     }

@@ -9,8 +9,8 @@
     {
         Task<string> CreateAsync(AddOrderModel model);
 
-        IEnumerable<T> GetAllByUserId<T>(string userId);
+        T GetByUserIdAndOrderNumber<T>(string userId, string orderNumber);
 
-        T GetByOrderNumber<T>(string orderNumber);
+        IEnumerable<string> GetAllOrderNumbersByUserId(string userId);
     }
 }

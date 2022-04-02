@@ -8,7 +8,7 @@
 
     using Restaurant.Services.Data;
 
-    public class AddRouteIdActionFilter : ActionFilterAttribute
+    public class AddAddressRouteIdActionFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {

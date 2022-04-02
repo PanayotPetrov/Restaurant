@@ -1,6 +1,5 @@
 ﻿namespace Restaurant.Web.Controllers
 {
-
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
     using Restaurant.Web.ViewModels.Category;

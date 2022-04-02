@@ -11,10 +11,10 @@
 
     public class AddressService : IAddressService
     {
-        private readonly IRepository<Address> addressRepository;
+        private readonly IDeletableEntityRepository<Address> addressRepository;
         private readonly IEnumerable<string> allowedDistricts = new List<string> { "Lagera", "Hipodruma", "Centur", "Zona-B5", "Serdika", "Lozenets" };
 
-        public AddressService(IRepository<Address> addressRepository)
+        public AddressService(IDeletableEntityRepository<Address> addressRepository)
         {
             this.addressRepository = addressRepository;
         }
@@ -33,11 +33,11 @@
         {
             if (originalAddressName is null)
             {
-                return !this.addressRepository.AllAsNoTracking().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
+                return !this.addressRepository.AllAsNoTrackingWithDeleted().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
             }
             else if (originalAddressName != addressName)
             {
-                return !this.addressRepository.AllAsNoTracking().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
+                return !this.addressRepository.AllAsNoTrackingWithDeleted().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
             }
 
             return true;

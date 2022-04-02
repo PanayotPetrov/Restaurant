@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+
     using AutoMapper;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
@@ -17,7 +18,7 @@
 
         public string ApplicationUserId { get; set; }
 
-        public AddressViewModel Address { get; set; }
+        public BaseAddressViewModel Address { get; set; }
 
         public bool IsComplete { get; set; }
 

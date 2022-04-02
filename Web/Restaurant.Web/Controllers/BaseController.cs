@@ -4,5 +4,9 @@
 
     public class BaseController : Controller
     {
+        public IActionResult UrlNotFound()
+        {
+            return this.View();
+        }
     }
 }

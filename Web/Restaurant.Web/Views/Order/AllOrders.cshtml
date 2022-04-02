@@ -1,0 +1,47 @@
+﻿@using Restaurant.Web.ViewModels.Order;
+@model AllOrdersViewModel;
+@{
+    this.ViewData["Title"] = "Your orders";
+}
+
+<partial name="_HeroPartial" />
+
+<div class="bg-white wow fadeInUp" data-wow-delay="0.1s">
+
+    <hr style="color: black; height:3px; opacity:100; margin-bottom:30px;" />
+    <div class="row g-3">
+        <div class="col-md-3 text-center offset-xl-1">
+            <h3>Your orders</h3>
+            <ul class="nav nav-pills flex-column" id="addressNames">
+                @if (Model is not null)
+                {
+                    @foreach (var orderNumber in Model.OrdersByUser)
+                    {
+                        <li class="nav-item text-center"><a class="nav-link text-black @if (Model.Order.OrderNumber == orderNumber) { <text>active</text> }" asp-area="" asp-controller="Order" asp-action="All" asp-route-id="@orderNumber">Order number # @orderNumber</a></li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="col-md-6 offset-xl-1 ">
+            @if (Model is null)
+            {
+                <h1>You don't have any orders yet!</h1>
+            }
+            else
+            {
+                <div class="border border-5 border-dark">
+                    <table align="center" class="table table-borderless mb-0">
+                        <partial name="_OrderPartial" model="Model.Order" />
+                    </table>
+                </div>
+            }
+        </div>
+    </div>
+
+    <hr style="color: black; height:3px; opacity:100" />
+</div>
+
+<!-- Modal -->
+
+<partial name="_ModalPartial" />
+

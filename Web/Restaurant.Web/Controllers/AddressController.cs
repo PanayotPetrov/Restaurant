@@ -9,6 +9,7 @@
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
     using Restaurant.Web.Infrastructure.Filters;
+    using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.Address;
 
     [Authorize]
@@ -22,10 +23,15 @@
         }
 
         [HttpGet("/Address/All/{addressName?}")]
-        [AddRouteIdActionFilter]
+        [AddAddressRouteIdActionFilter]
 
-        public IActionResult AllAddresses(string addressName)
+        public IActionResult AllAddresses([AddressNameValidation]string addressName)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.RedirectToAction(nameof(this.UrlNotFound));
+            }
+
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             var model = this.addressService.GetByUserIdAndAddressName<AddressViewModel>(userId, addressName);
@@ -38,15 +44,13 @@
         }
 
         [HttpPost("/Address/All/{addressName?}")]
-        [AddRouteIdActionFilter]
+        [AddAddressRouteIdActionFilter]
         [UniqueAddressNameValidationActionFilter]
         public async Task<IActionResult> AllAddresses(string addressName, AddressViewModel model)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
             if (!this.ModelState.IsValid)
             {
-                model.AddressNames = this.addressService.GetAddressNamesByUserId(userId);
+                model.AddressNames = this.addressService.GetAddressNamesByUserId(model.ApplicationUserId);
                 model.Name = addressName;
                 model.AllowedDistricts = this.addressService.GetAllowedDistricts();
                 return this.View(model);
@@ -54,7 +58,7 @@
 
             var addAddressModel = AutoMapperConfig.MapperInstance.Map<AddAddressModel>(model);
 
-            await this.addressService.UpdateAddressAsync(addAddressModel, userId, addressName);
+            await this.addressService.UpdateAddressAsync(addAddressModel, model.ApplicationUserId, addressName);
             return this.RedirectToAction(nameof(this.AllAddresses), new { addressName = model.Name });
         }
 
@@ -66,6 +70,7 @@
             {
                 AllowedDistricts = this.addressService.GetAllowedDistricts(),
             };
+
             return this.View(model);
         }
 
@@ -73,14 +78,13 @@
         [UniqueAddressNameValidationActionFilter]
         public async Task<IActionResult> AddAddress(AddressViewModel model)
         {
-            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-
             if (!this.ModelState.IsValid)
             {
                 model.AllowedDistricts = this.addressService.GetAllowedDistricts();
                 return this.View(model);
             }
 
+            var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var addAddressModel = AutoMapperConfig.MapperInstance.Map<AddAddressModel>(model);
 
             await this.addressService.CreateNewAddressAsync(addAddressModel, userId);
