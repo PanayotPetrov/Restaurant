@@ -12,8 +12,8 @@
         [CartIdValidation]
         public int CartId { get; set; }
 
-        [AddressNameValidation]
-        public string AddressName { get; set; }
+        [Range(1, int.MaxValue, ErrorMessage = "Invalid address selected")]
+        public int AddressId { get; set; }
 
         [Range(1, int.MaxValue, ErrorMessage ="You need to add at least 1 product to place an order!")]
         public int CartItemsCount { get; set; }

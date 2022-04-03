@@ -8,6 +8,8 @@
 
     public class BaseAddressViewModel : IMapFrom<Address>
     {
+        public int Id { get; set; }
+
         [Required]
         [ValidateUniqueAddressName]
         public string Name { get; set; }

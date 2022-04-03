@@ -1,5 +1,6 @@
 ﻿namespace Restaurant.Web.Controllers
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -54,7 +55,8 @@
             return this.View(model);
         }
 
-        public IActionResult Success([OrderNumberValidation]string orderNumber)
+        [HttpGet("/Order/Success/{orderNumber?}")]
+        public IActionResult Success([OrderNumberValidation][Required] string orderNumber)
         {
             if (!this.ModelState.IsValid)
             {

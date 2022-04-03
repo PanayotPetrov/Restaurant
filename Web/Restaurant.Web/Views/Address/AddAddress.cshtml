@@ -11,6 +11,7 @@
     <div class="col-md-10 offset-md-1">
         <form class="row g-3" method="post">
             <partial name="_AddressViewPartial" model="Model" />
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
             <button type="submit" id="editAddressButton" class="btn btn-primary m-2"><i class="fa-solid fa-check"></i> Save changes</button>
             <a class="btn btn-primary m-2" asp-controller="Address" asp-action="All"><i class="fa-solid fa-circle-left"></i> Back</a>
 

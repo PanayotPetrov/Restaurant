@@ -12,10 +12,10 @@
             <div class="mb-4">
                 <h1 class="text-center font-weight-semi-bold mb-5 mt-4">Billing Address</h1>
                 <form method="post" asp-controller="Order" asp-action="Create" id="CreateOrderForm">
-                    <div asp-validation-summary="ModelOnly"></div>
+                    <div asp-validation-summary="All"></div>
                     <div class="col-md-12">
                         <input type="hidden" id="cartId" name="CartId" value="@Model.Id" />
-                        <input type="hidden" id="addressName" name="AddressName"/>
+                        <input type="hidden" id="addressId" name="addressId" value="0" />
                         <input type="hidden" id="cartItemsCount" name="CartItemsCount" value="@Model.CartItems.Count()"/>
 
 
@@ -154,7 +154,7 @@
                     $('#city').val(jsonResult.city);
                     $('#country').val(jsonResult.country);
                     $('#postCode').val(jsonResult.postCode);
-                    $('#addressName').val(jsonResult.name);
+                    $('#addressId').val(jsonResult.id);
 
                 }
             }

@@ -5,7 +5,7 @@ namespace Restaurant.Services.Models
 {
     public class AddOrderModel : IMapTo<Order>
     {
-        public string AddressName { get; set; }
+        public int AddressId { get; set; }
 
         public string ApplicationUserId { get; set; }
 

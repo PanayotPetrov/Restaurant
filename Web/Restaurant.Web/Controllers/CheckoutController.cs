@@ -29,6 +29,7 @@
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var model = this.cartService.GetCartByUserId<CheckoutViewModel>(userId);
+            var state = this.ModelState;
             return this.View(model);
         }
 
@@ -38,7 +39,7 @@
         public IActionResult GetAddressDetails([AddressNameValidation][FromQuery] string addressName)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var model = this.addressService.GetByUserIdAndAddressName<AddressViewModel>(userId, addressName);
+            var model = this.addressService.GetByUserIdAndAddressName<BaseAddressViewModel>(userId, addressName);
             this.Response.StatusCode = 200;
             return this.Json(model);
         }

@@ -96,7 +96,6 @@
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
 
-            builder.Entity<Order>().HasOne(x => x.Address).WithMany(x => x.Orders).HasPrincipalKey(x => x.Name).HasForeignKey(x => x.AddressName);
             builder.Entity<MealOrder>().HasKey(x => new { x.MealId, x.OrderId });
         }
 

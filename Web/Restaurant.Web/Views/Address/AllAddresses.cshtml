@@ -30,11 +30,13 @@
             }
             else
             {
-                <form class="row g-3" method="post" id="deleteForm" asp-action="Delete">
-                    <partial name="_AddressViewPartial" model="Model" />
-                    <button type="submit" class="btn btn-primary" asp-action="AllAddresses"><i class="fa-solid fa-check"></i> Save changes</button>
-                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash"></i> Delete</button>
-                </form>
+        <form class="row g-3" method="post" id="deleteForm" asp-action="Delete">
+            <div class="text-danger" asp-validation-summary="All"></div>
+            <partial name="_AddressViewPartial" model="Model" />
+
+            <button type="submit" class="btn btn-primary" asp-action="AllAddresses"><i class="fa-solid fa-check"></i> Save changes</button>
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash"></i> Delete</button>
+        </form>
             }
         </div>
     </div>
