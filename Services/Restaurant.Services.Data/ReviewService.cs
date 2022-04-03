@@ -63,7 +63,7 @@
 
         public async Task<bool> DeleteByIdAsync(int id)
         {
-            var review = this.reviewRepository.AllAsNoTrackingWithDeleted().FirstOrDefault(r => r.Id == id);
+            var review = this.reviewRepository.AllWithDeleted().FirstOrDefault(r => r.Id == id);
 
             if (review.IsDeleted)
             {

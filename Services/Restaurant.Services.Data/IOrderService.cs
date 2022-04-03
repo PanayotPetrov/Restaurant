@@ -22,5 +22,7 @@
         Task<bool> DeleteByIdAsync(int id);
 
         Task<bool> RestoreAsync(int id);
+
+        Task<bool> CompleteAsync(int id);
     }
 }

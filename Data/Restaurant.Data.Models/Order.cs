@@ -23,6 +23,8 @@
 
         public bool IsComplete { get; set; }
 
+        public DateTime? CompletedOn { get; set; }
+
         public DateTime DeliveryTime { get; set; }
 
         [Required]
@@ -32,8 +34,6 @@
 
         [ForeignKey("Address")]
         public int AddressId { get; set; }
-
-        public string AddressName { get; set; }
 
         public virtual Address Address { get; set; }
 

@@ -1,7 +1,7 @@
-﻿namespace Restaurant.Data.Migrations
-{
-    using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
+namespace Restaurant.Data.Migrations
+{
     public partial class ChangedForeignKeyForOrderAdressRelationship : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,14 +22,9 @@
                 name: "IX_Addresses_Name",
                 table: "Addresses");
 
-            migrationBuilder.AlterColumn<string>(
+            migrationBuilder.DropColumn(
                 name: "AddressName",
-                table: "Orders",
-                type: "nvarchar(max)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(450)",
-                oldNullable: true);
+                table: "Orders");
 
             migrationBuilder.AddColumn<int>(
                 name: "AddressId",
@@ -85,21 +80,18 @@
                 name: "AddressId",
                 table: "Orders");
 
-            migrationBuilder.AlterColumn<string>(
+            migrationBuilder.AddColumn<string>(
                 name: "AddressName",
                 table: "Orders",
                 type: "nvarchar(450)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)",
-                oldNullable: true);
+                nullable: true);
 
             migrationBuilder.AlterColumn<string>(
                 name: "Name",
                 table: "Addresses",
                 type: "nvarchar(450)",
                 nullable: false,
-                defaultValue: string.Empty,
+                defaultValue: "",
                 oldClrType: typeof(string),
                 oldType: "nvarchar(450)",
                 oldNullable: true);

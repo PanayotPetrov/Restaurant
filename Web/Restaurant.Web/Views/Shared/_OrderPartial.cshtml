@@ -66,12 +66,14 @@
                                     @if (Model.IsComplete)
                                     {
                                         <p style="font-weight: 800;">Completed on</p>
+                                        <p>@Model.CompletedOn.Value.ToLocalTime()</p>
+
                                     }
                                     else
                                     {
                                         <p style="font-weight: 800;">Estimated Delivery Time</p>
+                                        <p>@Model.DeliveryTime.ToLocalTime()</p>
                                     }
-                                    <p>@Model.DeliveryTime.ToLocalTime()</p>
 
                                 </td>
                             </tr>

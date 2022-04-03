@@ -10,7 +10,7 @@ using Restaurant.Data;
 namespace Restaurant.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220403132001_ChangedForeignKeyForOrderAdressRelationship")]
+    [Migration("20220403143023_ChangedForeignKeyForOrderAdressRelationship")]
     partial class ChangedForeignKeyForOrderAdressRelationship
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -527,9 +527,6 @@ namespace Restaurant.Data.Migrations
 
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
-
-                    b.Property<string>("AddressName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ApplicationUserId")
                         .IsRequired()

@@ -4,6 +4,6 @@
 
     public class AdminOrderListViewModel : PagingViewModel
     {
-        public IEnumerable<OrderViewModel> Orders { get; set; }
+        public IEnumerable<AdminOrderViewModel> Orders { get; set; }
     }
 }

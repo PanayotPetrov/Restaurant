@@ -22,6 +22,8 @@
 
         public bool IsComplete { get; set; }
 
+        public DateTime? CompletedOn { get; set; }
+
         public DateTime DeliveryTime { get; set; }
 
         public virtual IEnumerable<MealOrderViewModel> Meals { get; set; }

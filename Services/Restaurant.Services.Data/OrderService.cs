@@ -31,6 +31,21 @@
             return this.orderRepository.AllAsNoTrackingWithDeleted().Where(c => c.ApplicationUserId == userId).OrderBy(o => o.IsComplete).Select(o => o.OrderNumber).ToList();
         }
 
+        public IEnumerable<T> GetAllWithDeleted<T>(int itemsPerPage, int page)
+        {
+            return this.orderRepository.AllAsNoTrackingWithDeleted().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
+        }
+
+        public int GetCountWithDeleted()
+        {
+            return this.orderRepository.AllAsNoTrackingWithDeleted().Count();
+        }
+
+        public T GetByIdWithDeleted<T>(int id)
+        {
+            return this.orderRepository.AllAsNoTrackingWithDeleted().Where(o => o.Id == id).To<T>().FirstOrDefault();
+        }
+
         public async Task<string> CreateAsync(AddOrderModel model)
         {
             var cart = this.cartService.GetCartById<Cart>(model.CartId);
@@ -59,24 +74,9 @@
             return order.OrderNumber;
         }
 
-        public IEnumerable<T> GetAllWithDeleted<T>(int itemsPerPage, int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public int GetCountWithDeleted()
-        {
-            return this.orderRepository.AllAsNoTrackingWithDeleted().Count();
-        }
-
-        public T GetByIdWithDeleted<T>(int id)
-        {
-            return this.orderRepository.AllAsNoTrackingWithDeleted().Where(o => o.Id == id).To<T>().FirstOrDefault();
-        }
-
         public async Task<bool> DeleteByIdAsync(int id)
         {
-            var order = this.orderRepository.AllAsNoTrackingWithDeleted().FirstOrDefault(o => o.Id == id);
+            var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.Id == id);
             if (order.IsDeleted)
             {
                 return false;
@@ -89,7 +89,7 @@
 
         public async Task<bool> RestoreAsync(int id)
         {
-            var order = this.orderRepository.AllAsNoTrackingWithDeleted().FirstOrDefault(o => o.Id == id);
+            var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.Id == id);
             if (!order.IsDeleted)
             {
                 return false;
@@ -97,6 +97,20 @@
 
             order.IsDeleted = false;
             order.DeletedOn = null;
+            await this.orderRepository.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> CompleteAsync(int id)
+        {
+            var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.Id == id);
+            if (order.IsComplete)
+            {
+                return false;
+            }
+
+            order.IsComplete = true;
+            order.CompletedOn = DateTime.UtcNow;
             await this.orderRepository.SaveChangesAsync();
             return true;
         }
