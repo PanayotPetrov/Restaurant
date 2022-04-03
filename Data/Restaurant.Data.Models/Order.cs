@@ -19,6 +19,7 @@
 
         public decimal TotalPrice { get; set; }
 
+        [Required]
         public string OrderNumber { get; set; }
 
         public bool IsComplete { get; set; }

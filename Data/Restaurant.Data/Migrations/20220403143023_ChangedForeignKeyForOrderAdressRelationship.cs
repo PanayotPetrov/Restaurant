@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace Restaurant.Data.Migrations
+﻿namespace Restaurant.Data.Migrations
 {
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class ChangedForeignKeyForOrderAdressRelationship : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -91,7 +91,7 @@ namespace Restaurant.Data.Migrations
                 table: "Addresses",
                 type: "nvarchar(450)",
                 nullable: false,
-                defaultValue: "",
+                defaultValue: string.Empty,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(450)",
                 oldNullable: true);

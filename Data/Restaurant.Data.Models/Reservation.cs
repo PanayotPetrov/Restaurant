@@ -27,6 +27,7 @@
 
         public string PhoneNumber { get; set; }
 
+        [Required]
         public string ReservationNumber { get; set; }
 
         public DateTime ReservationDate { get; set; }

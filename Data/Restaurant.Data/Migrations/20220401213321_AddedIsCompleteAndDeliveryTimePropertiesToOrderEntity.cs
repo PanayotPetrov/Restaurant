@@ -1,9 +1,9 @@
-﻿using System;
-
-using Microsoft.EntityFrameworkCore.Migrations;
-
-namespace Restaurant.Data.Migrations
+﻿namespace Restaurant.Data.Migrations
 {
+    using System;
+
+    using Microsoft.EntityFrameworkCore.Migrations;
+
     public partial class AddedIsCompleteAndDeliveryTimePropertiesToOrderEntity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

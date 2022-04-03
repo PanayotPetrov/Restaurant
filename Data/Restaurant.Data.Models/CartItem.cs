@@ -1,6 +1,5 @@
 ﻿namespace Restaurant.Data.Models
 {
-
     using Restaurant.Data.Common.Models;
 
     public class CartItem : BaseModel<int>
