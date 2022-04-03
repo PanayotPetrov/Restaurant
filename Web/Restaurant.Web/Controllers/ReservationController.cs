@@ -1,6 +1,5 @@
 ﻿namespace Restaurant.Web.Controllers
 {
-    using System;
     using System.Security.Claims;
     using System.Threading.Tasks;
 

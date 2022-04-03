@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
     using AutoMapper;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
@@ -14,7 +15,7 @@
 
         public string FullName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "We need your phone number in order to book a table.")]
         [Phone]
         [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
@@ -33,7 +34,7 @@
         [Range(18, 22, ErrorMessage = "Your reservation must be between 18:00 and 22:00")]
         public int ReservationTime { get; set; }
 
-        [Range(2, 6)]
+        [Range(2, 6, ErrorMessage = "Our tables currently fit between 2 and 6 people")]
         public int NumberOfPeople { get; set; }
 
         public string ApplicationUserId { get; set; }

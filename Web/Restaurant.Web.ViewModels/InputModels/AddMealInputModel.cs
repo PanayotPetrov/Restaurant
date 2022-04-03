@@ -8,7 +8,7 @@
 
     public class AddMealInputModel : BaseMealInputModel, IMapTo<AddMealModel>
     {
-        [Required]
+        [Required(ErrorMessage = "Please select an image for this meal.")]
         public virtual IFormFile Image { get; set; }
     }
 }

@@ -10,14 +10,14 @@
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Your address name can't be empty")]
         [ValidateUniqueAddressName]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please provide a street.")]
         public string Street { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please provide some more information - flat, floor number, etc.")]
         public string AddressLineTwo { get; set; }
 
         [Required]
@@ -28,7 +28,7 @@
         [AllowedCityValidationAttribute]
         public string City { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please provide your postcode/zip.")]
         public string PostCode { get; set; }
 
         [Required]

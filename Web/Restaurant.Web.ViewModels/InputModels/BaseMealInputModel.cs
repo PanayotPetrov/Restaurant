@@ -6,13 +6,13 @@
 
     public class BaseMealInputModel
     {
-        [Required]
+        [Required(ErrorMessage = "Please provide a name for this meal.")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please provide a description for this meal.")]
         public string Description { get; set; }
 
-        [Range(0, double.MaxValue)]
+        [Range(0, double.MaxValue, ErrorMessage = "The provided price is invalid.")]
         public decimal Price { get; set; }
 
         public int CategoryId { get; set; }

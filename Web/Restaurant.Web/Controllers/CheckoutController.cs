@@ -1,7 +1,5 @@
 ﻿namespace Restaurant.Web.Controllers
 {
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     using System.Security.Claims;
 
     using Microsoft.AspNetCore.Authorization;
@@ -29,7 +27,6 @@
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var model = this.cartService.GetCartByUserId<CheckoutViewModel>(userId);
-            var state = this.ModelState;
             return this.View(model);
         }
 
