@@ -1,6 +1,5 @@
 ﻿namespace Restaurant.Web.Infrastructure.ValidationAttributes
 {
-
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;

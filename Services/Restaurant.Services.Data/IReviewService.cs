@@ -19,11 +19,11 @@
 
         IEnumerable<T> GetAllWithDeleted<T>(int itemsPerPage, int id);
 
-        public T GetById<T>(int id);
+        T GetById<T>(int id);
 
-        Task DeleteByIdAsync(int id);
+        Task<bool> DeleteByIdAsync(int id);
 
-        public Task RestoreAsync(int id);
+        Task<bool> RestoreAsync(int id);
 
         T GetByIdWithDeleted<T>(int id);
     }

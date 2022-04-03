@@ -1,10 +1,11 @@
-﻿using Restaurant.Data.Models;
+﻿using AutoMapper;
+using Restaurant.Data.Models;
 using Restaurant.Services.Mapping;
 using System;
 
 namespace Restaurant.Services.Models
 {
-    public class AddReservationModel : IMapTo<Reservation>
+    public class AddReservationModel : IMapTo<Reservation>, IHaveCustomMappings
     {
         public string FullName { get; set; }
 
@@ -20,6 +21,11 @@ namespace Restaurant.Services.Models
 
         public int NumberOfPeople { get; set; }
 
-        public string UserId { get; set; }
+        public string ApplicationUserId { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<AddReservationModel, Reservation>().ForMember(r => r.ReservationDate, opt => opt.MapFrom(x => x.ReservationDate.ToUniversalTime()));
+        }
     }
 }

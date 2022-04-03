@@ -80,51 +80,46 @@
                 return this.View(model);
             }
 
-            try
-            {
-                model.ReservationDate = model.ReservationDate.AddHours(model.ReservationTime);
-                var addReservationModel = AutoMapperConfig.MapperInstance.Map<EditReservationModel>(model);
+            model.ReservationDate = model.ReservationDate.AddHours(model.ReservationTime);
+            var addReservationModel = AutoMapperConfig.MapperInstance.Map<EditReservationModel>(model);
+            var result = await this.reservationService.UpdateAsync(addReservationModel);
 
-                await this.reservationService.UpdateAsync(addReservationModel);
-                return this.RedirectToAction(nameof(this.Details), new { model.Id });
-            }
-            catch (InvalidOperationException ex)
+            if (!result)
             {
-                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.ModelState.AddModelError(string.Empty, $"We don't have a table for {model.NumberOfPeople} on the {model.ReservationDate}");
                 return this.View(model);
             }
+
+            return this.RedirectToAction(nameof(this.Details), new { model.Id });
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
-            try
+            var result = await this.reservationService.DeleteByIdAsync(id);
+
+            if (!result)
             {
-                await this.reservationService.DeleteByIdAsync(id);
-                return this.RedirectToAction(nameof(this.Details), new { Id = id });
-            }
-            catch (InvalidOperationException ex)
-            {
-                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.ModelState.AddModelError(string.Empty, "This reservation has already been deleted!");
                 var review = this.reservationService.GetByIdWithDeleted<EditReservationInputModel>(id);
                 return this.View("Edit", review);
             }
+
+            return this.RedirectToAction(nameof(this.Details), new { Id = id });
         }
 
         [HttpPost]
         public async Task<IActionResult> Restore(string id)
         {
-            try
+            var result = await this.reservationService.RestoreAsync(id);
+            if (!result)
             {
-                await this.reservationService.RestoreAsync(id);
-                return this.RedirectToAction(nameof(this.Details), new { Id = id });
-            }
-            catch (InvalidOperationException ex)
-            {
-                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.ModelState.AddModelError(string.Empty, "Cannot restore a reservation which has not been deleted!");
                 var reservation = this.reservationService.GetById<EditReservationInputModel>(id);
                 return this.View("Edit", reservation);
             }
+
+            return this.RedirectToAction(nameof(this.Details), new { Id = id });
         }
     }
 }

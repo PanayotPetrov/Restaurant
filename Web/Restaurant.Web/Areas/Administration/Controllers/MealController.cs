@@ -124,35 +124,33 @@
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            try
+            var result = await this.mealService.DeleteByIdAsync(id);
+
+            if (!result)
             {
-                await this.mealService.DeleteByIdAsync(id);
-                return this.RedirectToAction(nameof(this.Details), new { Id = id });
-            }
-            catch (InvalidOperationException ex)
-            {
-                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.ModelState.AddModelError(string.Empty, "This meal has already been deleted!");
                 var model = this.mealService.GetByIdWithDeleted<EditMealInputModel>(id);
                 model.Categories = this.categoryService.GetAllAsKeyValuePairs();
                 return this.View("Edit", model);
             }
+
+            return this.RedirectToAction(nameof(this.Details), new { Id = id });
         }
 
         [HttpPost]
         public async Task<IActionResult> Restore(int id)
         {
-            try
+            var result = await this.mealService.RestoreAsync(id);
+
+            if (!result)
             {
-                await this.mealService.RestoreAsync(id);
-                return this.RedirectToAction(nameof(this.Details), new { Id = id });
-            }
-            catch (InvalidOperationException ex)
-            {
-                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.ModelState.AddModelError(string.Empty, "Cannot restore a meal which has not been deleted!");
                 var model = this.mealService.GetByIdWithDeleted<EditMealInputModel>(id);
                 model.Categories = this.categoryService.GetAllAsKeyValuePairs();
                 return this.View("Edit", model);
             }
+
+            return this.RedirectToAction(nameof(this.Details), new { Id = id });
         }
     }
 }

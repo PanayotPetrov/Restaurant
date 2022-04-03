@@ -15,14 +15,14 @@
 
         Task<string> CreateReservationAsync(AddReservationModel model);
 
-        Task DeleteByIdAsync(string id);
+        Task<bool> DeleteByIdAsync(string id);
 
         int GetCount();
 
         IEnumerable<T> GetAllAfterCurrentDate<T>(int itemsPerPage, int page);
 
-        Task UpdateAsync(EditReservationModel model);
+        Task<bool> UpdateAsync(EditReservationModel model);
 
-        Task RestoreAsync(string id);
+        Task<bool> RestoreAsync(string id);
     }
 }

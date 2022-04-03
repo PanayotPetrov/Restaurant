@@ -13,7 +13,7 @@
 
         public T GetByUserIdAndAddressName<T>(string userId, string addressName);
 
-        public Task DeleteAsync(string addressName);
+        public Task<bool> DeleteAsync(string addressName);
 
         public string GetPrimaryAddressName(string userId);
 

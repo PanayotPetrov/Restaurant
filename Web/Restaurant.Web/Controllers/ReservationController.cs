@@ -50,22 +50,19 @@
 
             if (this.User.Identity.IsAuthenticated)
             {
-                model.UserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                model.ApplicationUserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             }
 
-            try
-            {
-                model.ReservationDate = model.ReservationDate.AddHours(model.ReservationTime);
+            var addReservationModel = AutoMapperConfig.MapperInstance.Map<AddReservationModel>(model);
+            var reservationId = await this.reservationService.CreateReservationAsync(addReservationModel);
 
-                var addReservationModel = AutoMapperConfig.MapperInstance.Map<AddReservationModel>(model);
-                var reservationId = await this.reservationService.CreateReservationAsync(addReservationModel);
-                return this.Redirect(nameof(this.Success) + $"?reservationId={reservationId}");
-            }
-            catch (InvalidOperationException ex)
+            if (reservationId is null)
             {
-                this.ModelState.AddModelError(string.Empty, ex.Message);
+                this.ModelState.AddModelError(string.Empty, $"We don't have a table for {model.NumberOfPeople} on the {model.ReservationDate}");
                 return this.View(model);
             }
+
+            return this.Redirect(nameof(this.Success) + $"?reservationId={reservationId}");
         }
 
         public IActionResult Success(string reservationId)

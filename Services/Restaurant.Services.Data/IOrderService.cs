@@ -12,5 +12,15 @@
         T GetByUserIdAndOrderNumber<T>(string userId, string orderNumber);
 
         IEnumerable<string> GetAllOrderNumbersByUserId(string userId);
+
+        IEnumerable<T> GetAllWithDeleted<T>(int itemsPerPage, int id);
+
+        int GetCountWithDeleted();
+
+        T GetByIdWithDeleted<T>(int id);
+
+        Task<bool> DeleteByIdAsync(int id);
+
+        Task<bool> RestoreAsync(int id);
     }
 }

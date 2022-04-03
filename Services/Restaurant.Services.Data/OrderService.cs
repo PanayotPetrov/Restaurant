@@ -58,5 +58,47 @@
             await this.cartService.ClearCartAsync(cart.Id);
             return order.OrderNumber;
         }
+
+        public IEnumerable<T> GetAllWithDeleted<T>(int itemsPerPage, int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetCountWithDeleted()
+        {
+            return this.orderRepository.AllAsNoTrackingWithDeleted().Count();
+        }
+
+        public T GetByIdWithDeleted<T>(int id)
+        {
+            return this.orderRepository.AllAsNoTrackingWithDeleted().Where(o => o.Id == id).To<T>().FirstOrDefault();
+        }
+
+        public async Task<bool> DeleteByIdAsync(int id)
+        {
+            var order = this.orderRepository.AllAsNoTrackingWithDeleted().FirstOrDefault(o => o.Id == id);
+            if (order.IsDeleted)
+            {
+                return false;
+            }
+
+            this.orderRepository.Delete(order);
+            await this.orderRepository.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> RestoreAsync(int id)
+        {
+            var order = this.orderRepository.AllAsNoTrackingWithDeleted().FirstOrDefault(o => o.Id == id);
+            if (!order.IsDeleted)
+            {
+                return false;
+            }
+
+            order.IsDeleted = false;
+            order.DeletedOn = null;
+            await this.orderRepository.SaveChangesAsync();
+            return true;
+        }
     }
 }

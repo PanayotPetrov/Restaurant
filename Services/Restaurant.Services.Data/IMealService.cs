@@ -17,13 +17,13 @@
 
         public IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int page);
 
-        Task DeleteByIdAsync(int mealId);
+        Task<bool> DeleteByIdAsync(int mealId);
 
         Task UpdateAsync(EditMealModel addMealModel, string imagePath);
 
         bool IsMealIdValid(int mealId);
 
-        Task RestoreAsync(int id);
+        Task<bool> RestoreAsync(int id);
 
         T GetByIdWithDeleted<T>(int id);
     }

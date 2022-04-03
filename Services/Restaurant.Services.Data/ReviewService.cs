@@ -61,31 +61,33 @@
             return this.reviewRepository.AllAsNoTracking().OrderByDescending(x => x.CreatedOn).Take(5).To<T>().ToList();
         }
 
-        public async Task DeleteByIdAsync(int id)
+        public async Task<bool> DeleteByIdAsync(int id)
         {
             var review = this.reviewRepository.AllAsNoTrackingWithDeleted().FirstOrDefault(r => r.Id == id);
 
             if (review.IsDeleted)
             {
-                throw new InvalidOperationException("This review has already been deleted!");
+                return false;
             }
 
             this.reviewRepository.Delete(review);
             await this.reviewRepository.SaveChangesAsync();
+            return true;
         }
 
-        public async Task RestoreAsync(int id)
+        public async Task<bool> RestoreAsync(int id)
         {
             var review = this.reviewRepository.AllWithDeleted().FirstOrDefault(r => r.Id == id);
 
             if (!review.IsDeleted)
             {
-                throw new InvalidOperationException("Cannot restore a review which has not been deleted!");
+                return false;
             }
 
             review.IsDeleted = false;
             review.DeletedOn = null;
             await this.reviewRepository.SaveChangesAsync();
+            return true;
         }
     }
 }

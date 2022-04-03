@@ -53,9 +53,14 @@
             return this.allowedDistricts;
         }
 
-        public async Task DeleteAsync(string addressName)
+        public async Task<bool> DeleteAsync(string addressName)
         {
             var address = this.addressRepository.AllAsNoTracking().FirstOrDefault(a => a.Name == addressName);
+            if (address is null)
+            {
+                return false;
+            }
+
             var userId = address.ApplicationUserId;
             this.addressRepository.Delete(address);
 
@@ -67,6 +72,8 @@
                 newPrimary.IsPrimaryAddress = true;
                 await this.addressRepository.SaveChangesAsync();
             }
+
+            return true;
         }
 
         public async Task CreateNewAddressAsync(AddAddressModel model, string userId)

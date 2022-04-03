@@ -2,12 +2,12 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-
+    using AutoMapper;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
 
-    public class AddReservationInputModel : IMapTo<AddReservationModel>
+    public class AddReservationInputModel : IMapTo<AddReservationModel>, IHaveCustomMappings
     {
         [Required(ErrorMessage = "We need your first name to book a table.")]
         [Display(Name = "Full name")]
@@ -36,6 +36,11 @@
         [Range(2, 6)]
         public int NumberOfPeople { get; set; }
 
-        public string UserId { get; set; }
+        public string ApplicationUserId { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<AddReservationInputModel, AddReservationModel>().ForMember(r => r.ReservationDate, opt => opt.MapFrom(r => r.ReservationDate.AddHours(r.ReservationTime)));
+        }
     }
 }

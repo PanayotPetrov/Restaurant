@@ -1,23 +1,22 @@
 ﻿namespace Restaurant.Web.Areas.Administration.Controllers
 {
-    using System;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
-    using Restaurant.Web.ViewModels.Review;
+    using Restaurant.Web.ViewModels.Order;
 
-    public class ReviewController : AdministrationController
+    public class OrderController : AdministrationController
     {
         private const int ItemsPerPage = 6;
-        private readonly IReviewService reviewService;
+        private readonly IOrderService orderService;
 
-        public ReviewController(IReviewService reviewService)
+        public OrderController(IOrderService orderService)
         {
-            this.reviewService = reviewService;
+            this.orderService = orderService;
         }
 
-        [HttpGet("/Administration/Review/All/{id}")]
+        [HttpGet("/Administration/Order/All/{id}")]
         public IActionResult Index(int id)
         {
             if (id < 1)
@@ -25,13 +24,13 @@
                 return this.NotFound();
             }
 
-            var reviews = this.reviewService.GetAllWithDeleted<AdminReviewViewModel>(ItemsPerPage, id);
+            var orders = this.orderService.GetAllWithDeleted<AdminOrderViewModel>(ItemsPerPage, id);
 
-            var model = new AdminReviewListViewModel
+            var model = new AdminOrderListViewModel
             {
-                Reviews = reviews,
+                Orders = orders,
                 ItemsPerPage = ItemsPerPage,
-                ItemCount = this.reviewService.GetCountWithDeleted(),
+                ItemCount = this.orderService.GetCountWithDeleted(),
                 PageNumber = id,
             };
 
@@ -52,7 +51,7 @@
                 return this.NotFound();
             }
 
-            var model = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>((int)id);
+            var model = this.orderService.GetByIdWithDeleted<AdminOrderViewModel>((int)id);
 
             return this.View(model);
         }
@@ -60,12 +59,12 @@
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await this.reviewService.DeleteByIdAsync(id);
+            var result = await this.orderService.DeleteByIdAsync(id);
             if (!result)
             {
-                this.ModelState.AddModelError(string.Empty, "This review has already been deleted!");
-                var review = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>(id);
-                return this.View("Details", review);
+                this.ModelState.AddModelError(string.Empty, "This order has already been deleted!");
+                var order = this.orderService.GetByIdWithDeleted<AdminOrderViewModel>(id);
+                return this.View("Details", order);
             }
 
             return this.RedirectToAction(nameof(this.Details), new { Id = id });
@@ -74,13 +73,13 @@
         [HttpPost]
         public async Task<IActionResult> Restore(int id)
         {
-            var result = await this.reviewService.RestoreAsync(id);
+            var result = await this.orderService.RestoreAsync(id);
 
             if (!result)
             {
-                this.ModelState.AddModelError(string.Empty, "Cannot restore a review which has not been deleted!");
-                var review = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>(id);
-                return this.View("Details", review);
+                this.ModelState.AddModelError(string.Empty, "Cannot restore an order which has not been deleted!");
+                var order = this.orderService.GetByIdWithDeleted<AdminOrderViewModel>(id);
+                return this.View("Details", order);
             }
 
             return this.RedirectToAction(nameof(this.Details), new { Id = id });

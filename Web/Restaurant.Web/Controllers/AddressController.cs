@@ -1,5 +1,6 @@
 ﻿namespace Restaurant.Web.Controllers
 {
+    using System.Linq;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -24,12 +25,16 @@
 
         [HttpGet("/Address/All/{addressName?}")]
         [AddAddressRouteIdActionFilter]
+        [GetModelErrorsFromTempDataActionFilter]
 
-        public IActionResult AllAddresses([AddressNameValidation]string addressName)
+        public IActionResult AllAddresses([AddressNameValidation] string addressName)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction(nameof(this.UrlNotFound));
+                if (!this.ModelState.Keys.Contains("Tempdata error"))
+                {
+                    return this.RedirectToAction(nameof(this.UrlNotFound));
+                }
             }
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -88,24 +93,21 @@
             var addAddressModel = AutoMapperConfig.MapperInstance.Map<AddAddressModel>(model);
 
             await this.addressService.CreateNewAddressAsync(addAddressModel, userId);
-            return this.Redirect($"/Address/All/{model.Name}");
+            return this.RedirectToAction(nameof(this.AllAddresses), new { addressName = model.Name });
         }
 
         [HttpPost]
+        [AddModelErrorsToTempDataActionFilter]
         public async Task<IActionResult> Delete(AddressViewModel model)
         {
-            try
-            {
-                string addressName = model.Name;
+            var result = await this.addressService.DeleteAsync(model.Name);
 
-                await this.addressService.DeleteAsync(addressName);
-                return this.RedirectToAction(nameof(this.AllAddresses));
-            }
-            catch (System.NullReferenceException)
+            if (!result)
             {
-                this.ModelState.AddModelError(string.Empty, "You don't have any addresses to delete.");
-                return this.Redirect($"/Address/All");
+                this.ModelState.AddModelError("model", "Can't delete this address, invalid name provided.");
             }
+
+            return this.RedirectToAction(nameof(this.AllAddresses));
         }
     }
 }

@@ -49,7 +49,11 @@
 
         public async Task<string> CreateReservationAsync(AddReservationModel model)
         {
-            var tableId = this.CheckForAvailableTable(model.ReservationDate, model.NumberOfPeople);
+            var tableId = this.GetAvailableTableId(model.ReservationDate, model.NumberOfPeople);
+            if (tableId == -1)
+            {
+                return null;
+            }
 
             var reservation = AutoMapperConfig.MapperInstance.Map<Reservation>(model);
             reservation.TableId = tableId;
@@ -58,22 +62,28 @@
             return reservation.Id;
         }
 
-        public async Task DeleteByIdAsync(string id)
+        public async Task<bool> DeleteByIdAsync(string id)
         {
             var reservation = this.reservationRepository.AllWithDeleted().FirstOrDefault(r => r.Id == id);
 
             if (reservation.IsDeleted)
             {
-                throw new InvalidOperationException("This reservation has already been deleted!");
+                return false;
             }
 
             this.reservationRepository.Delete(reservation);
             await this.reservationRepository.SaveChangesAsync();
+            return true;
         }
 
-        public async Task UpdateAsync(EditReservationModel model)
+        public async Task<bool> UpdateAsync(EditReservationModel model)
         {
-            var tableId = this.CheckForAvailableTable(model.ReservationDate, model.NumberOfPeople);
+            var tableId = this.GetAvailableTableId(model.ReservationDate, model.NumberOfPeople);
+
+            if (tableId == -1)
+            {
+                return false;
+            }
 
             var reservation = this.reservationRepository.AllWithDeleted().FirstOrDefault(r => r.Id == model.Id);
             reservation.ReservationDate = model.ReservationDate;
@@ -83,30 +93,27 @@
             reservation.Fullname = model.FullName;
             reservation.TableId = tableId;
             await this.reservationRepository.SaveChangesAsync();
+            return true;
         }
 
-        public async Task RestoreAsync(string id)
+        public async Task<bool> RestoreAsync(string id)
         {
             var reservation = this.reservationRepository.AllWithDeleted().FirstOrDefault(r => r.Id == id);
 
             if (!reservation.IsDeleted)
             {
-                throw new InvalidOperationException("Cannot restore a reservation which has not been deleted!");
+                return false;
             }
 
             reservation.IsDeleted = false;
             reservation.DeletedOn = null;
             await this.reservationRepository.SaveChangesAsync();
+            return true;
         }
 
-        private int CheckForAvailableTable(DateTime reservationDate, int numberOfPeople)
+        private int GetAvailableTableId(DateTime reservationDate, int numberOfPeople)
         {
             var tableId = this.tableService.GetAvailableTableId(reservationDate, numberOfPeople);
-
-            if (tableId == -1)
-            {
-                throw new InvalidOperationException($"We don't have a table for {numberOfPeople} on the {reservationDate}");
-            }
 
             return tableId;
         }
