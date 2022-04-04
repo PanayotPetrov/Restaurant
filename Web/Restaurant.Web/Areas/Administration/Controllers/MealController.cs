@@ -51,14 +51,14 @@
             return this.View(model);
         }
 
-        public IActionResult Details(int? id)
+        public IActionResult Details(int id)
         {
-            if (id == null)
+            var model = this.mealService.GetByIdWithDeleted<AdminMealViewModel>((int)id);
+
+            if (model is null)
             {
                 return this.NotFound();
             }
-
-            var model = this.mealService.GetByIdWithDeleted<AdminMealViewModel>((int)id);
 
             return this.View(model);
         }
@@ -87,14 +87,9 @@
             return this.RedirectToAction(nameof(this.Details), new { Id = id });
         }
 
-        public IActionResult Edit(int? id)
+        public IActionResult Edit(int id)
         {
-            if (id == null)
-            {
-                return this.NotFound();
-            }
-
-            var model = this.mealService.GetByIdWithDeleted<EditMealInputModel>((int)id);
+            var model = this.mealService.GetByIdWithDeleted<EditMealInputModel>(id);
 
             if (model == null)
             {

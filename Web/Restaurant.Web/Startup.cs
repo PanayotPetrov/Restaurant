@@ -48,8 +48,8 @@
                     });
             services.AddAuthentication().AddFacebook(opt =>
             {
-                opt.AppId = "3087955271425039";
-                opt.AppSecret = "02f3d194a5a56d69a3b47d57440e9cd8";
+                opt.AppId = this.configuration["FacebookLogin:AppId"];
+                opt.AppSecret = this.configuration["FacebookLogin:AppSecret"];
             });
             services.AddControllersWithViews(
                 options =>
@@ -104,6 +104,7 @@
                 app.UseHsts();
             }
 
+            app.UseStatusCodePagesWithReExecute("/Home/StatusCodeError", "?errorCode={0}");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

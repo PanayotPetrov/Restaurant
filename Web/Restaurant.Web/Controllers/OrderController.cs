@@ -46,7 +46,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction(nameof(this.UrlNotFound));
+                return this.NotFound();
             }
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
@@ -55,12 +55,11 @@
             return this.View(model);
         }
 
-        [HttpGet("/Order/Success/{orderNumber?}")]
         public IActionResult Success([OrderNumberValidation][Required] string orderNumber)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.RedirectToAction(nameof(this.UrlNotFound));
+                return this.NotFound();
             }
 
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;

@@ -1,11 +1,13 @@
 ﻿namespace Restaurant.Web.Areas.Administration.Controllers
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
+    using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Reservation;
 
@@ -47,9 +49,9 @@
             return this.View(model);
         }
 
-        public IActionResult Details(string id)
+        public IActionResult Details([ReservationIdValidation][Required] string id)
         {
-            if (id == null)
+            if (!this.ModelState.IsValid)
             {
                 return this.NotFound();
             }
@@ -59,9 +61,9 @@
             return this.View(model);
         }
 
-        public IActionResult Edit(string id)
+        public IActionResult Edit([ReservationIdValidation][Required]string id)
         {
-            if (id == null)
+            if (!this.ModelState.IsValid)
             {
                 return this.NotFound();
             }

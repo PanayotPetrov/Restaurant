@@ -22,7 +22,7 @@
         {
             if (id < 1)
             {
-                return this.UrlNotFound();
+                return this.NotFound();
             }
 
             var orders = this.orderService.GetAllWithDeleted<AdminOrderViewModel>(ItemsPerPage, id);
@@ -37,7 +37,7 @@
 
             if (id > model.PagesCount)
             {
-                return this.UrlNotFound();
+                return this.NotFound();
             }
 
             this.TempData["RouteId"] = id;
@@ -46,14 +46,14 @@
         }
 
         [GetModelErrorsFromTempDataActionFilter]
-        public IActionResult Details(int? id)
+        public IActionResult Details(int id)
         {
-            if (id == null || id <= 0)
-            {
-                return this.UrlNotFound();
-            }
+            var model = this.orderService.GetByIdWithDeleted<AdminOrderViewModel>(id);
 
-            var model = this.orderService.GetByIdWithDeleted<AdminOrderViewModel>((int)id);
+            if (model is null)
+            {
+                return this.NotFound();
+            }
 
             return this.View(model);
         }

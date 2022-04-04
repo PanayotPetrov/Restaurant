@@ -44,14 +44,14 @@
             return this.View(model);
         }
 
-        public IActionResult Details(int? id)
+        public IActionResult Details(int id)
         {
-            if (id == null)
+            var model = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>(id);
+
+            if (model is null)
             {
                 return this.NotFound();
             }
-
-            var model = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>((int)id);
 
             return this.View(model);
         }

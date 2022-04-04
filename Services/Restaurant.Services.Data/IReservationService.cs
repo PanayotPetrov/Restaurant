@@ -24,5 +24,7 @@
         Task<bool> UpdateAsync(EditReservationModel model);
 
         Task<bool> RestoreAsync(string id);
+
+        bool IsValid(string id);
     }
 }

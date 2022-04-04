@@ -44,5 +44,10 @@
             return this.View(
                 new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
+
+        public IActionResult StatusCodeError(string errorCode)
+        {
+            return this.View("StatusCodeError", errorCode);
+        }
     }
 }

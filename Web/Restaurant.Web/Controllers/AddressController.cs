@@ -33,7 +33,7 @@
             {
                 if (!this.ModelState.Keys.Contains("Tempdata error"))
                 {
-                    return this.RedirectToAction(nameof(this.UrlNotFound));
+                    return this.NotFound();
                 }
             }
 
