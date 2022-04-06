@@ -12,7 +12,7 @@
         public int MealId { get; set; }
 
         [Range(1, 100)]
-        [CartItemQuantityValidation("AddToCart")]
+        [CartItemQuantityValidation]
         public int Quantity { get; set; }
     }
 }

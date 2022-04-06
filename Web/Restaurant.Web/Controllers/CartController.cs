@@ -62,7 +62,7 @@
         [HttpPost]
         [IgnoreAntiforgeryToken]
         [ReturnModelStateErrorsAsJsonActionFilter]
-        public async Task<IActionResult> ChangeQuantity([FromBody] CartInputModel model)
+        public async Task<IActionResult> ChangeQuantity([FromBody] ChangeCartItemQuantityInputModel model)
         {
             var cartItem = AutoMapperConfig.MapperInstance.Map<CartItemModel>(model);
 

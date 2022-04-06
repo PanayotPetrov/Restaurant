@@ -81,7 +81,22 @@
 </div>
 <!-- Cart End -->
 
-
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalLabel"></h5>
+            </div>
+            <div class="modal-body">
+                <ul id="modalBody">
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btnCloseModal" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     function ChangeQuantity(id) {
@@ -116,12 +131,26 @@
                 if (xhr.status === 200) {
                     var jsonResult = JSON.parse(xhr.responseText);
                     cartItemContainer.querySelector('input').setAttribute('value', jsonResult.quantity);
-                    $("#cartSubTotalBtn").html('<i class="fa-solid fa-cart-shopping"></i> ' + jsonResult.cartSubTotal + ' <i class="fas fa-dollar-sign"></i>');
-                    $("#cartSubTotalCard").html(jsonResult.cartSubTotal + ' <i class="fas fa-dollar-sign"></i>');
-                    $("#cartItemTotalPrice" + mealId).html(jsonResult.itemTotalPrice + ' <i class="fas fa-dollar-sign"></i>');
-                    $("#cartTotalPrice").html(jsonResult.cartTotalPrice + ' <i class="fas fa-dollar-sign"></i>');
+                    $("#cartSubTotalBtn").html('<i class="fa-solid fa-cart-shopping"></i> ' + jsonResult.cartSubTotal + ' $');
+                    $("#cartSubTotalCard").html(jsonResult.cartSubTotal + ' $');
+                    $("#cartItemTotalPrice" + mealId).html(jsonResult.itemTotalPrice + ' $');
+                    $("#cartTotalPrice").html(jsonResult.cartTotalPrice + ' $');
                 }
+            },
+            error: function(xhr){
+                 $("#modalLabel").text('Oops!');
+                 var errors = JSON.parse(xhr.responseText);
+                 for (var i = 0; i < errors.length; i++) {
+                    $("#modalBody").append('<li class="text-danger">' + errors[i] + '</li>')
+                 }
+
+                $("#exampleModal").modal('show')
             }
+        });
+        
+        $("#btnCloseModal").click(function () {
+            $("#exampleModal").modal("hide");
+            $("#modalBody").text('');
         });
     }
 
