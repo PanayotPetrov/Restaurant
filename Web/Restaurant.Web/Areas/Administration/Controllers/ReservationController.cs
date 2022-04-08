@@ -29,7 +29,7 @@
                 return this.NotFound();
             }
 
-            var reservations = this.reservationService.GetAllAfterCurrentDate<AdminReservationViewModel>(ItemsPerPage, id);
+            var reservations = this.reservationService.GetAllWithoutPassedDates<AdminReservationViewModel>(ItemsPerPage, id);
 
             var model = new AdminReservationListViewModel
             {

@@ -27,7 +27,7 @@
 
         public T GetById<T>(int id)
         {
-            return this.reviewRepository.AllAsNoTrackingWithDeleted().Where(r => r.Id == id).To<T>().FirstOrDefault();
+            return this.reviewRepository.AllAsNoTracking().Where(r => r.Id == id).To<T>().FirstOrDefault();
         }
 
         public T GetByIdWithDeleted<T>(int id)

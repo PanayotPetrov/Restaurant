@@ -40,6 +40,7 @@
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
             var model = this.addressService.GetByUserIdAndAddressName<AddressViewModel>(userId, addressName);
+
             if (model is not null)
             {
                 model.AllowedDistricts = this.addressService.GetAllowedDistricts();

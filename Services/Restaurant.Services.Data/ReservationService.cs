@@ -34,17 +34,30 @@
 
         public IEnumerable<T> GetAllByUserId<T>(string userId)
         {
-            return this.reservationRepository.AllAsNoTracking().Where(r => r.ApplicationUserId == userId).OrderByDescending(x => x.ReservationDate).To<T>().ToList();
+            return this.reservationRepository
+                .AllAsNoTracking()
+                .Where(r => r.ApplicationUserId == userId)
+                .OrderByDescending(x => x.ReservationDate)
+                .To<T>()
+                .ToList();
         }
 
         public int GetCount()
         {
-            return this.reservationRepository.AllAsNoTrackingWithDeleted().Where(r => r.ReservationDate.Date >= this.currentDate.Date).Count();
+            return this.reservationRepository.AllAsNoTrackingWithDeleted()
+                .Where(r => r.ReservationDate.Date >= this.currentDate.Date)
+                .Count();
         }
 
-        public IEnumerable<T> GetAllAfterCurrentDate<T>(int itemsPerPage, int page)
+        public IEnumerable<T> GetAllWithoutPassedDates<T>(int itemsPerPage, int page)
         {
-            return this.reservationRepository.AllAsNoTrackingWithDeleted().Where(r => r.ReservationDate.Date >= this.currentDate.Date).OrderByDescending(x => x.ReservationDate).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
+            return this.reservationRepository.AllAsNoTrackingWithDeleted()
+                .Where(r => r.ReservationDate.Date >= this.currentDate.Date)
+                .OrderByDescending(x => x.ReservationDate)
+                .Skip((page - 1) * itemsPerPage)
+                .Take(itemsPerPage)
+                .To<T>()
+                .ToList();
         }
 
         public async Task<string> CreateReservationAsync(AddReservationModel model)

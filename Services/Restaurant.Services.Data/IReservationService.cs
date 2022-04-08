@@ -19,7 +19,7 @@
 
         int GetCount();
 
-        IEnumerable<T> GetAllAfterCurrentDate<T>(int itemsPerPage, int page);
+        IEnumerable<T> GetAllWithoutPassedDates<T>(int itemsPerPage, int page);
 
         Task<bool> UpdateAsync(EditReservationModel model);
 
