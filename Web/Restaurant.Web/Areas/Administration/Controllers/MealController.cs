@@ -8,6 +8,7 @@
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
+    using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Meal;
 
@@ -51,15 +52,14 @@
             return this.View(model);
         }
 
-        public IActionResult Details(int id)
+        public IActionResult Details([MealIdValidation] int id)
         {
-            var model = this.mealService.GetByIdWithDeleted<AdminMealViewModel>((int)id);
-
-            if (model is null)
+            if (!this.ModelState.IsValid)
             {
                 return this.NotFound();
             }
 
+            var model = this.mealService.GetByIdWithDeleted<AdminMealViewModel>(id);
             return this.View(model);
         }
 
@@ -87,21 +87,20 @@
             return this.RedirectToAction(nameof(this.Details), new { Id = id });
         }
 
-        public IActionResult Edit(int id)
+        public IActionResult Edit([MealIdValidation] int id)
         {
-            var model = this.mealService.GetByIdWithDeleted<EditMealInputModel>(id);
-
-            if (model == null)
+            if (!this.ModelState.IsValid)
             {
                 return this.NotFound();
             }
 
+            var model = this.mealService.GetByIdWithDeleted<EditMealInputModel>(id);
             model.Categories = this.categoryService.GetAllAsKeyValuePairs();
             return this.View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, EditMealInputModel model)
+        public async Task<IActionResult> Edit(EditMealInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -112,12 +111,17 @@
             var editMealModel = AutoMapperConfig.MapperInstance.Map<EditMealModel>(model);
 
             await this.mealService.UpdateAsync(editMealModel, $"{this.environment.WebRootPath}/images");
-            return this.RedirectToAction(nameof(this.Details), new { Id = id });
+            return this.RedirectToAction(nameof(this.Details), new { Id = model.Id });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([MealIdValidation] int id)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.NotFound();
+            }
+
             var result = await this.mealService.DeleteByIdAsync(id);
 
             if (!result)
@@ -132,8 +136,13 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Restore(int id)
+        public async Task<IActionResult> Restore([MealIdValidation] int id)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.NotFound();
+            }
+
             var result = await this.mealService.RestoreAsync(id);
 
             if (!result)

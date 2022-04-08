@@ -5,9 +5,11 @@
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
+    using Restaurant.Web.Infrastructure.ValidationAttributes;
 
     public class EditMealInputModel : BaseMealInputModel, IMapFrom<Meal>, IMapTo<EditMealModel>, IHaveCustomMappings
     {
+        [MealIdValidation]
         public int Id { get; set; }
 
         public string ImageUrl { get; set; }

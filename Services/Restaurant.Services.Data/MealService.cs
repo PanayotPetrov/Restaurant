@@ -61,7 +61,7 @@
 
         public bool IsMealIdValid(int mealId)
         {
-            return this.mealRepository.AllAsNoTracking().Any(m => m.Id == mealId);
+            return this.mealRepository.AllAsNoTrackingWithDeleted().Any(m => m.Id == mealId);
         }
 
         public async Task<bool> DeleteByIdAsync(int mealId)
