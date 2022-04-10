@@ -8,18 +8,18 @@
 <partial name="_HeroPartial" />
 
 <div>
-    <div asp-validation-summary="ModelOnly"></div>
+    <div asp-validation-summary="All"></div>
     <partial name="_ReviewInfoPartial" model="Model" />
-    <form asp-action="Delete" asp-route-id="@Model.Id" id="deleteForm">
+    <form asp-action="Delete" id="deleteForm">
         <input type="hidden" asp-for="Id" />
     </form>
-    <form asp-action="Restore" asp-route-id="@Model.Id" id="restoreForm">
+    <form asp-action="Restore" id="restoreForm">
         <input type="hidden" asp-for="Id" />
     </form>
     <button value="Delete" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash-can"></i> Delete</button> |
     <a class="btn btn-primary" asp-action="Index" asp-route-id="@(this.TempData["RouteId"] ?? 1)"><i class="fa-solid fa-bars"></i> Back to List</a> |
 
-    <button class="btn btn-primary" asp-action="Restore" asp-route-id="@Model.Id" onclick="restoreForm.submit()"><i class="fa-solid fa-trash-arrow-up"></i> Restore</button>
+    <button class="btn btn-primary" onclick="restoreForm.submit()"><i class="fa-solid fa-trash-arrow-up"></i> Restore</button>
 
 </div>
 

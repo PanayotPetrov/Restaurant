@@ -1,5 +1,6 @@
 ﻿namespace Restaurant.Web.Areas.Administration.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Hosting;
@@ -8,6 +9,7 @@
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
+    using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Meal;
@@ -52,11 +54,15 @@
             return this.View(model);
         }
 
+        [GetModelErrorsFromTempDataActionFilter]
         public IActionResult Details([MealIdValidation] int id)
         {
             if (!this.ModelState.IsValid)
             {
-                return this.NotFound();
+                if (!this.ModelState.Keys.Contains("Tempdata error"))
+                {
+                    return this.NotFound();
+                }
             }
 
             var model = this.mealService.GetByIdWithDeleted<AdminMealViewModel>(id);
@@ -115,6 +121,7 @@
         }
 
         [HttpPost]
+        [AddModelErrorsToTempDataActionFilter]
         public async Task<IActionResult> Delete([MealIdValidation] int id)
         {
             if (!this.ModelState.IsValid)
@@ -126,16 +133,14 @@
 
             if (!result)
             {
-                this.ModelState.AddModelError(string.Empty, "This meal has already been deleted!");
-                var model = this.mealService.GetByIdWithDeleted<EditMealInputModel>(id);
-                model.Categories = this.categoryService.GetAllAsKeyValuePairs();
-                return this.View("Edit", model);
+                this.ModelState.AddModelError("Tempdata error", "This meal has already been deleted!");
             }
 
             return this.RedirectToAction(nameof(this.Details), new { Id = id });
         }
 
         [HttpPost]
+        [AddModelErrorsToTempDataActionFilter]
         public async Task<IActionResult> Restore([MealIdValidation] int id)
         {
             if (!this.ModelState.IsValid)
@@ -147,10 +152,7 @@
 
             if (!result)
             {
-                this.ModelState.AddModelError(string.Empty, "Cannot restore a meal which has not been deleted!");
-                var model = this.mealService.GetByIdWithDeleted<EditMealInputModel>(id);
-                model.Categories = this.categoryService.GetAllAsKeyValuePairs();
-                return this.View("Edit", model);
+                this.ModelState.AddModelError("Tempdata error", "Cannot restore a meal which has not been deleted!");
             }
 
             return this.RedirectToAction(nameof(this.Details), new { Id = id });

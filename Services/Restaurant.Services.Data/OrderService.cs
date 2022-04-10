@@ -23,7 +23,7 @@
 
         public T GetByUserIdAndOrderNumber<T>(string userId, string orderNumber)
         {
-            return this.orderRepository.AllAsNoTrackingWithDeleted().Where(o => o.ApplicationUserId == userId && o.OrderNumber == orderNumber).To<T>().FirstOrDefault();
+            return this.orderRepository.AllAsNoTracking().Where(o => o.ApplicationUserId == userId && o.OrderNumber == orderNumber).To<T>().FirstOrDefault();
         }
 
         public IEnumerable<string> GetAllOrderNumbersByUserId(string userId)

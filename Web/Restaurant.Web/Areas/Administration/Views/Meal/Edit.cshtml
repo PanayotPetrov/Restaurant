@@ -15,6 +15,7 @@
     </div>
     <form method="post" class="col-md-6 offset-md-3"
           enctype="multipart/form-data">
+
         <div asp-validation-summary="All" class="text-danger"></div>
         <input hidden asp-for="Id" />
 
@@ -48,9 +49,12 @@
             <a class="btn btn-primary w-100 col-md-12 mt-3" asp-action="Index" asp-route-id="@(this.TempData["RouteId"] ?? 1)"><i class="fa-solid fa-bars"></i> Back to List</a>
         </div>
     </form>
-    <form asp-action="Delete" asp-route-id="@Model.Id" id="deleteForm">
+    <form asp-action="Delete" id="deleteForm">
+        <input type="hidden" asp-for="Id" />
+
     </form>
-    <form asp-action="Restore" asp-route-id="@Model.Id" id="restoreForm">
+    <form asp-action="Restore" id="restoreForm">
+        <input type="hidden" asp-for="Id" />
     </form>
     <button class="btn btn-secondary col-md-6 offset-md-3 mt-3" onclick="restoreForm.submit()"> <i class="fa-solid fa-trash-arrow-up"></i> Restore</button>
     <button value="Delete" class="btn btn-dark col-md-6 offset-md-3 mt-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash-can"></i> Delete</button>

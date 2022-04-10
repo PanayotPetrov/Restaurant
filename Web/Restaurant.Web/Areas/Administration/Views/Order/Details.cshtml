@@ -82,10 +82,10 @@
             </dd>
         </dl>
     </div>
-    <form asp-action="Delete" asp-route-id="@Model.OrderNumber" id="deleteForm">
+    <form asp-action="Delete" id="deleteForm">
         <input type="hidden" asp-for="OrderNumber" />
     </form>
-    <form asp-action="Restore" asp-route-id="@Model.OrderNumber" id="restoreForm">
+    <form asp-action="Restore" id="restoreForm">
         <input type="hidden" asp-for="OrderNumber" />
     </form>
     <form asp-action="Complete" asp-route-id="@Model.OrderNumber" id="completeForm">
@@ -95,9 +95,9 @@
 
     <a class="btn btn-primary" asp-action="Index" asp-route-id="@(this.TempData["RouteId"] ?? 1)"><i class="fa-solid fa-bars"></i> Back to List</a> |
 
-    <button class="btn btn-primary" asp-action="Restore" asp-route-id="@Model.OrderNumber" onclick="restoreForm.submit()"><i class="fa-solid fa-trash-arrow-up"></i> Restore</button> |
+    <button class="btn btn-primary" onclick="restoreForm.submit()"><i class="fa-solid fa-trash-arrow-up"></i> Restore</button> |
 
-    <button class="btn btn-primary" asp-action="Complete" asp-route-id="@Model.OrderNumber" onclick="completeForm.submit()"><i class="fa-solid fa-check"></i> Mark as completed</button>
+    <button class="btn btn-primary" onclick="completeForm.submit()"><i class="fa-solid fa-check"></i> Mark as completed</button>
 
 
 </div>

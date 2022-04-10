@@ -1,9 +1,12 @@
 ﻿namespace Restaurant.Web.Areas.Administration.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
+    using Restaurant.Web.Infrastructure.Filters;
+    using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.Review;
 
     public class ReviewController : AdministrationController
@@ -44,45 +47,59 @@
             return this.View(model);
         }
 
-        public IActionResult Details(int id)
+        [GetModelErrorsFromTempDataActionFilter]
+        public IActionResult Details([ReviewIdValidation] int id)
         {
-            var model = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>(id);
-
-            if (model is null)
+            if (!this.ModelState.IsValid)
             {
-                return this.NotFound();
+                if (!this.ModelState.Keys.Contains("Tempdata error"))
+                {
+                    return this.NotFound();
+                }
             }
+
+            var model = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>(id);
 
             return this.View(model);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(int id)
+        [AddModelErrorsToTempDataActionFilter]
+        public async Task<IActionResult> Delete([ReviewIdValidation] int id)
         {
-            var result = await this.reviewService.DeleteByIdAsync(id);
-            if (!result)
+            if (!this.ModelState.IsValid)
             {
-                this.ModelState.AddModelError(string.Empty, "This review has already been deleted!");
-                var review = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>(id);
-                return this.View("Details", review);
+                return this.NotFound();
             }
 
-            return this.RedirectToAction(nameof(this.Details), new { Id = id });
+            var result = await this.reviewService.DeleteByIdAsync(id);
+
+            if (!result)
+            {
+                this.ModelState.AddModelError("Tempdata error", "This review has already been deleted!");
+            }
+
+            return this.RedirectToAction(nameof(this.Details), new { id });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Restore(int id)
+        [AddModelErrorsToTempDataActionFilter]
+
+        public async Task<IActionResult> Restore([ReviewIdValidation] int id)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.NotFound();
+            }
+
             var result = await this.reviewService.RestoreAsync(id);
 
             if (!result)
             {
-                this.ModelState.AddModelError(string.Empty, "Cannot restore a review which has not been deleted!");
-                var review = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>(id);
-                return this.View("Details", review);
+                this.ModelState.AddModelError("Tempdata error", "Cannot restore a review which has not been deleted!");
             }
 
-            return this.RedirectToAction(nameof(this.Details), new { Id = id });
+            return this.RedirectToAction(nameof(this.Details), new { id });
         }
     }
 }

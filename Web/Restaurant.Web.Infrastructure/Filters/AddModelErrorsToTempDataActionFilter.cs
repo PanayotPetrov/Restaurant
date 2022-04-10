@@ -1,6 +1,7 @@
 ﻿namespace Restaurant.Web.Infrastructure.Filters
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Filters;
@@ -9,7 +10,7 @@
     {
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-            if (!context.ModelState.IsValid)
+            if (!context.ModelState.IsValid && context.ModelState.Keys.Contains("Tempdata error"))
             {
                 var modelErrors = new List<string>();
 
@@ -21,6 +22,7 @@
                     }
                 }
 
+                modelErrors.RemoveAll(x => string.IsNullOrEmpty(x));
                 var controller = context.Controller as Controller;
                 controller.TempData.Add("ValidationErrors", modelErrors);
             }

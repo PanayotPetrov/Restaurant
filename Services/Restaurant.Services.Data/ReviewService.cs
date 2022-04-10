@@ -62,7 +62,7 @@
 
         public bool IsReviewIdValid(int reviewId)
         {
-            return this.reviewRepository.AllAsNoTracking().Any(r => r.Id == reviewId);
+            return this.reviewRepository.AllAsNoTrackingWithDeleted().Any(r => r.Id == reviewId);
         }
 
         public async Task<bool> DeleteByIdAsync(int id)

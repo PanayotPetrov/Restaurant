@@ -126,7 +126,7 @@
 
         public bool IsValid(string reservationId)
         {
-            return this.reservationRepository.AllAsNoTracking().Any(r => r.Id == reservationId);
+            return this.reservationRepository.AllAsNoTrackingWithDeleted().Any(r => r.Id == reservationId);
         }
 
         private int GetAvailableTableId(DateTime reservationDate, int numberOfPeople)

@@ -1,12 +1,14 @@
 ﻿namespace Restaurant.Web.Areas.Administration.Controllers
 {
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
+    using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Reservation;
@@ -49,9 +51,10 @@
             return this.View(model);
         }
 
+        [GetModelErrorsFromTempDataActionFilter]
         public IActionResult Details([ReservationIdValidation][Required] string id)
         {
-            if (!this.ModelState.IsValid)
+            if (!this.ModelState.IsValid && !this.ModelState.Keys.Contains("Tempdata error"))
             {
                 return this.NotFound();
             }
@@ -61,7 +64,7 @@
             return this.View(model);
         }
 
-        public IActionResult Edit([ReservationIdValidation][Required]string id)
+        public IActionResult Edit([ReservationIdValidation][Required] string id)
         {
             if (!this.ModelState.IsValid)
             {
@@ -95,32 +98,41 @@
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(string id)
+        [AddModelErrorsToTempDataActionFilter]
+        public async Task<IActionResult> Delete([ReservationIdValidation] string id)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.NotFound();
+            }
+
             var result = await this.reservationService.DeleteByIdAsync(id);
 
             if (!result)
             {
-                this.ModelState.AddModelError(string.Empty, "This reservation has already been deleted!");
-                var review = this.reservationService.GetByIdWithDeleted<EditReservationInputModel>(id);
-                return this.View("Edit", review);
+                this.ModelState.AddModelError("Tempdata error", "This reservation has already been deleted!");
             }
 
-            return this.RedirectToAction(nameof(this.Details), new { Id = id });
+            return this.RedirectToAction(nameof(this.Details), new { id });
         }
 
         [HttpPost]
-        public async Task<IActionResult> Restore(string id)
+        [AddModelErrorsToTempDataActionFilter]
+        public async Task<IActionResult> Restore([ReservationIdValidation] string id)
         {
-            var result = await this.reservationService.RestoreAsync(id);
-            if (!result)
+            if (!this.ModelState.IsValid)
             {
-                this.ModelState.AddModelError(string.Empty, "Cannot restore a reservation which has not been deleted!");
-                var reservation = this.reservationService.GetById<EditReservationInputModel>(id);
-                return this.View("Edit", reservation);
+                return this.NotFound();
             }
 
-            return this.RedirectToAction(nameof(this.Details), new { Id = id });
+            var result = await this.reservationService.RestoreAsync(id);
+
+            if (!result)
+            {
+                this.ModelState.AddModelError("Tempdata error", "Cannot restore a reservation which has not been deleted!");
+            }
+
+            return this.RedirectToAction(nameof(this.Details), new { id });
         }
     }
 }

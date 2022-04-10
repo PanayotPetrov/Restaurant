@@ -76,10 +76,10 @@
             var result = await this.orderService.DeleteByIdAsync(orderNumber);
             if (!result)
             {
-                this.ModelState.AddModelError(string.Empty, "This order has already been deleted!");
+                this.ModelState.AddModelError("Tempdata error", "This order has already been deleted!");
             }
 
-            return this.RedirectToAction(nameof(this.Details), new { OrderNumber = orderNumber });
+            return this.RedirectToAction(nameof(this.Details), new { orderNumber });
         }
 
         [HttpPost]
@@ -95,10 +95,10 @@
 
             if (!result)
             {
-                this.ModelState.AddModelError(string.Empty, "Cannot restore an order which has not been deleted!");
+                this.ModelState.AddModelError("Tempdata error", "Cannot restore an order which has not been deleted!");
             }
 
-            return this.RedirectToAction(nameof(this.Details), new { OrderNumber = orderNumber });
+            return this.RedirectToAction(nameof(this.Details), new { orderNumber });
         }
 
         [HttpPost]
@@ -111,12 +111,13 @@
             }
 
             var result = await this.orderService.CompleteAsync(orderNumber);
+
             if (!result)
             {
-                this.ModelState.AddModelError(string.Empty, "This order has already been completed!");
+                this.ModelState.AddModelError("Tempdata error", "This order has already been completed!");
             }
 
-            return this.RedirectToAction(nameof(this.Details), new { OrderNumber = orderNumber });
+            return this.RedirectToAction(nameof(this.Details), new { orderNumber });
         }
     }
 }
