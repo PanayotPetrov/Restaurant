@@ -10,11 +10,12 @@
     using Restaurant.Web.ViewModels.Meal;
     using Xunit;
 
-    public class CartRelatedValidationAttributesTests : IClassFixture<ServiceCollectionFixture>
+    [Collection("Services")]
+    public class CartRelatedValidationAttributesTests
     {
-        private ServiceCollectionFixture fixture;
+        private Services fixture;
 
-        public CartRelatedValidationAttributesTests(ServiceCollectionFixture fixture)
+        public CartRelatedValidationAttributesTests(Services fixture)
         {
             this.fixture = fixture;
         }

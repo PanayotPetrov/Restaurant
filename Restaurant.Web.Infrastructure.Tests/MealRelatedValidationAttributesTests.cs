@@ -6,11 +6,12 @@
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Xunit;
 
-    public class MealRelatedValidationAttributesTests : IClassFixture<ServiceCollectionFixture>
+    [Collection("Services")]
+    public class MealRelatedValidationAttributesTests
     {
-        private readonly ServiceCollectionFixture fixture;
+        private readonly Services fixture;
 
-        public MealRelatedValidationAttributesTests(ServiceCollectionFixture fixture)
+        public MealRelatedValidationAttributesTests(Services fixture)
         {
             this.fixture = fixture;
         }

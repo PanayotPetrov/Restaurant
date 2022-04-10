@@ -30,19 +30,19 @@
         public void IsReviewIdValid_ShouldReturnTrueIfReviewExists()
         {
             this.GenerateReviews(3);
-            this.repository.Setup(r => r.AllAsNoTracking()).Returns(this.reviews.AsQueryable());
+            this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reviews.AsQueryable());
 
             Assert.True(this.service.IsReviewIdValid(1));
-            this.repository.Verify(x => x.AllAsNoTracking(), Times.Once);
+            this.repository.Verify(x => x.AllAsNoTrackingWithDeleted(), Times.Once);
         }
 
         [Fact]
         public void IsReviewIdValid_ShouldReturnFalseIfIdIsInvalid()
         {
-            this.repository.Setup(r => r.AllAsNoTracking()).Returns(this.reviews.AsQueryable());
+            this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reviews.AsQueryable());
 
             Assert.False(this.service.IsReviewIdValid(1));
-            this.repository.Verify(x => x.AllAsNoTracking(), Times.Once);
+            this.repository.Verify(x => x.AllAsNoTrackingWithDeleted(), Times.Once);
         }
 
         [Fact]

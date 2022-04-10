@@ -36,7 +36,7 @@
                 Id = "Valid id",
             });
 
-            this.repository.Setup(r => r.AllAsNoTracking()).Returns(this.reservations.AsQueryable());
+            this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reservations.AsQueryable());
 
             Assert.False(this.service.IsValid("Invalid Id"));
         }
@@ -49,7 +49,7 @@
                 Id = "Valid id",
             });
 
-            this.repository.Setup(r => r.AllAsNoTracking()).Returns(this.reservations.AsQueryable());
+            this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reservations.AsQueryable());
 
             Assert.True(this.service.IsValid("Valid id"));
         }

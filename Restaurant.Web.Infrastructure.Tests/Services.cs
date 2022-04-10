@@ -7,11 +7,11 @@
     using Moq;
     using Restaurant.Services.Data;
 
-    public class ServiceCollectionFixture
+    public class Services
     {
-        public ServiceCollectionFixture()
+        public Services()
         {
-            this.Services = new Mock<IServiceProvider>();
+            this.ServiceCollection = new Mock<IServiceProvider>();
             this.AddressServiceMock = new Mock<IAddressService>();
             this.CartServiceMock = new Mock<ICartService>();
             this.ReservationServiceMock = new Mock<IReservationService>();
@@ -19,25 +19,25 @@
             this.MealServiceMock = new Mock<IMealService>();
             this.ReviewServiceMock = new Mock<IReviewService>();
 
-            this.ValidationContext = new ValidationContext("null", this.Services.Object, null);
+            this.ValidationContext = new ValidationContext("null", this.ServiceCollection.Object, null);
             this.HttpContextAccessorMock = new Mock<IHttpContextAccessor>();
             this.HttpContext = new DefaultHttpContext();
             this.ClaimsPrincipalMock = new Mock<ClaimsPrincipal>();
             this.UserIdClaim = new Claim("Test claim", "Test userId");
 
-            this.Services.Setup(x => x.GetService(typeof(IHttpContextAccessor)))
+            this.ServiceCollection.Setup(x => x.GetService(typeof(IHttpContextAccessor)))
                     .Returns(this.HttpContextAccessorMock.Object);
-            this.Services.Setup(x => x.GetService(typeof(IAddressService)))
+            this.ServiceCollection.Setup(x => x.GetService(typeof(IAddressService)))
                     .Returns(this.AddressServiceMock.Object);
-            this.Services.Setup(x => x.GetService(typeof(ICartService)))
+            this.ServiceCollection.Setup(x => x.GetService(typeof(ICartService)))
                     .Returns(this.CartServiceMock.Object);
-            this.Services.Setup(x => x.GetService(typeof(IReservationService)))
+            this.ServiceCollection.Setup(x => x.GetService(typeof(IReservationService)))
                     .Returns(this.ReservationServiceMock.Object);
-            this.Services.Setup(x => x.GetService(typeof(IOrderService)))
+            this.ServiceCollection.Setup(x => x.GetService(typeof(IOrderService)))
                     .Returns(this.OrderServiceMock.Object);
-            this.Services.Setup(x => x.GetService(typeof(IMealService)))
+            this.ServiceCollection.Setup(x => x.GetService(typeof(IMealService)))
                     .Returns(this.MealServiceMock.Object);
-            this.Services.Setup(x => x.GetService(typeof(IReviewService)))
+            this.ServiceCollection.Setup(x => x.GetService(typeof(IReviewService)))
                     .Returns(this.ReviewServiceMock.Object);
 
             this.HttpContextAccessorMock.Setup(x => x.HttpContext).Returns(this.HttpContext);
@@ -45,7 +45,7 @@
             this.HttpContext.User = this.ClaimsPrincipalMock.Object;
         }
 
-        public Mock<IServiceProvider> Services { get; private set; }
+        public Mock<IServiceProvider> ServiceCollection { get; private set; }
 
         public Mock<IAddressService> AddressServiceMock { get; private set; }
 
@@ -68,6 +68,5 @@
         public Mock<ClaimsPrincipal> ClaimsPrincipalMock { get; private set; }
 
         public Claim UserIdClaim { get; private set; }
-
     }
 }
