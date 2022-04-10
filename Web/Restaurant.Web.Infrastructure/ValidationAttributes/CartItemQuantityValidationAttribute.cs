@@ -12,12 +12,13 @@
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             var httpContextAccessor = validationContext.GetService<IHttpContextAccessor>();
-            var intValue = (int)value;
+
+            var quantityToAdd = (int)value;
             var userId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var cartService = validationContext.GetService<ICartService>();
             var cartItemQuantityLeft = cartService.GetItemQuantityPerCartLeft(userId);
 
-            if (cartItemQuantityLeft >= intValue)
+            if (cartItemQuantityLeft >= quantityToAdd)
             {
                 return ValidationResult.Success;
             }

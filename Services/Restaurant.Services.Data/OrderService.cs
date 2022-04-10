@@ -41,9 +41,9 @@
             return this.orderRepository.AllAsNoTrackingWithDeleted().Count();
         }
 
-        public T GetByIdWithDeleted<T>(int id)
+        public T GetByOrderNumberWithDeleted<T>(string orderNumber)
         {
-            return this.orderRepository.AllAsNoTrackingWithDeleted().Where(o => o.Id == id).To<T>().FirstOrDefault();
+            return this.orderRepository.AllAsNoTrackingWithDeleted().Where(o => o.OrderNumber == orderNumber).To<T>().FirstOrDefault();
         }
 
         public async Task<string> CreateAsync(AddOrderModel model)
@@ -74,9 +74,9 @@
             return order.OrderNumber;
         }
 
-        public async Task<bool> DeleteByIdAsync(int id)
+        public async Task<bool> DeleteByIdAsync(string orderNumber)
         {
-            var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.Id == id);
+            var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.OrderNumber == orderNumber);
             if (order.IsDeleted)
             {
                 return false;
@@ -87,9 +87,9 @@
             return true;
         }
 
-        public async Task<bool> RestoreAsync(int id)
+        public async Task<bool> RestoreAsync(string orderNumber)
         {
-            var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.Id == id);
+            var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.OrderNumber == orderNumber);
             if (!order.IsDeleted)
             {
                 return false;
@@ -101,9 +101,9 @@
             return true;
         }
 
-        public async Task<bool> CompleteAsync(int id)
+        public async Task<bool> CompleteAsync(string orderNumber)
         {
-            var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.Id == id);
+            var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.OrderNumber == orderNumber);
             if (order.IsComplete)
             {
                 return false;

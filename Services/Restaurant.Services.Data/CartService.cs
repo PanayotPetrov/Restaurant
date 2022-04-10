@@ -12,6 +12,8 @@
     public class CartService : ICartService
     {
         private const decimal ShippingPrice = 3.90M;
+        private const int AllowedItemQuantityPerCart = 100;
+
         private readonly IDeletableEntityRepository<Cart> cartRepository;
         private readonly IRepository<CartItem> cartItemRepository;
         private readonly IDeletableEntityRepository<Meal> mealRepository;
@@ -46,8 +48,8 @@
         public int GetItemQuantityPerCartLeft(string userId)
         {
             var cartId = this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).Select(c => c.Id).FirstOrDefault();
-            var itemQuantity = this.cartItemRepository.AllAsNoTracking().Where(ci => ci.CartId == cartId).Select(ci => ci.Quantity).Sum();
-            return 100 - itemQuantity;
+            var currentCartItemsQuantity = this.cartItemRepository.AllAsNoTracking().Where(ci => ci.CartId == cartId).Select(ci => ci.Quantity).Sum();
+            return AllowedItemQuantityPerCart - currentCartItemsQuantity;
         }
 
         public async Task RemoveFromCartAsync(CartItemModel model)

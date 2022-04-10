@@ -10,7 +10,7 @@
 
             if (value is string stringValue)
             {
-                if (stringValue == alowedCountry)
+                if (stringValue.ToLower() == alowedCountry.ToLower())
                 {
                     return ValidationResult.Success;
                 }

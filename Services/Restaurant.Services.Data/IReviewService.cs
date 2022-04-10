@@ -23,6 +23,8 @@
 
         Task<bool> DeleteByIdAsync(int id);
 
+        bool IsReviewIdValid(int reviewId);
+
         Task<bool> RestoreAsync(int id);
 
         T GetByIdWithDeleted<T>(int id);

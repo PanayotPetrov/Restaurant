@@ -10,7 +10,7 @@
 
             if (value is string stringValue)
             {
-                if (stringValue == allowedCity)
+                if (stringValue.ToLower() == allowedCity.ToLower())
                 {
                     return ValidationResult.Success;
                 }

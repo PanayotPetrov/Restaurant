@@ -1,10 +1,12 @@
 ﻿namespace Restaurant.Web.Areas.Administration.Controllers
 {
+    using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
     using Restaurant.Web.Infrastructure.Filters;
+    using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.Order;
 
     public class OrderController : AdministrationController
@@ -45,57 +47,76 @@
             return this.View(model);
         }
 
+        [HttpGet("/Administration/Order/Details/{orderNumber}")]
         [GetModelErrorsFromTempDataActionFilter]
-        public IActionResult Details(int id)
+        public IActionResult Details([OrderNumberValidation] string orderNumber)
         {
-            var model = this.orderService.GetByIdWithDeleted<AdminOrderViewModel>(id);
-
-            if (model is null)
+            if (!this.ModelState.IsValid)
             {
-                return this.NotFound();
+                if (!this.ModelState.Keys.Contains("Tempdata error"))
+                {
+                    return this.NotFound();
+                }
             }
+
+            var model = this.orderService.GetByOrderNumberWithDeleted<AdminOrderViewModel>(orderNumber);
 
             return this.View(model);
         }
 
         [HttpPost]
         [AddModelErrorsToTempDataActionFilter]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([OrderNumberValidation] string orderNumber)
         {
-            var result = await this.orderService.DeleteByIdAsync(id);
+            if (!this.ModelState.IsValid)
+            {
+                return this.NotFound();
+            }
+
+            var result = await this.orderService.DeleteByIdAsync(orderNumber);
             if (!result)
             {
                 this.ModelState.AddModelError(string.Empty, "This order has already been deleted!");
             }
 
-            return this.RedirectToAction(nameof(this.Details), new { Id = id });
+            return this.RedirectToAction(nameof(this.Details), new { OrderNumber = orderNumber });
         }
 
         [HttpPost]
         [AddModelErrorsToTempDataActionFilter]
-        public async Task<IActionResult> Restore(int id)
+        public async Task<IActionResult> Restore([OrderNumberValidation] string orderNumber)
         {
-            var result = await this.orderService.RestoreAsync(id);
+            if (!this.ModelState.IsValid)
+            {
+                return this.NotFound();
+            }
+
+            var result = await this.orderService.RestoreAsync(orderNumber);
 
             if (!result)
             {
                 this.ModelState.AddModelError(string.Empty, "Cannot restore an order which has not been deleted!");
             }
 
-            return this.RedirectToAction(nameof(this.Details), new { Id = id });
+            return this.RedirectToAction(nameof(this.Details), new { OrderNumber = orderNumber });
         }
 
         [HttpPost]
         [AddModelErrorsToTempDataActionFilter]
-        public async Task<IActionResult> Complete(int id)
+        public async Task<IActionResult> Complete([OrderNumberValidation] string orderNumber)
         {
-            var result = await this.orderService.CompleteAsync(id);
+            if (!this.ModelState.IsValid)
+            {
+                return this.NotFound();
+            }
+
+            var result = await this.orderService.CompleteAsync(orderNumber);
             if (!result)
             {
                 this.ModelState.AddModelError(string.Empty, "This order has already been completed!");
             }
 
-            return this.RedirectToAction(nameof(this.Details), new { Id = id });
+            return this.RedirectToAction(nameof(this.Details), new { OrderNumber = orderNumber });
         }
     }
 }

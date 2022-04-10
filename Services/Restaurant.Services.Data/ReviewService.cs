@@ -60,6 +60,11 @@
             return this.reviewRepository.AllAsNoTracking().OrderByDescending(x => x.CreatedOn).Take(5).To<T>().ToList();
         }
 
+        public bool IsReviewIdValid(int reviewId)
+        {
+            return this.reviewRepository.AllAsNoTracking().Any(r => r.Id == reviewId);
+        }
+
         public async Task<bool> DeleteByIdAsync(int id)
         {
             var review = this.reviewRepository.AllWithDeleted().FirstOrDefault(r => r.Id == id);

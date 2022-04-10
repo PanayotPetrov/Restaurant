@@ -29,12 +29,13 @@
             var cartService = validationContext.GetService<ICartService>();
             var cart = cartService.GetCartByUserId<CartViewModel>(userId);
             var previousItemQuantity = cart.CartItems.FirstOrDefault(ci => ci.Meal.Id == this.MealId).Quantity;
+            var cartItemTotalQuantity = cart.CartItems.Select(ci => ci.Quantity).Sum();
 
             if (this.Quantity < previousItemQuantity)
             {
                 yield return ValidationResult.Success;
             }
-            else if (cart.CartItems.Select(ci => ci.Quantity).Sum() < 100)
+            else if (cartItemTotalQuantity < 100)
             {
                 yield return ValidationResult.Success;
             }

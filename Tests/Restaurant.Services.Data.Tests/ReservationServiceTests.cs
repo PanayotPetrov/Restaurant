@@ -245,7 +245,6 @@
             var result = this.service.GetByIdWithDeleted<AdminReservationViewModel>("Test Id1");
 
             Assert.Equal("Test Id1", result.Id);
-
         }
 
         [Fact]

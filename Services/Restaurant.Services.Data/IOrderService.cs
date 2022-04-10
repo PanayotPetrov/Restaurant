@@ -17,12 +17,12 @@
 
         int GetCountWithDeleted();
 
-        T GetByIdWithDeleted<T>(int id);
+        T GetByOrderNumberWithDeleted<T>(string orderNumber);
 
-        Task<bool> DeleteByIdAsync(int id);
+        Task<bool> DeleteByIdAsync(string orderNumber);
 
-        Task<bool> RestoreAsync(int id);
+        Task<bool> RestoreAsync(string orderNumber);
 
-        Task<bool> CompleteAsync(int id);
+        Task<bool> CompleteAsync(string orderNumber);
     }
 }
