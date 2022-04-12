@@ -33,11 +33,11 @@
         {
             if (originalAddressName is null)
             {
-                return this.addressRepository.AllAsNoTrackingWithDeleted().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
+                return this.addressRepository.AllAsNoTracking().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
             }
             else if (originalAddressName != addressName)
             {
-                return this.addressRepository.AllAsNoTrackingWithDeleted().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
+                return this.addressRepository.AllAsNoTracking().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
             }
 
             return false;
@@ -45,7 +45,7 @@
 
         public IEnumerable<string> GetAddressNamesByUserId(string userId)
         {
-            return this.addressRepository.AllAsNoTracking().Select(a => a.Name).ToList();
+            return this.addressRepository.AllAsNoTracking().Where(a => a.ApplicationUserId == userId).Select(a => a.Name).ToList();
         }
 
         public IEnumerable<string> GetAllowedDistricts()

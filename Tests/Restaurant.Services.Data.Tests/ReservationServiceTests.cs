@@ -81,6 +81,21 @@
         }
 
         [Fact]
+        public async Task RestoreAsync_ShouldRestoreReservation()
+        {
+            var reservation = new Reservation
+            {
+                Id = "Test id",
+                IsDeleted = true,
+            };
+            this.reservations.Add(reservation);
+
+            this.repository.Setup(r => r.AllWithDeleted()).Returns(this.reservations.AsQueryable());
+            await this.service.RestoreAsync(reservation.Id);
+            Assert.False(this.reservations.FirstOrDefault().IsDeleted);
+        }
+
+        [Fact]
         public async Task DeleteByIdAsync_ShouldReturnTrueIfSuccessfullyDeleted()
         {
             this.reservations.Add(new Reservation
@@ -91,6 +106,22 @@
 
             this.repository.Setup(r => r.AllWithDeleted()).Returns(this.reservations.AsQueryable());
             Assert.True(await this.service.DeleteByIdAsync("Valid id"));
+        }
+
+        [Fact]
+        public async Task DeleteById_ShouldDeleteReview()
+        {
+            var reservation = new Reservation
+            {
+                Id = "Test id",
+                IsDeleted = false,
+            };
+            this.reservations.Add(reservation);
+
+            this.repository.Setup(r => r.AllWithDeleted()).Returns(this.reservations.AsQueryable());
+            this.repository.Setup(r => r.Delete(It.IsAny<Reservation>())).Callback((Reservation reservation) => this.reservations.Remove(reservation));
+            await this.service.DeleteByIdAsync(reservation.Id);
+            Assert.Empty(this.reservations);
         }
 
         [Fact]

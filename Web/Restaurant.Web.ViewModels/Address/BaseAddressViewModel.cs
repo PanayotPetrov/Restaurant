@@ -10,7 +10,7 @@
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage ="Your address name can't be empty")]
+        [Required(ErrorMessage = "Your address name can't be empty")]
         [ValidateUniqueAddressName]
         public string Name { get; set; }
 

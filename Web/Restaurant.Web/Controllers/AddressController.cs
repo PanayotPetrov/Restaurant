@@ -52,7 +52,7 @@
         [HttpPost("/Address/All/{addressName?}")]
         [AddAddressRouteIdActionFilter]
         [UniqueAddressNameValidationActionFilter]
-        public async Task<IActionResult> AllAddresses(string addressName, AddressViewModel model)
+        public async Task<IActionResult> AllAddresses([AddressNameValidation] string addressName, AddressViewModel model)
         {
             if (!this.ModelState.IsValid)
             {

@@ -86,7 +86,7 @@
         }
 
         [Fact]
-        public async Task DeleteById_ShouldReturnFalseIfReviewIsAlreadyDeleted()
+        public async Task DeleteById_ShouldReturnFalse_IfReviewIsAlreadyDeleted()
         {
             var review = new Review
             {
@@ -101,7 +101,7 @@
         }
 
         [Fact]
-        public async Task DeleteById_ShouldReturnTrueIfReviewIsDeletedSuccessfully()
+        public async Task DeleteById_ShouldReturnTrueIfHasNotMarkedAsDeleted()
         {
             var review = new Review
             {
@@ -116,7 +116,23 @@
         }
 
         [Fact]
-        public async Task RestoreAsync_ShouldReturnTrueIfReviewIsRestored()
+        public async Task DeleteById_ShouldDeleteReview()
+        {
+            var review = new Review
+            {
+                Id = 1,
+                IsDeleted = false,
+            };
+            this.reviews.Add(review);
+
+            this.repository.Setup(r => r.AllWithDeleted()).Returns(this.reviews.AsQueryable());
+            this.repository.Setup(r => r.Delete(It.IsAny<Review>())).Callback((Review review) => this.reviews.Remove(review));
+            await this.service.DeleteByIdAsync(1);
+            Assert.Empty(this.reviews);
+        }
+
+        [Fact]
+        public async Task RestoreAsync_ShouldReturnTrue_IfReviewIsMarkedAsDeleted()
         {
             var review = new Review
             {
@@ -131,7 +147,23 @@
         }
 
         [Fact]
-        public async Task RestoreAsync_ShouldReturnFalseIfReviewHasNotBeenDeletedInitially()
+        public async Task RestoreAsync_ShouldRestoreReview()
+        {
+            var review = new Review
+            {
+                Id = 1,
+                IsDeleted = true,
+            };
+            this.reviews.Add(review);
+
+            this.repository.Setup(r => r.AllWithDeleted()).Returns(this.reviews.AsQueryable());
+            await this.service.RestoreAsync(1);
+            Assert.False(this.reviews.FirstOrDefault().IsDeleted);
+            this.repository.Verify(x => x.AllWithDeleted(), Times.Once);
+        }
+
+        [Fact]
+        public async Task RestoreAsync_ShouldReturnFalse_IfReviewHasNotBeenDeletedInitially()
         {
             var review = new Review
             {
