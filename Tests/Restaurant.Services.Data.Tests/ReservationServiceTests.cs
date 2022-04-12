@@ -38,7 +38,7 @@
 
             this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reservations.AsQueryable());
 
-            Assert.False(this.service.IsValid("Invalid Id"));
+            Assert.False(this.service.IsReservationIdValid("Invalid Id"));
         }
 
         [Fact]
@@ -51,7 +51,7 @@
 
             this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reservations.AsQueryable());
 
-            Assert.True(this.service.IsValid("Valid id"));
+            Assert.True(this.service.IsReservationIdValid("Valid id"));
         }
 
         [Fact]

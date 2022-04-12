@@ -6,7 +6,7 @@
     using Microsoft.EntityFrameworkCore;
     using Restaurant.Data.Common.Models;
 
-    [Index(nameof(Name), IsUnique = true)]
+    [Index(nameof(Name), IsUnique = false)]
     public class Address : BaseDeletableModel<int>
     {
         public Address()

@@ -12,7 +12,7 @@
             if (value is string reservationId)
             {
                 var reservationService = validationContext.GetService<IReservationService>();
-                var result = reservationService.IsValid(reservationId);
+                var result = reservationService.IsReservationIdValid(reservationId);
 
                 if (result)
                 {

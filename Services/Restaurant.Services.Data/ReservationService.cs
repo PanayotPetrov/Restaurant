@@ -124,7 +124,7 @@
             return true;
         }
 
-        public bool IsValid(string reservationId)
+        public bool IsReservationIdValid(string reservationId)
         {
             return this.reservationRepository.AllAsNoTrackingWithDeleted().Any(r => r.Id == reservationId);
         }

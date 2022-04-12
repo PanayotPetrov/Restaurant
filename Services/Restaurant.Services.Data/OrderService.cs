@@ -31,6 +31,11 @@
             return this.orderRepository.AllAsNoTrackingWithDeleted().Where(c => c.ApplicationUserId == userId).OrderBy(o => o.IsComplete).Select(o => o.OrderNumber).ToList();
         }
 
+        public IEnumerable<string> GetAllOrderNumbers()
+        {
+            return this.orderRepository.AllAsNoTrackingWithDeleted().Select(o => o.OrderNumber).ToList();
+        }
+
         public IEnumerable<T> GetAllWithDeleted<T>(int itemsPerPage, int page)
         {
             return this.orderRepository.AllAsNoTrackingWithDeleted().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
@@ -114,5 +119,7 @@
             await this.orderRepository.SaveChangesAsync();
             return true;
         }
+
+
     }
 }

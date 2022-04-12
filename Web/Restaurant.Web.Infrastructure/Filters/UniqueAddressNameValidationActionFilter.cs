@@ -35,7 +35,7 @@
 
             var addressService = context.HttpContext.RequestServices.GetService<IAddressService>();
 
-            if (!addressService.IsNameUnique(userId, newAddressName, originalAddressName))
+            if (addressService.IsNameAlreadyInUse(userId, newAddressName, originalAddressName))
             {
                 context.ModelState.AddModelError(propertyToValidate.Name, "Address names must be unique.");
             }

@@ -13,6 +13,7 @@
     using Restaurant.Web.ViewModels.InputModels;
 
     [Authorize]
+
     public class CartController : BaseController
     {
         private readonly ICartService cartService;
@@ -38,7 +39,8 @@
         [HttpPost]
         [IgnoreAntiforgeryToken]
         [ReturnModelStateErrorsAsJsonActionFilter]
-        public async Task<IActionResult> AddToCart([FromBody]CartInputModel model)
+
+        public async Task<IActionResult> AddToCart([FromBody] CartInputModel model)
         {
             var userId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var cartItem = AutoMapperConfig.MapperInstance.Map<CartItemModel>(model);
@@ -52,7 +54,7 @@
         [HttpPost]
         [IgnoreAntiforgeryToken]
         [ReturnModelStateErrorsAsJsonActionFilter]
-        public async Task<IActionResult> RemoveFromCart([FromBody]RemoveCartItemModel model)
+        public async Task<IActionResult> RemoveFromCart([FromBody] RemoveCartItemModel model)
         {
             var cartItem = AutoMapperConfig.MapperInstance.Map<CartItemModel>(model);
             await this.cartService.RemoveFromCartAsync(cartItem);

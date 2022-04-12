@@ -24,5 +24,7 @@
         Task<bool> RestoreAsync(string orderNumber);
 
         Task<bool> CompleteAsync(string orderNumber);
+
+        IEnumerable<string> GetAllOrderNumbers();
     }
 }

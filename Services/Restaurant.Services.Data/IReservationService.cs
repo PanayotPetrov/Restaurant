@@ -25,6 +25,6 @@
 
         Task<bool> RestoreAsync(string id);
 
-        bool IsValid(string id);
+        bool IsReservationIdValid(string id);
     }
 }

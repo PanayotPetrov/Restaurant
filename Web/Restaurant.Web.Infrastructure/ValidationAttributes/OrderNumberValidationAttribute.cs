@@ -1,12 +1,14 @@
 ﻿namespace Restaurant.Web.Infrastructure.ValidationAttributes
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
-    using System.Security.Claims;
 
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
+    using Restaurant.Data.Models;
     using Restaurant.Services.Data;
 
     public class OrderNumberValidationAttribute : ValidationAttribute
@@ -16,10 +18,22 @@
             if (value is string stringValue)
             {
                 var httpContextAccessor = validationContext.GetService<IHttpContextAccessor>();
-                var userId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
+                var userManager = validationContext.GetService<UserManager<ApplicationUser>>();
+
+                var user = userManager.GetUserAsync(httpContextAccessor.HttpContext.User).GetAwaiter().GetResult();
 
                 var orderService = validationContext.GetService<IOrderService>();
-                var orderNumbers = orderService.GetAllOrderNumbersByUserId(userId);
+                IEnumerable<string> orderNumbers;
+
+                if (userManager.IsInRoleAsync(user, "Administrator").GetAwaiter().GetResult())
+                {
+                    orderNumbers = orderService.GetAllOrderNumbers();
+                }
+                else
+                {
+                    orderNumbers = orderService.GetAllOrderNumbersByUserId(user.Id);
+                }
 
                 if (orderNumbers.Contains(stringValue))
                 {

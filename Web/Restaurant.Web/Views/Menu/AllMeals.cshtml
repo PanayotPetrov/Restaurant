@@ -154,7 +154,7 @@
             },
             error: function (xhr) {
                 $("#modalLabel").text('Oops!');
-                if (xhr.status === 401) {
+                if (xhr.responseText.length == 0) {
 
                     $("#modalBody").append('<li class="text-danger"> You need to log in to add items to your cart! </li>')
                 }

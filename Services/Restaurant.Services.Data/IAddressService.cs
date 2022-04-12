@@ -17,7 +17,7 @@
 
         public string GetPrimaryAddressName(string userId);
 
-        public bool IsNameUnique(string userId, string addressName, string originalAddressName);
+        public bool IsNameAlreadyInUse(string userId, string addressName, string originalAddressName);
 
         public IEnumerable<string> GetAddressNamesByUserId(string userId);
 

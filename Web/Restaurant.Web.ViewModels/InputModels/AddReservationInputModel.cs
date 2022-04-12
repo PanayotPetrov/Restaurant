@@ -16,12 +16,12 @@
         public string FullName { get; set; }
 
         [Required(ErrorMessage = "We need your phone number in order to book a table.")]
-        [Phone]
+        [Phone(ErrorMessage = "Invalid phone number provided. Please try again.")]
         [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
 
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "We need your email in order to book a table.")]
+        [EmailAddress(ErrorMessage = "Invalid email provided. Please try again.")]
         public string Email { get; set; }
 
         [MaxLength(200, ErrorMessage = "The maximum number of characters is 200.")]

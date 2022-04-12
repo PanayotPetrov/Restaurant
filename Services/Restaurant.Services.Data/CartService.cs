@@ -100,23 +100,24 @@
 
         public async Task<T> ChangeItemQuantityAsync<T>(CartItemModel model)
         {
-            var cartItem = this.cartItemRepository.All().Include(ci => ci.Cart).Include(ci => ci.Meal).FirstOrDefault(ci => ci.MealId == model.MealId);
-            var cart = cartItem.Cart;
+            var cartItem = await this.cartItemRepository.All().Include(ci => ci.Meal).FirstOrDefaultAsync(ci => ci.MealId == model.MealId);
+
+            var cart = await this.cartRepository.All().Include(c => c.CartItems).FirstOrDefaultAsync(c => c.Id == cartItem.CartId);
             var mealPrice = cartItem.Meal.Price;
 
             if (cartItem.Quantity < model.Quantity)
             {
-                cartItem.ItemTotalPrice += mealPrice;
-                cart.SubTotal += mealPrice;
+                cartItem.ItemTotalPrice = mealPrice * model.Quantity;
             }
             else
             {
-                cartItem.ItemTotalPrice -= mealPrice;
-                cart.SubTotal -= mealPrice;
+                cartItem.ItemTotalPrice = mealPrice * model.Quantity;
             }
 
+            cart.SubTotal = cart.CartItems.Select(ci => ci.ItemTotalPrice).Sum();
+
             cartItem.Quantity = model.Quantity;
-            await this.cartRepository.SaveChangesAsync();
+            await this.cartItemRepository.SaveChangesAsync();
             return AutoMapperConfig.MapperInstance.Map<T>(cartItem);
         }
 

@@ -24,6 +24,8 @@
                         <input type="hidden" id="cartId" name="CartId" value="@Model.Id" />
                         <input type="hidden" id="addressId" name="addressId" value="0" />
                         <input type="hidden" id="cartItemsCount" name="CartItemsCount" value="@Model.CartItems.Count()"/>
+                        <input type="hidden" id="phoneNumber" name="phoneNumber" value="@Model.PhoneNumber"/>
+
 
 
                         <select class="form-select bg-body" id="addressNames" onchange="GetAddress()">

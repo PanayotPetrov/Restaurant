@@ -29,18 +29,18 @@
             return this.addressRepository.AllAsNoTracking().Where(a => a.ApplicationUserId == userId && a.IsPrimaryAddress == true).FirstOrDefault()?.Name;
         }
 
-        public bool IsNameUnique(string userId, string addressName, string originalAddressName)
+        public bool IsNameAlreadyInUse(string userId, string addressName, string originalAddressName)
         {
             if (originalAddressName is null)
             {
-                return !this.addressRepository.AllAsNoTrackingWithDeleted().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
+                return this.addressRepository.AllAsNoTrackingWithDeleted().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
             }
             else if (originalAddressName != addressName)
             {
-                return !this.addressRepository.AllAsNoTrackingWithDeleted().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
+                return this.addressRepository.AllAsNoTrackingWithDeleted().Any(a => a.Name == addressName && a.ApplicationUserId == userId);
             }
 
-            return true;
+            return false;
         }
 
         public IEnumerable<string> GetAddressNamesByUserId(string userId)

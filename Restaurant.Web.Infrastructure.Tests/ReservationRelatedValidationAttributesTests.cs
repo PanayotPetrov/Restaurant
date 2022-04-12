@@ -21,7 +21,7 @@
         {
             var reservationId = "Test id";
 
-            this.fixture.ReservationServiceMock.Setup(r => r.IsValid(It.IsAny<string>())).Returns(true);
+            this.fixture.ReservationServiceMock.Setup(r => r.IsReservationIdValid(It.IsAny<string>())).Returns(true);
 
             var attribute = new ReservationIdValidationAttribute();
             var result = attribute.GetValidationResult(reservationId, this.fixture.ValidationContext);
@@ -34,7 +34,7 @@
         {
             var reservationId = "Test id";
 
-            this.fixture.ReservationServiceMock.Setup(r => r.IsValid(It.IsAny<string>())).Returns(false);
+            this.fixture.ReservationServiceMock.Setup(r => r.IsReservationIdValid(It.IsAny<string>())).Returns(false);
 
             var attribute = new ReservationIdValidationAttribute();
             var result = attribute.GetValidationResult(reservationId, this.fixture.ValidationContext);
