@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using Microsoft.EntityFrameworkCore;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
@@ -23,12 +23,12 @@
 
         public T GetByUserIdAndOrderNumber<T>(string userId, string orderNumber)
         {
-            return this.orderRepository.AllAsNoTracking().Where(o => o.ApplicationUserId == userId && o.OrderNumber == orderNumber).To<T>().FirstOrDefault();
+            return this.orderRepository.AllAsNoTracking().IgnoreQueryFilters().Where(o => o.ApplicationUserId == userId && o.OrderNumber == orderNumber).To<T>().FirstOrDefault();
         }
 
         public IEnumerable<string> GetAllOrderNumbersByUserId(string userId)
         {
-            return this.orderRepository.AllAsNoTrackingWithDeleted().Where(c => c.ApplicationUserId == userId).OrderBy(o => o.IsComplete).Select(o => o.OrderNumber).ToList();
+            return this.orderRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).OrderBy(o => o.IsComplete).Select(o => o.OrderNumber).ToList();
         }
 
         public IEnumerable<string> GetAllOrderNumbers()
@@ -119,7 +119,5 @@
             await this.orderRepository.SaveChangesAsync();
             return true;
         }
-
-
     }
 }

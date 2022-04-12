@@ -41,7 +41,7 @@
                 PageNumber = id,
             };
 
-            if (id > model.PagesCount)
+            if (id > model.PagesCount && reservations.Count() != 0)
             {
                 return this.NotFound();
             }

@@ -16,7 +16,7 @@
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<Order, AllOrdersViewModel>()
-                .ForMember(o => o.OrdersByUser, opt => opt.MapFrom(x => x.ApplicationUser.Orders.OrderBy(o => o.IsComplete).Select(y => y.OrderNumber)))
+                .ForMember(o => o.OrdersByUser, opt => opt.MapFrom(x => x.ApplicationUser.Orders.Where(o => o.IsDeleted == false).OrderBy(o => o.IsComplete).Select(y => y.OrderNumber)))
                 .ForMember(o => o.Order, opt => opt.MapFrom(x => x));
         }
     }
