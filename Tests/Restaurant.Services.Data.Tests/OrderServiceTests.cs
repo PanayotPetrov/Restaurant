@@ -240,7 +240,7 @@
             this.repository.Setup(r => r.AddAsync(It.IsAny<Order>()))
                 .Callback((Order order) => this.orders.Add(order));
 
-            this.cartService.Setup(cs => cs.GetCartById<Cart>(It.IsAny<int>())).Returns(cart);
+            this.cartService.Setup(cs => cs.GetCartById(It.IsAny<int>())).Returns(cart);
 
             await this.service.CreateAsync(model);
             Assert.Single(this.orders);
@@ -278,7 +278,7 @@
             this.repository.Setup(r => r.AddAsync(It.IsAny<Order>()))
                 .Callback((Order order) => this.orders.Add(order));
 
-            this.cartService.Setup(cs => cs.GetCartById<Cart>(It.IsAny<int>())).Returns(cart);
+            this.cartService.Setup(cs => cs.GetCartById(It.IsAny<int>())).Returns(cart);
             await this.service.CreateAsync(model);
             Assert.Equal(2, this.orders.FirstOrDefault().Meals.Count);
         }

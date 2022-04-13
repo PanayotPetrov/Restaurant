@@ -54,7 +54,7 @@
 
         public async Task<string> CreateAsync(AddOrderModel model)
         {
-            var cart = this.cartService.GetCartById<Cart>(model.CartId);
+            var cart = this.cartService.GetCartById(model.CartId);
 
             var order = AutoMapperConfig.MapperInstance.Map<Order>(model);
             order.OrderNumber = Guid.NewGuid().ToString().Substring(0, 8);

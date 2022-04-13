@@ -23,7 +23,7 @@
 
         int GetCartId(string userId);
 
-        Cart GetCartById<T>(int cartId);
+        Cart GetCartById(int cartId);
 
         Task ClearCartAsync(int cartId);
     }

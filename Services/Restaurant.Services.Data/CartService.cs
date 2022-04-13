@@ -40,15 +40,14 @@
             return this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).Select(c => c.SubTotal).FirstOrDefault();
         }
 
-        public Cart GetCartById<T>(int cartId)
+        public Cart GetCartById(int cartId)
         {
             return this.cartRepository.AllAsNoTracking().Include(c => c.CartItems).Where(c => c.Id == cartId).FirstOrDefault();
         }
 
         public int GetItemQuantityPerCartLeft(string userId)
         {
-            var cartId = this.cartRepository.AllAsNoTracking().Where(c => c.ApplicationUserId == userId).Select(c => c.Id).FirstOrDefault();
-            var currentCartItemsQuantity = this.cartItemRepository.AllAsNoTracking().Where(ci => ci.CartId == cartId).Select(ci => ci.Quantity).Sum();
+            var currentCartItemsQuantity = this.cartItemRepository.AllAsNoTracking().Where(ci => ci.Cart.ApplicationUserId == userId).Select(ci => ci.Quantity).Sum();
             return AllowedItemQuantityPerCart - currentCartItemsQuantity;
         }
 
@@ -100,20 +99,12 @@
 
         public async Task<T> ChangeItemQuantityAsync<T>(CartItemModel model)
         {
-            var cartItem = await this.cartItemRepository.All().Include(ci => ci.Meal).FirstOrDefaultAsync(ci => ci.MealId == model.MealId);
+            var cartItem = this.cartItemRepository.All().Include(ci => ci.Meal).FirstOrDefault(ci => ci.MealId == model.MealId);
 
-            var cart = await this.cartRepository.All().Include(c => c.CartItems).FirstOrDefaultAsync(c => c.Id == cartItem.CartId);
+            var cart = this.cartRepository.All().Include(c => c.CartItems).FirstOrDefault(c => c.Id == cartItem.CartId);
             var mealPrice = cartItem.Meal.Price;
 
-            if (cartItem.Quantity < model.Quantity)
-            {
-                cartItem.ItemTotalPrice = mealPrice * model.Quantity;
-            }
-            else
-            {
-                cartItem.ItemTotalPrice = mealPrice * model.Quantity;
-            }
-
+            cartItem.ItemTotalPrice = mealPrice * model.Quantity;
             cart.SubTotal = cart.CartItems.Select(ci => ci.ItemTotalPrice).Sum();
 
             cartItem.Quantity = model.Quantity;
