@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using Microsoft.EntityFrameworkCore;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
@@ -36,7 +37,7 @@
             return this.orderRepository.AllAsNoTrackingWithDeleted().Select(o => o.OrderNumber).ToList();
         }
 
-        public IEnumerable<T> GetAllWithDeleted<T>(int itemsPerPage, int page)
+        public IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int page)
         {
             return this.orderRepository.AllAsNoTrackingWithDeleted().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
         }
@@ -79,7 +80,7 @@
             return order.OrderNumber;
         }
 
-        public async Task<bool> DeleteByIdAsync(string orderNumber)
+        public async Task<bool> DeleteByOrderNumberAsync(string orderNumber)
         {
             var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.OrderNumber == orderNumber);
             if (order.IsDeleted)

@@ -13,13 +13,13 @@
 
         IEnumerable<string> GetAllOrderNumbersByUserId(string userId);
 
-        IEnumerable<T> GetAllWithDeleted<T>(int itemsPerPage, int id);
+        IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int id);
 
         int GetCountWithDeleted();
 
         T GetByOrderNumberWithDeleted<T>(string orderNumber);
 
-        Task<bool> DeleteByIdAsync(string orderNumber);
+        Task<bool> DeleteByOrderNumberAsync(string orderNumber);
 
         Task<bool> RestoreAsync(string orderNumber);
 

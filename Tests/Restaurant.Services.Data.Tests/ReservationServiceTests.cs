@@ -109,7 +109,7 @@
         }
 
         [Fact]
-        public async Task DeleteById_ShouldDeleteReview()
+        public async Task DeleteById_ShouldDeleteReservation()
         {
             var reservation = new Reservation
             {

@@ -27,7 +27,7 @@
                 return this.NotFound();
             }
 
-            var orders = this.orderService.GetAllWithDeleted<AdminOrderViewModel>(ItemsPerPage, id);
+            var orders = this.orderService.GetAllWithPagination<AdminOrderViewModel>(ItemsPerPage, id);
 
             var model = new AdminOrderListViewModel
             {
@@ -73,7 +73,7 @@
                 return this.NotFound();
             }
 
-            var result = await this.orderService.DeleteByIdAsync(orderNumber);
+            var result = await this.orderService.DeleteByOrderNumberAsync(orderNumber);
             if (!result)
             {
                 this.ModelState.AddModelError("Tempdata error", "This order has already been deleted!");
