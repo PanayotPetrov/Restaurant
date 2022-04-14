@@ -13,8 +13,6 @@
 
         IEnumerable<T> GetAllMeals<T>();
 
-        T GetById<T>(int mealId);
-
         public IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int page);
 
         Task<bool> DeleteByIdAsync(int mealId);

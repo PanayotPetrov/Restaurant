@@ -28,7 +28,7 @@
         public async Task<int> CreateAsync(AddMealModel model, string imagePath)
         {
             var meal = AutoMapperConfig.MapperInstance.Map<Meal>(model);
-            await this.AddImage(model, imagePath, meal);
+            await this.AddImageAsync(model, imagePath, meal);
             await this.mealRepository.AddAsync(meal);
             await this.mealRepository.SaveChangesAsync();
             return meal.Id;
@@ -36,17 +36,12 @@
 
         public IEnumerable<T> GetAllMeals<T>()
         {
-            return this.mealRepository.All().Include(i => i.Category).To<T>().ToList();
+            return this.mealRepository.AllAsNoTracking().Include(i => i.Category).To<T>().ToList();
         }
 
         public IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int page)
         {
-            return this.mealRepository.AllWithDeleted().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
-        }
-
-        public T GetById<T>(int mealId)
-        {
-            return this.mealRepository.AllAsNoTracking().Where(m => m.Id == mealId).To<T>().FirstOrDefault();
+            return this.mealRepository.AllAsNoTrackingWithDeleted().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
         }
 
         public int GetMealCount()
@@ -90,7 +85,7 @@
                 var physicalPath = $"{imagePath}/meals/{meal.Image.Id}.{meal.Image.Extension}";
                 File.Delete(physicalPath);
                 this.mealImageRepository.Delete(meal.Image);
-                await this.AddImage(model, imagePath, meal);
+                await this.AddImageAsync(model, imagePath, meal);
             }
 
             await this.mealRepository.SaveChangesAsync();
@@ -111,14 +106,14 @@
             return true;
         }
 
-        private async Task AddImage(AddMealModel model, string imagePath, Meal meal)
+        private async Task AddImageAsync(AddMealModel model, string imagePath, Meal meal)
         {
             Directory.CreateDirectory($"{imagePath}/meals/");
             var extension = Path.GetExtension(model.Image.FileName).TrimStart('.');
 
             if (!this.allowedExtensions.Any(x => extension.EndsWith(x)))
             {
-                throw new Exception($"Invalid image extension {extension}");
+                throw new InvalidOperationException($"Invalid image extension {extension}");
             }
 
             var dbImage = new MealImage

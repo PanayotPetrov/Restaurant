@@ -26,6 +26,21 @@
         }
 
         [Theory]
+        [InlineData("Lagera")]
+        [InlineData("Hipodruma")]
+        [InlineData("Zona-B5")]
+        [InlineData("Serdika")]
+        [InlineData("Lozenets")]
+        [InlineData("Centur")]
+
+        public void GetAllowedDistricts_ShouldReturnCorrectDistricts(string district)
+        {
+            var result = this.service.GetAllowedDistricts();
+
+            Assert.Contains(district, result);
+        }
+
+        [Theory]
         [InlineData("Lagera", null)]
         [InlineData("Lagera", "HPE")]
         public void IsNameAlreadyTaken_ShouldReturnTrue_IfUserAlreadyHasSuchAnAddress(string newAddressName, string previousAddressName)
