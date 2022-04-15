@@ -79,6 +79,11 @@
         {
             var reservation = this.reservationRepository.AllWithDeleted().FirstOrDefault(r => r.Id == id);
 
+            if (reservation is null)
+            {
+                throw new NullReferenceException();
+            }
+
             if (reservation.IsDeleted)
             {
                 return false;
@@ -112,6 +117,11 @@
         public async Task<bool> RestoreAsync(string id)
         {
             var reservation = this.reservationRepository.AllWithDeleted().FirstOrDefault(r => r.Id == id);
+
+            if (reservation is null)
+            {
+                throw new NullReferenceException();
+            }
 
             if (!reservation.IsDeleted)
             {

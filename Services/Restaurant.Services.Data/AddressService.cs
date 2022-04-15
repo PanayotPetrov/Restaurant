@@ -1,5 +1,6 @@
 ﻿namespace Restaurant.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -56,6 +57,7 @@
         public async Task<bool> DeleteAsync(string addressName)
         {
             var address = this.addressRepository.AllAsNoTracking().FirstOrDefault(a => a.Name == addressName);
+
             if (address is null)
             {
                 return false;
@@ -98,6 +100,11 @@
         public async Task UpdateAddressAsync(AddAddressModel model, string userId, string addressName)
         {
             var address = this.addressRepository.All().FirstOrDefault(a => a.ApplicationUserId == userId && a.Name == addressName);
+
+            if (address is null)
+            {
+                throw new NullReferenceException();
+            }
 
             address.Name = model.Name;
             address.Street = model.Street;

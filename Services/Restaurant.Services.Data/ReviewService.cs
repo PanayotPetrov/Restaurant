@@ -1,5 +1,6 @@
 ﻿namespace Restaurant.Services.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -69,6 +70,11 @@
         {
             var review = this.reviewRepository.AllWithDeleted().FirstOrDefault(r => r.Id == id);
 
+            if (review is null)
+            {
+                throw new NullReferenceException();
+            }
+
             if (review.IsDeleted)
             {
                 return false;
@@ -82,6 +88,11 @@
         public async Task<bool> RestoreAsync(int id)
         {
             var review = this.reviewRepository.AllWithDeleted().FirstOrDefault(r => r.Id == id);
+
+            if (review is null)
+            {
+                throw new NullReferenceException();
+            }
 
             if (!review.IsDeleted)
             {

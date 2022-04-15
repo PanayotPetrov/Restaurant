@@ -63,6 +63,11 @@
         {
             var meal = this.mealRepository.AllWithDeleted().FirstOrDefault(m => m.Id == mealId);
 
+            if (meal is null)
+            {
+                throw new NullReferenceException();
+            }
+
             if (meal.IsDeleted)
             {
                 return false;
@@ -76,6 +81,12 @@
         public async Task UpdateAsync(EditMealModel model, string imagePath)
         {
             var meal = this.mealRepository.AllWithDeleted().Include(m => m.Image).FirstOrDefault(m => m.Id == model.Id);
+
+            if (meal is null)
+            {
+                throw new NullReferenceException();
+            }
+
             meal.Name = model.Name;
             meal.Description = model.Description;
             meal.CategoryId = model.CategoryId;
@@ -94,6 +105,11 @@
         public async Task<bool> RestoreAsync(int id)
         {
             var meal = this.mealRepository.AllWithDeleted().FirstOrDefault(r => r.Id == id);
+
+            if (meal is null)
+            {
+                throw new NullReferenceException();
+            }
 
             if (!meal.IsDeleted)
             {

@@ -56,6 +56,11 @@
         {
             var cart = this.cartService.GetCartById(model.CartId);
 
+            if (cart is null)
+            {
+                throw new NullReferenceException();
+            }
+
             var order = AutoMapperConfig.MapperInstance.Map<Order>(model);
             order.OrderNumber = Guid.NewGuid().ToString().Substring(0, 8);
             order.TotalPrice = cart.TotalPrice;
@@ -83,6 +88,12 @@
         public async Task<bool> DeleteByOrderNumberAsync(string orderNumber)
         {
             var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.OrderNumber == orderNumber);
+
+            if (order is null)
+            {
+                throw new NullReferenceException();
+            }
+
             if (order.IsDeleted)
             {
                 return false;
@@ -96,6 +107,12 @@
         public async Task<bool> RestoreAsync(string orderNumber)
         {
             var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.OrderNumber == orderNumber);
+
+            if (order is null)
+            {
+                throw new NullReferenceException();
+            }
+
             if (!order.IsDeleted)
             {
                 return false;
@@ -110,6 +127,12 @@
         public async Task<bool> CompleteAsync(string orderNumber)
         {
             var order = this.orderRepository.AllWithDeleted().FirstOrDefault(o => o.OrderNumber == orderNumber);
+
+            if (order is null)
+            {
+                throw new NullReferenceException();
+            }
+
             if (order.IsComplete)
             {
                 return false;

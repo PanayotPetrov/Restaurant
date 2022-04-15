@@ -1,5 +1,6 @@
 ﻿namespace Restaurant.Services.Data
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -54,6 +55,12 @@
         public async Task RemoveFromCartAsync(CartItemModel model)
         {
             var cartItem = this.cartItemRepository.All().Include(ci => ci.Cart).FirstOrDefault(ci => ci.MealId == model.MealId);
+
+            if (cartItem is null)
+            {
+                throw new NullReferenceException();
+            }
+
             cartItem.Cart.SubTotal -= cartItem.ItemTotalPrice;
             this.cartItemRepository.Delete(cartItem);
             await this.cartItemRepository.SaveChangesAsync();
@@ -100,6 +107,11 @@
         public async Task<T> ChangeItemQuantityAsync<T>(CartItemModel model)
         {
             var cartItem = this.cartItemRepository.All().Include(ci => ci.Meal).FirstOrDefault(ci => ci.MealId == model.MealId);
+
+            if (cartItem is null)
+            {
+                throw new NullReferenceException();
+            }
 
             var cart = this.cartRepository.All().Include(c => c.CartItems).FirstOrDefault(c => c.Id == cartItem.CartId);
             var mealPrice = cartItem.Meal.Price;
