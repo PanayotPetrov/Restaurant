@@ -20,6 +20,7 @@
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Messaging;
     using Restaurant.Services.Models;
+    using Restaurant.Web.HelperClasses;
     using Restaurant.Web.ViewModels;
 
     public class Startup
@@ -78,6 +79,8 @@
             services.AddTransient<IAddressService, AddressService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IViewHtmlRenderer, ViewHtmlRenderer>();
+            services.AddTransient<IUserMessageService, UserMessageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -47,6 +47,10 @@
 
         public DbSet<CartItem> CartItems { get; set; }
 
+        public DbSet<UserMessage> UserMessages { get; set; }
+
+        public DbSet<UserMessageCategory> UserMessageCategories { get; set; }
+
         public override int SaveChanges() => this.SaveChanges(true);
 
         public override int SaveChanges(bool acceptAllChangesOnSuccess)

@@ -1,19 +1,27 @@
 ﻿namespace Restaurant.Web.Controllers
 {
     using System.Diagnostics;
+    using System.Security.Claims;
+    using System.Threading.Tasks;
 
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
+    using Restaurant.Services.Mapping;
+    using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels;
+    using Restaurant.Web.ViewModels.Home;
+    using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Review;
 
     public class HomeController : BaseController
     {
         private readonly IReviewService reviewService;
+        private readonly IUserMessageService userMessageService;
 
-        public HomeController(IReviewService reviewService)
+        public HomeController(IReviewService reviewService, IUserMessageService userMessageService)
         {
             this.reviewService = reviewService;
+            this.userMessageService = userMessageService;
         }
 
         public IActionResult Index()
@@ -35,7 +43,32 @@
 
         public IActionResult Contact()
         {
-            return this.View();
+            var categories = this.userMessageService.GetCategories<UserMessageCategoryViewModel>();
+            var model = new UserMessageInputModel
+            {
+                Categories = categories,
+            };
+            return this.View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Contact(UserMessageInputModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                model.Categories = this.userMessageService.GetCategories<UserMessageCategoryViewModel>();
+                return this.View(model);
+            }
+
+            if (this.User.Identity.IsAuthenticated)
+            {
+                model.ApplicationUserId = this.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            }
+
+            var addUserMessageModel = AutoMapperConfig.MapperInstance.Map<AddUserMessageModel>(model);
+            var userMessageId = await this.userMessageService.CreateAsync(addUserMessageModel);
+
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

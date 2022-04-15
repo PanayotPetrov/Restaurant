@@ -29,6 +29,7 @@
                               new TableSeeder(),
                               new CategorySeeder(),
                               new AdminSeeder(),
+                              new UserMessageCategorySeeder(),
                           };
 
             foreach (var seeder in seeders)
