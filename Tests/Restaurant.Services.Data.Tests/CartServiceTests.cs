@@ -370,14 +370,12 @@
                 Assert.Equal(30M, cartItemTotalPrice);
                 Assert.Equal(43.9M, cartTotalPrice);
                 Assert.Equal(3, cartItemQuantity);
-
             }
             else if (newMealQuantity == 5)
             {
                 Assert.Equal(50, cartItemTotalPrice);
                 Assert.Equal(53.9m, cartTotalPrice);
                 Assert.Equal(5, cartItemQuantity);
-
             }
         }
 

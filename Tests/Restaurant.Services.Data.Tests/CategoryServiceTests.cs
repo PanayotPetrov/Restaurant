@@ -59,7 +59,6 @@
             var result = this.service.GetAllAsKeyValuePairs().FirstOrDefault();
             Assert.Equal("1", result.Key);
             Assert.Equal("Test category 1", result.Value);
-
         }
     }
 }

@@ -7,11 +7,11 @@
 
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
     using Microsoft.AspNetCore.WebUtilities;
     using Restaurant.Data.Models;
+    using Restaurant.Services.Messaging;
 
     [AllowAnonymous]
     public class ResendEmailConfirmationModel : PageModel
@@ -49,7 +49,7 @@
             var user = await this.userManager.FindByEmailAsync(this.Input.Email);
             if (user == null)
             {
-                this.ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+                this.ModelState.AddModelError(string.Empty, "Invalid email provided!");
                 return this.Page();
             }
 
@@ -62,6 +62,8 @@
                 values: new { userId, code },
                 protocol: this.Request.Scheme);
             await this.emailSender.SendEmailAsync(
+                "panayot.petrov20@gmail.com",
+                "Panayot Petrov",
                 this.Input.Email,
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
