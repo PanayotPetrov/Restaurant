@@ -112,7 +112,6 @@
             quantity++;
 
             if(quantity <= 100){
-                cartItemContainer.querySelector('input').setAttribute('value', quantity);
             }
         }
         else {
@@ -120,7 +119,6 @@
             quantity--;
 
             if(quantity >= 1){
-                cartItemContainer.querySelector('input').setAttribute('value', quantity);
             }
         }
 
@@ -138,6 +136,8 @@
             success: function (result, status, xhr) {
                 if (xhr.status === 200) {
                     var jsonResult = JSON.parse(xhr.responseText);
+
+                    cartItemContainer.querySelector('input').setAttribute('value', jsonResult.quantity);
                     $("#cartSubTotalBtn").html('<i class="fa-solid fa-cart-shopping"></i> ' + jsonResult.cartSubTotal + ' $');
                     $("#cartSubTotalCard").html(jsonResult.cartSubTotal + ' $');
                     $("#cartItemTotalPrice" + mealId).html(jsonResult.itemTotalPrice + ' $');
@@ -154,7 +154,7 @@
                 $("#exampleModal").modal('show')
             }
         });
-        
+
         $("#btnCloseModal").click(function () {
             $("#exampleModal").modal("hide");
             $("#modalBody").text('');

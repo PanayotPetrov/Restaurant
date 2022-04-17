@@ -7,7 +7,9 @@
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
+    using Restaurant.Services.Messaging;
     using Restaurant.Services.Models;
+    using Restaurant.Web.HelperClasses;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Reservation;
@@ -15,10 +17,14 @@
     public class ReservationController : BaseController
     {
         private readonly IReservationService reservationService;
+        private readonly IViewHtmlRenderer renderer;
+        private readonly IEmailSender emailSender;
 
-        public ReservationController(IReservationService reservationService)
+        public ReservationController(IReservationService reservationService, IViewHtmlRenderer renderer, IEmailSender emailSender)
         {
             this.reservationService = reservationService;
+            this.renderer = renderer;
+            this.emailSender = emailSender;
         }
 
         [Authorize]
@@ -65,7 +71,7 @@
             return this.Redirect(nameof(this.Success) + $"?reservationId={reservationId}");
         }
 
-        public IActionResult Success([ReservationIdValidation] string reservationId)
+        public async Task<IActionResult> Success([ReservationIdValidation] string reservationId)
         {
             if (!this.ModelState.IsValid)
             {
@@ -73,6 +79,9 @@
             }
 
             var model = this.reservationService.GetById<ReservationViewModel>(reservationId);
+
+            var html = await this.renderer.RenderToStringAsync("~/Views/Reservation/Success.cshtml", model);
+
             return this.View(model);
         }
     }

@@ -54,7 +54,7 @@
 
         public async Task RemoveFromCartAsync(CartItemModel model)
         {
-            var cartItem = this.cartItemRepository.All().Include(ci => ci.Cart).FirstOrDefault(ci => ci.MealId == model.MealId);
+            var cartItem = this.cartItemRepository.All().Include(ci => ci.Cart).Where(ci => ci.MealId == model.MealId && ci.CartId == model.CartId).FirstOrDefault();
 
             if (cartItem is null)
             {
@@ -106,7 +106,7 @@
 
         public async Task<T> ChangeItemQuantityAsync<T>(CartItemModel model)
         {
-            var cartItem = this.cartItemRepository.All().Include(ci => ci.Meal).FirstOrDefault(ci => ci.MealId == model.MealId);
+            var cartItem = this.cartItemRepository.All().Include(ci => ci.Meal).Where(ci => ci.MealId == model.MealId && ci.CartId == model.CartId).FirstOrDefault();
 
             if (cartItem is null)
             {

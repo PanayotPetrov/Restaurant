@@ -57,6 +57,8 @@
         public async Task<IActionResult> RemoveFromCart([FromBody] RemoveCartItemModel model)
         {
             var cartItem = AutoMapperConfig.MapperInstance.Map<CartItemModel>(model);
+            cartItem.CartId = this.cartService.GetCartId(this.User.FindFirst(ClaimTypes.NameIdentifier).Value);
+
             await this.cartService.RemoveFromCartAsync(cartItem);
             return this.Ok();
         }
@@ -67,6 +69,7 @@
         public async Task<IActionResult> ChangeQuantity([FromBody] ChangeCartItemQuantityInputModel model)
         {
             var cartItem = AutoMapperConfig.MapperInstance.Map<CartItemModel>(model);
+            cartItem.CartId = this.cartService.GetCartId(this.User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
             var jsonModel = await this.cartService.ChangeItemQuantityAsync<ChangeItemQuantityViewModel>(cartItem);
             this.Response.StatusCode = 200;
