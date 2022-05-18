@@ -4,54 +4,54 @@
 
 **Gourmet Experience** is my defense project for **ASP.NET Core** course at [SoftUni](https://softuni.bg/trainings/3601/asp-dot-net-core-february-2022). It is a sample web application for a restaurant where users can make reservations, order food, leave reviews, etc.
 
-Guests can:
-    - access the home, about and privacy pages
-	- make reservations
-    - browse the menu
-    - view customer reviews
-    - use the contact form for queries 
+**Guests can:**
+* access the home, about and privacy pages
+* make reservations
+* browse the menu
+* view customer reviews
+* use the contact form for queries 
 
-Users can:
-	- access the same pages as guests
-    - add/remove/edit addresses
-    - leave reviews
-    - add items to their cart
-    - review their cart and adjust item quantities 
-    - access the checkout page
-    - manage their profile - username,password, phone, email, profile picture, etc
-    - view their previous reservations/orders/reviews
+**Users can:**
+* access the same pages as guests
+* add/remove/edit addresses
+* leave reviews
+* add items to their cart
+* review their cart and adjust item quantities 
+* access the checkout page
+* manage their profile - username,password, phone, email, profile picture, etc
+* view their previous reservations/orders/reviews
 
-Admins can:
-	- access the admin dashboard
-	- edit/add/delete/restore meals
-    - edit/delete/restore/complete orders
-    - edit/delete/restore reservations
-    - delete/restore reviews
+**Admins can:**
+* access the admin dashboard
+* edit/add/delete/restore meals
+* edit/delete/restore/complete orders
+* edit/delete/restore reservations
+* delete/restore reviews
 
-Technologies,tools and techniques used:
-.NET 6.0
-ASP.NET Core MVC
-Entity Framework Core
-Microsoft SQL Server
-Microsoft Azure
-Razor Pages
-AutoMapper
-SendGrid
-xUnit
-Moq
-Facebook for developers
-AJAX real-time Requests
-JavaScript
-jQuery
-Bootstrap
-HTML 5
-CSS
-FontAwesome
-Dependency Injection
-Repository pattern with soft delete
-Custom action filters and validation attributes
-Custom exception handling and status code pages
-Responsive design
+**Technologies,tools and techniques used:**
+* .NET 6.0
+* ASP.NET Core MVC
+* Entity Framework Core
+* Microsoft SQL Server
+* Microsoft Azure
+* Razor Pages
+* AutoMapper
+* SendGrid
+* xUnit
+* Moq
+* Facebook for developers
+* AJAX real-time Requests
+* JavaScript
+* jQuery
+* Bootstrap
+* HTML 5
+* CSS
+* FontAwesome
+* Dependency Injection
+* Repository pattern with soft delete
+* Custom action filters and validation attributes
+* Custom exception handling and status code pages
+* Responsive design
 
 
 ## :framed_picture: Screenshots
