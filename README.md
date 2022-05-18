@@ -56,31 +56,38 @@ Responsive design
 
 ## :framed_picture: Screenshots
 
-### Home Page (guest)
-
 ### Home Page (user)
+![Home page](https://res.cloudinary.com/duqv0e3xm/image/upload/v1652907015/Screenshots/Home_logged_in_ljs9qk.png)
 
 ### Contact us page
+![Contact](https://res.cloudinary.com/duqv0e3xm/image/upload/v1652907014/Screenshots/Contact_em2aly.png)
 
-### All reviews
+### Menu
+![Menu](https://res.cloudinary.com/duqv0e3xm/image/upload/v1652907016/Screenshots/Menu_av3t2e.png)
 
-### Login 
+### Reservation
+![Reservation](https://res.cloudinary.com/duqv0e3xm/image/upload/v1652907014/Screenshots/Reservation_vt5vqd.png)
+
+### All reviews (Admin)
+![Reviews-Admin](https://res.cloudinary.com/duqv0e3xm/image/upload/v1652907014/Screenshots/Reviews-Admin_iq6ogd.png)
+
+### All reviews (Guest/User)
+![Reviews-User](https://res.cloudinary.com/duqv0e3xm/image/upload/v1652907016/Screenshots/Reviews-User_mrlhpk.png)
 
 ### Register
+![Register](https://res.cloudinary.com/duqv0e3xm/image/upload/v1652907015/Screenshots/Register_veinsq.png)
 
 ### Account
+![Account](https://res.cloudinary.com/duqv0e3xm/image/upload/v1652907014/Screenshots/Account_xzyxsl.png)
 
 ### Addresses
-
-### My reviews
-
-### My reservations
-
-### My orders
+![Addresses](https://res.cloudinary.com/duqv0e3xm/image/upload/v1652907014/Screenshots/Addresses_tppty3.png)
 
 ### Cart
+![Cart](https://res.cloudinary.com/duqv0e3xm/image/upload/v1652907014/Screenshots/Cart_e04eny.png)
 
 ### Checkout
+![Checkout](https://res.cloudinary.com/duqv0e3xm/image/upload/v1652907013/Screenshots/Checkout_k3juqw.png)
 
 #### Using [ASP.NET-MVC-Template](https://github.com/NikolayIT/ASP.NET-MVC-Template) developed by:
 - [Nikolay Kostov](https://github.com/NikolayIT)
