@@ -19,70 +19,70 @@
                 else
                 {
                     <form method="post" asp-controller="Order" asp-action="Create" id="CreateOrderForm">
-                    <div asp-validation-summary="All"></div>
-                    <div class="col-md-12">
-                        <input type="hidden" id="cartId" name="CartId" value="@Model.Id" />
-                        <input type="hidden" id="addressId" name="addressId" value="0" />
-                        <input type="hidden" id="cartItemsCount" name="CartItemsCount" value="@Model.CartItems.Count()"/>
-                        <input type="hidden" id="phoneNumber" name="phoneNumber" value="@Model.PhoneNumber"/>
+                        <div asp-validation-summary="All"></div>
+                        <div class="col-md-12">
+                            <input type="hidden" id="cartId" name="CartId" value="@Model.Id" />
+                            <input type="hidden" id="addressId" name="addressId" value="0" />
+                            <input type="hidden" id="cartItemsCount" name="CartItemsCount" value="@Model.CartItems.Count()" />
+                            <input type="hidden" id="phoneNumber" name="phoneNumber" value="@Model.PhoneNumber" />
 
 
 
-                        <select class="form-select bg-body" id="addressNames" onchange="GetAddress()">
-                            <option value="Initial">Choose an address...</option>
-                            @foreach (var address in Model.Addresses)
-                            {
-                                <option value="@address">@address</option>
-                            }
-                        </select>
-                    </div>
-                    <div class="col-md-12">
-                        <label asp-for="@Model.FirstName"></label>
-                        <input asp-for="@Model.FirstName" class="form-control bg-body" disabled>
-                        <span asp-validation-for="@Model.FirstName"></span>
-                    </div>
-                    <div class="col-md-12">
-                        <label asp-for="@Model.LastName"></label>
-                        <input asp-for="@Model.LastName" class="form-control bg-body" disabled>
-                        <span asp-validation-for="@Model.LastName"></span>
-                    </div>
-                    <div class="col-md-12">
-                        <label asp-for="@Model.Email"></label>
-                        <input asp-for="@Model.Email" class="form-control bg-body" disabled>
-                        <span asp-validation-for="@Model.Email"></span>
-                    </div>
-                    <div class="col-md-12">
-                        <label asp-for="@Model.PhoneNumber"></label>
-                        <input asp-for="@Model.PhoneNumber" class="form-control bg-body" disabled>
-                        <span asp-validation-for="@Model.PhoneNumber"></span>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Street</label>
-                        <input class="form-control bg-body" id="street" disabled>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Address line 2</label>
-                        <input class="form-control bg-body" id="addressLine2" disabled>
-                    </div>
-                    <div class="col-md-12">
-                        <label>District</label>
-                        <input class="form-control bg-body" id="district" disabled>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>City</label>
-                            <input class="form-control bg-body" id="city" disabled>
+                            <select class="form-select bg-body" id="addressNames" onchange="GetAddress()">
+                                <option value="Initial">Choose an address...</option>
+                                @foreach (var address in Model.Addresses)
+                                {
+                                    <option value="@address">@address</option>
+                                }
+                            </select>
                         </div>
-                        <div class="col-md-4">
-                            <label>Country</label>
-                            <input class="form-control bg-body" id="country" disabled>
+                        <div class="col-md-12">
+                            <label asp-for="@Model.FirstName"></label>
+                            <input asp-for="@Model.FirstName" class="form-control bg-body" disabled>
+                            <span asp-validation-for="@Model.FirstName"></span>
                         </div>
-                        <div class="col-md-4">
-                            <label>Post code</label>
-                            <input class="form-control bg-body" id="postCode" disabled>
+                        <div class="col-md-12">
+                            <label asp-for="@Model.LastName"></label>
+                            <input asp-for="@Model.LastName" class="form-control bg-body" disabled>
+                            <span asp-validation-for="@Model.LastName"></span>
                         </div>
-                    </div>
-                </form>
+                        <div class="col-md-12">
+                            <label asp-for="@Model.Email"></label>
+                            <input asp-for="@Model.Email" class="form-control bg-body" disabled>
+                            <span asp-validation-for="@Model.Email"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <label asp-for="@Model.PhoneNumber"></label>
+                            <input asp-for="@Model.PhoneNumber" class="form-control bg-body" disabled>
+                            <span asp-validation-for="@Model.PhoneNumber"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Street</label>
+                            <input class="form-control bg-body" id="street" disabled>
+                        </div>
+                        <div class="col-md-12">
+                            <label>Address line 2</label>
+                            <input class="form-control bg-body" id="addressLine2" disabled>
+                        </div>
+                        <div class="col-md-12">
+                            <label>District</label>
+                            <input class="form-control bg-body" id="district" disabled>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>City</label>
+                                <input class="form-control bg-body" id="city" disabled>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Country</label>
+                                <input class="form-control bg-body" id="country" disabled>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Post code</label>
+                                <input class="form-control bg-body" id="postCode" disabled>
+                            </div>
+                        </div>
+                    </form>
                 }
             </div>
         </div>
@@ -142,32 +142,7 @@
     </div>
 </div>
 
-<script>
-    function GetAddress() {
-        var addressName = $('#addressNames').val()
-        var cartItemsCount = $('#cartItemsCount').val()
-
-
-        $.ajax({
-            url: '/Checkout/GetAddressDetails',
-            type: 'GET',
-            data: {
-                addressName: addressName,
-                cartItemsCount: cartItemsCount
-            },
-            success: function (result, status, xhr) {
-                if (xhr.status === 200) {
-                    var jsonResult = JSON.parse(xhr.responseText);
-                    $('#street').val(jsonResult.street);
-                    $('#addressLine2').val(jsonResult.addressLineTwo);
-                    $('#district').val(jsonResult.district);
-                    $('#city').val(jsonResult.city);
-                    $('#country').val(jsonResult.country);
-                    $('#postCode').val(jsonResult.postCode);
-                    $('#addressId').val(jsonResult.id);
-
-                }
-            }
-        });
-    }
-</script>
+@section Scripts
+{
+    <script src="~/js/site.js" asp-append-version="true"></script>
+}

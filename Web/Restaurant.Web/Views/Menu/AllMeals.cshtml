@@ -58,13 +58,13 @@
                                             <div class="d-flex align-items-center">
                                                 <div class="btn-group quantity me-md-5" style="width: 100px;">
                                                     <div>
-                                                        <button class="btn btn-sm btn-primary btn-minus" onclick="ChangeQuantity('mealContainer@(meal.Id)')">
+                                                        <button class="btn btn-sm btn-primary btn-minus" onclick="ChangeMenuItemQuantity('mealContainer@(meal.Id)')">
                                                             <i class="fa fa-minus btn-minus"></i>
                                                         </button>
                                                     </div>
                                                     <input class="form-control form-control-sm bg-white text-center" style="min-width:25px;" value="1" disabled>
                                                     <div>
-                                                        <button class="btn btn-sm btn-primary btn-plus" onclick="ChangeQuantity('mealContainer@(meal.Id)')">
+                                                        <button class="btn btn-sm btn-primary btn-plus" onclick="ChangeMenuItemQuantity('mealContainer@(meal.Id)')">
                                                             <i class="fa fa-plus btn-plus"></i>
                                                         </button>
                                                     </div>
@@ -107,77 +107,8 @@
 </div>
 
 <!--Modal End-->
+@section Scripts
+{
+    <script src="~/js/site.js" asp-append-version="true"></script>
+}
 
-<script type="text/javascript">
-
-    function ChangeQuantity(id) {
-
-        var mealContainer = document.getElementById(id);
-        var quantity = mealContainer.querySelector('input');
-
-        var quantityValue = Number.parseInt(quantity.getAttribute('value'));
-
-        var button = event.srcElement;
-
-        if (button.classList.contains('btn-plus')) {
-            quantityValue++;
-        }
-        else {
-            if (quantityValue > 1) {
-                quantityValue--;
-            }
-        }
-
-        quantity.setAttribute('value', quantityValue);
-    }
-
-    function AddToCart(id) {
-
-        var mealId = id.substring(13);
-        var mealContainer = document.getElementById(id);
-        var quantity = mealContainer.querySelector('input').value;
-
-        const data =
-        {
-            mealId: mealId,
-            quantity: quantity
-        };
-
-        $.ajax({
-            url: '/Cart/AddToCart',
-            type: 'POST',
-            data: JSON.stringify(data),
-            contentType: 'application/json',
-            success: function (result, status, xhr) {
-                if (xhr.status === 200) {
-                    $("#modalLabel").text('Success');
-                    $("#modalBody").text('You have successfully added the item to your cart!');
-                    $("#exampleModal").modal('show');
-
-                    var currentCartTotalPrice = JSON.parse(xhr.responseText);
-                    $("#cartSubTotalBtn").html('<i class="fa-solid fa-cart-shopping"></i> ' + currentCartTotalPrice + ' $');
-                }
-            },
-            error: function (xhr) {
-                $("#modalLabel").text('Oops!');
-                if (xhr.responseText.length == 0) {
-
-                    $("#modalBody").append('<li class="text-danger"> You need to log in to add items to your cart! </li>')
-                }
-                else {
-                    var errors = JSON.parse(xhr.responseText);
-                    for (var i = 0; i < errors.length; i++) {
-                        $("#modalBody").append('<li class="text-danger">' + errors[i] + '</li>')
-                    }
-                }
-                $("#exampleModal").modal('show')
-            }
-        });
-
-        $("#btnCloseModal").click(function () {
-            $("#exampleModal").modal("hide");
-            $("#modalBody").text('');
-        });
-    }
-
-</script>
