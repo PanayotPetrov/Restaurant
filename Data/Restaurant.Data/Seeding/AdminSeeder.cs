@@ -26,6 +26,8 @@
                 admin = new ApplicationUser
                 {
                     UserName = adminName,
+                    FirstName = "Pesho",
+                    LastName = "Petrov",
                 };
 
                 var result = await adminManager.CreateAsync(admin, "123456");
