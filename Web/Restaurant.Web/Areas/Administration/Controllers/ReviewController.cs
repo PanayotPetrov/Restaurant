@@ -27,13 +27,13 @@
                 return this.NotFound();
             }
 
-            var reviews = this.reviewService.GetAllWithDeleted<AdminReviewViewModel>(ItemsPerPage, id);
+            var reviews = this.reviewService.GetAllWithPagination<AdminReviewViewModel>(ItemsPerPage, id, true);
 
             var model = new AdminReviewListViewModel
             {
                 Reviews = reviews,
                 ItemsPerPage = ItemsPerPage,
-                ItemCount = this.reviewService.GetCountWithDeleted(),
+                ItemCount = this.reviewService.GetCount(true),
                 PageNumber = id,
             };
 
@@ -58,7 +58,7 @@
                 }
             }
 
-            var model = this.reviewService.GetByIdWithDeleted<AdminReviewViewModel>(id);
+            var model = this.reviewService.GetById<AdminReviewViewModel>(id, true);
 
             return this.View(model);
         }

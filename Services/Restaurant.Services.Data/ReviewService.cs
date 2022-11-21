@@ -10,11 +10,12 @@
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
-    public class ReviewService : IReviewService
+    public class ReviewService : PaginationService<Review>, IReviewService
     {
         private readonly IDeletableEntityRepository<Review> reviewRepository;
 
         public ReviewService(IDeletableEntityRepository<Review> reviewRepository)
+            : base(reviewRepository)
         {
             this.reviewRepository = reviewRepository;
         }
@@ -26,34 +27,13 @@
             await this.reviewRepository.SaveChangesAsync();
         }
 
-        public T GetById<T>(int id)
+        public T GetById<T>(int id, bool getDeleted = false)
         {
-            return this.reviewRepository.AllAsNoTracking().Where(r => r.Id == id).To<T>().FirstOrDefault();
-        }
+            var review = getDeleted
+                ? this.reviewRepository.AllAsNoTrackingWithDeleted().Where(x => x.Id == id).To<T>().FirstOrDefault()
+                : this.reviewRepository.AllAsNoTracking().Where(x => x.Id == id).To<T>().FirstOrDefault();
 
-        public T GetByIdWithDeleted<T>(int id)
-        {
-            return this.reviewRepository.AllAsNoTrackingWithDeleted().Where(r => r.Id == id).To<T>().FirstOrDefault();
-        }
-
-        public IEnumerable<T> GetAllReviews<T>(int itemsPerPage, int page)
-        {
-            return this.reviewRepository.AllAsNoTracking().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
-        }
-
-        public IEnumerable<T> GetAllWithDeleted<T>(int itemsPerPage, int page)
-        {
-            return this.reviewRepository.AllAsNoTrackingWithDeleted().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
-        }
-
-        public int GetCount()
-        {
-            return this.reviewRepository.AllAsNoTracking().Count();
-        }
-
-        public int GetCountWithDeleted()
-        {
-            return this.reviewRepository.AllAsNoTrackingWithDeleted().Count();
+            return review;
         }
 
         public IEnumerable<T> GetLatestFiveReviews<T>()

@@ -40,7 +40,7 @@
 
             var result = this.service.GetCartByUserId<CartViewModel>(userId);
 
-            Assert.Equal("14.00", result.TotalPrice);
+            Assert.Equal("14,00", result.TotalPrice);
         }
 
         [Fact]

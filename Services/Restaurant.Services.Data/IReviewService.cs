@@ -7,26 +7,20 @@
 
     public interface IReviewService
     {
-        IEnumerable<T> GetAllReviews<T>(int itemsPerPage, int page);
-
         Task AddReviewAsync(AddReviewModel model);
 
         IEnumerable<T> GetLatestFiveReviews<T>();
 
-        int GetCount();
+        int GetCount(bool getDeleted = false);
 
-        int GetCountWithDeleted();
+        IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int id, bool getDeleted = false);
 
-        IEnumerable<T> GetAllWithDeleted<T>(int itemsPerPage, int id);
-
-        T GetById<T>(int id);
+        T GetById<T>(int id, bool getDeleted = false);
 
         Task<bool> DeleteByIdAsync(int id);
 
         bool IsReviewIdValid(int reviewId);
 
         Task<bool> RestoreAsync(int id);
-
-        T GetByIdWithDeleted<T>(int id);
     }
 }

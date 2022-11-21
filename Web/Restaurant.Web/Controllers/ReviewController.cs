@@ -30,7 +30,7 @@
                 return this.NotFound();
             }
 
-            var reviews = this.reviewService.GetAllReviews<ReviewViewModel>(ItemsPerPage, id);
+            var reviews = this.reviewService.GetAllWithPagination<ReviewViewModel>(ItemsPerPage, id);
 
             var model = new ReviewListViewModel
             {

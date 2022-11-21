@@ -61,7 +61,7 @@
             this.GenerateReviews(3);
             this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reviews.AsQueryable());
 
-            Assert.Equal(3, this.service.GetCountWithDeleted());
+            Assert.Equal(3, this.service.GetCount(true));
             this.repository.Verify(x => x.AllAsNoTrackingWithDeleted(), Times.Once);
         }
 
@@ -80,7 +80,7 @@
         {
             this.GenerateReviews(2);
             this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reviews.AsQueryable());
-            var result = this.service.GetByIdWithDeleted<AdminReviewViewModel>(1);
+            var result = this.service.GetById<AdminReviewViewModel>(1, true);
             Assert.Equal(1, result.Id);
             this.repository.Verify(x => x.AllAsNoTrackingWithDeleted(), Times.Once);
         }
@@ -209,8 +209,8 @@
         {
             this.GenerateReviews(9);
             this.repository.Setup(r => r.AllAsNoTracking()).Returns(this.reviews.AsQueryable());
-            var firstPage = this.service.GetAllReviews<ReviewViewModel>(5, 1);
-            var secondPage = this.service.GetAllReviews<ReviewViewModel>(5, 2);
+            var firstPage = this.service.GetAllWithPagination<ReviewViewModel>(5, 1);
+            var secondPage = this.service.GetAllWithPagination<ReviewViewModel>(5, 2);
             Assert.Equal(5, firstPage.Count());
             Assert.Equal(4, secondPage.Count());
         }
@@ -220,8 +220,8 @@
         {
             this.GenerateReviews(9);
             this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reviews.AsQueryable());
-            var firstPage = this.service.GetAllWithDeleted<ReviewViewModel>(5, 1);
-            var secondPage = this.service.GetAllWithDeleted<ReviewViewModel>(5, 2);
+            var firstPage = this.service.GetAllWithPagination<ReviewViewModel>(5, 1, true);
+            var secondPage = this.service.GetAllWithPagination<ReviewViewModel>(5, 2, true);
             Assert.Equal(5, firstPage.Count());
             Assert.Equal(4, secondPage.Count());
         }
