@@ -33,7 +33,7 @@
             {
                 Orders = orders,
                 ItemsPerPage = ItemsPerPage,
-                ItemCount = this.orderService.GetCountWithDeleted(),
+                ItemCount = this.orderService.GetCount(true),
                 PageNumber = id,
             };
 
@@ -58,8 +58,8 @@
                     return this.NotFound();
                 }
             }
-
-            var model = this.orderService.GetByOrderNumberWithDeleted<AdminOrderViewModel>(orderNumber);
+            
+            var model = this.orderService.GetByOrderNumber<AdminOrderViewModel>(orderNumber, true);
 
             return this.View(model);
         }

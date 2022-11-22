@@ -5,7 +5,7 @@
 
     using Restaurant.Services.Models;
 
-    public interface IOrderService
+    public interface IOrderService : IPaginationService
     {
         Task<string> CreateAsync(AddOrderModel model);
 
@@ -13,11 +13,7 @@
 
         IEnumerable<string> GetAllOrderNumbersByUserId(string userId);
 
-        IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int id);
-
-        int GetCountWithDeleted();
-
-        T GetByOrderNumberWithDeleted<T>(string orderNumber);
+        T GetByOrderNumber<T>(string orderNumber, bool getDeleted = false);
 
         Task<bool> DeleteByOrderNumberAsync(string orderNumber);
 

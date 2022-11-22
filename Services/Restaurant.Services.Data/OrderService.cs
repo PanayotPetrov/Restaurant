@@ -11,12 +11,13 @@
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
-    public class OrderService : IOrderService
+    public class OrderService : PaginationService<Order>, IOrderService
     {
         private readonly IDeletableEntityRepository<Order> orderRepository;
         private readonly ICartService cartService;
 
         public OrderService(IDeletableEntityRepository<Order> orderRepository, ICartService cartService)
+            : base(orderRepository)
         {
             this.orderRepository = orderRepository;
             this.cartService = cartService;
@@ -37,19 +38,11 @@
             return this.orderRepository.AllAsNoTrackingWithDeleted().Select(o => o.OrderNumber).ToList();
         }
 
-        public IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int page)
+        public T GetByOrderNumber<T>(string orderNumber, bool getDeleted = false)
         {
-            return this.orderRepository.AllAsNoTrackingWithDeleted().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
-        }
-
-        public int GetCountWithDeleted()
-        {
-            return this.orderRepository.AllAsNoTrackingWithDeleted().Count();
-        }
-
-        public T GetByOrderNumberWithDeleted<T>(string orderNumber)
-        {
-            return this.orderRepository.AllAsNoTrackingWithDeleted().Where(o => o.OrderNumber == orderNumber).To<T>().FirstOrDefault();
+            return getDeleted
+                ? this.orderRepository.AllAsNoTrackingWithDeleted().Where(o => o.OrderNumber == orderNumber).To<T>().FirstOrDefault()
+                : this.orderRepository.AllAsNoTracking().Where(o => o.OrderNumber == orderNumber).To<T>().FirstOrDefault();
         }
 
         public async Task<string> CreateAsync(AddOrderModel model)

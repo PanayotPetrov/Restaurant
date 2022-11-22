@@ -70,8 +70,8 @@
 
             this.repository.Setup(x => x.AllAsNoTrackingWithDeleted()).Returns(this.orders.AsQueryable());
 
-            var result = this.service.GetAllWithPagination<AdminOrderViewModel>(3, 1);
-            var result2 = this.service.GetAllWithPagination<AdminOrderViewModel>(3, 2);
+            var result = this.service.GetAllWithPagination<AdminOrderViewModel>(3, 1, true);
+            var result2 = this.service.GetAllWithPagination<AdminOrderViewModel>(3, 2, true);
 
             Assert.Equal(3, result.Count());
             Assert.Equal(2, result2.Count());
@@ -84,7 +84,7 @@
 
             this.repository.Setup(x => x.AllAsNoTrackingWithDeleted()).Returns(this.orders.AsQueryable());
 
-            var result = this.service.GetCountWithDeleted();
+            var result = this.service.GetCount(true);
 
             Assert.Equal(3, result);
         }
@@ -96,7 +96,7 @@
 
             this.repository.Setup(x => x.AllAsNoTrackingWithDeleted()).Returns(this.orders.AsQueryable());
 
-            var result = this.service.GetByOrderNumberWithDeleted<AdminOrderViewModel>("Test orderNumber 3");
+            var result = this.service.GetByOrderNumber<AdminOrderViewModel>("Test orderNumber 3", true);
 
             Assert.Equal("Test orderNumber 3", result.OrderNumber);
         }
