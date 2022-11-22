@@ -20,7 +20,7 @@
             this.repository = repository;
         }
 
-        public int GetCount(bool getDeleted = false)
+        public virtual int GetCount(bool getDeleted = false)
         {
             return getDeleted == true
                 ? this.repository.AllAsNoTrackingWithDeleted().Count()

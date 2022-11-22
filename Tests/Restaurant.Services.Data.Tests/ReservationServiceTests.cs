@@ -207,7 +207,7 @@
             this.reservations.Add(new Reservation { Id = "Test id", ReservationDate = DateTime.UtcNow.Subtract(TimeSpan.FromDays(1)) });
 
             this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reservations.AsQueryable());
-            var result = this.service.GetAllWithoutPassedDates<AdminReservationViewModel>(3, 1).ToArray();
+            var result = this.service.GetAllWithPagination<AdminReservationViewModel>(3, 1, true).ToArray();
             Assert.Equal(2, result.Count());
             Assert.Equal("Test id2", result[0].Id);
             Assert.Equal("Test id1", result[1].Id);
@@ -224,8 +224,8 @@
             this.reservations.Add(new Reservation { Id = "Test id", ReservationDate = DateTime.UtcNow.Subtract(TimeSpan.FromDays(1)) });
 
             this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reservations.AsQueryable());
-            var result1 = this.service.GetAllWithoutPassedDates<ReservationViewModel>(3, 1).Count();
-            var result2 = this.service.GetAllWithoutPassedDates<ReservationViewModel>(3, 2).Count();
+            var result1 = this.service.GetAllWithPagination<ReservationViewModel>(3, 1, true).Count();
+            var result2 = this.service.GetAllWithPagination<ReservationViewModel>(3, 2, true).Count();
 
             Assert.Equal(3, result1);
             Assert.Equal(1, result2);
@@ -242,7 +242,7 @@
             this.reservations.Add(new Reservation { Id = "Test id", ReservationDate = DateTime.UtcNow.Subtract(TimeSpan.FromDays(1)) });
 
             this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reservations.AsQueryable());
-            var result = this.service.GetCount();
+            var result = this.service.GetCount(true);
 
             Assert.Equal(4, result);
         }
@@ -273,7 +273,7 @@
             this.reservations.Add(new Reservation { Id = "Test Id2" });
 
             this.repository.Setup(r => r.AllAsNoTrackingWithDeleted()).Returns(this.reservations.AsQueryable());
-            var result = this.service.GetByIdWithDeleted<AdminReservationViewModel>("Test Id1");
+            var result = this.service.GetById<AdminReservationViewModel>("Test Id1", true);
 
             Assert.Equal("Test Id1", result.Id);
         }

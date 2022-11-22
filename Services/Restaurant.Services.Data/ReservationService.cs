@@ -10,26 +10,31 @@
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
-    public class ReservationService : IReservationService
+    public class ReservationService : PaginationService<Reservation>, IReservationService
     {
         private readonly DateTime currentDate = DateTime.UtcNow.Date;
         private readonly IDeletableEntityRepository<Reservation> reservationRepository;
         private readonly ITableService tableService;
 
         public ReservationService(IDeletableEntityRepository<Reservation> reservationRepository, ITableService tableService)
+            : base(reservationRepository)
         {
             this.reservationRepository = reservationRepository;
             this.tableService = tableService;
         }
 
-        public T GetById<T>(string reservationId)
+        public T GetById<T>(string reservationId, bool getDeleted = false)
         {
-            return this.reservationRepository.AllAsNoTracking().Where(x => x.Id == reservationId).To<T>().FirstOrDefault();
+            return getDeleted
+                ? this.reservationRepository.AllAsNoTrackingWithDeleted().Where(x => x.Id == reservationId).To<T>().FirstOrDefault()
+                : this.reservationRepository.AllAsNoTracking().Where(x => x.Id == reservationId).To<T>().FirstOrDefault();
         }
 
-        public T GetByIdWithDeleted<T>(string reservationId)
+        public override int GetCount(bool getDeleted = false)
         {
-            return this.reservationRepository.AllAsNoTrackingWithDeleted().Where(x => x.Id == reservationId).To<T>().FirstOrDefault();
+            return getDeleted == true
+                ? this.reservationRepository.AllAsNoTrackingWithDeleted().Where(r => r.ReservationDate.Date >= this.currentDate.Date).Count()
+                : this.reservationRepository.AllAsNoTracking().Where(r => r.ReservationDate.Date >= this.currentDate.Date).Count();
         }
 
         public IEnumerable<T> GetAllByUserId<T>(string userId)
@@ -42,16 +47,22 @@
                 .ToList();
         }
 
-        public int GetCount()
+        public override IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int page, bool getDeleted = false)
         {
-            return this.reservationRepository.AllAsNoTrackingWithDeleted()
-                .Where(r => r.ReservationDate.Date >= this.currentDate.Date)
-                .Count();
-        }
+            if (getDeleted)
+            {
+                return this.reservationRepository
+                    .AllAsNoTrackingWithDeleted()
+                    .Where(r => r.ReservationDate.Date >= this.currentDate.Date)
+                    .OrderByDescending(x => x.ReservationDate)
+                    .Skip((page - 1) * itemsPerPage)
+                    .Take(itemsPerPage)
+                    .To<T>()
+                    .ToList();
+            }
 
-        public IEnumerable<T> GetAllWithoutPassedDates<T>(int itemsPerPage, int page)
-        {
-            return this.reservationRepository.AllAsNoTrackingWithDeleted()
+            return this.reservationRepository
+                .AllAsNoTracking()
                 .Where(r => r.ReservationDate.Date >= this.currentDate.Date)
                 .OrderByDescending(x => x.ReservationDate)
                 .Skip((page - 1) * itemsPerPage)

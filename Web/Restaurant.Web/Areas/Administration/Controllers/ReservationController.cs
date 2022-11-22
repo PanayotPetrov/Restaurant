@@ -31,7 +31,7 @@
                 return this.NotFound();
             }
 
-            var reservations = this.reservationService.GetAllWithoutPassedDates<AdminReservationViewModel>(ItemsPerPage, id);
+            var reservations = this.reservationService.GetAllWithPagination<AdminReservationViewModel>(ItemsPerPage, id, true);
 
             var model = new AdminReservationListViewModel
             {
@@ -59,7 +59,7 @@
                 return this.NotFound();
             }
 
-            var model = this.reservationService.GetByIdWithDeleted<AdminReservationViewModel>(id);
+            var model = this.reservationService.GetById<AdminReservationViewModel>(id, true);
 
             return this.View(model);
         }
@@ -71,7 +71,7 @@
                 return this.NotFound();
             }
 
-            var model = this.reservationService.GetByIdWithDeleted<EditReservationInputModel>(id);
+            var model = this.reservationService.GetById<EditReservationInputModel>(id, true);
 
             return this.View(model);
         }

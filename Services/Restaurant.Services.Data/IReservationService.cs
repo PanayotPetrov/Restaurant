@@ -5,21 +5,15 @@
 
     using Restaurant.Services.Models;
 
-    public interface IReservationService
+    public interface IReservationService : IPaginationService
     {
-        T GetById<T>(string reservationId);
-
-        T GetByIdWithDeleted<T>(string reservationId);
+        T GetById<T>(string reservationId, bool getDeleted = false);
 
         IEnumerable<T> GetAllByUserId<T>(string userId);
 
         Task<string> CreateReservationAsync(AddReservationModel model);
 
         Task<bool> DeleteByIdAsync(string id);
-
-        int GetCount();
-
-        IEnumerable<T> GetAllWithoutPassedDates<T>(int itemsPerPage, int page);
 
         Task<bool> UpdateAsync(EditReservationModel model);
 
