@@ -333,3 +333,8 @@ ASALocalRun/
 # Local History for Visual Studio
 .localhistory/
 Web/Restaurant.Web/appsettings.Production.json
+Web/Restaurant.Web/wwwroot/lib/jquery/dist/jquery.min.js
+Web/Restaurant.Web/wwwroot/lib/jquery/dist/jquery.js
+Web/Restaurant.Web/wwwroot/lib/jquery-validation/dist/jquery.validate.min.js
+Web/Restaurant.Web/wwwroot/lib/jquery-validation/dist/jquery.validate.js
+Web/Restaurant.Web/wwwroot/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js

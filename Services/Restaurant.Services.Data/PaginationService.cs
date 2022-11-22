@@ -10,7 +10,7 @@
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Services.Mapping;
 
-    public class PaginationService<T> : IPaginationService
+    public abstract class PaginationService<T> : IPaginationService
         where T : class, IDeletableEntity, IAuditInfo
     {
         private readonly IDeletableEntityRepository<T> repository;
@@ -27,7 +27,7 @@
                 : this.repository.AllAsNoTracking().Count();
         }
 
-        public IEnumerable<T2> GetAllWithPagination<T2>(int itemsPerPage, int page, bool getDeleted = false)
+        public virtual IEnumerable<T2> GetAllWithPagination<T2>(int itemsPerPage, int page, bool getDeleted = false)
         {
             if (getDeleted)
             {

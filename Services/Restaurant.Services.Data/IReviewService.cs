@@ -5,15 +5,11 @@
 
     using Restaurant.Services.Models;
 
-    public interface IReviewService
+    public interface IReviewService : IPaginationService
     {
         Task AddReviewAsync(AddReviewModel model);
 
         IEnumerable<T> GetLatestFiveReviews<T>();
-
-        int GetCount(bool getDeleted = false);
-
-        IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int id, bool getDeleted = false);
 
         T GetById<T>(int id, bool getDeleted = false);
 
