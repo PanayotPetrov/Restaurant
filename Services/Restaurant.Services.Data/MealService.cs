@@ -13,13 +13,14 @@
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
-    public class MealService : IMealService
+    public class MealService : PaginationService<Meal>, IMealService
     {
         private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif" };
         private readonly IDeletableEntityRepository<Meal> mealRepository;
         private readonly IRepository<MealImage> mealImageRepository;
 
         public MealService(IDeletableEntityRepository<Meal> mealRepository, IRepository<MealImage> mealImageRepository)
+            : base(mealRepository)
         {
             this.mealRepository = mealRepository;
             this.mealImageRepository = mealImageRepository;
@@ -39,19 +40,11 @@
             return this.mealRepository.AllAsNoTracking().Include(i => i.Category).To<T>().ToList();
         }
 
-        public IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int page)
+        public T GetById<T>(int id, bool getDeleted = false)
         {
-            return this.mealRepository.AllAsNoTrackingWithDeleted().OrderByDescending(x => x.CreatedOn).Skip((page - 1) * itemsPerPage).Take(itemsPerPage).To<T>().ToList();
-        }
-
-        public int GetMealCount()
-        {
-            return this.mealRepository.AllAsNoTrackingWithDeleted().Count();
-        }
-
-        public T GetByIdWithDeleted<T>(int id)
-        {
-            return this.mealRepository.AllAsNoTrackingWithDeleted().Where(m => m.Id == id).To<T>().FirstOrDefault();
+            return getDeleted
+                ? this.mealRepository.AllAsNoTrackingWithDeleted().Where(x => x.Id == id).To<T>().FirstOrDefault() 
+                : this.mealRepository.AllAsNoTracking().Where(x => x.Id == id).To<T>().FirstOrDefault();
         }
 
         public bool IsMealIdValid(int mealId)

@@ -131,8 +131,8 @@
 
             this.repository.Setup(x => x.AllAsNoTrackingWithDeleted()).Returns(this.meals.AsQueryable());
 
-            var result = this.service.GetAllWithPagination<MealViewModel>(3, 1);
-            var result2 = this.service.GetAllWithPagination<MealViewModel>(3, 2);
+            var result = this.service.GetAllWithPagination<MealViewModel>(3, 1, true);
+            var result2 = this.service.GetAllWithPagination<MealViewModel>(3, 2, true);
 
             Assert.Equal(3, result.Count());
             Assert.Equal(2, result2.Count());
@@ -145,7 +145,7 @@
 
             this.repository.Setup(x => x.AllAsNoTrackingWithDeleted()).Returns(this.meals.AsQueryable());
 
-            var result = this.service.GetMealCount();
+            var result = this.service.GetCount(true);
 
             Assert.Equal(5, result);
         }
@@ -157,7 +157,7 @@
 
             this.repository.Setup(x => x.AllAsNoTrackingWithDeleted()).Returns(this.meals.AsQueryable());
 
-            var result = this.service.GetByIdWithDeleted<AdminMealViewModel>(1);
+            var result = this.service.GetById<AdminMealViewModel>(1, true);
 
             Assert.Equal(1, result.Id);
         }

@@ -38,9 +38,9 @@
 
             var model = new AdminMealListViewModel
             {
-                Meals = this.mealService.GetAllWithPagination<AdminMealViewModel>(ItemsPerPage, id),
+                Meals = this.mealService.GetAllWithPagination<AdminMealViewModel>(ItemsPerPage, id, true),
                 ItemsPerPage = ItemsPerPage,
-                ItemCount = this.mealService.GetMealCount(),
+                ItemCount = this.mealService.GetCount(true),
                 PageNumber = id,
             };
 
@@ -65,7 +65,7 @@
                 }
             }
 
-            var model = this.mealService.GetByIdWithDeleted<AdminMealViewModel>(id);
+            var model = this.mealService.GetById<AdminMealViewModel>(id, true);
             return this.View(model);
         }
 
@@ -100,7 +100,7 @@
                 return this.NotFound();
             }
 
-            var model = this.mealService.GetByIdWithDeleted<EditMealInputModel>(id);
+            var model = this.mealService.GetById<EditMealInputModel>(id, true);
             model.Categories = this.categoryService.GetAllAsKeyValuePairs();
             return this.View(model);
         }

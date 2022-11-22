@@ -5,15 +5,11 @@
 
     using Restaurant.Services.Models;
 
-    public interface IMealService
+    public interface IMealService : IPaginationService
     {
         Task<int> CreateAsync(AddMealModel model, string imagePath);
 
-        int GetMealCount();
-
         IEnumerable<T> GetAllMeals<T>();
-
-        public IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int page);
 
         Task<bool> DeleteByIdAsync(int mealId);
 
@@ -23,6 +19,6 @@
 
         Task<bool> RestoreAsync(int id);
 
-        T GetByIdWithDeleted<T>(int id);
+        T GetById<T>(int id, bool getDeleted = false);
     }
 }
