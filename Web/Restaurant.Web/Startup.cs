@@ -81,6 +81,8 @@
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IViewHtmlRenderer, ViewHtmlRenderer>();
             services.AddTransient<IUserMessageService, UserMessageService>();
+            services.AddTransient<IPagedItemsModelCreator, PagedItemsModelCreator>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
