@@ -43,7 +43,7 @@
 
             return this.repository.AllAsNoTracking()
                  .OrderByDescending(x => x.CreatedOn)
-                 .Skip((page - 1) * itemsPerPage)
+                 .Skip(itemsToSkip)
                  .Take(itemsPerPage)
                  .To<T2>()
                  .ToList();
