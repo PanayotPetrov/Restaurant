@@ -29,11 +29,13 @@
 
         public virtual IEnumerable<T2> GetAllWithPagination<T2>(int itemsPerPage, int page, bool getDeleted = false)
         {
+            var itemsToSkip = this.GetItemsToSkip(itemsPerPage, page, getDeleted);
+
             if (getDeleted)
             {
                 return this.repository.AllAsNoTrackingWithDeleted()
                     .OrderByDescending(x => x.CreatedOn)
-                    .Skip((page - 1) * itemsPerPage)
+                    .Skip(itemsToSkip)
                     .Take(itemsPerPage)
                     .To<T2>()
                     .ToList();
@@ -45,6 +47,18 @@
                  .Take(itemsPerPage)
                  .To<T2>()
                  .ToList();
+        }
+
+        private int GetItemsToSkip(int itemsPerPage, int page, bool getDeleted)
+        {
+            var itemsToSkip = Math.Abs(page - 1) * itemsPerPage;
+
+            if (itemsToSkip > this.GetCount(getDeleted))
+            {
+                itemsToSkip = 0;
+            }
+
+            return itemsToSkip;
         }
     }
 }
