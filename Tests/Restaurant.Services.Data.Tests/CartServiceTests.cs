@@ -350,6 +350,7 @@
 
             var model = new CartItemModel
             {
+                CartId = 1,
                 MealId = 1,
                 Quantity = newMealQuantity,
             };
