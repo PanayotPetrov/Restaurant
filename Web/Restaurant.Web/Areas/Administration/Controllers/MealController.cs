@@ -9,10 +9,12 @@
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
+    using Restaurant.Web.HelperClasses;
     using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Meal;
+    using Restaurant.Web.ViewModels.Review;
 
     public class MealController : AdministrationController
     {
@@ -20,31 +22,24 @@
         private readonly IMealService mealService;
         private readonly ICategoryService categoryService;
         private readonly IWebHostEnvironment environment;
+        private readonly IPagedItemsModelCreator modelCreator;
 
-        public MealController(IMealService mealService, ICategoryService categoryService, IWebHostEnvironment environment)
+        public MealController(IMealService mealService, ICategoryService categoryService, IWebHostEnvironment environment, IPagedItemsModelCreator modelCreator)
         {
             this.mealService = mealService;
             this.categoryService = categoryService;
             this.environment = environment;
+            this.modelCreator = modelCreator;
         }
 
         [HttpGet("/Administration/Meal/All/{id}")]
         public IActionResult Index(int id)
         {
-            if (id < 1)
-            {
-                return this.NotFound();
-            }
+            var totalItemsCount = this.mealService.GetCount(true);
+            var items = this.mealService.GetAllWithPagination<AdminMealViewModel>(ItemsPerPage, id, true);
+            var model = this.modelCreator.Create(items, id, ItemsPerPage, totalItemsCount);
 
-            var model = new AdminMealListViewModel
-            {
-                Meals = this.mealService.GetAllWithPagination<AdminMealViewModel>(ItemsPerPage, id, true),
-                ItemsPerPage = ItemsPerPage,
-                ItemCount = this.mealService.GetCount(true),
-                PageNumber = id,
-            };
-
-            if (id > model.PagesCount)
+            if (!model.HasValidState)
             {
                 return this.NotFound();
             }
