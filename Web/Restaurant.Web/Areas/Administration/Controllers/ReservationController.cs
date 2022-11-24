@@ -8,6 +8,7 @@
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
+    using Restaurant.Web.HelperClasses;
     using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.InputModels;
@@ -17,31 +18,22 @@
     {
         private const int ItemsPerPage = 6;
         private readonly IReservationService reservationService;
+        private readonly IPagedItemsModelCreator modelCreator;
 
-        public ReservationController(IReservationService reviewService)
+        public ReservationController(IReservationService reviewService, IPagedItemsModelCreator modelCreator)
         {
             this.reservationService = reviewService;
+            this.modelCreator = modelCreator;
         }
 
         [HttpGet("/Administration/Reservation/All/{id}")]
         public IActionResult Index(int id)
         {
-            if (id < 1)
-            {
-                return this.NotFound();
-            }
+            var totalItemsCount = this.reservationService.GetCount(true);
+            var items = this.reservationService.GetAllWithPagination<AdminReservationViewModel>(ItemsPerPage, id, true);
+            var model = this.modelCreator.Create(items, id, ItemsPerPage, totalItemsCount);
 
-            var reservations = this.reservationService.GetAllWithPagination<AdminReservationViewModel>(ItemsPerPage, id, true);
-
-            var model = new AdminReservationListViewModel
-            {
-                Reservations = reservations,
-                ItemsPerPage = ItemsPerPage,
-                ItemCount = this.reservationService.GetCount(),
-                PageNumber = id,
-            };
-
-            if (id > model.PagesCount && reservations.Count() != 0)
+            if (!model.HasValidState)
             {
                 return this.NotFound();
             }

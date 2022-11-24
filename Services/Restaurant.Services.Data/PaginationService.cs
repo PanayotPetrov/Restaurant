@@ -49,7 +49,7 @@
                  .ToList();
         }
 
-        private int GetItemsToSkip(int itemsPerPage, int page, bool getDeleted)
+        protected int GetItemsToSkip(int itemsPerPage, int page, bool getDeleted)
         {
             var itemsToSkip = Math.Abs(page - 1) * itemsPerPage;
 

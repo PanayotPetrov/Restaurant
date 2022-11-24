@@ -1,5 +1,5 @@
 ﻿@using Restaurant.Web.ViewModels.Reservation
-@model AdminReservationListViewModel
+@model PagedItemsViewModel<AdminReservationViewModel>
 
 @{
     this.ViewData["Title"] = "Index";
@@ -55,7 +55,7 @@
         </tr>
     </thead>
     <tbody class="table-light">
-        @foreach (var reservation in Model.Reservations)
+        @foreach (var reservation in Model.Items)
         {
             <tr>
                 <td>

@@ -49,13 +49,15 @@
 
         public override IEnumerable<T> GetAllWithPagination<T>(int itemsPerPage, int page, bool getDeleted = false)
         {
+            var itemsToSkip = this.GetItemsToSkip(itemsPerPage, page, getDeleted);
+
             if (getDeleted)
             {
                 return this.reservationRepository
                     .AllAsNoTrackingWithDeleted()
                     .Where(r => r.ReservationDate.Date >= this.currentDate.Date)
                     .OrderByDescending(x => x.ReservationDate)
-                    .Skip((page - 1) * itemsPerPage)
+                    .Skip(itemsToSkip)
                     .Take(itemsPerPage)
                     .To<T>()
                     .ToList();
@@ -65,7 +67,7 @@
                 .AllAsNoTracking()
                 .Where(r => r.ReservationDate.Date >= this.currentDate.Date)
                 .OrderByDescending(x => x.ReservationDate)
-                .Skip((page - 1) * itemsPerPage)
+                .Skip(itemsToSkip)
                 .Take(itemsPerPage)
                 .To<T>()
                 .ToList();
