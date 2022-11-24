@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public class PagedItemsListViewModel<T> : PagingViewModel, IPagedItemsListViewModel<T>
+    public class PagedItemsViewModel<T> : PagingViewModel, IPagedItemsViewModel<T>
     {
         public virtual IEnumerable<T> Items { get; set; }
 

@@ -1,5 +1,5 @@
 ﻿@using Restaurant.Web.ViewModels.Review
-@model AdminReviewListViewModel
+@model PagedItemsViewModel<AdminReviewViewModel>
 @{
     ViewData["Title"] = "Index";
 }
@@ -45,7 +45,7 @@
         </tr>
     </thead>
     <tbody class="table-light">
-        @foreach (var review in Model.Reviews)
+        @foreach (var review in Model.Items)
         {
             <tr>
                 <td>

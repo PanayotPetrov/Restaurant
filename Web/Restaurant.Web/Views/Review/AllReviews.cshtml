@@ -1,6 +1,6 @@
 ﻿@using Restaurant.Common
 @using Restaurant.Web.ViewModels.Review
-@model ReviewListViewModel
+@model PagedItemsViewModel<ReviewViewModel>
 
 @{
     this.ViewData["Title"] = "All reviews";
@@ -16,7 +16,7 @@
         <h1 class="mb-5">Customer feedback</h1>
     </div>
 
-    @foreach (var review in Model.Reviews)
+    @foreach (var review in Model.Items)
     {
         <div class="card offset-xl-1 col-md-10 border-3 border-dark wow fadeInUp" data-wow-delay="0.1s">
             <div class="row d-flex">

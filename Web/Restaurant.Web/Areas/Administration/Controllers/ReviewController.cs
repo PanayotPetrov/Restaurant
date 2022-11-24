@@ -5,6 +5,7 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
+    using Restaurant.Web.HelperClasses;
     using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.Review;
@@ -13,37 +14,27 @@
     {
         private const int ItemsPerPage = 6;
         private readonly IReviewService reviewService;
+        private readonly IPagedItemsModelCreator modelCreator;
 
-        public ReviewController(IReviewService reviewService)
+        public ReviewController(IReviewService reviewService, IPagedItemsModelCreator modelCreator)
         {
             this.reviewService = reviewService;
+            this.modelCreator = modelCreator;
         }
 
         [HttpGet("/Administration/Review/All/{id}")]
         public IActionResult Index(int id)
         {
-            if (id < 1)
+            var totalItemsCount = this.reviewService.GetCount(true);
+            var items = this.reviewService.GetAllWithPagination<AdminReviewViewModel>(ItemsPerPage, id, true);
+            var model = this.modelCreator.Create(items, id, ItemsPerPage, totalItemsCount);
+
+            if (!model.HasValidState)
             {
                 return this.NotFound();
             }
 
-            var reviews = this.reviewService.GetAllWithPagination<AdminReviewViewModel>(ItemsPerPage, id, true);
-
-            var model = new AdminReviewListViewModel
-            {
-                Reviews = reviews,
-                ItemsPerPage = ItemsPerPage,
-                ItemCount = this.reviewService.GetCount(true),
-                PageNumber = id,
-            };
-
-            if (id > model.PagesCount)
-            {
-                return this.NotFound();
-            }
-
-            this.TempData["RouteId"] = id;
-
+            this.TempData["RouteId"] = model.PageNumber;
             return this.View(model);
         }
 

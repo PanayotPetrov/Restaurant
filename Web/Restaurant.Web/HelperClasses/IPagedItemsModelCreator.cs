@@ -6,6 +6,6 @@
 
     public interface IPagedItemsModelCreator
     {
-        public PagedItemsListViewModel<T> Create<T>(IEnumerable<T> items, int pageNumber, int itemsPerPage, int totalItemCount);
+        public PagedItemsViewModel<T> Create<T>(IEnumerable<T> items, int pageNumber, int itemsPerPage, int totalItemCount);
     }
 }

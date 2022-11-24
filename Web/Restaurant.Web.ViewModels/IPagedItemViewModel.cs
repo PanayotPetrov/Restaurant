@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface IPagedItemsListViewModel<T>
+    public interface IPagedItemsViewModel<T>
     {
         public IEnumerable<T> Items { get; set; }
 
