@@ -5,39 +5,32 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
+    using Restaurant.Web.HelperClasses;
     using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.Order;
+    using Restaurant.Web.ViewModels.Review;
 
     public class OrderController : AdministrationController
     {
         private const int ItemsPerPage = 6;
         private readonly IOrderService orderService;
+        private readonly IPagedItemsModelCreator modelCreator;
 
-        public OrderController(IOrderService orderService)
+        public OrderController(IOrderService orderService, IPagedItemsModelCreator modelCreator)
         {
             this.orderService = orderService;
+            this.modelCreator = modelCreator;
         }
 
         [HttpGet("/Administration/Order/All/{id}")]
         public IActionResult Index(int id)
         {
-            if (id < 1)
-            {
-                return this.NotFound();
-            }
+            var totalItemsCount = this.orderService.GetCount(true);
+            var items = this.orderService.GetAllWithPagination<AdminOrderViewModel>(ItemsPerPage, id, true);
+            var model = this.modelCreator.Create(items, id, ItemsPerPage, totalItemsCount);
 
-            var orders = this.orderService.GetAllWithPagination<AdminOrderViewModel>(ItemsPerPage, id);
-
-            var model = new AdminOrderListViewModel
-            {
-                Orders = orders,
-                ItemsPerPage = ItemsPerPage,
-                ItemCount = this.orderService.GetCount(true),
-                PageNumber = id,
-            };
-
-            if (id > model.PagesCount)
+            if (!model.HasValidState)
             {
                 return this.NotFound();
             }
@@ -58,7 +51,7 @@
                     return this.NotFound();
                 }
             }
-            
+
             var model = this.orderService.GetByOrderNumber<AdminOrderViewModel>(orderNumber, true);
 
             return this.View(model);

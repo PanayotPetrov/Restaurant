@@ -1,5 +1,5 @@
 ﻿@using Restaurant.Web.ViewModels.Order;
-@model AdminOrderListViewModel;
+@model PagedItemsViewModel<AdminOrderViewModel>;
 @{
     ViewData["Title"] = "Index";
 }
@@ -54,7 +54,7 @@
         </tr>
     </thead>
     <tbody class="table-light">
-        @foreach (var order in Model.Orders)
+        @foreach (var order in Model.Items)
         {
         <tr>
 
