@@ -9,7 +9,6 @@
     using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.Order;
-    using Restaurant.Web.ViewModels.Review;
 
     public class OrderController : AdministrationController
     {

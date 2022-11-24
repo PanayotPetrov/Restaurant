@@ -14,7 +14,6 @@
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.InputModels;
     using Restaurant.Web.ViewModels.Meal;
-    using Restaurant.Web.ViewModels.Review;
 
     public class MealController : AdministrationController
     {
@@ -112,7 +111,7 @@
             var editMealModel = AutoMapperConfig.MapperInstance.Map<EditMealModel>(model);
 
             await this.mealService.UpdateAsync(editMealModel, $"{this.environment.WebRootPath}/images");
-            return this.RedirectToAction(nameof(this.Details), new { Id = model.Id });
+            return this.RedirectToAction(nameof(this.Details), new { model.Id });
         }
 
         [HttpPost]
