@@ -12,8 +12,7 @@
       "companyName": "Restaurant",
       "copyrightText": "Copyright (c) {companyName}. All Rights Reserved.",
       "documentInterfaces": false,
-      "documentInternalElements": false,
-      "documentExposedElements": false
+      "documentInternalElements": false
     },
     "orderingRules": {
       "usingDirectivesPlacement": "insideNamespace",
