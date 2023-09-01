@@ -1,4 +1,4 @@
-﻿namespace Restaurant.Data
+﻿namespace Restaurant.Data.Common
 {
     using System.Linq;
 
