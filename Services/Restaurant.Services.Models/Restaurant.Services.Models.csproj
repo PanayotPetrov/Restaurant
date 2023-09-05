@@ -9,8 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Data\Restaurant.Data.Models\Restaurant.Data.Models.csproj" />
-    <ProjectReference Include="..\Services\Restaurant.Services.Mapping\Restaurant.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Data\Restaurant.Data.Models\Restaurant.Data.Models.csproj" />
+    <ProjectReference Include="..\Restaurant.Services.Mapping\Restaurant.Services.Mapping.csproj" />
   </ItemGroup>
 
 </Project>
