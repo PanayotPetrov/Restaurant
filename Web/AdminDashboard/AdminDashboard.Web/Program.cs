@@ -38,7 +38,7 @@ namespace AdminDashboard.Web
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(restaurantConnectionString));
 
             var adminDashboardConnectionString = configuration.GetConnectionString("AdminDashboardConnection");
-            services.AddDbContext<AdminDashboardDbContext>(options => options.UseSqlServer(restaurantConnectionString));
+            services.AddDbContext<AdminDashboardDbContext>(options => options.UseSqlServer(adminDashboardConnectionString));
 
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddDefaultIdentity<AdminDashboardUser>(IdentityOptionsProvider.GetIdentityOptions)
