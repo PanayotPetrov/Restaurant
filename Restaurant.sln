@@ -47,6 +47,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Services.Models"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Restaurant.Web.Infrastructure.Tests", "Tests\Restaurant.Web.Infrastructure.Tests\Restaurant.Web.Infrastructure.Tests.csproj", "{94AB9C91-A097-4C2D-897E-E3A4CF43DFC2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminDashboard.Web", "Web\AdminDashboard\AdminDashboard.Web\AdminDashboard.Web.csproj", "{36256775-8CA8-4C52-93FB-CCD321F3FC5E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AdminDashboard", "AdminDashboard", "{05F71399-3787-406B-B456-DDD9001DAB3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -125,6 +129,10 @@ Global
 		{94AB9C91-A097-4C2D-897E-E3A4CF43DFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94AB9C91-A097-4C2D-897E-E3A4CF43DFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94AB9C91-A097-4C2D-897E-E3A4CF43DFC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36256775-8CA8-4C52-93FB-CCD321F3FC5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36256775-8CA8-4C52-93FB-CCD321F3FC5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36256775-8CA8-4C52-93FB-CCD321F3FC5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36256775-8CA8-4C52-93FB-CCD321F3FC5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -147,6 +155,8 @@ Global
 		{455F14ED-877A-4D53-B354-FDF376D771D1} = {ACBE44C4-E198-45E2-BA02-6655250A0006}
 		{57C7CE6B-FFC7-4F32-B7D2-226F7D5653E3} = {516E002B-9E6E-4456-B7F6-EAA353966DE6}
 		{94AB9C91-A097-4C2D-897E-E3A4CF43DFC2} = {7A731632-6714-44E2-A9E4-069EBA9E666C}
+		{36256775-8CA8-4C52-93FB-CCD321F3FC5E} = {05F71399-3787-406B-B456-DDD9001DAB3F}
+		{05F71399-3787-406B-B456-DDD9001DAB3F} = {E389DEB6-5F90-444B-A054-12A10D39C76F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {384484BE-4680-4529-9CC2-AD37BA4D12D1}
