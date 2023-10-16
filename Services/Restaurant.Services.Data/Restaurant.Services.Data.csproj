@@ -21,8 +21,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\Restaurant.Data.Common\Restaurant.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\Restaurant.Data.Models\Restaurant.Data.Models.csproj" />
-    <ProjectReference Include="..\..\Restaurant.Services.Models\Restaurant.Services.Models.csproj" />
     <ProjectReference Include="..\Restaurant.Services.Mapping\Restaurant.Services.Mapping.csproj" />
+    <ProjectReference Include="..\Restaurant.Services.Models\Restaurant.Services.Models.csproj" />
   </ItemGroup>
 
 </Project>
