@@ -1,8 +1,8 @@
-﻿namespace Restaurant.Web.HelperClasses
+﻿namespace Restaurant.Web.ViewModels.Paging.PagedItemsModelCreator
 {
     using System.Collections.Generic;
 
-    using Restaurant.Web.ViewModels;
+    using Restaurant.Web.ViewModels.Paging;
 
     public interface IPagedItemsModelCreator
     {

@@ -8,8 +8,8 @@
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
-    using Restaurant.Web.HelperClasses;
     using Restaurant.Web.ViewModels.InputModels;
+    using Restaurant.Web.ViewModels.Paging.PagedItemsModelCreator;
     using Restaurant.Web.ViewModels.Review;
 
     public class ReviewController : BaseController

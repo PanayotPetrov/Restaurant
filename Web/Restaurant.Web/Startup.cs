@@ -22,6 +22,7 @@
     using Restaurant.Services.Models;
     using Restaurant.Web.HelperClasses;
     using Restaurant.Web.ViewModels;
+    using Restaurant.Web.ViewModels.Paging.PagedItemsModelCreator;
 
     public class Startup
     {

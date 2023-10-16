@@ -5,10 +5,10 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
-    using Restaurant.Web.HelperClasses;
     using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.Order;
+    using Restaurant.Web.ViewModels.Paging.PagedItemsModelCreator;
 
     public class OrderController : AdministrationController
     {

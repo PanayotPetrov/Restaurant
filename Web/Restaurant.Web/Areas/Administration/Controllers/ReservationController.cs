@@ -8,10 +8,10 @@
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
-    using Restaurant.Web.HelperClasses;
     using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Restaurant.Web.ViewModels.InputModels;
+    using Restaurant.Web.ViewModels.Paging.PagedItemsModelCreator;
     using Restaurant.Web.ViewModels.Reservation;
 
     public class ReservationController : AdministrationController

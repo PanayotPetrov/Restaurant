@@ -1,4 +1,4 @@
-﻿namespace Restaurant.Web.ViewModels
+﻿namespace Restaurant.Web.ViewModels.Paging
 {
     using System;
 

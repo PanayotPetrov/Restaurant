@@ -4,11 +4,9 @@
     using System.Threading.Tasks;
 
     using AdminDashboard.Data.Models;
-    using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
-    using Restaurant.Services.Data;
 
     public partial class IndexModel : PageModel
     {

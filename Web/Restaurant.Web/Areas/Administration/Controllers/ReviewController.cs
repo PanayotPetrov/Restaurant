@@ -5,9 +5,9 @@
 
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
-    using Restaurant.Web.HelperClasses;
     using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
+    using Restaurant.Web.ViewModels.Paging.PagedItemsModelCreator;
     using Restaurant.Web.ViewModels.Review;
 
     public class ReviewController : AdministrationController
