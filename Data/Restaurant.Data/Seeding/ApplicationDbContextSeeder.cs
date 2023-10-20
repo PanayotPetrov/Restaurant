@@ -28,7 +28,6 @@
                               new RolesSeeder(),
                               new TableSeeder(),
                               new CategorySeeder(),
-                              new AdminSeeder(),
                               new UserMessageCategorySeeder(),
                           };
 

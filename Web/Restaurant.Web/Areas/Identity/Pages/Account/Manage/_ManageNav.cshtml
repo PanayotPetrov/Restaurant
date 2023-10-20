@@ -1,5 +1,4 @@
 ﻿@inject SignInManager<ApplicationUser> SignInManager
-@using Restaurant.Common
 
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
@@ -20,10 +19,4 @@
     <li><a class="nav-item nav-link" asp-area="" asp-controller="Reservation" asp-action="All">Reservations</a></li>
     <li><a class="nav-item nav-link" asp-area="" asp-controller="Address" asp-action="All">Addresses</a></li>
     <li><a class="nav-item nav-link" asp-area="" asp-controller="Order" asp-action="All">Orders</a></li>
-    @if (this.User.IsInRole(GlobalConstants.AdministratorRoleName))
-    {
-        <li class="nav-item">
-            <a class="nav-link nav-link" asp-area="Administration" asp-controller="Dashboard" asp-action="Index">Admin dashboard</a>
-        </li>
-    }
 </ul>
