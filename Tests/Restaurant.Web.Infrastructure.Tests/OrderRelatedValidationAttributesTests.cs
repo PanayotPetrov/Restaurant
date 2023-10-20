@@ -4,6 +4,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.Security.Claims;
     using System.Threading.Tasks;
+
+    using AdminDashboard.Data.Models;
     using Microsoft.AspNetCore.Identity;
     using Moq;
     using Restaurant.Data.Models;
@@ -62,15 +64,14 @@
                 "Test order number3",
             };
 
-            var user = new ApplicationUser();
+            var user = new AdminDashboardUser();
 
-            var store = new Mock<IUserStore<ApplicationUser>>();
-            var mgr = new Mock<UserManager<ApplicationUser>>(store.Object, null, null, null, null, null, null, null, null);
+            var store = new Mock<IUserStore<AdminDashboardUser>>();
+            var mgr = new Mock<UserManager<AdminDashboardUser>>(store.Object, null, null, null, null, null, null, null, null);
 
             mgr.Setup(um => um.GetUserAsync(It.IsAny<ClaimsPrincipal>())).Returns(Task.FromResult(user));
-            mgr.Setup(um => um.IsInRoleAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>())).Returns(Task.FromResult(true));
 
-            this.fixture.ServiceCollection.Setup(um => um.GetService(typeof(UserManager<ApplicationUser>))).Returns(mgr.Object);
+            this.fixture.ServiceCollection.Setup(um => um.GetService(typeof(UserManager<AdminDashboardUser>))).Returns(mgr.Object);
 
             this.fixture.OrderServiceMock.Setup(x => x.GetAllOrderNumbers()).Returns(orderNumbers);
 
@@ -113,15 +114,14 @@
                 "Test order number3",
             };
 
-            var user = new ApplicationUser();
+            var user = new AdminDashboardUser();
 
-            var store = new Mock<IUserStore<ApplicationUser>>();
-            var mgr = new Mock<UserManager<ApplicationUser>>(store.Object, null, null, null, null, null, null, null, null);
+            var store = new Mock<IUserStore<AdminDashboardUser>>();
+            var mgr = new Mock<UserManager<AdminDashboardUser>>(store.Object, null, null, null, null, null, null, null, null);
 
             mgr.Setup(um => um.GetUserAsync(It.IsAny<ClaimsPrincipal>())).Returns(Task.FromResult(user));
-            mgr.Setup(um => um.IsInRoleAsync(It.IsAny<ApplicationUser>(), It.IsAny<string>())).Returns(Task.FromResult(true));
 
-            this.fixture.ServiceCollection.Setup(um => um.GetService(typeof(UserManager<ApplicationUser>))).Returns(mgr.Object);
+            this.fixture.ServiceCollection.Setup(um => um.GetService(typeof(UserManager<AdminDashboardUser>))).Returns(mgr.Object);
 
             this.fixture.OrderServiceMock.Setup(x => x.GetAllOrderNumbers()).Returns(orderNumbers);
 

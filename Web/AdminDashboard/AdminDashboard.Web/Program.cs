@@ -20,6 +20,7 @@ namespace AdminDashboard.Web
     using Restaurant.Services.Messaging;
     using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels;
+    using Restaurant.Web.ViewModels.Paging.PagedItemsModelCreator;
 
     public class Program
     {
@@ -65,6 +66,7 @@ namespace AdminDashboard.Web
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<ICartService, CartService>();
             services.AddTransient<IUserMessageService, UserMessageService>();
+            services.AddTransient<IPagedItemsModelCreator, PagedItemsModelCreator>();
         }
 
         private static void Configure(WebApplication app)
@@ -75,7 +77,9 @@ namespace AdminDashboard.Web
             {
                 var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
                 dbContext.Database.Migrate();
-                //new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
+
+                // Fix Seeding
+                // new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
             }
 
             if (app.Environment.IsDevelopment())

@@ -1,0 +1,92 @@
+﻿@using Restaurant.Web.ViewModels.Review
+@model PagedItemsViewModel<AdminReviewViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<table class="table table-hover table-bordered table-responsive">
+
+    <thead class="table-dark">
+        <tr class="text-center">
+            <th>
+                User image
+            </th>
+            <th>
+                User id
+            </th>
+            <th>
+                User name
+            </th>
+            <th>
+                Rating
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Summary
+            </th>
+            <th>
+                Is Deleted
+            </th>
+            <th>
+                Deleted On
+            </th>
+            <th>
+                Created On
+            </th>
+            <th>
+                Modified On
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody class="table-light">
+        @foreach (var review in Model.Items)
+        {
+            <tr>
+                <td>
+                    <img class="flex-shrink-0 img-fluid" src=@review.ImageUrl alt="" asp-append-version="true">
+                </td>
+                <td>
+                    @review.ApplicationUserId
+                </td>
+                <td>
+                    @review.FullName
+                </td>
+                <td>
+                    @review.Rating
+                </td>
+                <td style="word-break:break-word">
+                    @review.Description
+                </td>
+                <td style="word-break:break-word">
+                    @review.Summary
+                </td>
+                <td>
+                    @review.IsDeleted
+                </td>
+                <td>
+                    @review.DeletedOn
+                </td>
+                <td>
+                    @review.CreatedOn
+                </td>
+                <td>
+                    @review.ModifiedOn
+                </td>
+                <td>
+                    <a class="btn btn-primary mt-1" asp-action="Details" asp-route-id="@review.Id"><i class="fa-solid fa-circle-info"></i> Info</a>
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+<partial name="_PagingPartial" model="@Model" />
+
+
+

@@ -1,0 +1,65 @@
+﻿@model Restaurant.Web.ViewModels.InputModels.EditMealInputModel
+
+@{
+    ViewData["Title"] = "Edit";
+    var categories = this.Model.Categories.Select(x => new SelectListItem(x.Value, x.Key));
+
+}
+
+<hr />
+
+<div class="wow fadeInUp" data-wow-delay="0.2s">
+    <div class="offset-md-5">
+        <img class="img-fluid" src=@Model.ImageUrl alt="" asp-append-version="true">
+    </div>
+    <form method="post" class="col-md-6 offset-md-3"
+          enctype="multipart/form-data">
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input hidden asp-for="Id" />
+
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CategoryId"></label>
+            <select asp-for="CategoryId" class="form-control" asp-items="categories"></select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Image"></label>
+            <input asp-for="Image" class="form-control" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary w-100 col-md-12 mt-3" type="submit"><i class="fa-solid fa-check"></i>  Save changes</button>
+            <a class="btn btn-primary w-100 col-md-12 mt-3" asp-action="Index" asp-route-id="@(this.TempData["RouteId"] ?? 1)"><i class="fa-solid fa-bars"></i> Back to List</a>
+        </div>
+    </form>
+    <form asp-action="Delete" id="deleteForm">
+        <input type="hidden" asp-for="Id" />
+
+    </form>
+    <form asp-action="Restore" id="restoreForm">
+        <input type="hidden" asp-for="Id" />
+    </form>
+    <button class="btn btn-secondary col-md-6 offset-md-3 mt-3" onclick="restoreForm.submit()"> <i class="fa-solid fa-trash-arrow-up"></i> Restore</button>
+    <button value="Delete" class="btn btn-dark col-md-6 offset-md-3 mt-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash-can"></i> Delete</button>
+</div>
+
+
+
+<!-- Modal -->
+<partial name="_ModalPartial" />
