@@ -6,6 +6,7 @@
     using Moq;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Web.ViewModels.Category;
     using Xunit;
 
@@ -13,13 +14,13 @@
     public class CategoryServiceTests
     {
         private List<Category> categories;
-        private Mock<IDeletableEntityRepository<Category>> categoryRepository;
+        private Mock<IRestaurantDeletableEntityRepositoryDecorator<Category>> categoryRepository;
         private CategoryService service;
 
         public CategoryServiceTests()
         {
             this.categories = new List<Category>();
-            this.categoryRepository = new Mock<IDeletableEntityRepository<Category>>();
+            this.categoryRepository = new Mock<IRestaurantDeletableEntityRepositoryDecorator<Category>>();
             this.service = new CategoryService(this.categoryRepository.Object);
         }
 

@@ -1,16 +1,15 @@
-﻿namespace Restaurant.Data.Repositories
+﻿namespace Restaurant.Data.Common.Repositories
 {
     using System;
     using System.Linq;
 
     using Microsoft.EntityFrameworkCore;
     using Restaurant.Data.Common.Models;
-    using Restaurant.Data.Common.Repositories;
 
-    public class EfDeletableEntityRepository<TEntity> : EfRepository<TEntity>, IDeletableEntityRepository<TEntity>
+    public class EfDeletableEntityRepositoryBase<TEntity> : EfRepositoryBase<TEntity>, IDeletableEntityRepository<TEntity>
         where TEntity : class, IDeletableEntity
     {
-        public EfDeletableEntityRepository(ApplicationDbContext context)
+        public EfDeletableEntityRepositoryBase(DbContext context)
             : base(context)
         {
         }

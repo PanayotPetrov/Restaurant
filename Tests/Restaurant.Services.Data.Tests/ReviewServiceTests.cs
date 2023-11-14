@@ -8,6 +8,7 @@
     using Moq;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.Review;
     using Xunit;
@@ -16,13 +17,13 @@
     public class ReviewServiceTests
     {
         private List<Review> reviews;
-        private Mock<IDeletableEntityRepository<Review>> repository;
+        private Mock<IRestaurantDeletableEntityRepositoryDecorator<Review>> repository;
         private ReviewService service;
 
         public ReviewServiceTests()
         {
             this.reviews = new List<Review>();
-            this.repository = new Mock<IDeletableEntityRepository<Review>>();
+            this.repository = new Mock<IRestaurantDeletableEntityRepositoryDecorator<Review>>();
             this.service = new ReviewService(this.repository.Object);
         }
 

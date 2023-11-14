@@ -4,6 +4,7 @@ namespace AdminDashboard.Web
 
     using AdminDashboard.Data;
     using AdminDashboard.Data.Models;
+    using AdminDashboard.Data.Repositories;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,6 @@ namespace AdminDashboard.Web
     using Microsoft.Extensions.Hosting;
     using Restaurant.Data;
     using Restaurant.Data.Common;
-    using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Repositories;
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
@@ -52,8 +52,10 @@ namespace AdminDashboard.Web
             services.AddSingleton(configuration);
 
             // Data repositories
-            services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IRestaurantDeletableEntityRepositoryDecorator<>), typeof(RestaurantDeletableEntityRepositoryDecorator<>));
+            services.AddScoped(typeof(IRestaurantRepositoryDecorator<>), typeof(RestaurantRepositoryDecorator<>));
+            services.AddScoped(typeof(IAdminDashboardDeletableEntityRepositoryDecorator<>), typeof(AdminDashboardDeletableEntityRepositoryDecorator<>));
+            services.AddScoped(typeof(IAdminDashboardRepositoryDecorator<>), typeof(AdminDashboardRepositoryDecorator<>));
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services

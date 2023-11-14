@@ -1,16 +1,15 @@
-﻿namespace Restaurant.Data.Repositories
+﻿namespace Restaurant.Data.Common.Repositories
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
-    using Restaurant.Data.Common.Repositories;
 
-    public class EfRepository<TEntity> : IRepository<TEntity>
+    public class EfRepositoryBase<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
-        public EfRepository(ApplicationDbContext context)
+        public EfRepositoryBase(DbContext context)
         {
             this.Context = context ?? throw new ArgumentNullException(nameof(context));
             this.DbSet = this.Context.Set<TEntity>();
@@ -18,7 +17,7 @@
 
         protected DbSet<TEntity> DbSet { get; set; }
 
-        protected ApplicationDbContext Context { get; set; }
+        protected DbContext Context { get; set; }
 
         public virtual IQueryable<TEntity> All() => this.DbSet;
 

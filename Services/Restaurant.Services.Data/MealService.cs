@@ -7,19 +7,18 @@
     using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
-
-    using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
     public class MealService : PaginationService<Meal>, IMealService
     {
         private readonly string[] allowedExtensions = new[] { "jpg", "png", "gif" };
-        private readonly IDeletableEntityRepository<Meal> mealRepository;
-        private readonly IRepository<MealImage> mealImageRepository;
+        private readonly IRestaurantDeletableEntityRepositoryDecorator<Meal> mealRepository;
+        private readonly IRestaurantRepositoryDecorator<MealImage> mealImageRepository;
 
-        public MealService(IDeletableEntityRepository<Meal> mealRepository, IRepository<MealImage> mealImageRepository)
+        public MealService(IRestaurantDeletableEntityRepositoryDecorator<Meal> mealRepository, IRestaurantRepositoryDecorator<MealImage> mealImageRepository)
             : base(mealRepository)
         {
             this.mealRepository = mealRepository;

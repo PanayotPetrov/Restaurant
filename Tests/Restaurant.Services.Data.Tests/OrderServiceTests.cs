@@ -7,6 +7,7 @@
     using Moq;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.Order;
     using Xunit;
@@ -15,14 +16,14 @@
     public class OrderServiceTests
     {
         private List<Order> orders;
-        private Mock<IDeletableEntityRepository<Order>> repository;
+        private Mock<IRestaurantDeletableEntityRepositoryDecorator<Order>> repository;
         private Mock<ICartService> cartService;
         private OrderService service;
 
         public OrderServiceTests()
         {
             this.orders = new List<Order>();
-            this.repository = new Mock<IDeletableEntityRepository<Order>>();
+            this.repository = new Mock<IRestaurantDeletableEntityRepositoryDecorator<Order>>();
             this.cartService = new Mock<ICartService>();
             this.service = new OrderService(this.repository.Object, this.cartService.Object);
         }

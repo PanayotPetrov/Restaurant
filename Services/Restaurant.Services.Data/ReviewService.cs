@@ -5,16 +5,16 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
     public class ReviewService : PaginationService<Review>, IReviewService
     {
-        private readonly IDeletableEntityRepository<Review> reviewRepository;
+        private readonly IRestaurantDeletableEntityRepositoryDecorator<Review> reviewRepository;
 
-        public ReviewService(IDeletableEntityRepository<Review> reviewRepository)
+        public ReviewService(IRestaurantDeletableEntityRepositoryDecorator<Review> reviewRepository)
             : base(reviewRepository)
         {
             this.reviewRepository = reviewRepository;

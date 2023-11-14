@@ -11,6 +11,7 @@
     using Microsoft.Extensions.Logging;
     using Restaurant.Data;
     using Restaurant.Data.Common;
+    using Restaurant.Data.Common.Models;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
     using Restaurant.Data.Repositories;
@@ -66,8 +67,8 @@
             services.AddDefaultIdentity<ApplicationUser>(IdentityOptionsProvider.GetIdentityOptions)
                 .AddRoles<ApplicationRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(RestaurantDeletableEntityRepositoryDecorator<>));
+            services.AddScoped(typeof(IRepository<>), typeof(RestaurantRepositoryDecorator<>));
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services

@@ -2,14 +2,14 @@
 {
     using System.Threading.Tasks;
 
-    using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
 
     public class UserImageService : IUserImageService
     {
-        private readonly IRepository<UserImage> userImageRepository;
+        private readonly IRestaurantRepositoryDecorator<UserImage> userImageRepository;
 
-        public UserImageService(IRepository<UserImage> userImageRepository)
+        public UserImageService(IRestaurantRepositoryDecorator<UserImage> userImageRepository)
         {
             this.userImageRepository = userImageRepository;
         }

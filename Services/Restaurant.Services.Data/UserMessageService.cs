@@ -4,17 +4,17 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
     public class UserMessageService : IUserMessageService
     {
-        private readonly IDeletableEntityRepository<UserMessage> userMessageRepository;
-        private readonly IDeletableEntityRepository<UserMessageCategory> messageCategoryRepository;
+        private readonly IRestaurantDeletableEntityRepositoryDecorator<UserMessage> userMessageRepository;
+        private readonly IRestaurantDeletableEntityRepositoryDecorator<UserMessageCategory> messageCategoryRepository;
 
-        public UserMessageService(IDeletableEntityRepository<UserMessage> userMessageRepository, IDeletableEntityRepository<UserMessageCategory> messageCategoryRepository)
+        public UserMessageService(IRestaurantDeletableEntityRepositoryDecorator<UserMessage> userMessageRepository, IRestaurantDeletableEntityRepositoryDecorator<UserMessageCategory> messageCategoryRepository)
         {
             this.userMessageRepository = userMessageRepository;
             this.messageCategoryRepository = messageCategoryRepository;

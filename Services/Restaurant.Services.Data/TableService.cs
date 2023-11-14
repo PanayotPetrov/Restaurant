@@ -3,14 +3,14 @@
     using System;
     using System.Linq;
 
-    using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
 
     public class TableService : ITableService
     {
-        private readonly IDeletableEntityRepository<Table> tableRepository;
+        private readonly IRestaurantDeletableEntityRepositoryDecorator<Table> tableRepository;
 
-        public TableService(IDeletableEntityRepository<Table> tableRepository)
+        public TableService(IRestaurantDeletableEntityRepositoryDecorator<Table> tableRepository)
         {
             this.tableRepository = tableRepository;
         }
