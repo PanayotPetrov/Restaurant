@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
-
+    using AdminDashboard.Data.Models;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
@@ -21,12 +21,22 @@
 
                 var userManager = validationContext.GetService<UserManager<ApplicationUser>>();
 
-                var user = userManager.GetUserAsync(httpContextAccessor.HttpContext.User).GetAwaiter().GetResult();
+                IdentityUser user;
+
+                if (userManager is not null)
+                {
+                    user = userManager.GetUserAsync(httpContextAccessor.HttpContext.User).GetAwaiter().GetResult();
+                }
+                else
+                {
+                    var adminUserManager = validationContext.GetService<UserManager<AdminDashboardUser>>();
+                    user = adminUserManager.GetUserAsync(httpContextAccessor.HttpContext.User).GetAwaiter().GetResult();
+                }
 
                 var orderService = validationContext.GetService<IOrderService>();
                 IEnumerable<string> orderNumbers;
 
-                if (userManager.IsInRoleAsync(user, "Administrator").GetAwaiter().GetResult())
+                if (user is AdminDashboardUser)
                 {
                     orderNumbers = orderService.GetAllOrderNumbers();
                 }

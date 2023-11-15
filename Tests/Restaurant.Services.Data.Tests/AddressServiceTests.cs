@@ -7,6 +7,7 @@
     using Moq;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.Address;
     using Xunit;
@@ -15,13 +16,13 @@
     public class AddressServiceTests
     {
         private List<Address> addresses;
-        private Mock<IDeletableEntityRepository<Address>> repository;
+        private Mock<IRestaurantDeletableEntityRepositoryDecorator<Address>> repository;
         private AddressService service;
 
         public AddressServiceTests()
         {
             this.addresses = new List<Address>();
-            this.repository = new Mock<IDeletableEntityRepository<Address>>();
+            this.repository = new Mock<IRestaurantDeletableEntityRepositoryDecorator<Address>>();
             this.service = new AddressService(this.repository.Object);
         }
 

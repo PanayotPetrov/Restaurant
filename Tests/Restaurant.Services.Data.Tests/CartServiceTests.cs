@@ -7,6 +7,7 @@
     using Moq;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.Cart;
     using Xunit;
@@ -15,17 +16,17 @@
     public class CartServiceTests
     {
         private List<Cart> carts;
-        private Mock<IDeletableEntityRepository<Cart>> cartRepository;
-        private Mock<IRepository<CartItem>> cartItemRepository;
-        private Mock<IDeletableEntityRepository<Meal>> mealRepository;
+        private Mock<IRestaurantDeletableEntityRepositoryDecorator<Cart>> cartRepository;
+        private Mock<IRestaurantRepositoryDecorator<CartItem>> cartItemRepository;
+        private Mock<IRestaurantDeletableEntityRepositoryDecorator<Meal>> mealRepository;
         private CartService service;
 
         public CartServiceTests()
         {
             this.carts = new List<Cart>();
-            this.cartRepository = new Mock<IDeletableEntityRepository<Cart>>();
-            this.cartItemRepository = new Mock<IRepository<CartItem>>();
-            this.mealRepository = new Mock<IDeletableEntityRepository<Meal>>();
+            this.cartRepository = new Mock<IRestaurantDeletableEntityRepositoryDecorator<Cart>>();
+            this.cartItemRepository = new Mock<IRestaurantRepositoryDecorator<CartItem>>();
+            this.mealRepository = new Mock<IRestaurantDeletableEntityRepositoryDecorator<Meal>>();
 
             this.service = new CartService(this.cartRepository.Object, this.cartItemRepository.Object, this.mealRepository.Object);
         }

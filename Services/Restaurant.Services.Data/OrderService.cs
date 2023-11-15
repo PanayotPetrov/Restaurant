@@ -6,17 +6,17 @@
     using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
-    using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
     public class OrderService : PaginationService<Order>, IOrderService
     {
-        private readonly IDeletableEntityRepository<Order> orderRepository;
+        private readonly IRestaurantDeletableEntityRepositoryDecorator<Order> orderRepository;
         private readonly ICartService cartService;
 
-        public OrderService(IDeletableEntityRepository<Order> orderRepository, ICartService cartService)
+        public OrderService(IRestaurantDeletableEntityRepositoryDecorator<Order> orderRepository, ICartService cartService)
             : base(orderRepository)
         {
             this.orderRepository = orderRepository;

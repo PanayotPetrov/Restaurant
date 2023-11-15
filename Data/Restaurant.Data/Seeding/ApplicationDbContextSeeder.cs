@@ -6,8 +6,9 @@
 
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
+    using Restaurant.Data.Common;
 
-    public class ApplicationDbContextSeeder : ISeeder
+    public class ApplicationDbContextSeeder : ISeeder<ApplicationDbContext>
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
@@ -23,12 +24,11 @@
 
             var logger = serviceProvider.GetService<ILoggerFactory>().CreateLogger(typeof(ApplicationDbContextSeeder));
 
-            var seeders = new List<ISeeder>
+            var seeders = new List<ISeeder<ApplicationDbContext>>
                           {
-                              new RolesSeeder(),
+                              new ApplicationRoleSeeder(),
                               new TableSeeder(),
                               new CategorySeeder(),
-                              new AdminSeeder(),
                               new UserMessageCategorySeeder(),
                           };
 

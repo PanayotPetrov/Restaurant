@@ -5,15 +5,15 @@
     using System.Linq;
 
     using Restaurant.Data.Common.Models;
-    using Restaurant.Data.Common.Repositories;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Mapping;
 
     public abstract class PaginationService<T> : IPaginationService
         where T : class, IDeletableEntity, IAuditInfo
     {
-        private readonly IDeletableEntityRepository<T> repository;
+        private readonly IRestaurantDeletableEntityRepositoryDecorator<T> repository;
 
-        public PaginationService(IDeletableEntityRepository<T> repository)
+        public PaginationService(IRestaurantDeletableEntityRepositoryDecorator<T> repository)
         {
             this.repository = repository;
         }

@@ -3,16 +3,16 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Mapping;
 
     public class CategoryService : ICategoryService
     {
-        private readonly IDeletableEntityRepository<Category> categoriesRepository;
+        private readonly IRestaurantDeletableEntityRepositoryDecorator<Category> categoriesRepository;
 
         public CategoryService(
-            IDeletableEntityRepository<Category> categoriesRepository)
+            IRestaurantDeletableEntityRepositoryDecorator<Category> categoriesRepository)
         {
             this.categoriesRepository = categoriesRepository;
         }

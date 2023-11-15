@@ -12,7 +12,6 @@
     using Microsoft.Extensions.Hosting;
     using Restaurant.Data;
     using Restaurant.Data.Common;
-    using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
     using Restaurant.Data.Repositories;
     using Restaurant.Data.Seeding;
@@ -22,6 +21,7 @@
     using Restaurant.Services.Models;
     using Restaurant.Web.HelperClasses;
     using Restaurant.Web.ViewModels;
+    using Restaurant.Web.ViewModels.Paging.PagedItemsModelCreator;
 
     public class Startup
     {
@@ -64,8 +64,8 @@
             services.AddSingleton(this.configuration);
 
             // Data repositories
-            services.AddScoped(typeof(IDeletableEntityRepository<>), typeof(EfDeletableEntityRepository<>));
-            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IRestaurantDeletableEntityRepositoryDecorator<>), typeof(RestaurantDeletableEntityRepositoryDecorator<>));
+            services.AddScoped(typeof(IRestaurantRepositoryDecorator<>), typeof(RestaurantRepositoryDecorator<>));
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // Application services
@@ -82,7 +82,6 @@
             services.AddTransient<IViewHtmlRenderer, ViewHtmlRenderer>();
             services.AddTransient<IUserMessageService, UserMessageService>();
             services.AddTransient<IPagedItemsModelCreator, PagedItemsModelCreator>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,17 +5,17 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
     public class AddressService : IAddressService
     {
-        private readonly IDeletableEntityRepository<Address> addressRepository;
+        private readonly IRestaurantDeletableEntityRepositoryDecorator<Address> addressRepository;
         private readonly IEnumerable<string> allowedDistricts = new List<string> { "Lagera", "Hipodruma", "Centur", "Zona-B5", "Serdika", "Lozenets" };
 
-        public AddressService(IDeletableEntityRepository<Address> addressRepository)
+        public AddressService(IRestaurantDeletableEntityRepositoryDecorator<Address> addressRepository)
         {
             this.addressRepository = addressRepository;
         }

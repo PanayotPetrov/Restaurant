@@ -11,6 +11,7 @@
     using Moq;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.Meal;
     using Xunit;
@@ -19,16 +20,16 @@
     public class MealServiceTests
     {
         private List<Meal> meals;
-        private Mock<IDeletableEntityRepository<Meal>> repository;
-        private Mock<IRepository<MealImage>> mealImageRepository;
+        private Mock<IRestaurantDeletableEntityRepositoryDecorator<Meal>> repository;
+        private Mock<IRestaurantRepositoryDecorator<MealImage>> mealImageRepository;
 
         private MealService service;
 
         public MealServiceTests()
         {
             this.meals = new List<Meal>();
-            this.repository = new Mock<IDeletableEntityRepository<Meal>>();
-            this.mealImageRepository = new Mock<IRepository<MealImage>>();
+            this.repository = new Mock<IRestaurantDeletableEntityRepositoryDecorator<Meal>>();
+            this.mealImageRepository = new Mock<IRestaurantRepositoryDecorator<MealImage>>();
 
             this.service = new MealService(this.repository.Object, this.mealImageRepository.Object);
         }

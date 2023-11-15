@@ -8,6 +8,7 @@
     using Moq;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Models;
     using Restaurant.Web.ViewModels.Reservation;
     using Xunit;
@@ -16,14 +17,14 @@
     public class ReservationServiceTests
     {
         private List<Reservation> reservations;
-        private Mock<IDeletableEntityRepository<Reservation>> repository;
+        private Mock<IRestaurantDeletableEntityRepositoryDecorator<Reservation>> repository;
         private Mock<ITableService> tableService;
         private ReservationService service;
 
         public ReservationServiceTests()
         {
             this.reservations = new List<Reservation>();
-            this.repository = new Mock<IDeletableEntityRepository<Reservation>>();
+            this.repository = new Mock<IRestaurantDeletableEntityRepositoryDecorator<Reservation>>();
             this.tableService = new Mock<ITableService>();
             this.service = new ReservationService(this.repository.Object, this.tableService.Object);
         }

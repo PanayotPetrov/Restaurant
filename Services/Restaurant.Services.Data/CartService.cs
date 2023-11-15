@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
 
     using Microsoft.EntityFrameworkCore;
-    using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
@@ -15,11 +15,11 @@
         private const decimal ShippingPrice = 3.90M;
         private const int AllowedItemQuantityPerCart = 100;
 
-        private readonly IDeletableEntityRepository<Cart> cartRepository;
-        private readonly IRepository<CartItem> cartItemRepository;
-        private readonly IDeletableEntityRepository<Meal> mealRepository;
+        private readonly IRestaurantDeletableEntityRepositoryDecorator<Cart> cartRepository;
+        private readonly IRestaurantRepositoryDecorator<CartItem> cartItemRepository;
+        private readonly IRestaurantDeletableEntityRepositoryDecorator<Meal> mealRepository;
 
-        public CartService(IDeletableEntityRepository<Cart> cartRepository, IRepository<CartItem> cartItemRepository, IDeletableEntityRepository<Meal> mealRepository)
+        public CartService(IRestaurantDeletableEntityRepositoryDecorator<Cart> cartRepository, IRestaurantRepositoryDecorator<CartItem> cartItemRepository, IRestaurantDeletableEntityRepositoryDecorator<Meal> mealRepository)
         {
             this.cartRepository = cartRepository;
             this.cartItemRepository = cartItemRepository;

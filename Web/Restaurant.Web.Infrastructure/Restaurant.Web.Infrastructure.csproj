@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\AdminDashboard.Data.Models\AdminDashboard.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\Restaurant.Services.Data\Restaurant.Services.Data.csproj" />
   </ItemGroup>
 

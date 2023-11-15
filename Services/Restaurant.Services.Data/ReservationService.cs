@@ -5,18 +5,18 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
     public class ReservationService : PaginationService<Reservation>, IReservationService
     {
         private readonly DateTime currentDate = DateTime.UtcNow.Date;
-        private readonly IDeletableEntityRepository<Reservation> reservationRepository;
+        private readonly IRestaurantDeletableEntityRepositoryDecorator<Reservation> reservationRepository;
         private readonly ITableService tableService;
 
-        public ReservationService(IDeletableEntityRepository<Reservation> reservationRepository, ITableService tableService)
+        public ReservationService(IRestaurantDeletableEntityRepositoryDecorator<Reservation> reservationRepository, ITableService tableService)
             : base(reservationRepository)
         {
             this.reservationRepository = reservationRepository;

@@ -7,18 +7,19 @@
     using Moq;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Xunit;
 
     public class TableServiceTests
     {
         private List<Table> tables;
-        private Mock<IDeletableEntityRepository<Table>> repository;
+        private Mock<IRestaurantDeletableEntityRepositoryDecorator<Table>> repository;
         private TableService service;
 
         public TableServiceTests()
         {
             this.tables = new List<Table>();
-            this.repository = new Mock<IDeletableEntityRepository<Table>>();
+            this.repository = new Mock<IRestaurantDeletableEntityRepositoryDecorator<Table>>();
             this.service = new TableService(this.repository.Object);
         }
 

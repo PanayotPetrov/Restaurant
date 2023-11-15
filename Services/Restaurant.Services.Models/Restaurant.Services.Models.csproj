@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.15" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\Restaurant.Data.Models\Restaurant.Data.Models.csproj" />
+    <ProjectReference Include="..\Restaurant.Services.Mapping\Restaurant.Services.Mapping.csproj" />
+  </ItemGroup>
+
+</Project>

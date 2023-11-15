@@ -7,6 +7,7 @@
     using Moq;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
+    using Restaurant.Data.Repositories;
     using Xunit;
 
     public class UserImageServiceTests
@@ -14,7 +15,7 @@
         [Fact]
         public async Task DeleteAsync_ShouldDeleteUserImage()
         {
-            var repository = new Mock<IRepository<UserImage>>();
+            var repository = new Mock<IRestaurantRepositoryDecorator<UserImage>>();
             var service = new UserImageService(repository.Object);
             var userImages = new List<UserImage>
             {
