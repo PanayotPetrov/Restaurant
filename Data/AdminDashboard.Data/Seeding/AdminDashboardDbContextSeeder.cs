@@ -1,16 +1,15 @@
-﻿namespace Restaurant.Data.Seeding
+﻿namespace AdminDashboard.Data.Seeding
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
     using Restaurant.Data.Common;
 
-    public class ApplicationDbContextSeeder : ISeeder<ApplicationDbContext>
+    public class AdminDashboardDbContextSeeder : ISeeder<AdminDashboardDbContext>
     {
-        public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
+        public async Task SeedAsync(AdminDashboardDbContext dbContext, IServiceProvider serviceProvider)
         {
             if (dbContext == null)
             {
@@ -22,14 +21,11 @@
                 throw new ArgumentNullException(nameof(serviceProvider));
             }
 
-            var logger = serviceProvider.GetService<ILoggerFactory>().CreateLogger(typeof(ApplicationDbContextSeeder));
+            var logger = serviceProvider.GetRequiredService<ILoggerFactory>().CreateLogger(typeof(AdminDashboardDbContext));
 
-            var seeders = new List<ISeeder<ApplicationDbContext>>
+            var seeders = new List<ISeeder<AdminDashboardDbContext>>
                           {
-                              new ApplicationRoleSeeder(),
-                              new TableSeeder(),
-                              new CategorySeeder(),
-                              new UserMessageCategorySeeder(),
+                              new AdminRoleSeeder(),
                           };
 
             foreach (var seeder in seeders)

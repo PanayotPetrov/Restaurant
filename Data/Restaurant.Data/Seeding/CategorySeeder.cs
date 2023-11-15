@@ -3,10 +3,10 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-
+    using Restaurant.Data.Common;
     using Restaurant.Data.Models;
 
-    internal class CategorySeeder : ISeeder
+    internal class CategorySeeder : ISeeder<ApplicationDbContext>
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {

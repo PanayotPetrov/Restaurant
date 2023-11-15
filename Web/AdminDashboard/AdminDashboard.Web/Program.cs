@@ -5,6 +5,7 @@ namespace AdminDashboard.Web
     using AdminDashboard.Data;
     using AdminDashboard.Data.Models;
     using AdminDashboard.Data.Repositories;
+    using AdminDashboard.Data.Seeding;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -77,11 +78,10 @@ namespace AdminDashboard.Web
 
             using (var serviceScope = app.Services.CreateScope())
             {
-                var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<AdminDashboardDbContext>();
                 dbContext.Database.Migrate();
 
-                // Fix Seeding
-                // new ApplicationDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
+                new AdminDashboardDbContextSeeder().SeedAsync(dbContext, serviceScope.ServiceProvider).GetAwaiter().GetResult();
             }
 
             if (app.Environment.IsDevelopment())

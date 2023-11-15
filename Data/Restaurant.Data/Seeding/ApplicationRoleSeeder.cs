@@ -6,10 +6,10 @@
 
     using Microsoft.AspNetCore.Identity;
     using Microsoft.Extensions.DependencyInjection;
-    using Restaurant.Common;
+    using Restaurant.Data.Common;
     using Restaurant.Data.Models;
 
-    internal class RolesSeeder : ISeeder
+    internal class ApplicationRoleSeeder : ISeeder<ApplicationDbContext>
     {
         public async Task SeedAsync(ApplicationDbContext dbContext, IServiceProvider serviceProvider)
         {
