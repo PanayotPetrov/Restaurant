@@ -42,7 +42,7 @@
         public T GetById<T>(int id, bool getDeleted = false)
         {
             return getDeleted
-                ? this.mealRepository.AllAsNoTrackingWithDeleted().Where(x => x.Id == id).To<T>().FirstOrDefault() 
+                ? this.mealRepository.AllAsNoTrackingWithDeleted().Where(x => x.Id == id).To<T>().FirstOrDefault()
                 : this.mealRepository.AllAsNoTracking().Where(x => x.Id == id).To<T>().FirstOrDefault();
         }
 

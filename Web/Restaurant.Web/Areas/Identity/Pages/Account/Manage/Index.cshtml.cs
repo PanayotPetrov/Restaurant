@@ -108,7 +108,7 @@
 
             if (firstName != user.FirstName)
             {
-               user.FirstName = firstName;
+                user.FirstName = firstName;
             }
 
             var lastName = this.Input.LastName;

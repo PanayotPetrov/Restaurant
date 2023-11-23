@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
     using Moq;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
     using Xunit;

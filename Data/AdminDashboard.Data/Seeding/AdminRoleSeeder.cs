@@ -17,7 +17,6 @@
             await SeedRoleAsync(roleManager, "Superuser");
             await SeedRoleAsync(roleManager, "Standard");
             await SeedRoleAsync(roleManager, "Readonly");
-
         }
 
         private static async Task SeedRoleAsync(RoleManager<AdminDashboardRole> roleManager, string roleName)

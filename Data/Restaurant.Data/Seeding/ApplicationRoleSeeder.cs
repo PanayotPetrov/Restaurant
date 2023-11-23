@@ -17,7 +17,6 @@
 
             await SeedRoleAsync(roleManager, "Regular");
             await SeedRoleAsync(roleManager, "Premium");
-
         }
 
         private static async Task SeedRoleAsync(RoleManager<ApplicationRole> roleManager, string roleName)

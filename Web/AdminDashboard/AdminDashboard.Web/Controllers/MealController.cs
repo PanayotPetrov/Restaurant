@@ -25,7 +25,7 @@
         private readonly IConfiguration configuration;
         private readonly IPagedItemsModelCreator modelCreator;
 
-        public MealController(IMealService mealService, ICategoryService categoryService, IConfiguration configuration , IPagedItemsModelCreator modelCreator)
+        public MealController(IMealService mealService, ICategoryService categoryService, IConfiguration configuration, IPagedItemsModelCreator modelCreator)
         {
             this.mealService = mealService;
             this.categoryService = categoryService;
