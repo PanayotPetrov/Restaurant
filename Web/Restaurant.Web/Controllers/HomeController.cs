@@ -1,9 +1,12 @@
 ﻿namespace Restaurant.Web.Controllers
 {
+    using System;
     using System.Diagnostics;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Localization;
     using Microsoft.AspNetCore.Mvc;
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
@@ -69,6 +72,17 @@
             var userMessageId = await this.userMessageService.CreateAsync(addUserMessageModel);
 
             return this.RedirectToAction(nameof(this.Index));
+        }
+
+        [HttpPost]
+        public IActionResult SetLanguage(string changeCultureString, string returnUrl)
+        {
+            this.Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(changeCultureString)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) });
+
+            return this.LocalRedirect(returnUrl);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

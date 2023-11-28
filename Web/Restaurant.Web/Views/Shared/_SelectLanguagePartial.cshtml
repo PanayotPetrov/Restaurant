@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var cultureItems = LocOptions.Value.SupportedUICultures;
+    var changeCultureString = cultureItems.FirstOrDefault(cultureInfo => cultureInfo.Name != requestCulture.RequestCulture.Culture.Name);
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+}
+
+<div>
+    <form id="selectLanguageForm" asp-area="" asp-controller="Home"
+          asp-action="SetLanguage" asp-route-returnUrl="@returnUrl"
+          method="post" hidden>
+        <input asp-for="@changeCultureString" />
+    </form>
+    <button class="btn btn-primary py-2 px-2" style="margin-right: 15px" type="submit" onclick="selectLanguageForm.submit()">@requestCulture.RequestCulture.Culture</button>
+</div>
+    
