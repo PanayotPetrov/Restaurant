@@ -43,24 +43,51 @@
 
             services.Configure<CookiePolicyOptions>(
                 options =>
-                    {
-                        options.CheckConsentNeeded = context => true;
-                        options.MinimumSameSitePolicy = SameSiteMode.Strict;
-                    });
-            services.AddAuthentication().AddFacebook(opt =>
-            {
-                opt.AppId = this.configuration["FacebookLogin:AppId"];
-                opt.AppSecret = this.configuration["FacebookLogin:AppSecret"];
-            });
+                {
+                    options.CheckConsentNeeded = context => true;
+                    options.MinimumSameSitePolicy = SameSiteMode.Strict;
+                });
+
+            services.AddAuthentication().AddFacebook(
+                options =>
+                {
+                    options.AppId = this.configuration["FacebookLogin:AppId"];
+                    options.AppSecret = this.configuration["FacebookLogin:AppSecret"];
+                });
+
+            services.Configure<RequestLocalizationOptions>(
+                options =>
+                {
+                    options.AddSupportedCultures(this.configuration["SupportedCultures"].Split(';'));
+                    options.AddSupportedUICultures(this.configuration["SupportedCultures"].Split(';'));
+                    options.SetDefaultCulture(this.configuration["DefaultCulture"]);
+                    options.ApplyCurrentCultureToResponseHeaders = true;
+                });
+
             services.AddControllersWithViews(
                 options =>
-                    {
+                {
                         options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
-                    }).AddRazorRuntimeCompilation();
+                }).AddRazorRuntimeCompilation()
+                  .AddDataAnnotationsLocalization(
+                    options =>
+                    {
+                        options.DataAnnotationLocalizerProvider = (type, factory) =>
+                        {
+                            var assemblyName = new AssemblyName(typeof(SharedResource).GetTypeInfo().Assembly.FullName);
+
+                            return factory.Create("SharedResource", assemblyName.Name);
+                        };
+                    })
+                  .AddViewLocalization(
+                    options =>
+                    {
+                        options.ResourcesPath = "Resources";
+                    });
+
             services.AddRazorPages();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddHttpContextAccessor();
-
             services.AddSingleton(this.configuration);
 
             // Data repositories
@@ -82,6 +109,7 @@
             services.AddTransient<IViewHtmlRenderer, ViewHtmlRenderer>();
             services.AddTransient<IUserMessageService, UserMessageService>();
             services.AddTransient<IPagedItemsModelCreator, PagedItemsModelCreator>();
+            services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -117,14 +145,14 @@
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseRequestLocalization();
             app.UseEndpoints(
                 endpoints =>
-                    {
-                        endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                        endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
-                        endpoints.MapRazorPages();
-                    });
+                {
+                    endpoints.MapControllerRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                    endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                    endpoints.MapRazorPages();
+                });
         }
     }
 }
