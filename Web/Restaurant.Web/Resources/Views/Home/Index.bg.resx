@@ -98,13 +98,40 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-  <data name="BOOK_TABLE">
-    <value>Запази маса</value>
+  <data name="HUNGRY">
+    <value>Гладни ли сте?</value>
   </data>
-  <data name="TESTIMONIAL">
-    <value>Обратна връзка</value>
+  <data name="RIGHT_PLACE">
+    <value>Дошли сте на правилното място!</value>
   </data>
-  <data name="CUSTOMER_FEEDBACK">
-    <value>Мнения на клиенти</value>
+  <data name="HOME_PAGE_DESCRIPTION">
+    <value>От сочни бургери до апетитна пица - имаме го. Всички наши ястия се приготвят с най-пресните продукти само от България.</value>
+  </data>
+  <data name="EXPERIENCED_CHEFS">
+    <value>Опитни Готвачи</value>
+  </data>
+  <data name="EXPERIENCED_CHEFS_DESC">
+    <value>Всички наши служители имат над 20 години опит в най-добрите ресторанти.</value>
+  </data>
+  <data name="QUALITY_FOOD">
+    <value>Качествена храна</value>
+  </data>
+  <data name="QUALITY_FOOD_DESC">
+    <value>Използваме само най-качествените български продукти - без компромиси.</value>
+  </data>
+  <data name="ONLINE_ORDERS">
+    <value>Онлайн поръчки</value>
+  </data>
+  <data name="ONLINE_ORDERS_DESC">
+    <value>Имате възможност да поръчате онлайн и да се насладите на храната от уюта на вашия дом.</value>
+  </data>
+  <data name="FAST_DELIVERY">
+    <value>Бърза доставка</value>
+  </data>
+  <data name="FAST_DELIVERY_DESC">
+    <value>Ако не доставим храната Ви до 60 минути - получавате парите си обратно!</value>
+  </data>
+  <data name="LEAVE_REVIEW">
+    <value>Дайте оценка</value>
   </data>
 </root>

@@ -1,10 +1,14 @@
 ﻿@using Restaurant.Common
 @using Restaurant.Web.ViewModels.Review
+@using Restaurant.Web.HelperClasses
+@using Microsoft.AspNetCore.Mvc.Localization
 @model ReviewListViewModel
 @{
     this.ViewData["Title"] = "Home Page";
 }
 
+@inject IViewLocalizer L
+@inject ISharedViewLocalizer SL
 
 
 <div class="container-xxl py-5 bg-dark hero-header mb-5">
@@ -13,9 +17,9 @@
 
         <div class="row align-items-center g-5">
             <div class="col-lg-6 text-center text-lg-start">
-                <h1 class="display-3 text-white animated slideInLeft">Hungry?<br>You've come to the right place!</h1>
-                <p class="text-white animated slideInLeft mb-4 pb-2">From juicy burgers to mouth-watering pizza - we've got it all. All made using only the freshest ingredients from local markets.</p>
-                <a class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft" asp-controller="Reservation" asp-action="Book"><i class="fa-solid fa-calendar-check"></i> Book A Table</a>
+                <h1 class="display-3 text-white animated slideInLeft">@L["HUNGRY"]<br>@L["RIGHT_PLACE"]</h1>
+                <p class="text-white animated slideInLeft mb-4 pb-2">@L["HOME_PAGE_DESCRIPTION"]</p>
+                <a class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft" asp-controller="Reservation" asp-action="Book"><i class="fa-solid fa-calendar-check"></i> @SL["BOOK_TABLE"]</a>
             </div>
             <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                 <img class="img-fluid" src="~/images/hero.png" asp-append-version="true">
@@ -33,8 +37,8 @@
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
                         <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
-                        <h5>Experienced Chefs</h5>
-                        <p>All of our employees have 20+ years of experince in the finest restaurants.</p>
+                        <h5>@L["EXPERIENCED_CHEFS"]</h5>
+                        <p>@L["EXPERIENCED_CHEFS_DESC"]</p>
                     </div>
                 </div>
             </div>
@@ -42,8 +46,8 @@
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
                         <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
-                        <h5>Quality Food</h5>
-                        <p>We use only the best ingredients from local markets. An incredible gourmet experience everytime.</p>
+                        <h5>@L["QUALITY_FOOD"]</h5>
+                        <p>@L["QUALITY_FOOD_DESC"]</p>
                     </div>
                 </div>
             </div>
@@ -51,8 +55,8 @@
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
                         <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
-                        <h5>Online Orders</h5>
-                        <p>Thanks to our logistics team you can enjoy our meals from the comfort of your home.</p>
+                        <h5>@L["ONLINE_ORDERS"]</h5>
+                        <p>@L["ONLINE_ORDERS_DESC"]</p>
                     </div>
                 </div>
             </div>
@@ -60,8 +64,8 @@
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
                         <i class="fa-solid fa-3x fa-hand-holding-dollar text-primary mb-4"></i>
-                        <h5>Fast delivery</h5>
-                        <p>Moneyback guarantee if you don't receive you order within 60 minutes.</p>
+                        <h5>@L["FAST_DELIVERY"]</h5>
+                        <p>@L["FAST_DELIVERY_DESC"]</p>
                     </div>
                 </div>
             </div>
@@ -69,13 +73,12 @@
     </div>
 </div>
 <!-- Service End -->
-
 <!-- Testimonial Start -->
 <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
     <div class="container">
         <div class="text-center">
-            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Testimonial</h5>
-            <h1 class="mb-5">Customer feedback</h1>
+            <h5 class="section-title ff-secondary text-center text-primary fw-normal">@SL["TESTIMONIAL"]</h5>
+            <h1 class="mb-5">@SL["CUSTOMER_FEEDBACK"]</h1>
         </div>
         <div class="owl-carousel testimonial-carousel">
 
@@ -104,7 +107,7 @@
 </div>
 <div class="container-xxl py-lg-2 wow fadeInUp" data-wow-delay="0.1s">
     <div class="col-xl-12">
-        <a class="btn btn-primary w-100 py-3" asp-controller="Review" asp-action="Add">Leave a review</a>
+        <a class="btn btn-primary w-100 py-3" asp-controller="Review" asp-action="Add">@L["LEAVE_REVIEW"]</a>
     </div>
 </div>
 
