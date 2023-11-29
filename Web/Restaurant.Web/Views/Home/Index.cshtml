@@ -1,15 +1,13 @@
-﻿@using Restaurant.Common
-@using Restaurant.Web.ViewModels.Review
+﻿@using Restaurant.Web.ViewModels.Review
 @using Restaurant.Web.HelperClasses
 @using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer L
+@inject ISharedViewLocalizer SL
+
 @model ReviewListViewModel
 @{
     this.ViewData["Title"] = "Home Page";
 }
-
-@inject IViewLocalizer L
-@inject ISharedViewLocalizer SL
-
 
 <div class="container-xxl py-5 bg-dark hero-header mb-5">
     <div class="container my-5 py-5 pb-4">
