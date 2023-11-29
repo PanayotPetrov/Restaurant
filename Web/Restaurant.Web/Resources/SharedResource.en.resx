@@ -107,4 +107,10 @@
   <data name="CUSTOMER_FEEDBACK">
     <value>Customer feedback</value>
   </data>
+  <data name="GOURMET_EXPERIENCE">
+    <value>Gourmet Experience</value>
+  </data>
+  <data name="ABOUT_US">
+    <value>ABOUT US</value>
+  </data>
 </root>

@@ -98,19 +98,34 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-  <data name="BOOK_TABLE">
-    <value>Запази маса</value>
+  <data name="WELCOME_TO">
+    <value>Welcome to</value>
   </data>
-  <data name="TESTIMONIAL">
-    <value>Обратна връзка</value>
+  <data name="ABOUT_OUR_MISSION">
+    <value>Our restaurant strives to source local, sustainable and organic at all times. We work hard to source premium ingredients and we cook everything from scratch with love.</value>
   </data>
-  <data name="CUSTOMER_FEEDBACK">
-    <value>Мнения на клиенти</value>
+  <data name="ABOUT_OUR_POLICY_FIRST">
+    <value>We also do our best to pay our employees living wages (tips are shared with all employees, including kitchen staff) and to reduce our environmental footprint wherever we can.</value>
   </data>
-  <data name="GOURMET_EXPERIENCE">
-    <value>Gourmet Experience</value>
+  <data name="ABOUT_OUR_POLICY_SECOND">
+    <value>Overall, these factors translate to higher menu prices, but we hope that you find value and feel a sense of comfort in knowing that we aim to get better everyday at doing what is important to us.</value>
   </data>
-  <data name="ABOUT_US">
-    <value>ЗА НАС</value>
+  <data name="YEARS_OF">
+    <value>Years of</value>
+  </data>
+  <data name="EXCELLENCE">
+    <value>Excellence</value>
+  </data>
+  <data name="TEAM_MEMBERS">
+    <value>Team Members</value>
+  </data>
+  <data name="MASTER_CHEFS">
+    <value>Our Master Chefs</value>
+  </data>
+  <data name="INCREDIBLE">
+    <value>Incredible</value>
+  </data>
+  <data name="DISHES">
+    <value>Dishes</value>
   </data>
 </root>

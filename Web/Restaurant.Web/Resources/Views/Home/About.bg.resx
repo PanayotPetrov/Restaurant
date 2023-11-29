@@ -98,19 +98,34 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-  <data name="BOOK_TABLE">
-    <value>Запази маса</value>
+  <data name="WELCOME_TO">
+    <value>Добре дошли в</value>
   </data>
-  <data name="TESTIMONIAL">
-    <value>Обратна връзка</value>
+  <data name="ABOUT_OUR_MISSION">
+    <value>Нашият ресторант се стреми винаги да използва органични, био продукти от местни производители. Премиум продукти, които приготваме с много ентусиазъм и любов.</value>
   </data>
-  <data name="CUSTOMER_FEEDBACK">
-    <value>Мнения на клиенти</value>
+  <data name="ABOUT_OUR_POLICY_FIRST">
+    <value>Опитваме се да плащаме конкурентни заплати на служителите си (бакшишите се споделят между всички служители, включително в кухнята) и да редуцираме еко следата си на максимум.</value>
   </data>
-  <data name="GOURMET_EXPERIENCE">
-    <value>Gourmet Experience</value>
+  <data name="ABOUT_OUR_POLICY_SECOND">
+    <value>Всички тези фактори акумулират до по-високи цени, но се надяваме да припознаете нашите ценности и да усетите чувство на комфорт, знаейки че се стремим да сме по-добри всеки ден.</value>
   </data>
-  <data name="ABOUT_US">
-    <value>ЗА НАС</value>
+    <data name="YEARS_OF">
+    <value>Години</value>
+  </data>
+  <data name="EXCELLENCE">
+    <value>Отличие</value>
+  </data>
+  <data name="TEAM_MEMBERS">
+    <value>Нашият Екиш</value>
+  </data>
+  <data name="MASTER_CHEFS">
+    <value>Главни готвачи</value>
+  </data>
+  <data name="INCREDIBLE">
+    <value>Невероятни</value>
+  </data>
+  <data name="DISHES">
+    <value>Ястия</value>
   </data>
 </root>
