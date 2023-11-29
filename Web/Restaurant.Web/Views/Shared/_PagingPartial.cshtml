@@ -1,4 +1,5 @@
-﻿@model IPagingViewModel
+﻿@using Restaurant.Web.ViewModels.Paging
+@model IPagingViewModel
 <nav aria-label="...">
     <ul class="pagination justify-content-center">
         <li class="page-item @if (!Model.HasPreviousPage) { <text>disabled</text> }">
