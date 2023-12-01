@@ -10,9 +10,13 @@
     {
         public string Name { get; set; }
 
+        public string SecondaryName { get; set; }
+
         public IEnumerable<MealViewModel> Meals { get; set; }
 
         public string Adjective { get; set; }
+
+        public string SecondaryAdjective { get; set; }
 
         public string FontAwesomeIcon { get; set; }
     }

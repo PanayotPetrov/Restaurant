@@ -8,5 +8,9 @@
     {
         [Required]
         public string Name { get; set; }
+
+        [Required]
+        public string SecondaryName { get; set; }
+
     }
 }
