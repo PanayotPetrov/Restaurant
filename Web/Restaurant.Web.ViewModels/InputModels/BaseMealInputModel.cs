@@ -12,6 +12,9 @@
         [Required(ErrorMessage = "Please provide a description for this meal.")]
         public string Description { get; set; }
 
+        [Required(ErrorMessage = "Please provide a secondary description for this meal.")]
+        public string SecondaryDescription { get; set; }
+
         [Range(0, double.MaxValue, ErrorMessage = "The provided price is invalid.")]
         public decimal Price { get; set; }
 

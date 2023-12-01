@@ -19,6 +19,9 @@
         [Required]
         public string Description { get; set; }
 
+        [Required]
+        public string SecondaryDescription { get; set; }
+
         public decimal Price { get; set; }
 
         public int CategoryId { get; set; }
