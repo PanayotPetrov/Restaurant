@@ -2,18 +2,17 @@
     <nav class="navbar navbar-expand-xl navbar-dark sticky-top shadow-lg bg-dark px-4 px-5 py-3 py-0">
         <partial name="_SelectLanguagePartial" />
         <a href="" class="navbar-brand p-0">
-            <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Gourmet experience</h1>
-            <!-- <img src="img/logo.png" alt="Logo"> -->
+            <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>@SL["GOURMET_EXPERIENCE"]</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0 pe-4">
-                <a class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                <a class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                <a class="nav-item nav-link" asp-area="" asp-controller="Menu" asp-action="Index">Menu</a>
-                <a class="nav-item nav-link" asp-area="" asp-controller="Reservation" asp-action="Book">Book a table</a>
+                <a class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="Index">@SL["HOME"]</a>
+                <a class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="About">@SL["ABOUT_US"]</a>
+                <a class="nav-item nav-link" asp-area="" asp-controller="Menu" asp-action="Index">@SL["MENU"]</a>
+                <a class="nav-item nav-link" asp-area="" asp-controller="Reservation" asp-action="Book">@SL["BOOK_TABLE"]</a>
                 <partial name="_LoginPartial" />
             </div>
             <vc:cart-total></vc:cart-total>

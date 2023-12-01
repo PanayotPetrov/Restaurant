@@ -111,6 +111,51 @@
     <value>Gourmet Experience</value>
   </data>
   <data name="ABOUT_US">
-    <value>ABOUT US</value>
+    <value>About us</value>
+  </data>
+  <data name="MENU">
+    <value>Menu</value>
+  </data>
+  <data name="HOME">
+    <value>Home</value>
+  </data>
+  <data name="LOGOUT">
+    <value>Logout</value>
+  </data>
+  <data name="LOGIN">
+    <value>Login</value>
+  </data>
+  <data name="ACCOUNT">
+    <value>Account</value>
+  </data>
+  <data name="REGISTER">
+    <value>Register</value>
+  </data>
+  <data name="REVIEWS">
+    <value>Customer reviews</value>
+  </data>
+  <data name="CONTACTS">
+    <value>Contacts</value>
+  </data>
+  <data name="PRIVACY_POLICY">
+    <value>Privacy policy</value>
+  </data>
+  <data name="COMPANY">
+    <value>Company</value>
+  </data>
+  <data name="COMPANY_ADDRESS">
+		<value>ul. "Han Asparuh" 37, 1000 Sofia Center, Sofia.</value>
+  </data>
+  <data name="WORKING_HOURS">
+    <value>Working hours</value>
+  </data>
+  <data name="DELIVERY_HOURS">
+    <value>Delivery hours</value>
+  </data>
+  <data name="MONDAY_TO_SUNDAY">
+    <value>Monday - Sunday</value>
+  </data>
+  <data name="ALL_RIGHTS_RESERVED">
+    <value>All rights reserved</value>
   </data>
 </root>

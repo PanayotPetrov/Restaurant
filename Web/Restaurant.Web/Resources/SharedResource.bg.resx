@@ -111,6 +111,51 @@
     <value>Gourmet Experience</value>
   </data>
   <data name="ABOUT_US">
-    <value>ЗА НАС</value>
+    <value>За нас</value>
+  </data>
+  <data name="MENU">
+    <value>Меню</value>
+  </data>
+  <data name="HOME">
+    <value>Начало</value>
+  </data>
+  <data name="LOGOUT">
+    <value>Изход</value>
+  </data>
+  <data name="LOGIN">
+    <value>Вход</value>
+  </data>
+  <data name="ACCOUNT">
+    <value>Профил</value>
+  </data>
+  <data name="REGISTER">
+    <value>Регистрация</value>
+  </data>
+  <data name="REVIEWS">
+    <value>Мнения на клиенти</value>
+  </data>
+  <data name="CONTACTS">
+    <value>Контакти</value>
+  </data>
+  <data name="PRIVACY_POLICY">
+    <value>Лични данни</value>
+  </data>
+  <data name="COMPANY">
+    <value>Компания</value>
+  </data>
+  <data name="COMPANY_ADDRESS">
+    <value>ул. "Хан Аспарух" 37, 1000 Център, София.</value>
+  </data>
+  <data name="WORKING_HOURS">
+    <value>Работно време</value>
+  </data>
+  <data name="DELIVERY_HOURS">
+    <value>Доставки между</value>
+  </data>
+  <data name="MONDAY_TO_SUNDAY">
+    <value>Понеделник - Неделя</value>
+  </data>
+  <data name="ALL_RIGHTS_RESERVED">
+    <value>Всички права запазени</value>
   </data>
 </root>

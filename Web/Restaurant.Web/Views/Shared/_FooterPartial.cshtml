@@ -2,16 +2,16 @@
     <div class="container py-5">
         <div class="row g-5">
             <div class="col-xxl-4 col-md-4">
-                <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Company</h4>
-                <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="About">About</a>
-                <a class="btn btn-link" asp-area="" asp-controller="Review" asp-action="All" asp-route-id="1">Customer reviews</a>
-                <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact us</a>
-                <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy policy</a>
+                <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">@SL["COMPANY"]</h4>
+                <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Index">@SL["HOME"]</a>
+                <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="About">@SL["ABOUT_US"]</a>
+                <a class="btn btn-link" asp-area="" asp-controller="Review" asp-action="All" asp-route-id="1">@SL["REVIEWS"]</a>
+                <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Contact">@SL["CONTACTS"]</a>
+                <a class="btn btn-link" asp-area="" asp-controller="Home" asp-action="Privacy">@SL["PRIVACY_POLICY"]</a>
             </div>
             <div class="col-xxl-4 col-md-4">
-                <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Contact</h4>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> ul. "Han Asparuh" 37, 1000 Sofia Center, Sofia.</p>
+                <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">@SL["CONTACTS"]</h4>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i> @SL["COMPANY_ADDRESS"]</p>
                 <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+359 123 456 789</p>
                 <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
                 <div class="d-flex pt-2">
@@ -22,11 +22,11 @@
                 </div>
             </div>
             <div class="col-xxl-4 col-md-4">
-                <h5 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Working hours</h5>
-                <h6 class="text-light fw-normal">Monday - Sunday</h6>
+                <h5 class="section-title ff-secondary text-start text-primary fw-normal mb-4">@SL["WORKING_HOURS"]</h5>
+                <h6 class="text-light fw-normal">@SL["MONDAY_TO_SUNDAY"]</h6>
                 <p>09:00 - 23:00</p>
-                <h5 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Delivery hours</h5>
-                <h6 class="text-light fw-normal">Monday - Sunday</h6>
+                <h5 class="section-title ff-secondary text-start text-primary fw-normal mb-4">@SL["DELIVERY_HOURS"]</h5>
+                <h6 class="text-light fw-normal">@SL["MONDAY_TO_SUNDAY"]</h6>
                 <p>12:00 -00:00</p>
             </div>
 
@@ -36,9 +36,7 @@
         <div class="copyright">
             <div class="row">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="#">Gourmet experience</a>, All Right Reserved.
-                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
-                    Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
+                    &copy; <a class="border-bottom" href="#">@SL["GOURMET_EXPERIENCE"]</a> @SL["ALL_RIGHTS_RESERVED"].
                 </div>
             </div>
         </div>
