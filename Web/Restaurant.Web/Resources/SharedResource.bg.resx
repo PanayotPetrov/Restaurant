@@ -158,4 +158,10 @@
   <data name="ALL_RIGHTS_RESERVED">
     <value>Всички права запазени</value>
   </data>
+  <data name="ADD_TO_CART">
+    <value>Добави</value>
+  </data>
+  <data name="YOU_CAN_CHOOSE">
+    <value>Изберете измежду нашите</value>
+  </data>
 </root>

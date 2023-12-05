@@ -1,7 +1,13 @@
 ﻿@using Restaurant.Web.ViewModels.Menu
+@using Microsoft.AspNetCore.Builder
+@using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Localization
+
+@inject IOptions<RequestLocalizationOptions> LocOptions
 @model MenuViewModel
 @{
-    this.ViewData["Title"] = "Menu";
+    this.ViewData["Title"] = SL["MENU"];
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
 }
 
 <partial name="_HeroPartial" />
@@ -9,7 +15,7 @@
 <div class="container-xxl py-5">
     <div class="container">
         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h1 class="mb-5">You can choose from our</h1>
+            <h1 class="mb-5">@SL["YOU_CAN_CHOOSE"]</h1>
         </div>
 
         @{
@@ -24,8 +30,10 @@
                         <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3" data-bs-toggle="pill" href="#tab-@i">
                             <i class="@category.FontAwesomeIcon fs-3"></i>
                             <div class="ps-3">
-                                <small class="text-body">@category.Adjective</small>
-                                <h6 class="mt-n1 mb-0">@category.Name</h6>
+                                @{var categoryAdjective = requestCulture.RequestCulture.Culture.Name == "en" ? category.Adjective : category.SecondaryAdjective;}
+                                <small class="text-body">@categoryAdjective</small>
+                                @{var categoryName = requestCulture.RequestCulture.Culture.Name == "en" ? category.Name : category.SecondaryName;}
+                                <h6 class="mt-n1 mb-0">@categoryName</h6>
                             </div>
                         </a>
                     </li>
@@ -45,15 +53,17 @@
                         <div class="row g-4">
                             @foreach (var meal in Model.Meals.Where(m => m.Category.Name == category.Name))
                             {
-                                <div class="col-lg-6" id="mealContainer@(meal.Id)">
+                                <div class="col-xl-6" id="mealContainer@(meal.Id)">
                                     <div class="d-flex align-items-center">
                                         <img class="flex-shrink-0 img-fluid rounded" src=@($"{meal.ImageUrl}") alt="" asp-append-version="true">
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>@meal.Name</span>
+                                                @{ var mealName = requestCulture.RequestCulture.Culture.Name == "en" ? meal.Name : meal.SecondaryName; }
+                                                <span>@mealName</span>
                                                 <span class="text-primary" id="mealPrice@(meal.Id)">@meal.Price <i class="fas fa-dollar-sign fs-5"></i></span>
                                             </h5>
-                                            <small class="fst-italic mb-2">@meal.Description</small>
+                                            @{ var mealDescription = requestCulture.RequestCulture.Culture.Name == "en" ? meal.Description : meal.SecondaryDescription; }
+                                            <small class="fst-italic mb-2">@mealDescription</small>
                                             <div class="d-flex align-items-center">
                                                 <div class="btn-group quantity me-md-5" style="width: 100px;">
                                                     <div>
@@ -67,11 +77,10 @@
                                                             <i class="fa fa-plus btn-plus"></i>
                                                         </button>
                                                     </div>
-
-
                                                 </div>
-                                                <button class="btn btn-primary px-md-3 ms-md-5" onclick="AddToCart('mealContainer@(meal.Id)')"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
-
+                                                <button class="btn btn-primary px-xl-3 ms-xl-5" onclick="AddToCart('mealContainer@(meal.Id)')">
+                                                    <i class="fa fa-shopping-cart"></i>@SL["ADD_TO_CART"]
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
