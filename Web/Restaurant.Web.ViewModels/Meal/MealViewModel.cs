@@ -15,6 +15,8 @@
 
         public string Name { get; set; }
 
+        public string SecondaryName { get; set; }
+
         public decimal Price { get; set; }
 
         public CategoryViewModel Category { get; set; }

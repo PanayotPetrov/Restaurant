@@ -17,6 +17,9 @@
         public string Name { get; set; }
 
         [Required]
+        public string SecondaryName { get; set; }
+
+        [Required]
         public string Description { get; set; }
 
         [Required]

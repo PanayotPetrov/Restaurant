@@ -9,6 +9,9 @@
         [Required(ErrorMessage = "Please provide a name for this meal.")]
         public string Name { get; set; }
 
+        [Required(ErrorMessage = "Please provide a secondary name for this meal.")]
+        public string SecondaryName { get; set; }
+
         [Required(ErrorMessage = "Please provide a description for this meal.")]
         public string Description { get; set; }
 

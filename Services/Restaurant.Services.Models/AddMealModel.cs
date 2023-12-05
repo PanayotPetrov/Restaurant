@@ -9,6 +9,8 @@
     {
         public string Name { get; set; }
 
+        public string SecondaryName { get; set; }
+
         public string Description { get; set; }
 
         public string SecondaryDescription { get; set; }
