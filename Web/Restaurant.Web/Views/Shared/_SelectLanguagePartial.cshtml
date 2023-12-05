@@ -9,7 +9,9 @@
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
     var cultureItems = LocOptions.Value.SupportedUICultures;
     var changeCultureString = cultureItems.FirstOrDefault(cultureInfo => cultureInfo.Name != requestCulture.RequestCulture.Culture.Name);
-    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) 
+        ? "~/" 
+        : $"~{Context.Request.Path.Value}{Context.Request.QueryString.Value ?? string.Empty}";
 }
 
 <div>
