@@ -7,38 +7,48 @@
 
 <div class="wow fadeInUp" data-wow-delay="0.2s">
 
-        <form method="post" class="col-md-6 offset-md-3"
-              enctype="multipart/form-data">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Name"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Description"></label>
-                <textarea asp-for="Description" class="form-control" rows="5"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Price"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CategoryId"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="categories"></select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Image"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-            <h1></h1>
-            <div class="col-12">
-                <button class="btn btn-primary w-100 col-md-12" type="submit"><i class="fa-solid fa-check"></i> Add meal</button>
-                <a class="btn btn-primary w-100 col-md-12 mt-3" asp-action="Index" asp-route-id="@(this.TempData["RouteId"] ?? 1)"><i class="fa-solid fa-bars"></i> Back to List</a>
-            </div>
-        </form>
+    <form method="post" class="col-md-6 offset-md-3"
+          enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SecondaryName"></label>
+            <input asp-for="SecondaryName" class="form-control" />
+            <span asp-validation-for="SecondaryName" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="SecondaryDescription"></label>
+            <textarea asp-for="SecondaryDescription" class="form-control" rows="5"></textarea>
+            <span asp-validation-for="SecondaryDescription" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="CategoryId"></label>
+            <select asp-for="CategoryId" class="form-control" asp-items="categories"></select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Image"></label>
+            <input asp-for="Image" class="form-control" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <h1></h1>
+        <div class="col-12">
+            <button class="btn btn-primary w-100 col-md-12" type="submit"><i class="fa-solid fa-check"></i> Add meal</button>
+            <a class="btn btn-primary w-100 col-md-12 mt-3" asp-action="Index" asp-route-id="@(this.TempData["RouteId"] ?? 1)"><i class="fa-solid fa-bars"></i> Back to List</a>
+        </div>
+    </form>
 </div>

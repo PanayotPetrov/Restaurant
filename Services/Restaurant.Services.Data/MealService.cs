@@ -80,7 +80,9 @@
             }
 
             meal.Name = model.Name;
+            meal.SecondaryName = model.SecondaryName;
             meal.Description = model.Description;
+            meal.SecondaryDescription = model.SecondaryDescription;
             meal.CategoryId = model.CategoryId;
             meal.Price = model.Price;
             if (model.Image is not null)
