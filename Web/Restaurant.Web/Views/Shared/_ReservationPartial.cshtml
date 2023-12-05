@@ -1,0 +1,61 @@
+﻿@using Restaurant.Web.ViewModels.Reservation
+@model ReservationViewModel
+
+<div class="card border-3 border-dark bg-body wow fadeInUp" data-wow-delay="0.1s">
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-lg-6 ps-lg-5 py-3">
+                <h5 class="text-white card-text">@SL["RESERVATION_NUMBER"]</h5>
+            </div>
+            <div class="col-lg-6 ps-lg-5">
+                <h3 class="card-text font-weight-bold text-white mt-2">@Model.ReservationNumber</h3>
+            </div>
+        </div>
+    </div>
+    <div class="card-body bg-white">
+        <div class="row">
+            <i class="fas fa-calendar-alt fs-1 pe-2 text-primary col-1 p-1"></i>
+            <div class="col-11">
+                <span class="ps-1 fs-5">@SL["DATE_BOOKED"]</span>
+                <h6 class="m-1">@Model.ReservationDate.ToLocalTime()</h6>
+            </div>
+        </div>
+        <div class="row">
+            <i class="fas fa-hashtag fs-1 pe-2 text-primary col-1 p-1"></i>
+            <div class="col-11">
+                <span class="ps-1 fs-5">@SL["TABLE_NUMBER"]</span>
+                <h6 class="m-1">@Model.TableId</h6>
+            </div>
+        </div>
+        <div class="row">
+            <i class="fas fa-users fs-2 pe-2 text-primary col-1 p-1"></i>
+            <div class="col-11">
+                <span class="ps-1 fs-5">@SL["TABLE_FOR"]</span>
+                <h6 class="ps-1">@($"{Model.NumberOfPeople} {SL["PEOPLE"]}")</h6>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer bg-white align-items-center">
+        <div class="row">
+            <i class="fas fa-user fs-1 pe-2 text-primary col-1 p-1"></i>
+            <div class="col-11">
+                <span class="ps-1 fs-5">@SL["YOUR_NAME"]</span>
+                <h6 class="m-1">@Model.Fullname</h6>
+            </div>
+        </div>
+        <div class="row">
+            <i class="fas fa-phone-square fs-1 pe-2 text-primary col-1 p-1"></i>
+            <div class="col-11">
+                <span class="ps-1 fs-5">@SL["PHONE_NUMBER"]</span>
+                <h6 class="m-1">@Model.PhoneNumber</h6>
+            </div>
+        </div>
+        <div class="row">
+            <i class="fas fa-envelope fs-1 pe-2 text-primary col-1 p-1"></i>
+            <div class="col-11">
+                <span class="ps-1 fs-5">@SL["EMAIL"]</span>
+                <h6 class="ps-1">@Model.Email</h6>
+            </div>
+        </div>
+    </div>
+</div>

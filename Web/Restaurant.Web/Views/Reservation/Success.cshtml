@@ -1,93 +1,27 @@
 ﻿@using Restaurant.Web.ViewModels.Reservation
 @model ReservationViewModel
 @{
-    this.ViewData["Title"] = "Your reservation";
+    this.ViewData["Title"] = SL["YOUR_RESERVATION"];
 }
 
-<div class="container-xxl py-1 bg-dark hero-header mb-5">
-    <div class="container text-center my-5 pt-5 pb-4">
-        <p class="display-3 section-title text-white mb-3 animated slideInDown">Thank you for choosing our restaurant.</p>
-    </div>
-</div>
+<partial name="_HeroPartial" />
 
 <div class="container wow fadeInUp" data-wow-delay="0.1s">
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-md-6 pb-5">
+            <div class="border border-dark border-3 rounded mb-3">
+                <div class="ps-3">
+                    <h1 align="center" class="m-3" style="color:#4BB543;font-weight: bolder;"><i class="fa fa-check-square"></i> @SL["SUCCESS"]</h1>
+                </div>
+            </div>
+            <partial name="_ReservationPartial" model="Model" />
 
-    <div class="row d-flex justify-content-center">
-        <hr style="height:3px;" class="col-md-6" />
-    </div>
-    <div class="row d-flex justify-content-center">
-        <h3 align="center" class="m-2" style="color:#4BB543;font-weight: bolder;"><i class="fa fa-check-square"></i> Your reservation has been successful!</h3>
-        <div class="col-md-6">
-            <table class="table table-borderless table-hover">
-                <tr class="bg-primary">
-                    <td>
-                        <div align="left"> <span class="text-white fs-2 font-weight-bold">Reservation number</span> </div>
-                    </td>
-                    <td>
-                        <div align="right"> <span class="text-white fs-2 font-weight-bold">@Model.ReservationNumber</span> </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div align="left"> <span class="text-muted fs-3"><i class="fas fa-calendar-alt fs-3"></i> Reservation date</span> </div>
-                    </td>
-                    <td>
-                        <div align="right"> <span class="text-muted fs-3">@Model.ReservationDate.ToLocalTime()</span> </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div align="left"> <span class="text-muted fs-3"><i class="fas fa-hashtag fs-3"></i> Table №</span> </div>
-                    </td>
-                    <td>
-                        <div align="right"> <span class="text-muted fs-3">@Model.TableId</span> </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div align="left"> <span class="text-muted fs-3"><i class="fas fa-users"></i> Table for</span> </div>
-
-                    </td>
-                    <td>
-                        <div align="right"> <span class="text-muted fs-3">@($"{Model.NumberOfPeople} people")</span> </div>
-                    </td>
-                </tr>
-
-                <tr class="border-top border-bottom border-secondary">
-                    <td>
-                        <div align="left"> <span class="font-weight-bold"><i class="fas fa-user"></i> Name</span> </div>
-                    </td>
-                    <td>
-                        <div align="right"> <span class="font-weight-bold">@Model.Fullname</span> </div>
-                    </td>
-                </tr>
-                <tr class="border-top border-bottom border-secondary">
-                    <td>
-                        <div align="left"> <span class="font-weight-bold"><i class="fas fa-envelope"></i> Email</span> </div>
-                    </td>
-                    <td>
-                        <div align="right"> <span class="font-weight-bold">@Model.Email</span> </div>
-                    </td>
-                </tr>
-                <tr class="border-top border-bottom border-primary">
-                    <td>
-                        <div align="left"> <span class="font-weight-bold"><i class="fas fa-phone-square"></i> Phone number</span> </div>
-                    </td>
-                    <td>
-                        <div align="right"> <span class="font-weight-bold">@Model.PhoneNumber</span> </div>
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <div class="row d-flex justify-content-center">
-
-        <div class="col-md-6 bg-transparent border border-secondary border-5 rounded p-4">
-            <div class="ps-3">
-                <h5 align="center">
-                    To edit or cancel your reservation please <a asp-area="" asp-controller="Home" asp-action="Contact">contact us.</a>
-                </h5>
+            <div class="border border-dark border-3 rounded p-4 mt-5">
+                <div class="ps-3">
+                    <h5 align="center">
+                        @SL["EDIT_OR_CANCEL"] @SL["YOUR_RESERVATION"] @SL["PLEASE"] <a asp-area="" asp-controller="Home" asp-action="Contact">@SL["CONTACT_US"].</a>
+                    </h5>
+                </div>
             </div>
         </div>
     </div>

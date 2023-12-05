@@ -1,7 +1,7 @@
 ﻿@using Restaurant.Web.ViewModels.Reservation
 @model ReservationListViewModel
 @{
-    this.ViewData["Title"] = "My bookings";
+    this.ViewData["Title"] = SL["MY_RESERVATIONS"];
 }
 
 <partial name="_HeroPartial" />
@@ -10,66 +10,8 @@
     <div class="row">
         @foreach (var reservation in Model.Reservations)
         {
-
-            <div class="col-xl-6 p-5">
-                <div class="card border-3 border-dark bg-body wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="card-header bg-dark">
-                        <div class="row">
-                            <div class="col-lg-6 ps-lg-5 ">
-                                <h5 class="text-white card-text">Reservation number</h5>
-                            </div>
-                            <div class="col-lg-6 ps-lg-5">
-                                <h3 class="card-text font-weight-bold text-white mt-2">@reservation.ReservationNumber</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-body bg-white">
-                        <div class="row">
-                            <i class="fas fa-calendar-alt fs-1 pe-2 text-primary col-1 p-1"></i>
-                            <div class="col-11">
-                                <span class="ps-1 fs-5">Booked date</span>
-                                <h6 class="m-1">@reservation.ReservationDate.ToLocalTime()</h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <i class="fas fa-hashtag fs-1 pe-2 text-primary col-1 p-1"></i>
-                            <div class="col-11">
-                                <span class="ps-1 fs-5">Table number</span>
-                                <h6 class="m-1">@reservation.TableId</h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <i class="fas fa-users fs-2 pe-2 text-primary col-1 p-1"></i>
-                            <div class="col-11">
-                                <span class="ps-1 fs-5">Table for</span>
-                                <h6 class="ps-1">@($"{reservation.NumberOfPeople} people")</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer bg-white align-items-center">
-                        <div class="row">
-                            <i class="fas fa-user fs-1 pe-2 text-primary col-1 p-1"></i>
-                            <div class="col-11">
-                                <span class="ps-1 fs-5">Name</span>
-                                <h6 class="m-1">@reservation.Fullname</h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <i class="fas fa-phone-square fs-1 pe-2 text-primary col-1 p-1"></i>
-                            <div class="col-11">
-                                <span class="ps-1 fs-5">Phone</span>
-                                <h6 class="m-1">@reservation.PhoneNumber</h6>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <i class="fas fa-envelope fs-1 pe-2 text-primary col-1 p-1"></i>
-                            <div class="col-11">
-                                <span class="ps-1 fs-5">Email</span>
-                                <h6 class="ps-1">@reservation.Email</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-md-12 col-xl-6 p-5">
+                <partial name="_ReservationPartial" model="reservation" />
             </div>
         }
     </div>

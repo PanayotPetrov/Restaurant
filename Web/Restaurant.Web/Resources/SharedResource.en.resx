@@ -173,4 +173,37 @@
   <data name="PHONE_NUMBER">
     <value>Phone number</value>
   </data>
+  <data name="CONTACT_US">
+    <value>contact us</value>
+  </data>
+  <data name="MY_RESERVATIONS">
+    <value>My reservations</value>
+  </data>
+  <data name="SUCCESS">
+    <value>Success!</value>
+  </data>
+  <data name="YOUR_RESERVATION">
+    <value>Your reservation</value>
+  </data>
+  <data name="EDIT_OR_CANCEL">
+    <value>To edit or cancel</value>
+  </data>
+  <data name="PLEASE">
+    <value>please</value>
+  </data>
+  <data name="PEOPLE">
+    <value>People</value>
+  </data>
+  <data name="TABLE FOR">
+    <value>Table for</value>
+  </data>
+  <data name="DATE_BOOKED">
+    <value>Date booked</value>
+  </data>
+  <data name="TABLE_NUMBER">
+    <value>Table number</value>
+  </data>
+  <data name="RESERVATION_NUMBER">
+    <value>Reservation number</value>
+  </data>
 </root>

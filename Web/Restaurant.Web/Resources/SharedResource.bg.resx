@@ -173,4 +173,37 @@
   <data name="PHONE_NUMBER">
     <value>Мобилен номер</value>
   </data>
+  <data name="CONTACT_US">
+    <value>свържете се с нас</value>
+  </data>
+  <data name="MY_RESERVATIONS">
+    <value>Моите резервации</value>
+  </data>
+  <data name="SUCCESS">
+    <value>Успех!</value>
+  </data>
+  <data name="YOUR_RESERVATION">
+    <value>Вашата резервация</value>
+  </data>
+  <data name="EDIT_OR_CANCEL">
+    <value>За да промените или отмените</value>
+  </data>
+  <data name="PLEASE">
+    <value>моля</value>
+  </data>
+  <data name="PEOPLE">
+    <value>Души</value>
+  </data>
+  <data name="TABLE_FOR">
+    <value>Маса за</value>
+  </data>
+  <data name="DATE_BOOKED">
+    <value>Резервирана дата</value>
+  </data>
+  <data name="TABLE_NUMBER">
+    <value>Маса номер</value>
+  </data>
+  <data name="RESERVATION_NUMBER">
+    <value>Резервация номер</value>
+  </data>
 </root>
