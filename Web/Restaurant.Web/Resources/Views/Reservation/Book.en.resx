@@ -98,79 +98,40 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-  <data name="BOOK_TABLE">
-    <value>Запази маса</value>
+  <data name="TWO">
+    <value>Two</value>
   </data>
-  <data name="TESTIMONIAL">
-    <value>Обратна връзка</value>
+  <data name="THREE">
+    <value>Three</value>
   </data>
-  <data name="CUSTOMER_FEEDBACK">
-    <value>Мнения на клиенти</value>
+  <data name="FOUR">
+    <value>Four</value>
   </data>
-  <data name="GOURMET_EXPERIENCE">
-    <value>Gourmet Experience</value>
+  <data name="FIVE">
+    <value>Five</value>
   </data>
-  <data name="ABOUT_US">
-    <value>За нас</value>
+  <data name="SIX">
+    <value>Six</value>
   </data>
-  <data name="MENU">
-    <value>Меню</value>
+  <data name="PEOPLE">
+    <value>People</value>
   </data>
-  <data name="HOME">
-    <value>Начало</value>
+  <data name="CHOOSE_DATE">
+    <value>Choose a date</value>
   </data>
-  <data name="LOGOUT">
-    <value>Изход</value>
+  <data name="CHOOSE_TIME">
+    <value>Choose a time</value>
   </data>
-  <data name="LOGIN">
-    <value>Вход</value>
+  <data name="NUMBER_OF_PEOPLE">
+    <value>Number of people</value>
   </data>
-  <data name="ACCOUNT">
-    <value>Профил</value>
+  <data name="SPECIAL_REQUEST">
+    <value>Special request</value>
   </data>
-  <data name="REGISTER">
-    <value>Регистрация</value>
+  <data name="BOOK_NOW">
+    <value>Book now</value>
   </data>
-  <data name="REVIEWS">
-    <value>Мнения на клиенти</value>
-  </data>
-  <data name="CONTACTS">
-    <value>Контакти</value>
-  </data>
-  <data name="PRIVACY_POLICY">
-    <value>Лични данни</value>
-  </data>
-  <data name="COMPANY">
-    <value>Компания</value>
-  </data>
-  <data name="COMPANY_ADDRESS">
-    <value>ул. "Хан Аспарух" 37, 1000 Център, София.</value>
-  </data>
-  <data name="WORKING_HOURS">
-    <value>Работно време</value>
-  </data>
-  <data name="DELIVERY_HOURS">
-    <value>Доставки между</value>
-  </data>
-  <data name="MONDAY_TO_SUNDAY">
-    <value>Понеделник - Неделя</value>
-  </data>
-  <data name="ALL_RIGHTS_RESERVED">
-    <value>Всички права запазени</value>
-  </data>
-  <data name="ADD_TO_CART">
-    <value>Добави</value>
-  </data>
-  <data name="YOU_CAN_CHOOSE">
-    <value>Изберете измежду нашите</value>
-  </data>
-  <data name="YOUR_NAME">
-    <value>Името Ви</value>
-  </data>
-  <data name="EMAIL">
-    <value>Имейл</value>
-  </data>
-  <data name="PHONE_NUMBER">
-    <value>Мобилен номер</value>
+  <data name="RESERVATION">
+    <value>Reservation</value>
   </data>
 </root>

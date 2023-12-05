@@ -2,7 +2,7 @@
 @model AddReservationInputModel
 
 @{
-    this.ViewData["Title"] = "Reservation";
+    this.ViewData["Title"] = L["RESERVATION"];
 }
 
 <partial name="_HeroPartial" />
@@ -18,36 +18,36 @@
         </div>
         <div class="col-md-6 bg-dark d-flex align-items-center">
             <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
-                <h5 class="section-title ff-secondary text-start text-primary fw-normal">Reservation</h5>
-                <h1 class="text-white mb-4">Book A Table Online</h1>
+                <h5 class="section-title ff-secondary text-start text-primary fw-normal">@L["RESERVATION"]</h5>
+                <h1 class="text-white mb-4">@SL["BOOK_TABLE"]</h1>
                 <form method="post">
                     <div asp-validation-summary="ModelOnly" class="text-white fs-5"></div>
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" asp-for="FullName" class="form-control" placeholder="Your Name">
-                                <label asp-for="FullName">Full Name</label>
+                                <input type="text" asp-for="FullName" class="form-control" placeholder="@SL["YOUR_NAME"]">
+                                <label asp-for="FullName">@SL["YOUR_NAME"]</label>
                                 <span asp-validation-for="FullName" class="text-white"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="Your Name">
-                                <label asp-for="PhoneNumber">Phone number</label>
+                                <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="@SL["PHONE_NUMBER"]">
+                                <label asp-for="PhoneNumber">@SL["PHONE_NUMBER"]</label>
                                 <span asp-validation-for="PhoneNumber" class="text-white"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="email" asp-for="Email" class="form-control" placeholder="Your Email">
-                                <label asp-for="Email">Your Email</label>
+                                <input type="email" asp-for="Email" class="form-control" placeholder="@SL["EMAIL"]">
+                                <label asp-for="Email">@SL["EMAIL"]</label>
                                 <span asp-validation-for="Email" class="text-white"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating date">
-                                <input type="date" asp-for="ReservationDate" class="form-control" placeholder="Choose a date" />
-                                <label asp-for="ReservationDate">Choose a date</label>
+                                <input type="date" asp-for="ReservationDate" class="form-control" placeholder="@L["CHOOSE_DATE"]" />
+                                <label asp-for="ReservationDate">@L["CHOOSE_DATE"]</label>
                                 <span asp-validation-for="ReservationDate" class="text-white"></span>
                             </div>
                         </div>
@@ -59,32 +59,32 @@
                                         <option value=@i>@i:00</option>
                                     }
                                 </select>
-                                <label asp-for=ReservationTime>Choose a time</label>
+                                <label asp-for=ReservationTime>@L["CHOOSE_TIME"]</label>
                                 <span asp-validation-for="ReservationTime" class="text-white"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <select asp-for="NumberOfPeople" class="form-select">
-                                    <option value="2">Two people</option>
-                                    <option value="3">Three people</option>
-                                    <option value="4">Four people</option>
-                                    <option value="5">Five people</option>
-                                    <option value="6">Six people</option>
+                                    <option value="2">@L["TWO"] @L["PEOPLE"]</option>
+                                    <option value="3">@L["THREE"] @L["PEOPLE"]</option>
+                                    <option value="4">@L["FOUR"] @L["PEOPLE"]</option>
+                                    <option value="5">@L["FIVE"] @L["PEOPLE"]</option>
+                                    <option value="6">@L["SIX"] @L["PEOPLE"]</option>
                                 </select>
-                                <label asp-for=NumberOfPeople>Number of people</label>
+                                <label asp-for=NumberOfPeople>@L["NUMBER_OF_PEOPLE"]</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" asp-for="SpecialRequest" placeholder="Special Request" maxlength="201" style="height: 100px"></textarea>
-                                <label asp-for="SpecialRequest">Special Request</label>
+                                <textarea class="form-control" asp-for="SpecialRequest" placeholder="@L["SPECIAL_REQUEST"]" maxlength="201" style="height: 100px"></textarea>
+                                <label asp-for="SpecialRequest">@L["SPECIAL_REQUEST"]</label>
                                 <span asp-validation-for="SpecialRequest" class="text-white"></span>
 
                             </div>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Book Now</button>
+                            <button class="btn btn-primary w-100 py-3" type="submit">@L["BOOK_NOW"]</button>
                         </div>
                     </div>
                 </form>

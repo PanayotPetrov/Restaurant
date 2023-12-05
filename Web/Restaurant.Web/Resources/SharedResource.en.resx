@@ -164,4 +164,13 @@
   <data name="YOU_CAN_CHOOSE">
     <value>You can choose from our</value>
   </data>
+  <data name="YOUR_NAME">
+    <value>Your name</value>
+  </data>
+  <data name="EMAIL">
+    <value>Email</value>
+  </data>
+  <data name="PHONE_NUMBER">
+    <value>Phone number</value>
+  </data>
 </root>
