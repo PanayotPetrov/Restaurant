@@ -94,6 +94,15 @@
                 "Test order number3",
             };
 
+            var user = new ApplicationUser();
+
+            var store = new Mock<IUserStore<ApplicationUser>>();
+            var mgr = new Mock<UserManager<ApplicationUser>>(store.Object, null, null, null, null, null, null, null, null);
+
+            mgr.Setup(um => um.GetUserAsync(It.IsAny<ClaimsPrincipal>())).Returns(Task.FromResult(user));
+
+            this.fixture.ServiceCollection.Setup(um => um.GetService(typeof(UserManager<ApplicationUser>))).Returns(mgr.Object);
+
             this.fixture.OrderServiceMock.Setup(x => x.GetAllOrderNumbersByUserId(It.IsAny<string>())).Returns(orderNumbers);
 
             var attribute = new OrderNumberValidationAttribute();
