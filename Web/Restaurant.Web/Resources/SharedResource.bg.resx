@@ -329,4 +329,7 @@
   <data name="SAVE">
     <value>Запази</value>
   </data>
+  <data name="YOUR_ORDERS">
+    <value>Вашите поръчки</value>
+  </data>
 </root>

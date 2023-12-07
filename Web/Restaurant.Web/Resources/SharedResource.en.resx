@@ -329,4 +329,7 @@
   <data name="SAVE">
     <value>Save</value>
   </data>
+  <data name="YOUR_ORDERS">
+    <value>Your orders</value>
+  </data>
 </root>
