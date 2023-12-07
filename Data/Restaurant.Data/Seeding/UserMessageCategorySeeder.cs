@@ -19,43 +19,85 @@
             await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
             {
                 Name = "Order",
-                SecondaryName = "Поръчки",
+                IsInSecondaryLanguage = false,
             });
 
             await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
             {
                 Name = "Reservation",
-                SecondaryName = "Резервации",
+                IsInSecondaryLanguage = false,
             });
 
             await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
             {
                 Name = "Menu",
-                SecondaryName = "Меню и храна",
+                IsInSecondaryLanguage = false,
             });
 
             await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
             {
                 Name = "Account",
-                SecondaryName = "Профил",
+                IsInSecondaryLanguage = false,
             });
 
             await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
             {
                 Name = "Careers",
-                SecondaryName = "Кариера",
+                IsInSecondaryLanguage = false,
             });
 
             await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
             {
                 Name = "Feedback",
-                SecondaryName = "Обратна връзка",
+                IsInSecondaryLanguage = false,
             });
 
             await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
             {
                 Name = "Other...",
-                SecondaryName = "Други...",
+                IsInSecondaryLanguage = false,
+            });
+
+            await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
+            {
+                Name = "Поръчки",
+                IsInSecondaryLanguage = true,
+            });
+
+            await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
+            {
+                Name = "Резервации",
+                IsInSecondaryLanguage = true,
+            });
+
+            await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
+            {
+                Name = "Меню",
+                IsInSecondaryLanguage = true,
+            });
+
+            await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
+            {
+                Name = "Профил",
+                IsInSecondaryLanguage = true,
+            });
+
+            await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
+            {
+                Name = "Кариера",
+                IsInSecondaryLanguage = true,
+            });
+
+            await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
+            {
+                Name = "Обратна връзка",
+                IsInSecondaryLanguage = true,
+            });
+
+            await dbContext.UserMessageCategories.AddAsync(new UserMessageCategory
+            {
+                Name = "Други...",
+                IsInSecondaryLanguage = true,
             });
         }
     }
