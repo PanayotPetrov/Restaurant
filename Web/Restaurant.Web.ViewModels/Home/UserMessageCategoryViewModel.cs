@@ -11,5 +11,7 @@
 
         [Required]
         public string Name { get; set; }
+
+        public bool IsInSecondaryLanguage { get; set; }
     }
 }

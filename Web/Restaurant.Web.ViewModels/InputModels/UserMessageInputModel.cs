@@ -12,7 +12,6 @@
     {
         public string ApplicationUserId { get; set; }
 
-        [Range(1, 7, ErrorMessage = "Invalid category selected.")]
         public int UserMessageCategoryId { get; set; }
 
         [Required(ErrorMessage = "You'll need to provide your name before we can proceed.")]

@@ -98,115 +98,25 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-  <data name="BOOK_TABLE">
-    <value>Запази маса</value>
+  <data name="BOOKING">
+    <value>Booking</value>
   </data>
-  <data name="TESTIMONIAL">
-    <value>Обратна връзка</value>
+  <data name="GENERAL">
+    <value>General</value>
   </data>
-  <data name="CUSTOMER_FEEDBACK">
-    <value>Мнения на клиенти</value>
+  <data name="TECHNICAL">
+    <value>Technical</value>
   </data>
-  <data name="GOURMET_EXPERIENCE">
-    <value>Gourmet Experience</value>
+  <data name="FRONT_OFFICE">
+    <value>Front office</value>
   </data>
-  <data name="ABOUT_US">
-    <value>За нас</value>
+  <data name="SUBJECT">
+    <value>Subject</value>
   </data>
-  <data name="MENU">
-    <value>Меню</value>
+  <data name="CHOOSE_CATEGORY">
+    <value>Choose a category</value>
   </data>
-  <data name="HOME">
-    <value>Начало</value>
-  </data>
-  <data name="LOGOUT">
-    <value>Изход</value>
-  </data>
-  <data name="LOGIN">
-    <value>Вход</value>
-  </data>
-  <data name="ACCOUNT">
-    <value>Профил</value>
-  </data>
-  <data name="REGISTER">
-    <value>Регистрация</value>
-  </data>
-  <data name="REVIEWS">
-    <value>Мнения на клиенти</value>
-  </data>
-  <data name="CONTACTS">
-    <value>Контакти</value>
-  </data>
-  <data name="PRIVACY_POLICY">
-    <value>Лични данни</value>
-  </data>
-  <data name="COMPANY">
-    <value>Компания</value>
-  </data>
-  <data name="COMPANY_ADDRESS">
-    <value>ул. "Хан Аспарух" 37, 1000 Център, София.</value>
-  </data>
-  <data name="WORKING_HOURS">
-    <value>Работно време</value>
-  </data>
-  <data name="DELIVERY_HOURS">
-    <value>Доставки между</value>
-  </data>
-  <data name="MONDAY_TO_SUNDAY">
-    <value>Понеделник - Неделя</value>
-  </data>
-  <data name="ALL_RIGHTS_RESERVED">
-    <value>Всички права запазени</value>
-  </data>
-  <data name="ADD_TO_CART">
-    <value>Добави</value>
-  </data>
-  <data name="YOU_CAN_CHOOSE">
-    <value>Изберете измежду нашите</value>
-  </data>
-  <data name="YOUR_NAME">
-    <value>Името Ви</value>
-  </data>
-  <data name="EMAIL">
-    <value>Имейл</value>
-  </data>
-  <data name="PHONE_NUMBER">
-    <value>Мобилен номер</value>
-  </data>
-  <data name="CONTACT_US">
-    <value>свържете се с нас</value>
-  </data>
-  <data name="MY_RESERVATIONS">
-    <value>Моите резервации</value>
-  </data>
-  <data name="SUCCESS">
-    <value>Успех!</value>
-  </data>
-  <data name="YOUR_RESERVATION">
-    <value>Вашата резервация</value>
-  </data>
-  <data name="EDIT_OR_CANCEL">
-    <value>За да промените или отмените</value>
-  </data>
-  <data name="PLEASE">
-    <value>моля</value>
-  </data>
-  <data name="PEOPLE">
-    <value>Души</value>
-  </data>
-  <data name="TABLE_FOR">
-    <value>Маса за</value>
-  </data>
-  <data name="DATE_BOOKED">
-    <value>Резервирана дата</value>
-  </data>
-  <data name="TABLE_NUMBER">
-    <value>Маса номер</value>
-  </data>
-  <data name="RESERVATION_NUMBER">
-    <value>Резервация номер</value>
-  </data>
-  <data name="SEND">
-    <value>Изпрати</value>
+  <data name="DESCRIPTION">
+    <value>Description</value>
   </data>
 </root>

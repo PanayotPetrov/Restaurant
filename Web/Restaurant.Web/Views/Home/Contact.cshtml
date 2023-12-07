@@ -1,36 +1,41 @@
-﻿@using Restaurant.Web.ViewModels.InputModels
+﻿@using Microsoft.Extensions.Options
+@using Microsoft.AspNetCore.Localization
+@using Restaurant.Web.ViewModels.InputModels
+
 @model UserMessageInputModel
 @{
-    this.ViewData["Title"] = "Contacts";
-    var categories = this.Model.Categories.Select(x => new SelectListItem(x.Name, x.Id.ToString()));
+    this.ViewData["Title"] = SL["CONTACTS"];
 
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+
+    var isInSecondaryLanguage = requestCulture.RequestCulture.Culture.Name == "bg";
+    var categories = this.Model.Categories
+        .Where(x => x.IsInSecondaryLanguage == isInSecondaryLanguage)
+        .Select(x => 
+            new SelectListItem(x.Name, x.Id.ToString()));
 }
 
 <partial name="_HeroPartial" />
 
 <div class="container-xxl py-5">
     <div class="container">
-        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Contact Us</h5>
-            <h1 class="mb-5">Contact For Any Query</h1>
-        </div>
         <div class="row g-4">
             <div class="col-12">
                 <div class="row gy-4">
                     <div class="col-md-3">
-                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">Booking</h5>
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">@L["BOOKING"]</h5>
                         <p><i class="fa fa-envelope-open text-primary me-2"></i>book@example.com</p>
                     </div>
                     <div class="col-md-3">
-                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">General</h5>
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">@L["GENERAL"]</h5>
                         <p><i class="fa fa-envelope-open text-primary me-2"></i>info@example.com</p>
                     </div>
                     <div class="col-md-3">
-                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">Technical</h5>
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">@L["TECHNICAL"]</h5>
                         <p><i class="fa fa-envelope-open text-primary me-2"></i>tech@example.com</p>
                     </div>
                     <div class="col-md-3">
-                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">Front office number</h5>
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">@L["FRONT_OFFICE"]</h5>
                         <p><i class="fa fa-envelope-open text-primary me-2"></i>+359 123 456 789</p>
                     </div>
                 </div>
@@ -47,40 +52,39 @@
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input asp-for="Name" class="form-control">
-                                    <label asp-for="Name"></label>
+                                    <label asp-for="Name">@SL["YOUR_NAME"]</label>
                                     <span asp-validation-for="Name"></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating">
                                     <input asp-for="Email" class="form-control">
-                                    <label asp-for="Email"></label>
+                                    <label asp-for="Email">@SL["EMAIL"]</label>
                                     <span asp-validation-for="Email"></span>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <input asp-for="Subject" class="form-control">
-                                    <label asp-for="Subject"></label>
+                                    <label asp-for="Subject">@L["SUBJECT"]</label>
                                     <span asp-validation-for="Subject"></span>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <select asp-for="UserMessageCategoryId" class="form-select" asp-items="categories"></select>
-                                    <label asp-for="UserMessageCategoryId"> Choose a category</label>
-                                    <span asp-validation-for="UserMessageCategoryId" ></span>
+                                    <label asp-for="UserMessageCategoryId">@L["CHOOSE_CATEGORY"]</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <textarea asp-for="Description" class="form-control" style="height: 150px"></textarea>
-                                    <label asp-for="Description"></label>
+                                    <label asp-for="Description">@L["DESCRIPTION"]</label>
                                     <span asp-validation-for="Description"></span>
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                <button class="btn btn-primary w-100 py-3" type="submit">@SL["SEND"]</button>
                             </div>
                         </div>
                     </form>

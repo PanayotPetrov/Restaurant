@@ -206,4 +206,7 @@
   <data name="RESERVATION_NUMBER">
     <value>Reservation number</value>
   </data>
+  <data name="SEND">
+    <value>Send</value>
+  </data>
 </root>
