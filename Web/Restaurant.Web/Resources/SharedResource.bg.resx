@@ -231,7 +231,7 @@
     <value>Улица</value>
   </data>
   <data name="ADR_LINE_2">
-    <value>Допълнително уточнение</value>
+    <value>Уточнение</value>
   </data>
   <data name="DISTRICT">
     <value>Квартал</value>
@@ -240,7 +240,7 @@
     <value>Град</value>
   </data>
   <data name="ZIP">
-    <value>Пошенски код</value>
+    <value>Kод</value>
   </data>
   <data name="COUNTRY">
     <value>Държава</value>
@@ -313,5 +313,20 @@
   </data>
   <data name="ADDRESS_NAME">
     <value>Име на адреса</value>
+  </data>
+  <data name="ADD_NEW_ADDRESS">
+    <value>Добави нов</value>
+  </data>
+  <data name="YOUR_ADDRESSES">
+    <value>Вашите адреси</value>
+  </data>
+  <data name="NO_ADDRESSES_YET">
+    <value>Все още нямате добавени адреси!</value>
+  </data>
+  <data name="BACK">
+    <value>Назад</value>
+  </data>
+  <data name="SAVE">
+    <value>Запази</value>
   </data>
 </root>

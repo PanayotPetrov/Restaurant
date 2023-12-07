@@ -6,6 +6,7 @@
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
+            // TO DO: Get values from config.
             var allowedCity = "Sofia";
 
             if (value is string stringValue)

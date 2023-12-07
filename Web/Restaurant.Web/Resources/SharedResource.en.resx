@@ -314,4 +314,19 @@
   <data name="ADDRESS_NAME">
     <value>Address name</value>
   </data>
+  <data name="ADD_NEW_ADDRESS">
+    <value>Add new</value>
+  </data>
+  <data name="YOUR_ADDRESSES">
+    <value>Your addresses</value>
+  </data>
+  <data name="NO_ADDRESSES_YET">
+    <value>You don't have any addresses yet!</value>
+  </data>
+  <data name="BACK">
+    <value>Back</value>
+  </data>
+  <data name="SAVE">
+    <value>Save</value>
+  </data>
 </root>

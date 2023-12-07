@@ -1,16 +1,16 @@
 ﻿@using Restaurant.Web.ViewModels.Address
 @model AddressViewModel
 @{
-    this.ViewData["Title"] = "Your addresses";
+    this.ViewData["Title"] = SL["YOUR_ADDRESSES"];
 }
 
 <partial name="_HeroPartial" />
-<div class="bg-white wow fadeInUp" data-wow-delay="0.1s">
+<div class="wow fadeInUp p-4" data-wow-delay="0.1s">
 
     <hr style="color: black; height:3px; opacity:100; margin-bottom:30px;" />
     <div class="row g-3">
-        <div class="col-md-3 text-center offset-xl-1">
-            <h3>Your addresses</h3>
+        <div class="col-md-3 text-center offset-md-1">
+            <h3>@SL["YOUR_ADDRESSES"]</h3>
             <ul class="nav nav-pills flex-column" id="addressNames">
                 @if (Model is not null)
                 {
@@ -20,22 +20,22 @@
                     }
                 }
             </ul>
-            <a class="btn btn-primary mt-xl-3 col-xl-12 text-white" asp-controller="Address" asp-action="Add"><i class="fa-solid fa-plus"></i> Add a new address</a>
+            <a class="btn btn-primary mt-3 text-white fs-5" asp-controller="Address" asp-action="Add"><i class="fa-solid fa-plus text-white me-sm-2"></i> @SL["ADD_NEW_ADDRESS"]</a>
         </div>
-        <div class="col-md-6 offset-xl-1 ">
+        <div class="col-md-6 offset-md-1 ">
             @if (Model is null)
             {
-                <h1>You don't have any addresses yet!</h1>
+                <h1>@SL["NO_ADDRESSES_YET"]</h1>
             }
             else
             {
-        <form class="row g-3" method="post" id="deleteForm" asp-action="Delete">
-            <div class="text-danger" asp-validation-summary="All"></div>
-            <partial name="_AddressViewPartial" model="Model" />
+                <form class="row g-3" method="post" id="deleteForm" asp-action="Delete">
+                    <div class="text-danger" asp-validation-summary="All"></div>
+                    <partial name="_AddressViewPartial" model="Model" />
 
-            <button type="submit" class="btn btn-primary" asp-action="AllAddresses"><i class="fa-solid fa-check"></i> Save changes</button>
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash"></i> Delete</button>
-        </form>
+                    <button type="submit" class="btn btn-primary col-xl-3 me-3" asp-action="AllAddresses"><i class="fa-solid fa-check me-3"></i> @SL["SAVE"]</button>
+                    <button type="button" class="btn btn-dark col-xl-3 " data-bs-toggle="modal" data-bs-target="#staticBackdrop"><i class="fa-solid fa-trash me-3"></i> @SL["DELETE"]</button>
+                </form>
             }
         </div>
     </div>

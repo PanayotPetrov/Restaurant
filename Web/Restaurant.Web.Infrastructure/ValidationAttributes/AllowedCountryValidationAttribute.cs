@@ -6,6 +6,7 @@
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
+            // TO DO: GET FROM CONFIG
             var alowedCountry = "Bulgaria";
 
             if (value is string stringValue)
