@@ -209,4 +209,19 @@
   <data name="SEND">
     <value>Send</value>
   </data>
+  <data name="АLL_REVIEWS">
+    <value>All Reviews</value>
+  </data>
+  <data name="ADD_REVIEW">
+    <value>Add review</value>
+  </data>
+  <data name="RATE_OUR_SERVICE">
+    <value>Rate our service</value>
+  </data>
+  <data name="SHORT_SUMMARY">
+    <value>Give us a short summary of your experience.</value>
+  </data>
+  <data name="REVIEW_DESCRIPTION">
+    <value>Share your feedback, recommendations, etc.</value>
+  </data>
 </root>

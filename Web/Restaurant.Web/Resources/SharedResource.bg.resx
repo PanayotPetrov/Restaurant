@@ -209,4 +209,19 @@
   <data name="SEND">
     <value>Изпрати</value>
   </data>
+  <data name="АLL_REVIEWS">
+    <value>Ревюта</value>
+  </data>
+  <data name="ADD_REVIEW">
+    <value>Добави ревю</value>
+  </data>
+  <data name="RATE_OUR_SERVICE">
+    <value>Дайте ни оценка</value>
+  </data>
+  <data name="SHORT_SUMMARY">
+    <value>Дайте ни кратко описание на преживяването си.</value>
+  </data>
+  <data name="REVIEW_DESCRIPTION">
+    <value>Споделете обратна връзка, препоръки, т.н</value>
+  </data>
 </root>

@@ -3,15 +3,15 @@
 @model PagedItemsViewModel<ReviewViewModel>
 
 @{
-    this.ViewData["Title"] = "All reviews";
+    this.ViewData["Title"] = SL["ALL_REVIEWS"];
 }
 
 <partial name="_HeroPartial" />
 
 <div class="row g-4 mb-3 wow fadeInUp" data-wow-delay="0.1s">
     <div class="text-center">
-        <h5 class="section-title ff-secondary text-center text-primary fw-normal">Testimonial</h5>
-        <h1 class="mb-5">Customer feedback</h1>
+        <h5 class="section-title ff-secondary text-center text-primary fw-normal">@SL["TESTIMONIAL"]</h5>
+        <h1 class="mb-5">@SL["CUSTOMER_FEEDBACK"]</h1>
     </div>
     <div class="row">
         @foreach (var review in Model.Items)

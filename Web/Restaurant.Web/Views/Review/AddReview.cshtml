@@ -2,7 +2,7 @@
 @model AddReviewInputModel
 
 @{
-    this.ViewData["Title"] = "Add a review!";
+    this.ViewData["Title"] = SL["ADD_REVIEW"];
 }
 
 <partial name="_HeroPartial" />
@@ -15,7 +15,7 @@
             <span class="text-white fs-5 offset-md-8" asp-validation-for="Rating"></span>
             <div class="row g-0">
                 <div class="col-md-6">
-                    <h1 class="text-white mb-0 offset-md-3">Rate our service!</h1>
+                    <h1 class="text-white mb-0 offset-md-3">@SL["RATE_OUR_SERVICE"]</h1>
                 </div>
                 <div class="col-md-6">
                     <div class="rating mb-5">
@@ -28,16 +28,16 @@
                 </div>
             </div>
             <div class="form-floating mb-3">
-                <input class="form-control col-xl-12" asp-for="Summary" maxlength="37" placeholder="Give us a short summary of your experience.">
-                <label asp-for="Summary">Give us a short summary of your experience.</label>
+                <input class="form-control col-xl-12" asp-for="Summary" maxlength="37" placeholder="@SL["SHORT_SUMMARY"]">
+                <label asp-for="Summary">@SL["SHORT_SUMMARY"]</label>
                 <span asp-validation-for="Summary" class="text-white"></span>
             </div>
             <div class="form-floating mb-3">
-                <textarea class="form-control col-xl-12" asp-for="Description" maxlength="401" placeholder="Share your feedback, recommendations, etc." style="height: 150px"></textarea>
-                <label asp-for="Description">Share your experience, recommendations, etc.</label>
+                <textarea class="form-control col-xl-12" asp-for="Description" maxlength="401" placeholder="@SL["REVIEW_DESCRIPTION"]" style="height: 150px"></textarea>
+                <label asp-for="Description">@SL["REVIEW_DESCRIPTION"]</label>
                 <span asp-validation-for="Description" class="text-white"></span>
             </div>
-            <button class="btn btn-primary w-100 py-3 form-lg" type="submit">Submit</button>
+            <button class="btn btn-primary w-100 py-3 form-lg" type="submit">@SL["SEND"]</button>
         </form>
     </div>
 </div>
