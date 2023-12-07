@@ -8,38 +8,38 @@
 
 <input hidden asp-for="@Model.ApplicationUserId">
 <div class="col-md-6 ">
-    <label asp-for="@Model.Name">Name</label>
+    <label asp-for="@Model.Name">@SL["ADDRESS_NAME"]</label>
     <input asp-for="@Model.Name" class="form-control bg-body">
     <span asp-validation-for="@Model.Name"></span>
 </div>
 <div class="col-md-6">
-    <label asp-for="@Model.Street">Street</label>
+    <label asp-for="@Model.Street">@SL["STREET"]</label>
     <input asp-for="@Model.Street" class="form-control bg-body">
     <span asp-validation-for="@Model.Street"></span>
 </div>
 <div class="col-md-6">
-    <label asp-for="@Model.AddressLineTwo">Address line 2</label>
+    <label asp-for="@Model.AddressLineTwo">@SL["ADR_LINE_2"]</label>
     <input asp-for="@Model.AddressLineTwo" class="form-control bg-body">
     <span asp-validation-for="@Model.AddressLineTwo"></span>
 </div>
 <div class="col-md-6">
-    <label asp-for="@Model.District">District</label>
+    <label asp-for="@Model.District">@SL["DISTRICT"]</label>
     <select asp-for="@Model.District" class="form-select bg-body" asp-items="allowedDistricts"></select>
     <span asp-validation-for="@Model.District"></span>
 </div>
 <div class="col-md-4">
-    <label asp-for="@Model.City">City</label>
+    <label asp-for="@Model.City">@SL["CITY"]</label>
     <input asp-for="@Model.City" class="form-control bg-body" value="Sofia">
     <span asp-validation-for="@Model.City"></span>
 </div>
 <div class="col-md-4">
-    <label asp-for="@Model.Country">Country</label>
+    <label asp-for="@Model.Country">@SL["COUNTRY"]</label>
     <input asp-for="@Model.Country" class="form-control bg-body" value="Bulgaria">
     <span asp-validation-for="@Model.Country"></span>
 </div>
 
 <div class="col-md-4">
-    <label asp-for="@Model.PostCode">Zip</label>
+    <label asp-for="@Model.PostCode">@SL["ZIP"]</label>
     <input asp-for="@Model.PostCode" class="form-control bg-body">
     <span asp-validation-for="@Model.PostCode"></span>
 </div>
@@ -47,7 +47,7 @@
     <div class="form-check form-switch">
         <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" asp-for="IsPrimaryAddress">
         <label class="form-check-label text-left" for="gridCheck">
-            Make this my primary address
+            @SL["MARK_PRIMARY_ADDRESS"]
         </label>
     </div>
 </div>

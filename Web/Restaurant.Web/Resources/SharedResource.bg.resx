@@ -224,4 +224,94 @@
   <data name="REVIEW_DESCRIPTION">
     <value>Споделете обратна връзка, препоръки, т.н</value>
   </data>
+  <data name="ORDER">
+    <value>Поръчай</value>
+  </data>
+  <data name="STREET">
+    <value>Улица</value>
+  </data>
+  <data name="ADR_LINE_2">
+    <value>Допълнително уточнение</value>
+  </data>
+  <data name="DISTRICT">
+    <value>Квартал</value>
+  </data>
+  <data name="CITY">
+    <value>Град</value>
+  </data>
+  <data name="ZIP">
+    <value>Пошенски код</value>
+  </data>
+  <data name="COUNTRY">
+    <value>Държава</value>
+  </data>
+  <data name="MARK_PRIMARY_ADDRESS">
+    <value>Отбележи като основен адрес</value>
+  </data>
+  <data name="WE_USE_COOKIES">
+    <value>Ние използваме бисквитким, за да разберем как се използва сайта ни и да подобрим преживяването Ви.</value>
+  </data>
+  <data name="ACCEPT">
+    <value>Приеми</value>
+  </data>
+  <data name="LEARN_MORE">
+    <value>Научи повече</value>
+  </data>
+  <data name="ARE_YOU_SURE">
+    <value>Сигурен ли си, че искаш да го изтриеш?</value>
+  </data>
+  <data name="DELETE">
+    <value>Изтрий</value>
+  </data>
+  <data name="CLOSE">
+    <value>Затвори</value>
+  </data>
+  <data name="THANK_YOU_ORDER">
+    <value>Благодарим Ви за поръчката!</value>
+  </data>
+  <data name="ORDER_NUMBER">
+    <value>Поръчка номер</value>
+  </data>
+  <data name="SHIPPING">
+    <value>Доставка</value>
+  </data>
+  <data name="TOTAL_PRICE">
+    <value>Обща сума</value>
+  </data>
+  <data name="ADDRESS">
+    <value>Адрес</value>
+  </data>
+  <data name="EDT">
+    <value>Очаквано време за доставка</value>
+  </data>
+  <data name="COMPLETED_ON">
+    <value>Завършен на</value>
+  </data>
+  <data name="YOUR_ORDER">
+    <value>вашата поръчка</value>
+  </data>
+  <data name="BEST_WAY_TO">
+    <value>Най-добрия начин да ни дадете обратна връзка е</value>
+  </data>
+  <data name="LEAVING_A_REVIEW">
+    <value>като оставите ревю!</value>
+  </data>
+  <data name="PREVIOUS">
+    <value>Предишна</value>
+  </data>
+  <data name="NEXT">
+    <value>Следваща</value>
+  </data>
+  <data name="OPS">
+    <value>Уупс...</value>
+  </data>
+  <data name="CAN'T_FIND_CONTENT">
+    <value>Не успяхме да намерим това, което търсите.</value>
+  </data>
+  <data name="OH_NO">
+    <value>Оо не!</value>
+  </data>
+  <data name="ADDRESS_NAME">
+    <value>Име на адреса</value>
+  </data>
 </root>

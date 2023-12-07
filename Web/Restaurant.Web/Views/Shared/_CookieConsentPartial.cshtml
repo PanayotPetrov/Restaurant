@@ -9,9 +9,9 @@
 @if (showBanner)
 {
     <div id="cookieConsent" class="alert alert-light alert-dismissible fade show" role="alert">
-        We use cookies to understand how you use our site and to improve your experience. <a asp-area="" asp-controller="Home" asp-action="Privacy">Learn More</a>.
+        @SL["WE_USE_COOKIES"] <a asp-area="" asp-controller="Home" asp-action="Privacy">@SL["LEARN_MORE"]</a>.
         <button type="button" class="btn btn-primary accept-policy close" data-bs-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
-            <span aria-hidden="true">Accept</span>
+            <span aria-hidden="true">@SL["ACCEPT"]</span>
         </button>
     </div>
     <script>

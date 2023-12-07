@@ -1,12 +1,12 @@
 ﻿@model string;
 @{
-    this.ViewData["Title"] = "Oh no!";
+    this.ViewData["Title"] = SL["OH_NO"];
 }
 
 <partial name="_HeroPartial" />
 
 <div class="text-center">
-    <h1 class="text-primary">Oops... @Model</h1>
+    <h1 class="text-primary">@SL["OPS"] @Model</h1>
     <img src="~/images/not-found.png" style="width:600px;" />
-    <h3 class="fw-bold mt-3">We can't seem to find what you're looking for.</h3>
+    <h3 class="fw-bold mt-3">@SL["CAN'T_FIND_CONTENT"]</h3>
 </div>

@@ -7,14 +7,14 @@
             <tr>
                 <td align="center">
                     <img src="~/images/checked-checkbox.png" width="125" height="120" style="display: block; border: 0px;" /><br>
-                    <h2 class="text-dark"> Thank You For Your Order! </h2>
+                    <h2 class="text-dark"> @SL["THANK_YOU_ORDER"] </h2>
                 </td>
             </tr>
             <tr>
                 <td align="left">
                     <table width="100%">
                         <tr>
-                            <td width="75%" align="left" bgcolor="#eeeeee" style="font-size: 16px; font-weight: bold; line-height: 24px; padding: 10px;"> Order Confirmation # </td>
+                            <td width="75%" align="left" bgcolor="#eeeeee" style="font-size: 16px; font-weight: bold; line-height: 24px; padding: 10px;"> @SL["ORDER_NUMBER"]</td>
                             <td width="25%" align="left" bgcolor="#eeeeee" style="font-size: 16px; font-weight: bold; line-height: 24px; padding: 10px;"> @Model.OrderNumber </td>
                         </tr>
                         @foreach (var meal in Model.Meals)
@@ -25,7 +25,7 @@
                             </tr>
                         }
                         <tr>
-                            <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;"> Shipping  </td>
+                            <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;"> @SL["SHIPPING"]  </td>
                             <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;"> @Model.ShippingPrice $</td>
                         </tr>
                     </table>
@@ -35,7 +35,7 @@
                 <td align="left" style="padding-top: 20px;">
                     <table cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tr>
-                            <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;"> TOTAL </td>
+                            <td width="75%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;"> @SL["TOTAL_PRICE"] </td>
                             <td width="25%" align="left" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 800; line-height: 24px; padding: 10px; border-top: 3px solid #eeeeee; border-bottom: 3px solid #eeeeee;"> @Model.TotalPrice $ </td>
                         </tr>
                     </table>
@@ -53,7 +53,7 @@
                         <table align="left" border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width:300px;">
                             <tr>
                                 <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px;">
-                                    <p style="font-weight: 800;">Delivery Address</p>
+                                    <p style="font-weight: 800;">@SL["ADDRESS"]</p>
                                     <p style="font-weight: 400;">@Model.Address.Street<br>@Model.Address.AddressLineTwo<br>@Model.Address.District<br>@Model.Address.City<br>@Model.Address.PostCode</p>
                                 </td>
                             </tr>
@@ -65,13 +65,13 @@
                                 <td align="left" valign="top" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;">
                                     @if (Model.IsComplete)
                                     {
-                                        <p style="font-weight: 800;">Completed on</p>
+                                        <p style="font-weight: 800;">@SL["COMPLETED_ON"]</p>
                                         <p>@Model.CompletedOn.Value.ToLocalTime()</p>
 
                                     }
                                     else
                                     {
-                                        <p style="font-weight: 800;">Estimated Delivery Time</p>
+                                        <p style="font-weight: 800;">@SL["EDT"]</p>
                                         <p>@Model.DeliveryTime.ToLocalTime()</p>
                                     }
 
@@ -90,13 +90,13 @@
         @if (!Model.IsComplete)
         {
             <p class="text-white mb-0 mt-3 fs-3">
-                To edit or cancel your order please <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Contact"><h3> contact us.</h3> </a>
+                @SL["EDIT_OR_CANCEL"] @SL["YOUR_ORDER"] @SL["PLEASE"] <a class="text-dark" asp-area="" asp-controller="Home" asp-action="Contact"><h3> @SL["CONTACT_US"]</h3> </a>
             </p>
         }
         else
         {
             <p class="text-white mb-0 mt-3 fs-3">
-                Liked your food? Please <a class="text-dark" asp-area="" asp-controller="Review" asp-action="Add"><h3> leave a review.</h3> </a>
+                @SL["TELL_US_YOUR_THOUGHS"] <a class="text-dark" asp-area="" asp-controller="Review" asp-action="Add"><h3> @SL["LEAVING_A_REVIEW"]</h3> </a>
             </p>
         }
     </td>
