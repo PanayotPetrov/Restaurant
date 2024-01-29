@@ -332,4 +332,52 @@
   <data name="YOUR_ORDERS">
     <value>Your orders</value>
   </data>
+  <data name="ORDER_DETAILS">
+    <value>Order details</value>
+  </data>
+  <data name="CHECKOUT">
+    <value>Checkout</value>
+  </data>
+  <data name="NO_ADDRESSES_YET">
+    <value>I'm afraid you don't have any addresses added yet.</value>
+  </data>
+  <data name="YOU_NEED_TO">
+    <value>You need to</value>
+  </data>
+  <data name="ADD_NEW_ADDRESS">
+    <value>add a new address</value>
+  </data>
+  <data name="PROCEED">
+    <value>to proceed with your order.</value>
+  </data>
+  <data name="CHOOSE_ADDRESS">
+    <value>Choose a delivery address</value>
+  </data>
+  <data name="FIRST_NAME">
+    <value>First name</value>
+  </data>
+  <data name="LAST_NAME">
+    <value>Last name</value>
+  </data>
+  <data name="SUBTOTAL">
+    <value>Subtotal</value>
+  </data>
+  <data name="PAYMENT">
+    <value>Payment</value>
+  </data>
+  <data name="PAYPAL">
+    <value>PayPal</value>
+  </data>
+  <data name="PAY_ON_DELIVERY">
+    <value>Pay on delivery</value>
+  </data>
+  <data name="PRODUCTS">
+    <value>Products</value>
+  </data>
+  <data name="PLACE_ORDER">
+    <value>Place order</value>
+  </data>
+  <data name="DELIVERY_ADDRESS">
+    <value>Delivery address</value>
+  </data>
 </root>

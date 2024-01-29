@@ -332,4 +332,52 @@
   <data name="YOUR_ORDERS">
     <value>Вашите поръчки</value>
   </data>
+  <data name="ORDER_DETAILS">
+    <value>Детайли на поръчката</value>
+  </data>
+  <data name="CHECKOUT">
+    <value>Плащане</value>
+  </data>
+  <data name="NO_ADDRESSES_YET">
+    <value>За съжаление все още нямате добавени адреси.</value>
+  </data>
+  <data name="YOU_NEED_TO">
+    <value>Ще трябва да си</value>
+  </data>
+  <data name="ADD_NEW_ADDRESS">
+    <value>до бавите нов адрес</value>
+  </data>
+  <data name="PROCEED">
+    <value>за да продължите с поръчката си.</value>
+  </data>
+  <data name="CHOOSE_ADDRESS">
+    <value>Изберете адрес за доставка.</value>
+  </data>
+  <data name="FIRST_NAME">
+    <value>Име</value>
+  </data>
+  <data name="LAST_NAME">
+    <value>Фамилия</value>
+  </data>
+  <data name="SUBTOTAL">
+    <value>Междинна сума</value>
+  </data>
+  <data name="PAYMENT">
+    <value>Вид плащане</value>
+  </data>
+  <data name="PAYPAL">
+    <value>PayPal</value>
+  </data>
+  <data name="PAY_ON_DELIVERY">
+    <value>При доставка</value>
+  </data>
+  <data name="PRODUCTS">
+    <value>Продукти</value>
+  </data>
+  <data name="PLACE_ORDER">
+    <value>Изпрати поръчката</value>
+  </data>
+  <data name="DELIVERY_ADDRESS">
+    <value>Адрес за доставка</value>
+  </data>
 </root>
