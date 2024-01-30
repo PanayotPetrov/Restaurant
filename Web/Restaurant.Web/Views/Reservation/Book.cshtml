@@ -2,7 +2,7 @@
 @model AddReservationInputModel
 
 @{
-    this.ViewData["Title"] = L["RESERVATION"];
+    this.ViewData["Title"] = SL["RESERVATION"];
 }
 
 <partial name="_HeroPartial" />
@@ -18,7 +18,7 @@
         </div>
         <div class="col-md-6 bg-dark d-flex align-items-center">
             <div class="p-5 wow fadeInUp" data-wow-delay="0.2s">
-                <h5 class="section-title ff-secondary text-start text-primary fw-normal">@L["RESERVATION"]</h5>
+                <h5 class="section-title ff-secondary text-start text-primary fw-normal">@SL["RESERVATION"]</h5>
                 <h1 class="text-white mb-4">@SL["BOOK_TABLE"]</h1>
                 <form method="post">
                     <div asp-validation-summary="ModelOnly" class="text-white fs-5"></div>
@@ -46,8 +46,8 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating date">
-                                <input type="date" asp-for="ReservationDate" class="form-control" placeholder="@L["CHOOSE_DATE"]" />
-                                <label asp-for="ReservationDate">@L["CHOOSE_DATE"]</label>
+                                <input type="date" asp-for="ReservationDate" class="form-control" placeholder="@SL["CHOOSE_DATE"]" />
+                                <label asp-for="ReservationDate">@SL["CHOOSE_DATE"]</label>
                                 <span asp-validation-for="ReservationDate" class="text-white"></span>
                             </div>
                         </div>
@@ -59,32 +59,32 @@
                                         <option value=@i>@i:00</option>
                                     }
                                 </select>
-                                <label asp-for=ReservationTime>@L["CHOOSE_TIME"]</label>
+                                <label asp-for=ReservationTime>@SL["CHOOSE_TIME"]</label>
                                 <span asp-validation-for="ReservationTime" class="text-white"></span>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
                                 <select asp-for="NumberOfPeople" class="form-select">
-                                    <option value="2">@L["TWO"] @SL["PEOPLE"]</option>
-                                    <option value="3">@L["THREE"] @SL["PEOPLE"]</option>
-                                    <option value="4">@L["FOUR"] @SL["PEOPLE"]</option>
-                                    <option value="5">@L["FIVE"] @SL["PEOPLE"]</option>
-                                    <option value="6">@L["SIX"] @SL["PEOPLE"]</option>
+                                    <option value="2">@SL["TWO"] @SL["PEOPLE"]</option>
+                                    <option value="3">@SL["THREE"] @SL["PEOPLE"]</option>
+                                    <option value="4">@SL["FOUR"] @SL["PEOPLE"]</option>
+                                    <option value="5">@SL["FIVE"] @SL["PEOPLE"]</option>
+                                    <option value="6">@SL["SIX"] @SL["PEOPLE"]</option>
                                 </select>
-                                <label asp-for=NumberOfPeople>@L["NUMBER_OF_PEOPLE"]</label>
+                                <label asp-for=NumberOfPeople>@SL["NUMBER_OF_PEOPLE"]</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" asp-for="SpecialRequest" placeholder="@L["SPECIAL_REQUEST"]" maxlength="201" style="height: 100px"></textarea>
-                                <label asp-for="SpecialRequest">@L["SPECIAL_REQUEST"]</label>
+                                <textarea class="form-control" asp-for="SpecialRequest" placeholder="@SL["SPECIAL_REQUEST"]" maxlength="201" style="height: 100px"></textarea>
+                                <label asp-for="SpecialRequest">@SL["SPECIAL_REQUEST"]</label>
                                 <span asp-validation-for="SpecialRequest" class="text-white"></span>
 
                             </div>
                         </div>
                         <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="submit">@L["BOOK_NOW"]</button>
+                            <button class="btn btn-primary w-100 py-3" type="submit">@SL["BOOK_NOW"]</button>
                         </div>
                     </div>
                 </form>

@@ -23,19 +23,19 @@
             <div class="col-12">
                 <div class="row gy-4">
                     <div class="col-md-3">
-                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">@L["BOOKING"]</h5>
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">@SL["BOOKING"]</h5>
                         <p><i class="fa fa-envelope-open text-primary me-2"></i>book@example.com</p>
                     </div>
                     <div class="col-md-3">
-                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">@L["GENERAL"]</h5>
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">@SL["GENERAL"]</h5>
                         <p><i class="fa fa-envelope-open text-primary me-2"></i>info@example.com</p>
                     </div>
                     <div class="col-md-3">
-                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">@L["TECHNICAL"]</h5>
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">@SL["TECHNICAL"]</h5>
                         <p><i class="fa fa-envelope-open text-primary me-2"></i>tech@example.com</p>
                     </div>
                     <div class="col-md-3">
-                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">@L["FRONT_OFFICE"]</h5>
+                        <h5 class="section-title ff-secondary fw-normal text-start text-primary">@SL["FRONT_OFFICE"]</h5>
                         <p><i class="fa fa-envelope-open text-primary me-2"></i>+359 123 456 789</p>
                     </div>
                 </div>
@@ -66,20 +66,20 @@
                             <div class="col-12">
                                 <div class="form-floating">
                                     <input asp-for="Subject" class="form-control">
-                                    <label asp-for="Subject">@L["SUBJECT"]</label>
+                                    <label asp-for="Subject">@SL["SUBJECT"]</label>
                                     <span asp-validation-for="Subject"></span>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <select asp-for="UserMessageCategoryId" class="form-select" asp-items="categories"></select>
-                                    <label asp-for="UserMessageCategoryId">@L["CHOOSE_CATEGORY"]</label>
+                                    <label asp-for="UserMessageCategoryId">@SL["CHOOSE_CATEGORY"]</label>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="form-floating">
                                     <textarea asp-for="Description" class="form-control" style="height: 150px"></textarea>
-                                    <label asp-for="Description">@L["DESCRIPTION"]</label>
+                                    <label asp-for="Description">@SL["DESCRIPTION"]</label>
                                     <span asp-validation-for="Description"></span>
                                 </div>
                             </div>

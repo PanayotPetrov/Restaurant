@@ -1,12 +1,9 @@
 ﻿@using Restaurant.Web.ViewModels.Review
 @using Restaurant.Web.HelperClasses
-@using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer L
-@inject ISharedViewLocalizer SL
 
 @model ReviewListViewModel
 @{
-    this.ViewData["Title"] = "Home Page";
+    this.ViewData["Title"] = SL["HOME"];
 }
 
 <div class="container-xxl py-5 bg-dark hero-header mb-5">
@@ -15,8 +12,8 @@
 
         <div class="row align-items-center g-5">
             <div class="col-lg-6 text-center text-lg-start">
-                <h1 class="display-3 text-white animated slideInLeft">@L["HUNGRY"]<br>@L["RIGHT_PLACE"]</h1>
-                <p class="text-white animated slideInLeft mb-4 pb-2">@L["HOME_PAGE_DESCRIPTION"]</p>
+                <h1 class="display-3 text-white animated slideInLeft">@SL["HUNGRY"]<br>@SL["RIGHT_PLACE"]</h1>
+                <p class="text-white animated slideInLeft mb-4 pb-2">@SL["HOME_PAGE_DESCRIPTION"]</p>
                 <a class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft" asp-controller="Reservation" asp-action="Book"><i class="fa-solid fa-calendar-check"></i> @SL["BOOK_TABLE"]</a>
             </div>
             <div class="col-lg-6 text-center text-lg-end overflow-hidden">
@@ -35,8 +32,8 @@
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
                         <i class="fa fa-3x fa-user-tie text-primary mb-4"></i>
-                        <h5>@L["EXPERIENCED_CHEFS"]</h5>
-                        <p>@L["EXPERIENCED_CHEFS_DESC"]</p>
+                        <h5>@SL["EXPERIENCED_CHEFS"]</h5>
+                        <p>@SL["EXPERIENCED_CHEFS_DESC"]</p>
                     </div>
                 </div>
             </div>
@@ -44,8 +41,8 @@
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
                         <i class="fa fa-3x fa-utensils text-primary mb-4"></i>
-                        <h5>@L["QUALITY_FOOD"]</h5>
-                        <p>@L["QUALITY_FOOD_DESC"]</p>
+                        <h5>@SL["QUALITY_FOOD"]</h5>
+                        <p>@SL["QUALITY_FOOD_DESC"]</p>
                     </div>
                 </div>
             </div>
@@ -53,8 +50,8 @@
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
                         <i class="fa fa-3x fa-cart-plus text-primary mb-4"></i>
-                        <h5>@L["ONLINE_ORDERS"]</h5>
-                        <p>@L["ONLINE_ORDERS_DESC"]</p>
+                        <h5>@SL["ONLINE_ORDERS"]</h5>
+                        <p>@SL["ONLINE_ORDERS_DESC"]</p>
                     </div>
                 </div>
             </div>
@@ -62,8 +59,8 @@
                 <div class="service-item rounded pt-3">
                     <div class="p-4">
                         <i class="fa-solid fa-3x fa-hand-holding-dollar text-primary mb-4"></i>
-                        <h5>@L["FAST_DELIVERY"]</h5>
-                        <p>@L["FAST_DELIVERY_DESC"]</p>
+                        <h5>@SL["FAST_DELIVERY"]</h5>
+                        <p>@SL["FAST_DELIVERY_DESC"]</p>
                     </div>
                 </div>
             </div>
@@ -105,7 +102,7 @@
 </div>
 <div class="container-xxl py-lg-2 wow fadeInUp" data-wow-delay="0.1s">
     <div class="col-xl-12">
-        <a class="btn btn-primary w-100 py-3" asp-controller="Review" asp-action="Add">@L["LEAVE_REVIEW"]</a>
+        <a class="btn btn-primary w-100 py-3" asp-controller="Review" asp-action="Add">@SL["LEAVE_REVIEW"]</a>
     </div>
 </div>
 

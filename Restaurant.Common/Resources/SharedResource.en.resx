@@ -99,309 +99,429 @@
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
   <data name="BOOK_TABLE">
-    <value>Запази маса</value>
+    <value>Book a table</value>
   </data>
   <data name="TESTIMONIAL">
-    <value>Обратна връзка</value>
+    <value>Testimonial</value>
   </data>
   <data name="CUSTOMER_FEEDBACK">
-    <value>Мнения на клиенти</value>
+    <value>Customer feedback</value>
   </data>
   <data name="GOURMET_EXPERIENCE">
     <value>Gourmet Experience</value>
   </data>
   <data name="ABOUT_US">
-    <value>За нас</value>
+    <value>About us</value>
   </data>
   <data name="MENU">
-    <value>Меню</value>
+    <value>Menu</value>
   </data>
   <data name="HOME">
-    <value>Начало</value>
+    <value>Home</value>
   </data>
   <data name="LOGOUT">
-    <value>Изход</value>
+    <value>Logout</value>
   </data>
   <data name="LOGIN">
-    <value>Вход</value>
+    <value>Login</value>
   </data>
   <data name="ACCOUNT">
-    <value>Профил</value>
+    <value>Account</value>
   </data>
   <data name="REGISTER">
-    <value>Регистрация</value>
+    <value>Register</value>
   </data>
   <data name="REVIEWS">
-    <value>Мнения на клиенти</value>
+    <value>Customer reviews</value>
   </data>
   <data name="CONTACTS">
-    <value>Контакти</value>
+    <value>Contacts</value>
   </data>
   <data name="PRIVACY_POLICY">
-    <value>Лични данни</value>
+    <value>Privacy policy</value>
   </data>
   <data name="COMPANY">
-    <value>Компания</value>
+    <value>Company</value>
   </data>
   <data name="COMPANY_ADDRESS">
-    <value>ул. "Хан Аспарух" 37, 1000 Център, София.</value>
+		<value>ul. "Han Asparuh" 37, 1000 Sofia Center, Sofia.</value>
   </data>
   <data name="WORKING_HOURS">
-    <value>Работно време</value>
+    <value>Working hours</value>
   </data>
   <data name="DELIVERY_HOURS">
-    <value>Доставки между</value>
+    <value>Delivery hours</value>
   </data>
   <data name="MONDAY_TO_SUNDAY">
-    <value>Понеделник - Неделя</value>
+    <value>Monday - Sunday</value>
   </data>
   <data name="ALL_RIGHTS_RESERVED">
-    <value>Всички права запазени</value>
+    <value>All rights reserved</value>
   </data>
   <data name="ADD_TO_CART">
-    <value>Добави</value>
+    <value>Add to cart</value>
   </data>
   <data name="YOU_CAN_CHOOSE">
-    <value>Изберете измежду нашите</value>
+    <value>You can choose from our</value>
   </data>
   <data name="YOUR_NAME">
-    <value>Името Ви</value>
+    <value>Your name</value>
   </data>
   <data name="EMAIL">
-    <value>Имейл</value>
+    <value>Email</value>
   </data>
   <data name="PHONE_NUMBER">
-    <value>Мобилен номер</value>
+    <value>Phone number</value>
   </data>
   <data name="CONTACT_US">
-    <value>свържете се с нас</value>
+    <value>contact us</value>
   </data>
   <data name="MY_RESERVATIONS">
-    <value>Моите резервации</value>
+    <value>My reservations</value>
   </data>
   <data name="SUCCESS">
-    <value>Успех!</value>
+    <value>Success!</value>
   </data>
   <data name="YOUR_RESERVATION">
-    <value>Вашата резервация</value>
+    <value>Your reservation</value>
   </data>
   <data name="EDIT_OR_CANCEL">
-    <value>За да промените или отмените</value>
+    <value>To edit or cancel</value>
   </data>
   <data name="PLEASE">
-    <value>моля</value>
+    <value>please</value>
   </data>
   <data name="PEOPLE">
-    <value>Души</value>
+    <value>People</value>
   </data>
-  <data name="TABLE_FOR">
-    <value>Маса за</value>
+  <data name="TABLE FOR">
+    <value>Table for</value>
   </data>
   <data name="DATE_BOOKED">
-    <value>Резервирана дата</value>
+    <value>Date booked</value>
   </data>
   <data name="TABLE_NUMBER">
-    <value>Маса номер</value>
+    <value>Table number</value>
   </data>
   <data name="RESERVATION_NUMBER">
-    <value>Резервация номер</value>
+    <value>Reservation number</value>
   </data>
   <data name="SEND">
-    <value>Изпрати</value>
+    <value>Send</value>
   </data>
   <data name="АLL_REVIEWS">
-    <value>Ревюта</value>
+    <value>All Reviews</value>
   </data>
   <data name="ADD_REVIEW">
-    <value>Добави ревю</value>
+    <value>Add review</value>
   </data>
   <data name="RATE_OUR_SERVICE">
-    <value>Дайте ни оценка</value>
+    <value>Rate our service</value>
   </data>
   <data name="SHORT_SUMMARY">
-    <value>Дайте ни кратко описание на преживяването си.</value>
+    <value>Give us a short summary of your experience.</value>
   </data>
   <data name="REVIEW_DESCRIPTION">
-    <value>Споделете обратна връзка, препоръки, т.н</value>
+    <value>Share your feedback, recommendations, etc.</value>
   </data>
   <data name="ORDER">
-    <value>Поръчай</value>
+    <value>Order</value>
   </data>
   <data name="STREET">
-    <value>Улица</value>
+    <value>Street</value>
   </data>
   <data name="ADR_LINE_2">
-    <value>Уточнение</value>
+    <value>Address line two</value>
   </data>
   <data name="DISTRICT">
-    <value>Квартал</value>
+    <value>District</value>
   </data>
   <data name="CITY">
-    <value>Град</value>
+    <value>City</value>
   </data>
   <data name="ZIP">
-    <value>Kод</value>
+    <value>Zip</value>
   </data>
   <data name="COUNTRY">
-    <value>Държава</value>
+    <value>Country</value>
   </data>
   <data name="MARK_PRIMARY_ADDRESS">
-    <value>Отбележи като основен адрес</value>
+    <value>Mark this as my primary address</value>
   </data>
   <data name="WE_USE_COOKIES">
-    <value>Ние използваме бисквитким, за да разберем как се използва сайта ни и да подобрим преживяването Ви.</value>
+    <value>We use cookies to understand how you use our site and to improve your experience.</value>
   </data>
   <data name="ACCEPT">
-    <value>Приеми</value>
+    <value>Accept</value>
   </data>
   <data name="LEARN_MORE">
-    <value>Научи повече</value>
+    <value>Learn more</value>
   </data>
   <data name="ARE_YOU_SURE">
-    <value>Сигурен ли си, че искаш да го изтриеш?</value>
+    <value>Are you sure you want to delete this?</value>
   </data>
   <data name="DELETE">
-    <value>Изтрий</value>
+    <value>Delete</value>
   </data>
   <data name="CLOSE">
-    <value>Затвори</value>
+    <value>Close</value>
   </data>
   <data name="THANK_YOU_ORDER">
-    <value>Благодарим Ви за поръчката!</value>
+    <value>Thank you for your order!</value>
   </data>
   <data name="ORDER_NUMBER">
-    <value>Поръчка номер</value>
+    <value>Order number</value>
   </data>
   <data name="SHIPPING">
-    <value>Доставка</value>
+    <value>Shipping</value>
   </data>
   <data name="TOTAL_PRICE">
-    <value>Обща сума</value>
+    <value>Total price</value>
   </data>
   <data name="ADDRESS">
-    <value>Адрес</value>
+    <value>Address</value>
   </data>
   <data name="EDT">
-    <value>Очаквано време за доставка</value>
+    <value>Estimated delivery time</value>
   </data>
   <data name="COMPLETED_ON">
-    <value>Завършен на</value>
+    <value>Completed on</value>
   </data>
   <data name="YOUR_ORDER">
-    <value>вашата поръчка</value>
+    <value>your order</value>
   </data>
   <data name="BEST_WAY_TO">
-    <value>Най-добрия начин да ни дадете обратна връзка е</value>
+    <value>The best way to share your feedback is by</value>
   </data>
   <data name="LEAVING_A_REVIEW">
-    <value>като оставите ревю!</value>
+    <value>leaving a review!</value>
   </data>
   <data name="PREVIOUS">
-    <value>Предишна</value>
+    <value>Previous</value>
   </data>
   <data name="NEXT">
-    <value>Следваща</value>
+    <value>Next</value>
   </data>
   <data name="OPS">
-    <value>Уупс...</value>
+    <value>Oops...</value>
   </data>
   <data name="CAN'T_FIND_CONTENT">
-    <value>Не успяхме да намерим това, което търсите.</value>
+    <value>We can't seem to find what you're looking for.</value>
   </data>
   <data name="OH_NO">
-    <value>Оо не!</value>
+    <value>Oh no!</value>
   </data>
   <data name="ADDRESS_NAME">
-    <value>Име на адреса</value>
+    <value>Address name</value>
   </data>
   <data name="ADD_NEW_ADDRESS">
-    <value>Добави нов</value>
+    <value>Add new</value>
   </data>
   <data name="YOUR_ADDRESSES">
-    <value>Вашите адреси</value>
+    <value>Your addresses</value>
   </data>
   <data name="NO_ADDRESSES_YET">
-    <value>Все още нямате добавени адреси!</value>
+    <value>You don't have any addresses yet!</value>
   </data>
   <data name="BACK">
-    <value>Назад</value>
+    <value>Back</value>
   </data>
   <data name="SAVE">
-    <value>Запази</value>
+    <value>Save</value>
   </data>
   <data name="YOUR_ORDERS">
-    <value>Вашите поръчки</value>
+    <value>Your orders</value>
   </data>
   <data name="ORDER_DETAILS">
-    <value>Детайли на поръчката</value>
+    <value>Order details</value>
   </data>
   <data name="CHECKOUT">
-    <value>Плащане</value>
+    <value>Checkout</value>
   </data>
   <data name="NO_ADDRESSES_YET">
-    <value>За съжаление все още нямате добавени адреси.</value>
+    <value>I'm afraid you don't have any addresses added yet.</value>
   </data>
   <data name="YOU_NEED_TO">
-    <value>Ще трябва да си</value>
+    <value>You need to</value>
   </data>
   <data name="ADD_NEW_ADDRESS">
-    <value>до бавите нов адрес</value>
+    <value>add a new address</value>
   </data>
   <data name="PROCEED">
-    <value>за да продължите с поръчката си.</value>
+    <value>to proceed with your order.</value>
   </data>
   <data name="CHOOSE_ADDRESS">
-    <value>Изберете адрес за доставка.</value>
+    <value>Choose a delivery address</value>
   </data>
   <data name="FIRST_NAME">
-    <value>Име</value>
+    <value>First name</value>
   </data>
   <data name="LAST_NAME">
-    <value>Фамилия</value>
+    <value>Last name</value>
   </data>
   <data name="SUBTOTAL">
-    <value>Междинна сума</value>
+    <value>Subtotal</value>
   </data>
   <data name="PAYMENT">
-    <value>Вид плащане</value>
+    <value>Payment</value>
   </data>
   <data name="PAYPAL">
     <value>PayPal</value>
   </data>
   <data name="PAY_ON_DELIVERY">
-    <value>При доставка</value>
+    <value>Pay on delivery</value>
   </data>
   <data name="PRODUCTS">
-    <value>Продукти</value>
+    <value>Products</value>
   </data>
   <data name="PLACE_ORDER">
-    <value>Изпрати поръчката</value>
+    <value>Place order</value>
   </data>
   <data name="DELIVERY_ADDRESS">
-    <value>Адрес за доставка</value>
+    <value>Delivery address</value>
   </data>
   <data name="PRICE">
-    <value>Цена</value>
+    <value>Price</value>
   </data>
   <data name="QUANTITY">
-    <value>Количество</value>
+    <value>Quantity</value>
   </data>
-  <data name="ITEM_PRICE">
-    <value>Сума продукти</value>
+  <data name="ITEM_TOTAL">
+    <value>Item total</value>
   </data>
   <data name="REMOVE">
-    <value>Премахни</value>
+    <value>Remove</value>
   </data>
   <data name="CART_SUMMARY">
-    <value>Преглед на количка</value>
+    <value>Cart summary</value>
   </data>
   <data name="PROCEED_TO_CHECKOUT">
-    <value>Към плащане</value>
+    <value>Proceed to checkout</value>
   </data>
   <data name="CART">
-    <value>Количка</value>
+    <value>Cart</value>
   </data>
     <data name="MODAL_SUCCESS_MESSAGE">
-    <value>Вие успешно добавихте продукта към вашата количка!</value>
+    <value>You have successfully added the item to your cart!</value>
+  </data>
+  <data name="TWO">
+    <value>Two</value>
+  </data>
+  <data name="THREE">
+    <value>Three</value>
+  </data>
+  <data name="FOUR">
+    <value>Four</value>
+  </data>
+  <data name="FIVE">
+    <value>Five</value>
+  </data>
+  <data name="SIX">
+    <value>Six</value>
+  </data>
+  <data name="CHOOSE_DATE">
+    <value>Choose a date</value>
+  </data>
+  <data name="CHOOSE_TIME">
+    <value>Choose a time</value>
+  </data>
+  <data name="NUMBER_OF_PEOPLE">
+    <value>Number of people</value>
+  </data>
+  <data name="SPECIAL_REQUEST">
+    <value>Special request</value>
+  </data>
+  <data name="BOOK_NOW">
+    <value>Book now</value>
+  </data>
+  <data name="RESERVATION">
+    <value>Reservation</value>
+  </data>
+  <data name="HUNGRY">
+    <value>Hungry?</value>
+  </data>
+  <data name="RIGHT_PLACE">
+    <value>You've come to the right place!</value>
+  </data>
+  <data name="HOME_PAGE_DESCRIPTION">
+    <value>From juicy burgers to mouth-watering pizza - we've got it all. All made using only the freshest ingredients from local markets.</value>
+  </data>
+  <data name="EXPERIENCED_CHEFS">
+    <value>Experienced Chefs</value>
+  </data>
+  <data name="EXPERIENCED_CHEFS_DESC">
+    <value>All of our employees have 20+ years of experince in the finest restaurants.</value>
+  </data>
+  <data name="QUALITY_FOOD">
+    <value>Quality Food</value>
+  </data>
+  <data name="QUALITY_FOOD_DESC">
+    <value>We use only the best ingredients from local markets. An incredible gourmet experience everytime.</value>
+  </data>
+  <data name="ONLINE_ORDERS">
+    <value>Online Orders</value>
+  </data>
+  <data name="ONLINE_ORDERS_DESC">
+    <value>Thanks to our logistics team you can enjoy our meals from the comfort of your home.</value>
+  </data>
+  <data name="FAST_DELIVERY">
+    <value>Fast Delivery</value>
+  </data>
+  <data name="FAST_DELIVERY_DESC">
+    <value>Moneyback guarantee if you don't receive you order within 60 minutes.</value>
+  </data>
+  <data name="LEAVE_REVIEW">
+    <value>Leave a review</value>
+  </data>
+  <data name="BOOKING">
+    <value>Booking</value>
+  </data>
+  <data name="GENERAL">
+    <value>General</value>
+  </data>
+  <data name="TECHNICAL">
+    <value>Technical</value>
+  </data>
+  <data name="FRONT_OFFICE">
+    <value>Front office</value>
+  </data>
+  <data name="SUBJECT">
+    <value>Subject</value>
+  </data>
+  <data name="CHOOSE_CATEGORY">
+    <value>Choose a category</value>
+  </data>
+  <data name="DESCRIPTION">
+    <value>Description</value>
+  </data>
+  <data name="WELCOME_TO">
+    <value>Welcome to</value>
+  </data>
+  <data name="ABOUT_OUR_MISSION">
+    <value>Our restaurant strives to source local, sustainable and organic at all times. We work hard to source premium ingredients and we cook everything from scratch with love.</value>
+  </data>
+  <data name="ABOUT_OUR_POLICY_FIRST">
+    <value>We also do our best to pay our employees living wages (tips are shared with all employees, including kitchen staff) and to reduce our environmental footprint wherever we can.</value>
+  </data>
+  <data name="ABOUT_OUR_POLICY_SECOND">
+    <value>Overall, these factors translate to higher menu prices, but we hope that you find value and feel a sense of comfort in knowing that we aim to get better everyday at doing what is important to us.</value>
+  </data>
+  <data name="YEARS_OF">
+    <value>Years of</value>
+  </data>
+  <data name="EXCELLENCE">
+    <value>Excellence</value>
+  </data>
+  <data name="TEAM_MEMBERS">
+    <value>Team Members</value>
+  </data>
+  <data name="MASTER_CHEFS">
+    <value>Our Master Chefs</value>
+  </data>
+  <data name="INCREDIBLE">
+    <value>Incredible</value>
+  </data>
+  <data name="DISHES">
+    <value>Dishes</value>
   </data>
 </root>

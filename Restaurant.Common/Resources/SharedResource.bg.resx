@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<!-- 
+		Microsoft ResX Schema
+
+		Version 1.3
+
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+
+		Example:
+
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">1.3</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1">this is my long string</data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+			[base64 mime encoded serialized .NET Framework object]
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+			[base64 mime encoded string representing a byte array form of the .NET Framework object]
+		</data>
+
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+			: System.Serialization.Formatters.Binary.BinaryFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+			: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+			: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+			: using a System.ComponentModel.TypeConverter
+			: and then encoded with base64 encoding.
+	-->
+	
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>1.3</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.3500.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+  <data name="BOOK_TABLE">
+    <value>Запази маса</value>
+  </data>
+  <data name="TESTIMONIAL">
+    <value>Обратна връзка</value>
+  </data>
+  <data name="CUSTOMER_FEEDBACK">
+    <value>Мнения на клиенти</value>
+  </data>
+  <data name="GOURMET_EXPERIENCE">
+    <value>Gourmet Experience</value>
+  </data>
+  <data name="ABOUT_US">
+    <value>За нас</value>
+  </data>
+  <data name="MENU">
+    <value>Меню</value>
+  </data>
+  <data name="HOME">
+    <value>Начало</value>
+  </data>
+  <data name="LOGOUT">
+    <value>Изход</value>
+  </data>
+  <data name="LOGIN">
+    <value>Вход</value>
+  </data>
+  <data name="ACCOUNT">
+    <value>Профил</value>
+  </data>
+  <data name="REGISTER">
+    <value>Регистрация</value>
+  </data>
+  <data name="REVIEWS">
+    <value>Мнения на клиенти</value>
+  </data>
+  <data name="CONTACTS">
+    <value>Контакти</value>
+  </data>
+  <data name="PRIVACY_POLICY">
+    <value>Лични данни</value>
+  </data>
+  <data name="COMPANY">
+    <value>Компания</value>
+  </data>
+  <data name="COMPANY_ADDRESS">
+    <value>ул. "Хан Аспарух" 37, 1000 Център, София.</value>
+  </data>
+  <data name="WORKING_HOURS">
+    <value>Работно време</value>
+  </data>
+  <data name="DELIVERY_HOURS">
+    <value>Доставки между</value>
+  </data>
+  <data name="MONDAY_TO_SUNDAY">
+    <value>Понеделник - Неделя</value>
+  </data>
+  <data name="ALL_RIGHTS_RESERVED">
+    <value>Всички права запазени</value>
+  </data>
+  <data name="ADD_TO_CART">
+    <value>Добави</value>
+  </data>
+  <data name="YOU_CAN_CHOOSE">
+    <value>Изберете измежду нашите</value>
+  </data>
+  <data name="YOUR_NAME">
+    <value>Името Ви</value>
+  </data>
+  <data name="EMAIL">
+    <value>Имейл</value>
+  </data>
+  <data name="PHONE_NUMBER">
+    <value>Мобилен номер</value>
+  </data>
+  <data name="CONTACT_US">
+    <value>свържете се с нас</value>
+  </data>
+  <data name="MY_RESERVATIONS">
+    <value>Моите резервации</value>
+  </data>
+  <data name="SUCCESS">
+    <value>Успех!</value>
+  </data>
+  <data name="YOUR_RESERVATION">
+    <value>Вашата резервация</value>
+  </data>
+  <data name="EDIT_OR_CANCEL">
+    <value>За да промените или отмените</value>
+  </data>
+  <data name="PLEASE">
+    <value>моля</value>
+  </data>
+  <data name="PEOPLE">
+    <value>Души</value>
+  </data>
+  <data name="TABLE_FOR">
+    <value>Маса за</value>
+  </data>
+  <data name="DATE_BOOKED">
+    <value>Резервирана дата</value>
+  </data>
+  <data name="TABLE_NUMBER">
+    <value>Маса номер</value>
+  </data>
+  <data name="RESERVATION_NUMBER">
+    <value>Резервация номер</value>
+  </data>
+  <data name="SEND">
+    <value>Изпрати</value>
+  </data>
+  <data name="АLL_REVIEWS">
+    <value>Ревюта</value>
+  </data>
+  <data name="ADD_REVIEW">
+    <value>Добави ревю</value>
+  </data>
+  <data name="RATE_OUR_SERVICE">
+    <value>Дайте ни оценка</value>
+  </data>
+  <data name="SHORT_SUMMARY">
+    <value>Дайте ни кратко описание на преживяването си.</value>
+  </data>
+  <data name="REVIEW_DESCRIPTION">
+    <value>Споделете обратна връзка, препоръки, т.н</value>
+  </data>
+  <data name="ORDER">
+    <value>Поръчай</value>
+  </data>
+  <data name="STREET">
+    <value>Улица</value>
+  </data>
+  <data name="ADR_LINE_2">
+    <value>Уточнение</value>
+  </data>
+  <data name="DISTRICT">
+    <value>Квартал</value>
+  </data>
+  <data name="CITY">
+    <value>Град</value>
+  </data>
+  <data name="ZIP">
+    <value>Kод</value>
+  </data>
+  <data name="COUNTRY">
+    <value>Държава</value>
+  </data>
+  <data name="MARK_PRIMARY_ADDRESS">
+    <value>Отбележи като основен адрес</value>
+  </data>
+  <data name="WE_USE_COOKIES">
+    <value>Ние използваме бисквитким, за да разберем как се използва сайта ни и да подобрим преживяването Ви.</value>
+  </data>
+  <data name="ACCEPT">
+    <value>Приеми</value>
+  </data>
+  <data name="LEARN_MORE">
+    <value>Научи повече</value>
+  </data>
+  <data name="ARE_YOU_SURE">
+    <value>Сигурен ли си, че искаш да го изтриеш?</value>
+  </data>
+  <data name="DELETE">
+    <value>Изтрий</value>
+  </data>
+  <data name="CLOSE">
+    <value>Затвори</value>
+  </data>
+  <data name="THANK_YOU_ORDER">
+    <value>Благодарим Ви за поръчката!</value>
+  </data>
+  <data name="ORDER_NUMBER">
+    <value>Поръчка номер</value>
+  </data>
+  <data name="SHIPPING">
+    <value>Доставка</value>
+  </data>
+  <data name="TOTAL_PRICE">
+    <value>Обща сума</value>
+  </data>
+  <data name="ADDRESS">
+    <value>Адрес</value>
+  </data>
+  <data name="EDT">
+    <value>Очаквано време за доставка</value>
+  </data>
+  <data name="COMPLETED_ON">
+    <value>Завършен на</value>
+  </data>
+  <data name="YOUR_ORDER">
+    <value>вашата поръчка</value>
+  </data>
+  <data name="BEST_WAY_TO">
+    <value>Най-добрия начин да ни дадете обратна връзка е</value>
+  </data>
+  <data name="LEAVING_A_REVIEW">
+    <value>като оставите ревю!</value>
+  </data>
+  <data name="PREVIOUS">
+    <value>Предишна</value>
+  </data>
+  <data name="NEXT">
+    <value>Следваща</value>
+  </data>
+  <data name="OPS">
+    <value>Уупс...</value>
+  </data>
+  <data name="CAN'T_FIND_CONTENT">
+    <value>Не успяхме да намерим това, което търсите.</value>
+  </data>
+  <data name="OH_NO">
+    <value>Оо не!</value>
+  </data>
+  <data name="ADDRESS_NAME">
+    <value>Име на адреса</value>
+  </data>
+  <data name="ADD_NEW_ADDRESS">
+    <value>Добави нов</value>
+  </data>
+  <data name="YOUR_ADDRESSES">
+    <value>Вашите адреси</value>
+  </data>
+  <data name="NO_ADDRESSES_YET">
+    <value>Все още нямате добавени адреси!</value>
+  </data>
+  <data name="BACK">
+    <value>Назад</value>
+  </data>
+  <data name="SAVE">
+    <value>Запази</value>
+  </data>
+  <data name="YOUR_ORDERS">
+    <value>Вашите поръчки</value>
+  </data>
+  <data name="ORDER_DETAILS">
+    <value>Детайли на поръчката</value>
+  </data>
+  <data name="CHECKOUT">
+    <value>Плащане</value>
+  </data>
+  <data name="NO_ADDRESSES_YET">
+    <value>За съжаление все още нямате добавени адреси.</value>
+  </data>
+  <data name="YOU_NEED_TO">
+    <value>Ще трябва да си</value>
+  </data>
+  <data name="ADD_NEW_ADDRESS">
+    <value>до бавите нов адрес</value>
+  </data>
+  <data name="PROCEED">
+    <value>за да продължите с поръчката си.</value>
+  </data>
+  <data name="CHOOSE_ADDRESS">
+    <value>Изберете адрес за доставка.</value>
+  </data>
+  <data name="FIRST_NAME">
+    <value>Име</value>
+  </data>
+  <data name="LAST_NAME">
+    <value>Фамилия</value>
+  </data>
+  <data name="SUBTOTAL">
+    <value>Междинна сума</value>
+  </data>
+  <data name="PAYMENT">
+    <value>Вид плащане</value>
+  </data>
+  <data name="PAYPAL">
+    <value>PayPal</value>
+  </data>
+  <data name="PAY_ON_DELIVERY">
+    <value>При доставка</value>
+  </data>
+  <data name="PRODUCTS">
+    <value>Продукти</value>
+  </data>
+  <data name="PLACE_ORDER">
+    <value>Изпрати поръчката</value>
+  </data>
+  <data name="DELIVERY_ADDRESS">
+    <value>Адрес за доставка</value>
+  </data>
+  <data name="PRICE">
+    <value>Цена</value>
+  </data>
+  <data name="QUANTITY">
+    <value>Количество</value>
+  </data>
+  <data name="ITEM_TOTAL">
+    <value>Сума продукти</value>
+  </data>
+  <data name="REMOVE">
+    <value>Премахни</value>
+  </data>
+  <data name="CART_SUMMARY">
+    <value>Преглед на количка</value>
+  </data>
+  <data name="PROCEED_TO_CHECKOUT">
+    <value>Към плащане</value>
+  </data>
+  <data name="CART">
+    <value>Количка</value>
+  </data>
+  <data name="MODAL_SUCCESS_MESSAGE">
+    <value>Вие успешно добавихте продукта към вашата количка!</value>
+  </data>
+  <data name="TWO">
+    <value>Двама</value>
+  </data>
+  <data name="THREE">
+    <value>Трима</value>
+  </data>
+  <data name="FOUR">
+    <value>Четирима</value>
+  </data>
+  <data name="FIVE">
+    <value>Петима</value>
+  </data>
+  <data name="SIX">
+    <value>Шестима</value>
+  </data>
+  <data name="CHOOSE_DATE">
+    <value>Избери ден</value>
+  </data>
+  <data name="CHOOSE_TIME">
+    <value>Избери час</value>
+  </data>
+  <data name="NUMBER_OF_PEOPLE">
+    <value>Брой хора</value>
+  </data>
+  <data name="SPECIAL_REQUEST">
+    <value>Специални изисквания</value>
+  </data>
+  <data name="BOOK_NOW">
+    <value>Запази</value>
+  </data>
+  <data name="RESERVATION">
+    <value>Резервирай</value>
+  </data>
+  <data name="HUNGRY">
+    <value>Гладни ли сте?</value>
+  </data>
+  <data name="RIGHT_PLACE">
+    <value>Дошли сте на правилното място!</value>
+  </data>
+  <data name="HOME_PAGE_DESCRIPTION">
+    <value>От сочни бургери до апетитна пица - имаме го. Всички наши ястия се приготвят с най-пресните продукти само от България.</value>
+  </data>
+  <data name="EXPERIENCED_CHEFS">
+    <value>Опитни Готвачи</value>
+  </data>
+  <data name="EXPERIENCED_CHEFS_DESC">
+    <value>Всички наши служители имат над 20 години опит в най-добрите ресторанти.</value>
+  </data>
+  <data name="QUALITY_FOOD">
+    <value>Качествена храна</value>
+  </data>
+  <data name="QUALITY_FOOD_DESC">
+    <value>Използваме само най-качествените български продукти - без компромиси.</value>
+  </data>
+  <data name="ONLINE_ORDERS">
+    <value>Онлайн поръчки</value>
+  </data>
+  <data name="ONLINE_ORDERS_DESC">
+    <value>Имате възможност да поръчате онлайн и да се насладите на храната от уюта на вашия дом.</value>
+  </data>
+  <data name="FAST_DELIVERY">
+    <value>Бърза доставка</value>
+  </data>
+  <data name="FAST_DELIVERY_DESC">
+    <value>Ако не доставим храната Ви до 60 минути - получавате парите си обратно!</value>
+  </data>
+  <data name="LEAVE_REVIEW">
+    <value>Дайте оценка</value>
+  </data>
+  <data name="BOOKING">
+    <value>Резервации</value>
+  </data>
+  <data name="GENERAL">
+    <value>Общи</value>
+  </data>
+  <data name="TECHNICAL">
+    <value>Технически</value>
+  </data>
+  <data name="FRONT_OFFICE">
+    <value>Фронт офис</value>
+  </data>
+  <data name="SUBJECT">
+    <value>Тема</value>
+  </data>
+  <data name="CHOOSE_CATEGORY">
+    <value>Изберете категория</value>
+  </data>
+  <data name="DESCRIPTION">
+    <value>Описание</value>
+  </data>
+  <data name="WELCOME_TO">
+    <value>Добре дошли в</value>
+  </data>
+  <data name="ABOUT_OUR_MISSION">
+    <value>Нашият ресторант се стреми винаги да използва органични, био продукти от местни производители. Премиум продукти, които приготваме с много ентусиазъм и любов.</value>
+  </data>
+  <data name="ABOUT_OUR_POLICY_FIRST">
+    <value>Опитваме се да плащаме конкурентни заплати на служителите си (бакшишите се споделят между всички служители, включително в кухнята) и да редуцираме еко следата си на максимум.</value>
+  </data>
+  <data name="ABOUT_OUR_POLICY_SECOND">
+    <value>Всички тези фактори акумулират до по-високи цени, но се надяваме да припознаете нашите ценности и да усетите чувство на комфорт, знаейки че се стремим да сме по-добри всеки ден.</value>
+  </data>
+  <data name="YEARS_OF">
+    <value>Години</value>
+  </data>
+  <data name="EXCELLENCE">
+    <value>Отличие</value>
+  </data>
+  <data name="TEAM_MEMBERS">
+    <value>Нашият Екиш</value>
+  </data>
+  <data name="MASTER_CHEFS">
+    <value>Главни готвачи</value>
+  </data>
+  <data name="INCREDIBLE">
+    <value>Невероятни</value>
+  </data>
+  <data name="DISHES">
+    <value>Ястия</value>
+  </data>
+</root>
