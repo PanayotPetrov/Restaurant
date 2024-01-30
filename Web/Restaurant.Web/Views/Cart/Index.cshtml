@@ -1,8 +1,11 @@
-﻿@using Restaurant.Web.ViewModels.Cart
+﻿@using Microsoft.AspNetCore.Localization
+@using Restaurant.Web.ViewModels.Cart
+
 @model CartViewModel;
 
 @{
-    this.ViewData["Title"] = "Cart";
+    this.ViewData["Title"] = SL["CART"];
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
 }
 
 <partial name="_HeroPartial" />
@@ -14,11 +17,11 @@
             <table class="table table-bordered text-center mb-0">
                 <thead class="bg-dark text-white">
                     <tr>
-                        <th>Products</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Item Total</th>
-                        <th>Remove</th>
+                        <th>@SL["PRODUCTS"]</th>
+                        <th>@SL["PRICE"]</th>
+                        <th>@SL["QUANTITY"]</th>
+                        <th>@SL["ITEM_PRICE"]</th>
+                        <th>@SL["REMOVE"]</th>
                     </tr>
                 </thead>
                 <tbody class="align-middle">
@@ -27,8 +30,9 @@
                         <tr class="bg-white" id="cartItemContainer@(cartItem.Meal.Id)">
                             <td class="align-middle">
                                 <img class="flex-shrink-0 img-fluid rounded" src=@($"{cartItem.Meal.ImageUrl}") style="width: 75px;" asp-append-version="true">
+                                @{ var mealName = requestCulture.RequestCulture.Culture.Name == "en" ? cartItem.Meal.Name : cartItem.Meal.SecondaryName; }
 
-                                @cartItem.Meal.Name
+                                @mealName
                             </td>
                             <td class="align-middle" id="cartItemMealPrice@(cartItem.Meal.Id)">@cartItem.Meal.Price $</td>
                             <td class="align-middle">
@@ -56,24 +60,24 @@
         <div class="col-lg-4">
             <div class="card border-secondary mb-5">
                 <div class="card-header bg-dark  border-0">
-                    <h4 class="font-weight-semi-bold text-white m-0 text-md-center">Cart Summary</h4>
+                    <h4 class="font-weight-semi-bold text-white m-0 text-md-center">@SL["CART_SUMMARY"]</h4>
                 </div>
                 <div class="card-body">
                     <div class="d-flex justify-content-between mb-3 pt-1">
-                        <h6 class="font-weight-medium">Subtotal</h6>
+                        <h6 class="font-weight-medium">@SL["SUBTOTAL"]</h6>
                         <h6 class="font-weight-medium" id="cartSubTotalCard">@Model.SubTotal $</h6>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <h6 class="font-weight-medium">Shipping</h6>
+                        <h6 class="font-weight-medium">@SL["SHIPPING"]</h6>
                         <h6 class="font-weight-medium">@Model.ShippingPrice $</h6>
                     </div>
                 </div>
                 <div class="card-footer border-secondary bg-transparent">
                     <div class="d-flex justify-content-between mt-2">
-                        <h5 class="font-weight-bold">Total</h5>
+                        <h5 class="font-weight-bold">@SL["TOTAL_PRICE"]</h5>
                         <h5 class="font-weight-bold" id="cartTotalPrice">@Model.TotalPrice $</h5>
                     </div>
-                    <a class="btn btn-block btn-primary mt-md-3 ms-md-3 p-md-3 text-md-center" asp-controller="Checkout" asp-action="Index">Proceed To Checkout</a>
+                    <a class="btn btn-block btn-primary mt-md-3 ms-md-3 p-md-3 text-md-center" asp-controller="Checkout" asp-action="Index">@SL["PROCEED_TO_CHECKOUT"]</a>
                 </div>
             </div>
         </div>
@@ -92,7 +96,7 @@
                 </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="btnCloseModal" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" id="btnCloseModal" data-dismiss="modal">@SL["CLOSE"]</button>
             </div>
         </div>
     </div>

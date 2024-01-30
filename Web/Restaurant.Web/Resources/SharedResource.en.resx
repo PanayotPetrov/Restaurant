@@ -380,4 +380,25 @@
   <data name="DELIVERY_ADDRESS">
     <value>Delivery address</value>
   </data>
+  <data name="PRICE">
+    <value>Price</value>
+  </data>
+  <data name="QUANTITY">
+    <value>Quantity</value>
+  </data>
+  <data name="ITEM_TOTAL">
+    <value>Item total</value>
+  </data>
+  <data name="REMOVE">
+    <value>Remove</value>
+  </data>
+  <data name="CART_SUMMARY">
+    <value>Cart summary</value>
+  </data>
+  <data name="PROCEED_TO_CHECKOUT">
+    <value>Proceed to checkout</value>
+  </data>
+  <data name="CART">
+    <value>Cart</value>
+  </data>
 </root>

@@ -380,4 +380,25 @@
   <data name="DELIVERY_ADDRESS">
     <value>Адрес за доставка</value>
   </data>
+  <data name="PRICE">
+    <value>Цена</value>
+  </data>
+  <data name="QUANTITY">
+    <value>Количество</value>
+  </data>
+  <data name="ITEM_PRICE">
+    <value>Сума продукти</value>
+  </data>
+  <data name="REMOVE">
+    <value>Премахни</value>
+  </data>
+  <data name="CART_SUMMARY">
+    <value>Преглед на количка</value>
+  </data>
+  <data name="PROCEED_TO_CHECKOUT">
+    <value>Към плащане</value>
+  </data>
+  <data name="CART">
+    <value>Количка</value>
+  </data>
 </root>
