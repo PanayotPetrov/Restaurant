@@ -44,22 +44,34 @@ function AddToCart(id) {
         contentType: 'application/json',
         success: function (result, status, xhr) {
             if (xhr.status === 200) {
-                $("#addToCartModalLabel").text('Success');
-                $("#addToCartModalBody").text('You have successfully added the item to your cart!');
+                let jsonResult = JSON.parse(xhr.responseText);
+                $("#addToCartModalLabel").text(jsonResult.success);
+                $("#addToCartModalBody").text(jsonResult.successMessage);
                 $("#addToCartModal").modal('show');
-
-                var currentCartTotalPrice = JSON.parse(xhr.responseText);
-                $("#cartSubTotalBtn").html('<i class="fa-solid fa-cart-shopping"></i> ' + currentCartTotalPrice + ' $');
+                
+                $("#cartSubTotalBtn").html('<i class="fa-solid fa-cart-shopping"></i> ' + jsonResult.cartSubtotal + ' $');
             }
         },
         error: function (xhr) {
-            $("#addToCartModalLabel").text('Oops!');
-            if (xhr.responseText.length == 0) {
+            //TO DO: По-цивилизован начин???
 
-                $("#addToCartModalBody").append('<li class="text-danger"> You need to log in to add items to your cart! </li>')
+            let errorMessage;
+            let errorLabel;
+            let currentLanguage = GetCurrentLanguage();
+            if (currentLanguage == "bg") {
+                errorMessage = '<li class="text-danger"> Трябва да се логнете преди да може да добавяте продукти! </li>'
+                errorLabel = "Опа...";
             }
             else {
-                var errors = JSON.parse(xhr.responseText);
+                errorMessage = '<li class="text-danger"> You need to log in to add items to your cart! </li>'
+                errorLabel = "Oops..."
+            }
+            $("#addToCartModalLabel").text(errorLabel);
+            if (xhr.responseText.length == 0) {
+                $("#addToCartModalBody").append(errorMessage);
+            }
+            else {
+                let errors = JSON.parse(xhr.responseText);
                 for (var i = 0; i < errors.length; i++) {
                     $("#addToCartModalBody").append('<li class="text-danger">' + errors[i] + '</li>')
                 }
@@ -196,4 +208,17 @@ function RemoveFromCart(id) {
             }
         }
     });
+}
+
+function GetCurrentLanguage() {
+    let cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].split('=');
+        let cookieName = cookie[0];
+        if (cookieName == " .AspNetCore.Culture") {
+            let cookieValue = cookie[1];
+            let culture = cookieValue.split('%').slice(-1);
+            return culture[0].slice(-2);
+        }
+    }
 }

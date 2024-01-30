@@ -264,7 +264,7 @@
     <value>Delete</value>
   </data>
   <data name="CLOSE">
-    <value>Затвори</value>
+    <value>Close</value>
   </data>
   <data name="THANK_YOU_ORDER">
     <value>Thank you for your order!</value>
@@ -400,5 +400,8 @@
   </data>
   <data name="CART">
     <value>Cart</value>
+  </data>
+    <data name="MODAL_SUCCESS_MESSAGE">
+    <value>You have successfully added the item to your cart!</value>
   </data>
 </root>

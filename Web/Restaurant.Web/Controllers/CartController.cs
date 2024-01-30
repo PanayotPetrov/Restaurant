@@ -8,6 +8,7 @@
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
+    using Restaurant.Web.HelperClasses;
     using Restaurant.Web.Infrastructure.Filters;
     using Restaurant.Web.ViewModels.Cart;
     using Restaurant.Web.ViewModels.InputModels;
@@ -17,10 +18,12 @@
     public class CartController : BaseController
     {
         private readonly ICartService cartService;
+        private readonly ISharedViewLocalizer localizer;
 
-        public CartController(ICartService cartService)
+        public CartController(ICartService cartService, ISharedViewLocalizer localizer)
         {
             this.cartService = cartService;
+            this.localizer = localizer;
         }
 
         public async Task<IActionResult> Index()
@@ -46,9 +49,12 @@
             var cartItem = AutoMapperConfig.MapperInstance.Map<CartItemModel>(model);
 
             await this.cartService.AddToCartAsync(userId, cartItem);
-            var cartSubtotal = this.cartService.GetCartSubTotal(userId);
+            var cartSubtotal = this.cartService.GetCartSubTotal(userId).ToString("0.00");
+
             this.Response.StatusCode = 200;
-            return this.Json(cartSubtotal.ToString("0.00"));
+            var success = this.localizer["SUCCESS"].Value;
+            var successMessage = this.localizer["MODAL_SUCCESS_MESSAGE"].Value;
+            return this.Json(new { success, successMessage, cartSubtotal });
         }
 
         [HttpPost]

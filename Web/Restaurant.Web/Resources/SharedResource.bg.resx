@@ -401,4 +401,7 @@
   <data name="CART">
     <value>Количка</value>
   </data>
+    <data name="MODAL_SUCCESS_MESSAGE">
+    <value>Вие успешно добавихте продукта към вашата количка!</value>
+  </data>
 </root>
