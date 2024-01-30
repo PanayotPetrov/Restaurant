@@ -44,33 +44,33 @@ function AddToCart(id) {
         contentType: 'application/json',
         success: function (result, status, xhr) {
             if (xhr.status === 200) {
-                $("#modalLabel").text('Success');
-                $("#modalBody").text('You have successfully added the item to your cart!');
-                $("#exampleModal").modal('show');
+                $("#addToCartModalLabel").text('Success');
+                $("#addToCartModalBody").text('You have successfully added the item to your cart!');
+                $("#addToCartModal").modal('show');
 
                 var currentCartTotalPrice = JSON.parse(xhr.responseText);
                 $("#cartSubTotalBtn").html('<i class="fa-solid fa-cart-shopping"></i> ' + currentCartTotalPrice + ' $');
             }
         },
         error: function (xhr) {
-            $("#modalLabel").text('Oops!');
+            $("#addToCartModalLabel").text('Oops!');
             if (xhr.responseText.length == 0) {
 
-                $("#modalBody").append('<li class="text-danger"> You need to log in to add items to your cart! </li>')
+                $("#addToCartModalBody").append('<li class="text-danger"> You need to log in to add items to your cart! </li>')
             }
             else {
                 var errors = JSON.parse(xhr.responseText);
                 for (var i = 0; i < errors.length; i++) {
-                    $("#modalBody").append('<li class="text-danger">' + errors[i] + '</li>')
+                    $("#addToCartModalBody").append('<li class="text-danger">' + errors[i] + '</li>')
                 }
             }
-            $("#exampleModal").modal('show')
+            $("#addToCartModal").modal('show')
         }
     });
 
-    $("#btnCloseModal").click(function () {
-        $("#exampleModal").modal("hide");
-        $("#modalBody").text('');
+    $("#addToCartModalCloseButton").click(function () {
+        $("#addToCartModal").modal("hide");
+        $("#addToCartModalBody").text('');
     });
 }
 
@@ -148,19 +148,19 @@ function ChangeCartItemQuantity(id) {
             }
         },
         error: function (xhr) {
-            $("#modalLabel").text('Oops!');
+            $("#cartModalLabel").text('Oops!');
             var errors = JSON.parse(xhr.responseText);
             for (var i = 0; i < errors.length; i++) {
-                $("#modalBody").append('<li class="text-danger">' + errors[i] + '</li>')
+                $("#cartModalBody").append('<li class="text-danger">' + errors[i] + '</li>')
             }
 
-            $("#exampleModal").modal('show')
+            $("#cartModal").modal('show')
         }
     });
 
-    $("#btnCloseModal").click(function () {
-        $("#exampleModal").modal("hide");
-        $("#modalBody").text('');
+    $("#cartModalCloseButton").click(function () {
+        $("#cartModal").modal("hide");
+        $("#cartModalBody").text('');
     });
 }
 
