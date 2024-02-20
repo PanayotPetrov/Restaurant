@@ -3,6 +3,7 @@
     using System.Reflection;
 
     using Microsoft.Extensions.Localization;
+    using Restaurant.Common.Resources;
 
     public class SharedViewLocalizer : ISharedViewLocalizer
     {

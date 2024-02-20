@@ -10,6 +10,7 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Restaurant.Common.Resources;
     using Restaurant.Data;
     using Restaurant.Data.Common;
     using Restaurant.Data.Models;
