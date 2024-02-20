@@ -11,13 +11,11 @@
     public class AddReservationInputModel : IMapTo<AddReservationModel>, IHaveCustomMappings
     {
         [Required(ErrorMessage = "We need your first name to book a table.")]
-        [Display(Name = "Full name")]
 
         public string FullName { get; set; }
 
         [Required(ErrorMessage = "We need your phone number in order to book a table.")]
         [Phone(ErrorMessage = "Invalid phone number provided. Please try again.")]
-        [Display(Name = "Phone number")]
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "We need your email in order to book a table.")]
