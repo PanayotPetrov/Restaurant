@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Restaurant.Common.Resources;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
 
@@ -9,7 +10,7 @@
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_NAME")]
         public string Name { get; set; }
 
         public bool IsInSecondaryLanguage { get; set; }

@@ -524,4 +524,55 @@
   <data name="DISHES">
     <value>Dishes</value>
   </data>
+  <data name="VALIDATION_REQUIRED_NAME">
+    <value>Please fill in your name.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_PHONE_NUMBER">
+    <value>Please fill in your phone number.</value>
+  </data>
+  <data name="VALIDATION_INVALID_PHONE_NUMBER">
+    <value>Invalid phone number.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_EMAIL">
+    <value>Please fill in your email.</value>
+  </data>
+  <data name="VALIDATION_INVALID_EMAIL">
+    <value>Invalid email.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_FIELD">
+    <value>The field is required.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_DATE">
+    <value>Please select a date.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_ADDRESS_LINE_TWO">
+    <value>Please provide some more information - flat, floor number, etc.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_DESCRIPTION">
+    <value>In this field you can explain in detail.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_SUMMARY">
+    <value>Please provide a short summary.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_RATING">
+    <value>Please select a rating.</value>
+  </data>
+  <data name="VALIDATION_RANGE_RESERVATION_TIME">
+    <value>Your reservation start time must be between {1} and {2}.</value>
+  </data>
+  <data name="VALIDATION_RANGE_NUMBER_OF_PEOPLE">
+    <value>Our tables currently fit between {1} and {2} people.</value>
+  </data>
+  <data name="VALIDATION_MAX_CHARS">
+    <value>The maximum allowed number of characters is {1}.</value>
+  </data>
+  <data name="VALIDATION_RANGE">
+    <value>The value must be between {1} and {2}.</value>
+  </data>
+  <data name="VALIDATION_RANGE_ADDRESS">
+    <value>Invalid address.</value>
+  </data>
+  <data name="VALIDATION_RANGE_CART_ITEM_QUANTITY">
+    <value>You need to have at least {1} but not more than {2} products in your cart.</value>
+  </data>
 </root>

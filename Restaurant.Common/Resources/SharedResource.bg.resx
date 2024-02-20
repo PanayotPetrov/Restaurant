@@ -513,7 +513,7 @@
     <value>Отличие</value>
   </data>
   <data name="TEAM_MEMBERS">
-    <value>Нашият Екиш</value>
+    <value>Нашият Екип</value>
   </data>
   <data name="MASTER_CHEFS">
     <value>Главни готвачи</value>
@@ -523,5 +523,56 @@
   </data>
   <data name="DISHES">
     <value>Ястия</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_NAME">
+    <value>Моля попълнете името си.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_PHONE_NUMBER">
+    <value>Моля попълнете мобилния си номер.</value>
+  </data>
+  <data name="VALIDATION_INVALID_PHONE_NUMBER">
+    <value>Невалиден мобилен номер.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_EMAIL">
+    <value>Моля попълнете имейла си.</value>
+  </data>
+  <data name="VALIDATION_INVALID_EMAIL">
+    <value>Невалиден имейл.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_FIELD">
+    <value>Полето е задължително.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_DATE">
+    <value>Моля изберете дата.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_ADDRESS_LINE_TWO">
+    <value>Моля дайте допълнителна информация - етаж, апартамент, т,н.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_DESCRIPTION">
+    <value>В това поле можете да обясните в детайли.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_SUMMARY">
+    <value>Моля дайте ни кратко описание.</value>
+  </data>
+  <data name="VALIDATION_REQUIRED_RATING">
+    <value>Моля изберете рейтинг.</value>
+  </data>
+  <data name="VALIDATION_RANGE_RESERVATION_TIME">
+    <value>Часът на резервацията трябва да е между {1} и {2}.</value>
+  </data>
+  <data name="VALIDATION_RANGE_NUMBER_OF_PEOPLE">
+    <value>В момента разполагаме с маси за между {1} и {2} човека.</value>
+  </data>
+  <data name="VALIDATION_MAX_CHARS">
+    <value>Максималният допустим брой символи е {1}.</value>
+  </data>
+  <data name="VALIDATION_RANGE">
+    <value>Стойността трябва да бъде между {1} и {2}.</value>
+  </data>
+  <data name="VALIDATION_RANGE_ADDRESS">
+    <value>Невалиден адрес.</value>
+  </data>
+  <data name="VALIDATION_RANGE_CART_ITEM_QUANTITY">
+    <value>Трябва да имаш поне {1}, но не повече от {2} продукта в кошницата си.</value>
   </data>
 </root>

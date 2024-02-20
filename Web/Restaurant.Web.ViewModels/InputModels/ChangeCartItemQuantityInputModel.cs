@@ -8,6 +8,7 @@
 
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
+    using Restaurant.Common.Resources;
     using Restaurant.Services.Data;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
@@ -19,7 +20,7 @@
         [MealIdValidation]
         public int MealId { get; set; }
 
-        [Range(1, 100, ErrorMessage = "Your meal quantity must be between 1 and 100.")]
+        [Range(1, 100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_RANGE_CART_ITEM_QUANTITY")]
         public int Quantity { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

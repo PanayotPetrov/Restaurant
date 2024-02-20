@@ -4,35 +4,35 @@
     using System.ComponentModel.DataAnnotations;
 
     using AutoMapper;
+    using Restaurant.Common.Resources;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
 
     public class AddReservationInputModel : IMapTo<AddReservationModel>, IHaveCustomMappings
     {
-        [Required(ErrorMessage = "We need your first name to book a table.")]
-
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_NAME")]
         public string FullName { get; set; }
 
-        [Required(ErrorMessage = "We need your phone number in order to book a table.")]
-        [Phone(ErrorMessage = "Invalid phone number provided. Please try again.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_PHONE_NUMBER")]
+        [Phone(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_INVALID_PHONE_NUMBER")]
         public string PhoneNumber { get; set; }
 
-        [Required(ErrorMessage = "We need your email in order to book a table.")]
-        [EmailAddress(ErrorMessage = "Invalid email provided. Please try again.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_EMAIL")]
+        [EmailAddress(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_INVALID_EMAIL")]
         public string Email { get; set; }
 
-        [MaxLength(200, ErrorMessage = "The maximum number of characters is 200.")]
+        [MaxLength(200, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_MAX_CHARS")]
         public string SpecialRequest { get; set; }
 
         [CurrentDateValidation]
-        [Required(ErrorMessage = "We can't book a table unless you select a date.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_DATE")]
         public DateTime ReservationDate { get; set; }
 
-        [Range(18, 22, ErrorMessage = "Your reservation must be between 18:00 and 22:00")]
+        [Range(18, 22, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_RANGE_RESERVATION_TIME")]
         public int ReservationTime { get; set; }
 
-        [Range(2, 6, ErrorMessage = "Our tables currently fit between 2 and 6 people")]
+        [Range(2, 6, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_RANGE_NUMBER_OF_PEOPLE")]
         public int NumberOfPeople { get; set; }
 
         public string ApplicationUserId { get; set; }

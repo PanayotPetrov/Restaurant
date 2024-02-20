@@ -1204,11 +1204,155 @@ namespace Restaurant.Common.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Validation reservation.
+        ///   Looks up a localized string similar to Invalid email..
         /// </summary>
-        public static string VALIDATION_RESERVATION {
+        public static string VALIDATION_INVALID_EMAIL {
             get {
-                return ResourceManager.GetString("VALIDATION_RESERVATION", resourceCulture);
+                return ResourceManager.GetString("VALIDATION_INVALID_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid phone number..
+        /// </summary>
+        public static string VALIDATION_INVALID_PHONE_NUMBER {
+            get {
+                return ResourceManager.GetString("VALIDATION_INVALID_PHONE_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The maximum allowed number of characters is {1}..
+        /// </summary>
+        public static string VALIDATION_MAX_CHARS {
+            get {
+                return ResourceManager.GetString("VALIDATION_MAX_CHARS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value must be between {1} and {2}..
+        /// </summary>
+        public static string VALIDATION_RANGE {
+            get {
+                return ResourceManager.GetString("VALIDATION_RANGE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid address..
+        /// </summary>
+        public static string VALIDATION_RANGE_ADDRESS {
+            get {
+                return ResourceManager.GetString("VALIDATION_RANGE_ADDRESS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You need to have at least {1} but not more than {2} products in your cart..
+        /// </summary>
+        public static string VALIDATION_RANGE_CART_ITEM_QUANTITY {
+            get {
+                return ResourceManager.GetString("VALIDATION_RANGE_CART_ITEM_QUANTITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our tables currently fit between {1} and {2} people..
+        /// </summary>
+        public static string VALIDATION_RANGE_NUMBER_OF_PEOPLE {
+            get {
+                return ResourceManager.GetString("VALIDATION_RANGE_NUMBER_OF_PEOPLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your reservation start time must be between {1} and {2}..
+        /// </summary>
+        public static string VALIDATION_RANGE_RESERVATION_TIME {
+            get {
+                return ResourceManager.GetString("VALIDATION_RANGE_RESERVATION_TIME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please provide some more information - flat, floor number, etc..
+        /// </summary>
+        public static string VALIDATION_REQUIRED_ADDRESS_LINE_TWO {
+            get {
+                return ResourceManager.GetString("VALIDATION_REQUIRED_ADDRESS_LINE_TWO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select a date..
+        /// </summary>
+        public static string VALIDATION_REQUIRED_DATE {
+            get {
+                return ResourceManager.GetString("VALIDATION_REQUIRED_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In this field you can explain in detail..
+        /// </summary>
+        public static string VALIDATION_REQUIRED_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("VALIDATION_REQUIRED_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fill in your email..
+        /// </summary>
+        public static string VALIDATION_REQUIRED_EMAIL {
+            get {
+                return ResourceManager.GetString("VALIDATION_REQUIRED_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The field is required..
+        /// </summary>
+        public static string VALIDATION_REQUIRED_FIELD {
+            get {
+                return ResourceManager.GetString("VALIDATION_REQUIRED_FIELD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fill in your name..
+        /// </summary>
+        public static string VALIDATION_REQUIRED_NAME {
+            get {
+                return ResourceManager.GetString("VALIDATION_REQUIRED_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fill in your phone number..
+        /// </summary>
+        public static string VALIDATION_REQUIRED_PHONE_NUMBER {
+            get {
+                return ResourceManager.GetString("VALIDATION_REQUIRED_PHONE_NUMBER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please select a rating..
+        /// </summary>
+        public static string VALIDATION_REQUIRED_RATING {
+            get {
+                return ResourceManager.GetString("VALIDATION_REQUIRED_RATING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please provide a short summary..
+        /// </summary>
+        public static string VALIDATION_REQUIRED_SUMMARY {
+            get {
+                return ResourceManager.GetString("VALIDATION_REQUIRED_SUMMARY", resourceCulture);
             }
         }
         

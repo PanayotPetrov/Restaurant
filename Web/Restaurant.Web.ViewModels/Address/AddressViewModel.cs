@@ -13,7 +13,6 @@
     {
         public IEnumerable<string> AddressNames { get; set; }
 
-        [Required]
         public bool IsPrimaryAddress { get; set; }
 
         public IEnumerable<string> AllowedDistricts { get; set; }

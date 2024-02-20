@@ -3,6 +3,7 @@
     using System.ComponentModel.DataAnnotations;
 
     using AutoMapper;
+    using Restaurant.Common.Resources;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
@@ -12,14 +13,14 @@
         [CartIdValidation]
         public int CartId { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Invalid address selected")]
+        [Range(1, 100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_RANGE_ADDRESS")]
         public int AddressId { get; set; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "You need to add at least 1 product to place an order!")]
+        [Range(1, 100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_RANGE_CART_ITEM_QUANTITY")]
         public int CartItemsCount { get; set; }
 
-        [Required(ErrorMessage = "We need your number in order to proceed. Please update it in your account.")]
-        [Phone(ErrorMessage = "Invalid phone number provided.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_PHONE_NUMBER")]
+        [Phone(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_INVALID_PHONE_NUMBER")]
 
         public string PhoneNumber { get; set; }
 

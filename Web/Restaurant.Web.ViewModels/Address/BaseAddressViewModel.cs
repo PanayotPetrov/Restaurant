@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Restaurant.Common.Resources;
     using Restaurant.Data.Models;
     using Restaurant.Services.Mapping;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
@@ -14,24 +15,24 @@
         [ValidateUniqueAddressName]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Please provide a street.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_FIELD")]
         public string Street { get; set; }
 
-        [Required(ErrorMessage = "Please provide some more information - flat, floor number, etc.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_ADDRESS_LINE_TWO")]
         public string AddressLineTwo { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_FIELD")]
         [AllowedDistrictsValidationAttribute]
         public string District { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_FIELD")]
         [AllowedCityValidationAttribute]
         public string City { get; set; }
 
-        [Required(ErrorMessage = "Please provide your postcode/zip.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_FIELD")]
         public string PostCode { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_FIELD")]
         [AllowedCountryValidationAttribute]
         public string Country { get; set; }
     }

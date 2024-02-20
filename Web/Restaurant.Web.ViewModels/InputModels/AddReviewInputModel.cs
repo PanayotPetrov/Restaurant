@@ -2,6 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
+    using Restaurant.Common.Resources;
     using Restaurant.Services.Mapping;
     using Restaurant.Services.Models;
 
@@ -9,15 +10,15 @@
     {
         public string ApplicationUserId { get; set; }
 
-        [Required]
-        [MaxLength(400, ErrorMessage = "The maximum number of characters is 400.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_DESCRIPTION")]
+        [MaxLength(400, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_MAX_CHARS")]
         public string Description { get; set; }
 
-        [Required]
-        [MaxLength(36, ErrorMessage = "Keep it short. Your summary should not have more than 36 characters.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_SUMMARY")]
+        [MaxLength(36, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_MAX_CHARS")]
         public string Summary { get; set; }
 
-        [Required(ErrorMessage = "Please select a rating!")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_RATING")]
         public string Rating { get; set; }
     }
 }
