@@ -7,7 +7,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    using Microsoft.AspNetCore.Http.Internal;
+    using Microsoft.AspNetCore.Http;
     using Moq;
     using Restaurant.Data.Common.Repositories;
     using Restaurant.Data.Models;
