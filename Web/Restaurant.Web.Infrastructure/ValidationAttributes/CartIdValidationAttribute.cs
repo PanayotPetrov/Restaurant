@@ -25,7 +25,7 @@
                 }
             }
 
-            return new ValidationResult("Invalid cart id provided");
+            return new ValidationResult(this.ErrorMessage);
         }
     }
 }

@@ -7,6 +7,7 @@
     using Microsoft.Extensions.DependencyInjection;
 
     using Restaurant.Services.Data;
+    using Restaurant.Web.HelperClasses;
     using Restaurant.Web.Infrastructure.ValidationAttributes;
 
     public class UniqueAddressNameValidationActionFilter : ActionFilterAttribute
@@ -37,7 +38,8 @@
 
             if (addressService.IsNameAlreadyInUse(userId, newAddressName, originalAddressName))
             {
-                context.ModelState.AddModelError(propertyToValidate.Name, "Address names must be unique.");
+                var localizer = context.HttpContext.RequestServices.GetService<ISharedViewLocalizer>();
+                context.ModelState.AddModelError(propertyToValidate.Name, localizer["VALIDATION_UNIQUE_ADDRESS_NAME"]);
             }
 
             base.OnActionExecuting(context);

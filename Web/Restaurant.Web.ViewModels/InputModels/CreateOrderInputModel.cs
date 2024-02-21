@@ -10,7 +10,7 @@
 
     public class CreateOrderInputModel : IMapTo<AddOrderModel>, IHaveCustomMappings
     {
-        [CartIdValidation]
+        [CartIdValidation(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_INVALID_CART_ID")]
         public int CartId { get; set; }
 
         [Range(1, 100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_RANGE_ADDRESS")]

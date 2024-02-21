@@ -9,7 +9,6 @@
         {
             this.CurrentDate = DateTime.UtcNow;
             this.OneMonthAhead = DateTime.UtcNow.AddMonths(1);
-            this.ErrorMessage = $"Your reservation must be between {this.CurrentDate.ToShortDateString()} and {this.OneMonthAhead.ToShortDateString()}";
         }
 
         public DateTime CurrentDate { get; }

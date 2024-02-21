@@ -11,7 +11,7 @@
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Your address name can't be empty")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_FIELD")]
         [ValidateUniqueAddressName]
         public string Name { get; set; }
 
@@ -22,18 +22,18 @@
         public string AddressLineTwo { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_FIELD")]
-        [AllowedDistrictsValidationAttribute]
+        [AllowedDistrictsValidation(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_INVALID_DISTRICT")]
         public string District { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_FIELD")]
-        [AllowedCityValidationAttribute]
+        [AllowedCityValidation(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_INVALID_CITY")]
         public string City { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_FIELD")]
         public string PostCode { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_FIELD")]
-        [AllowedCountryValidationAttribute]
+        [AllowedCountryValidation(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_INVALID_COUNTRY")]
         public string Country { get; set; }
     }
 }

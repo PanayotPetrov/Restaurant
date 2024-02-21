@@ -575,4 +575,34 @@
   <data name="VALIDATION_RANGE_CART_ITEM_QUANTITY">
     <value>Трябва да имаш поне {1}, но не повече от {2} продукта в кошницата си.</value>
   </data>
+  <data name="VALIDATION_INVALID_CITY">
+    <value>Към момента доставяме само в София.</value>
+  </data>
+  <data name="VALIDATION_INVALID_COUNTRY">
+    <value>Към момента доставяме само в България.</value>
+  </data>
+  <data name="VALIDATION_INVALID_DISTRICT">
+    <value>Моля изберете квартал от списъка.</value>
+  </data>
+  <data name="VALIDATION_INVALID_CART_ID">
+    <value>Невалиден идентификатор на количка.</value>
+  </data>
+  <data name="VALIDATION_INVALID_CART_ITEM_QUANTITY">
+    <value>Не може да имате повече от 100 продукта в поръчката.</value>
+  </data>
+  <data name="VALIDATION_CURRENT_DATE">
+    <value>Не може да направите резервация за по-напред от един месец.</value>
+  </data>
+  <data name="VALIDATION_INVALID_MEAL_ID">
+    <value>Невалиден идентификатор на ястие.</value>
+  </data>
+  <data name="VALIDATION_INVALID_ADDRESS_NAME">
+    <value>Невалидно име на адрес.</value>
+  </data>
+  <data name="VALIDATION_NO_ADDRESS_SELECTED">
+    <value>Моля изберете адрес.</value>
+  </data>
+  <data name="VALIDATION_UNIQUE_ADDRESS_NAME">
+    <value>Имената на адресите Ви трябва да са уникални.</value>
+  </data>
 </root>

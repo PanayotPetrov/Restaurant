@@ -25,7 +25,7 @@
         [MaxLength(200, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_MAX_CHARS")]
         public string SpecialRequest { get; set; }
 
-        [CurrentDateValidation]
+        [CurrentDateValidation(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_CURRENT_DATE")]
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_REQUIRED_DATE")]
         public DateTime ReservationDate { get; set; }
 

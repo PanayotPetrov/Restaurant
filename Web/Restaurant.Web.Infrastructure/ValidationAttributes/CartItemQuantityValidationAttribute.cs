@@ -23,7 +23,7 @@
                 return ValidationResult.Success;
             }
 
-            return new ValidationResult($"You cannot have more than 100 items per order. You can add a mixumum of {cartItemQuantityLeft} additional items.");
+            return new ValidationResult(this.ErrorMessage);
         }
     }
 }

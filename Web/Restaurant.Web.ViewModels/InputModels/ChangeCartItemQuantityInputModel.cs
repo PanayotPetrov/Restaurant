@@ -17,7 +17,7 @@
 
     public class ChangeCartItemQuantityInputModel : IMapTo<CartItemModel>, IValidatableObject
     {
-        [MealIdValidation]
+        [MealIdValidation(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_INVALID_MEAL_ID")]
         public int MealId { get; set; }
 
         [Range(1, 100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_RANGE_CART_ITEM_QUANTITY")]

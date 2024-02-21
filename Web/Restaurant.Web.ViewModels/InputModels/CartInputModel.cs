@@ -9,11 +9,11 @@
 
     public class CartInputModel : IMapTo<CartItemModel>
     {
-        [MealIdValidation]
+        [MealIdValidation(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_INVALID_MEAL_ID")]
         public int MealId { get; set; }
 
         [Range(1, 100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_RANGE")]
-        [CartItemQuantityValidation]
+        [CartItemQuantityValidation(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "VALIDATION_INVALID_CART_ITEM_QUANTITY")]
         public int Quantity { get; set; }
     }
 }

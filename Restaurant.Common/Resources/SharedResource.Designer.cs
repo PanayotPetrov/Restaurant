@@ -1204,11 +1204,74 @@ namespace Restaurant.Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You cannot make a reservation for more than 1 month into the future..
+        /// </summary>
+        public static string VALIDATION_CURRENT_DATE {
+            get {
+                return ResourceManager.GetString("VALIDATION_CURRENT_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid address name..
+        /// </summary>
+        public static string VALIDATION_INVALID_ADDRESS_NAME {
+            get {
+                return ResourceManager.GetString("VALIDATION_INVALID_ADDRESS_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You cannot have more than 100 items per order..
+        /// </summary>
+        public static string VALIDATION_INVALID_CART_ITEM_QUANTITY {
+            get {
+                return ResourceManager.GetString("VALIDATION_INVALID_CART_ITEM_QUANTITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currently we deliver only in Sofia..
+        /// </summary>
+        public static string VALIDATION_INVALID_CITY {
+            get {
+                return ResourceManager.GetString("VALIDATION_INVALID_CITY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currently we deliver only in Bulgaria..
+        /// </summary>
+        public static string VALIDATION_INVALID_COUNTRY {
+            get {
+                return ResourceManager.GetString("VALIDATION_INVALID_COUNTRY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose a district from the list..
+        /// </summary>
+        public static string VALIDATION_INVALID_DISTRICT {
+            get {
+                return ResourceManager.GetString("VALIDATION_INVALID_DISTRICT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid email..
         /// </summary>
         public static string VALIDATION_INVALID_EMAIL {
             get {
                 return ResourceManager.GetString("VALIDATION_INVALID_EMAIL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid meal id..
+        /// </summary>
+        public static string VALIDATION_INVALID_MEAL_ID {
+            get {
+                return ResourceManager.GetString("VALIDATION_INVALID_MEAL_ID", resourceCulture);
             }
         }
         
@@ -1227,6 +1290,15 @@ namespace Restaurant.Common.Resources {
         public static string VALIDATION_MAX_CHARS {
             get {
                 return ResourceManager.GetString("VALIDATION_MAX_CHARS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose an address..
+        /// </summary>
+        public static string VALIDATION_NO_ADDRESS_SELECTED {
+            get {
+                return ResourceManager.GetString("VALIDATION_NO_ADDRESS_SELECTED", resourceCulture);
             }
         }
         
@@ -1353,6 +1425,15 @@ namespace Restaurant.Common.Resources {
         public static string VALIDATION_REQUIRED_SUMMARY {
             get {
                 return ResourceManager.GetString("VALIDATION_REQUIRED_SUMMARY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Address names must be unique..
+        /// </summary>
+        public static string VALIDATION_UNIQUE_ADDRESS_NAME {
+            get {
+                return ResourceManager.GetString("VALIDATION_UNIQUE_ADDRESS_NAME", resourceCulture);
             }
         }
         

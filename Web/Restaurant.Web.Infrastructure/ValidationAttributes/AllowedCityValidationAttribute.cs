@@ -1,23 +1,25 @@
 ﻿namespace Restaurant.Web.Infrastructure.ValidationAttributes
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
 
     public class AllowedCityValidationAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             // TO DO: Get values from config.
-            var allowedCity = "Sofia";
+            List<string> allowedCities = ["Sofia", "София"];
 
             if (value is string stringValue)
             {
-                if (stringValue.ToLower() == allowedCity.ToLower())
+                if (allowedCities.Any(c => c.Equals(stringValue, System.StringComparison.CurrentCultureIgnoreCase)))
                 {
                     return ValidationResult.Success;
                 }
             }
 
-            return new ValidationResult($"We currently deliver only in {allowedCity}");
+            return new ValidationResult(this.ErrorMessage);
         }
     }
 }

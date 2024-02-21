@@ -575,4 +575,31 @@
   <data name="VALIDATION_RANGE_CART_ITEM_QUANTITY">
     <value>You need to have at least {1} but not more than {2} products in your cart.</value>
   </data>
+  <data name="VALIDATION_INVALID_CITY">
+    <value>Currently we deliver only in Sofia.</value>
+  </data>
+  <data name="VALIDATION_INVALID_COUNTRY">
+    <value>Currently we deliver only in Bulgaria.</value>
+  </data>
+  <data name="VALIDATION_INVALID_DISTRICT">
+    <value>Please choose a district from the list.</value>
+  </data>
+  <data name="VALIDATION_INVALID_CART_ITEM_QUANTITY">
+    <value>You cannot have more than 100 items per order.</value>
+  </data>
+  <data name="VALIDATION_CURRENT_DATE">
+    <value>You cannot make a reservation for more than 1 month into the future.</value>
+  </data>
+  <data name="VALIDATION_INVALID_MEAL_ID">
+    <value>Invalid meal id.</value>
+  </data>
+  <data name="VALIDATION_INVALID_ADDRESS_NAME">
+    <value>Invalid address name.</value>
+  </data>
+  <data name="VALIDATION_NO_ADDRESS_SELECTED">
+    <value>Please choose an address.</value>
+  </data>
+  <data name="VALIDATION_UNIQUE_ADDRESS_NAME">
+    <value>Address names must be unique.</value>
+  </data>
 </root>

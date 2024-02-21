@@ -7,11 +7,14 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
     using Restaurant.Services.Data;
+    using Restaurant.Web.HelperClasses;
 
     public class AddressNameValidationAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
+            var localizer = validationContext.GetService<ISharedViewLocalizer>();
+
             if (value is string stringValue)
             {
                 var httpContextAccessor = validationContext.GetService<IHttpContextAccessor>();
@@ -25,10 +28,10 @@
                     return ValidationResult.Success;
                 }
 
-                return new ValidationResult("Invalid address name provided!");
+                return new ValidationResult(localizer["VALIDATION_INVALID_ADDRESS_NAME"].Value);
             }
 
-            return new ValidationResult("Please select an address!");
+            return new ValidationResult(localizer["VALIDATION_NO_ADDRESS_SELECTED"].Value);
         }
     }
 }

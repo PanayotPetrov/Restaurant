@@ -1,23 +1,25 @@
 ﻿namespace Restaurant.Web.Infrastructure.ValidationAttributes
 {
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
 
     public class AllowedCountryValidationAttribute : ValidationAttribute
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
             // TO DO: GET FROM CONFIG
-            var alowedCountry = "Bulgaria";
+            List<string> allowedCountries = ["Bulgaria", "България"];
 
             if (value is string stringValue)
             {
-                if (stringValue.ToLower() == alowedCountry.ToLower())
+                if (allowedCountries.Any(c => c.Equals(stringValue, System.StringComparison.CurrentCultureIgnoreCase)))
                 {
                     return ValidationResult.Success;
                 }
             }
 
-            return new ValidationResult($"We currently deliver only in {alowedCountry}");
+            return new ValidationResult(this.ErrorMessage);
         }
     }
 }

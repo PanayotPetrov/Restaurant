@@ -20,7 +20,7 @@
                 }
             }
 
-            return new ValidationResult("Invalid district selected");
+            return new ValidationResult(this.ErrorMessage);
         }
     }
 }

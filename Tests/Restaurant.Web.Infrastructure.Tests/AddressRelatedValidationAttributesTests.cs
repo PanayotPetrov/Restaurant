@@ -33,6 +33,7 @@
         [Fact]
         public void AddressNameValidation_IsValid_ShouldReturnFalse_IfAddressNameIsInvalid()
         {
+            // TO DO: ADD MOCK FOR ISharedViewLocalizer
             var addressNames = new List<string> { "first", "second" };
 
             this.fixture.AddressServiceMock.Setup(x => x.GetAddressNamesByUserId(It.IsAny<string>())).Returns(addressNames);
